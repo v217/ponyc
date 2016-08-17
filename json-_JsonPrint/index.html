@@ -5510,41 +5510,67 @@
 </ul>
 <hr />
 <h2 id="private-functions">Private Functions</h2>
-<h3 id="_string">_string</h3>
-<p>Generate string representation of the given data.</p>
-<pre><code class="pony">fun box _string(
-  d: (F64 val | I64 val | Bool val | None val | String val | JsonArray box | JsonObject box),
+<h3 id="_indent">_indent</h3>
+<p>Add indentation to the buf to the appropriate indent_level</p>
+<pre><code class="pony">fun box _indent(
+  buf: String iso,
   indent: String val,
-  pretty_print: Bool val = false)
-: String val
+  level': USize val)
+: String iso^
 </code></pre>
 
 <h4 id="parameters_2">Parameters</h4>
 <ul>
-<li>d: (<a href="../builtin-F64">F64</a> val | <a href="../builtin-I64">I64</a> val | <a href="../builtin-Bool">Bool</a> val | <a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val | <a href="../json-JsonArray">JsonArray</a> box | <a href="../json-JsonObject">JsonObject</a> box)</li>
+<li>buf: <a href="../builtin-String">String</a> iso</li>
 <li>indent: <a href="../builtin-String">String</a> val</li>
-<li>pretty_print: <a href="../builtin-Bool">Bool</a> val = false</li>
+<li>level': <a href="../builtin-USize">USize</a> val</li>
 </ul>
 <h4 id="returns_3">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> val</li>
+<li><a href="../builtin-String">String</a> iso^</li>
+</ul>
+<hr />
+<h3 id="_string">_string</h3>
+<p>Generate string representation of the given data.</p>
+<pre><code class="pony">fun box _string(
+  d: (F64 val | I64 val | Bool val | None val | String val | JsonArray box | JsonObject box),
+  buf': String iso,
+  indent: String val,
+  level: USize val,
+  pretty: Bool val)
+: String iso^
+</code></pre>
+
+<h4 id="parameters_3">Parameters</h4>
+<ul>
+<li>d: (<a href="../builtin-F64">F64</a> val | <a href="../builtin-I64">I64</a> val | <a href="../builtin-Bool">Bool</a> val | <a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val | <a href="../json-JsonArray">JsonArray</a> box | <a href="../json-JsonObject">JsonObject</a> box)</li>
+<li>buf': <a href="../builtin-String">String</a> iso</li>
+<li>indent: <a href="../builtin-String">String</a> val</li>
+<li>level: <a href="../builtin-USize">USize</a> val</li>
+<li>pretty: <a href="../builtin-Bool">Bool</a> val</li>
+</ul>
+<h4 id="returns_4">Returns</h4>
+<ul>
+<li><a href="../builtin-String">String</a> iso^</li>
 </ul>
 <hr />
 <h3 id="_escaped_string">_escaped_string</h3>
 <p>Generate a version of the given string with escapes for all non-printable
 and non-ASCII characters.</p>
 <pre><code class="pony">fun box _escaped_string(
+  buf: String iso,
   s: String val)
-: String val
+: String iso^
 </code></pre>
 
-<h4 id="parameters_3">Parameters</h4>
+<h4 id="parameters_4">Parameters</h4>
 <ul>
+<li>buf: <a href="../builtin-String">String</a> iso</li>
 <li>s: <a href="../builtin-String">String</a> val</li>
 </ul>
-<h4 id="returns_4">Returns</h4>
+<h4 id="returns_5">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> val</li>
+<li><a href="../builtin-String">String</a> iso^</li>
 </ul>
 <hr />
               

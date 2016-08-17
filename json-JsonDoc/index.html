@@ -5491,12 +5491,14 @@ A JSON document consists of exactly 1 value.</p>
 <h3 id="string">string</h3>
 <p>Generate string representation of this document.</p>
 <pre><code class="pony">fun box string(
+  indent: String val= &quot;&quot;,
   pretty_print: Bool val = false)
 : String val
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
+<li>indent: <a href="../builtin-String">String</a> val= ""</li>
 <li>pretty_print: <a href="../builtin-Bool">Bool</a> val = false</li>
 </ul>
 <h4 id="returns_1">Returns</h4>

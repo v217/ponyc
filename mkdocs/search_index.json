@@ -50702,7 +50702,7 @@
         }, 
         {
             "location": "/json-JsonDoc/", 
-            "text": "JsonDoc\n\n\nTop level JSON type containing an entire document.\nA JSON document consists of exactly 1 value.\n\n\nclass ref JsonDoc\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: JsonDoc iso^\n\n\n\n\nReturns\n\n\n\n\nJsonDoc\n iso^\n\n\n\n\n\n\nPublic fields\n\n\n\n\nvar data: (\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref)\n\n\n\n\n\n\nPublic Functions\n\n\nstring\n\n\nGenerate string representation of this document.\n\n\nfun box string(\n  pretty_print: Bool val = false)\n: String val\n\n\n\n\nParameters\n\n\n\n\npretty_print: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\nparse\n\n\nParse the given string as a JSON file, building a document.\nRaise error on invalid JSON in given source.\n\n\nfun ref parse(\n  source: String val)\n: None val ?\n\n\n\n\nParameters\n\n\n\n\nsource: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val ?\n\n\n\n\n\n\nparse_report\n\n\nGive details of the error that occured last time we attempted to parse.\nIf parse was successful returns (0, \"\").\n\n\nfun box parse_report()\n: (USize val , String val)\n\n\n\n\nReturns\n\n\n\n\n(\nUSize\n val , \nString\n val)\n\n\n\n\n\n\nPrivate Functions\n\n\n_parse_value\n\n\nParse a single JSON value of any type, which MUST be present.\nRaise error on invalid or missing value.\n\n\nfun ref _parse_value(\n  context: String val)\n: (F64 val | I64 val | Bool val | None val | String val | JsonArray ref | JsonObject ref) ?\n\n\n\n\nParameters\n\n\n\n\ncontext: \nString\n val\n\n\n\n\nReturns\n\n\n\n\n(\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref) ?\n\n\n\n\n\n\n_parse_keyword\n\n\nParse a keyword, the first letter of which has already been peeked.\n\n\nfun ref _parse_keyword()\n: (Bool val | None val) ?\n\n\n\n\nReturns\n\n\n\n\n(\nBool\n val | \nNone\n val) ?\n\n\n\n\n\n\n_parse_number\n\n\nParse a number, the leading character of which has already been peeked.\n\n\nfun ref _parse_number()\n: (F64 val | I64 val) ?\n\n\n\n\nReturns\n\n\n\n\n(\nF64\n val | \nI64\n val) ?\n\n\n\n\n\n\n_parse_decimal\n\n\nParse a decimal integer which must appear immediately in the source.\n\n\nfun ref _parse_decimal()\n: (I64 val , U8 val) ?\n\n\n\n\nReturns\n\n\n\n\n(\nI64\n val , \nU8\n val) ?\n\n\n\n\n\n\n_parse_object\n\n\nParse a JSON object, the leading { of which has already been peeked.\n\n\nfun ref _parse_object()\n: JsonObject ref ?\n\n\n\n\nReturns\n\n\n\n\nJsonObject\n ref ?\n\n\n\n\n\n\n_parse_array\n\n\nParse an array, the leading [ of which has already been peeked.\n\n\nfun ref _parse_array()\n: JsonArray ref ?\n\n\n\n\nReturns\n\n\n\n\nJsonArray\n ref ?\n\n\n\n\n\n\n_parse_string\n\n\nParse a string, which must be the next thing found, other than whitesapce.\n\n\nfun ref _parse_string(\n  context: String val)\n: String val ?\n\n\n\n\nParameters\n\n\n\n\ncontext: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nString\n val ?\n\n\n\n\n\n\n_parse_escape\n\n\nProcess a string escape sequence, the leading \\ of which has already been\nconsumed.\n\n\nfun ref _parse_escape()\n: String val ?\n\n\n\n\nReturns\n\n\n\n\nString\n val ?\n\n\n\n\n\n\n_parse_unicode_escape\n\n\nProcess a Unicode escape sequence, the leading \\u of which has already been\nconsumed.\n\n\nfun ref _parse_unicode_escape()\n: String val ?\n\n\n\n\nReturns\n\n\n\n\nString\n val ?\n\n\n\n\n\n\n_parse_unicode_digits\n\n\nParse the hex digits of a Unicode escape sequence, the leading \\u of which\nhas already been consumed, and return the encoded character value.\n\n\nfun ref _parse_unicode_digits()\n: U32 val ?\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\n_dump_whitespace\n\n\nDump all whitespace at the current read location in source, if any.\n\n\nfun ref _dump_whitespace()\n: None val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_peek_char\n\n\nPeek the next char in the source, without consuming it.\nIf an eof_context is given then an error is thrown on eof, setting a\nsuitable message.\nIf eof_context is None then 0 is returned on EOF. It up to the caller to\nhandle this appropriately.\n\n\nfun ref _peek_char(\n  eof_context: (String val | None val) = reference)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\neof_context: (\nString\n val | \nNone\n val) = reference\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\n_get_char\n\n\nGet and consume the next char in the source.\nIf an eof_context is given then an error is thrown on eof, setting a\nsuitable message.\nIf eof_context is None then 0 is returned on EOF. It up to the caller to\nhandle this appropriately.\n\n\nfun ref _get_char(\n  eof_context: (String val | None val) = reference)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\neof_context: (\nString\n val | \nNone\n val) = reference\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\n_last_char\n\n\nGet the last character peeked or got from the source as a String.\nFor use generating error messages.\n\n\nfun ref _last_char()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\n_error\n\n\nRecord an error with the given message.\n\n\nfun ref _error(\n  msg: String val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nmsg: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "JsonDoc\n\n\nTop level JSON type containing an entire document.\nA JSON document consists of exactly 1 value.\n\n\nclass ref JsonDoc\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: JsonDoc iso^\n\n\n\n\nReturns\n\n\n\n\nJsonDoc\n iso^\n\n\n\n\n\n\nPublic fields\n\n\n\n\nvar data: (\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref)\n\n\n\n\n\n\nPublic Functions\n\n\nstring\n\n\nGenerate string representation of this document.\n\n\nfun box string(\n  indent: String val= \n,\n  pretty_print: Bool val = false)\n: String val\n\n\n\n\nParameters\n\n\n\n\nindent: \nString\n val= \"\"\n\n\npretty_print: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\nparse\n\n\nParse the given string as a JSON file, building a document.\nRaise error on invalid JSON in given source.\n\n\nfun ref parse(\n  source: String val)\n: None val ?\n\n\n\n\nParameters\n\n\n\n\nsource: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val ?\n\n\n\n\n\n\nparse_report\n\n\nGive details of the error that occured last time we attempted to parse.\nIf parse was successful returns (0, \"\").\n\n\nfun box parse_report()\n: (USize val , String val)\n\n\n\n\nReturns\n\n\n\n\n(\nUSize\n val , \nString\n val)\n\n\n\n\n\n\nPrivate Functions\n\n\n_parse_value\n\n\nParse a single JSON value of any type, which MUST be present.\nRaise error on invalid or missing value.\n\n\nfun ref _parse_value(\n  context: String val)\n: (F64 val | I64 val | Bool val | None val | String val | JsonArray ref | JsonObject ref) ?\n\n\n\n\nParameters\n\n\n\n\ncontext: \nString\n val\n\n\n\n\nReturns\n\n\n\n\n(\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref) ?\n\n\n\n\n\n\n_parse_keyword\n\n\nParse a keyword, the first letter of which has already been peeked.\n\n\nfun ref _parse_keyword()\n: (Bool val | None val) ?\n\n\n\n\nReturns\n\n\n\n\n(\nBool\n val | \nNone\n val) ?\n\n\n\n\n\n\n_parse_number\n\n\nParse a number, the leading character of which has already been peeked.\n\n\nfun ref _parse_number()\n: (F64 val | I64 val) ?\n\n\n\n\nReturns\n\n\n\n\n(\nF64\n val | \nI64\n val) ?\n\n\n\n\n\n\n_parse_decimal\n\n\nParse a decimal integer which must appear immediately in the source.\n\n\nfun ref _parse_decimal()\n: (I64 val , U8 val) ?\n\n\n\n\nReturns\n\n\n\n\n(\nI64\n val , \nU8\n val) ?\n\n\n\n\n\n\n_parse_object\n\n\nParse a JSON object, the leading { of which has already been peeked.\n\n\nfun ref _parse_object()\n: JsonObject ref ?\n\n\n\n\nReturns\n\n\n\n\nJsonObject\n ref ?\n\n\n\n\n\n\n_parse_array\n\n\nParse an array, the leading [ of which has already been peeked.\n\n\nfun ref _parse_array()\n: JsonArray ref ?\n\n\n\n\nReturns\n\n\n\n\nJsonArray\n ref ?\n\n\n\n\n\n\n_parse_string\n\n\nParse a string, which must be the next thing found, other than whitesapce.\n\n\nfun ref _parse_string(\n  context: String val)\n: String val ?\n\n\n\n\nParameters\n\n\n\n\ncontext: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nString\n val ?\n\n\n\n\n\n\n_parse_escape\n\n\nProcess a string escape sequence, the leading \\ of which has already been\nconsumed.\n\n\nfun ref _parse_escape()\n: String val ?\n\n\n\n\nReturns\n\n\n\n\nString\n val ?\n\n\n\n\n\n\n_parse_unicode_escape\n\n\nProcess a Unicode escape sequence, the leading \\u of which has already been\nconsumed.\n\n\nfun ref _parse_unicode_escape()\n: String val ?\n\n\n\n\nReturns\n\n\n\n\nString\n val ?\n\n\n\n\n\n\n_parse_unicode_digits\n\n\nParse the hex digits of a Unicode escape sequence, the leading \\u of which\nhas already been consumed, and return the encoded character value.\n\n\nfun ref _parse_unicode_digits()\n: U32 val ?\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\n_dump_whitespace\n\n\nDump all whitespace at the current read location in source, if any.\n\n\nfun ref _dump_whitespace()\n: None val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_peek_char\n\n\nPeek the next char in the source, without consuming it.\nIf an eof_context is given then an error is thrown on eof, setting a\nsuitable message.\nIf eof_context is None then 0 is returned on EOF. It up to the caller to\nhandle this appropriately.\n\n\nfun ref _peek_char(\n  eof_context: (String val | None val) = reference)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\neof_context: (\nString\n val | \nNone\n val) = reference\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\n_get_char\n\n\nGet and consume the next char in the source.\nIf an eof_context is given then an error is thrown on eof, setting a\nsuitable message.\nIf eof_context is None then 0 is returned on EOF. It up to the caller to\nhandle this appropriately.\n\n\nfun ref _get_char(\n  eof_context: (String val | None val) = reference)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\neof_context: (\nString\n val | \nNone\n val) = reference\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\n_last_char\n\n\nGet the last character peeked or got from the source as a String.\nFor use generating error messages.\n\n\nfun ref _last_char()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\n_error\n\n\nRecord an error with the given message.\n\n\nfun ref _error(\n  msg: String val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nmsg: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "class JsonDoc"
         }, 
         {
@@ -50737,12 +50737,12 @@
         }, 
         {
             "location": "/json-JsonDoc/#string", 
-            "text": "Generate string representation of this document.  fun box string(\n  pretty_print: Bool val = false)\n: String val", 
+            "text": "Generate string representation of this document.  fun box string(\n  indent: String val=  ,\n  pretty_print: Bool val = false)\n: String val", 
             "title": "string"
         }, 
         {
             "location": "/json-JsonDoc/#parameters", 
-            "text": "pretty_print:  Bool  val = false", 
+            "text": "indent:  String  val= \"\"  pretty_print:  Bool  val = false", 
             "title": "Parameters"
         }, 
         {
@@ -50957,7 +50957,7 @@
         }, 
         {
             "location": "/json-_JsonPrint/", 
-            "text": "_JsonPrint\n\n\nprimitive val _JsonPrint\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: _JsonPrint val^\n\n\n\n\nReturns\n\n\n\n\n_JsonPrint\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: _JsonPrint val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_JsonPrint\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: _JsonPrint val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_JsonPrint\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_string\n\n\nGenerate string representation of the given data.\n\n\nfun box _string(\n  d: (F64 val | I64 val | Bool val | None val | String val | JsonArray box | JsonObject box),\n  indent: String val,\n  pretty_print: Bool val = false)\n: String val\n\n\n\n\nParameters\n\n\n\n\nd: (\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n box | \nJsonObject\n box)\n\n\nindent: \nString\n val\n\n\npretty_print: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\n_escaped_string\n\n\nGenerate a version of the given string with escapes for all non-printable\nand non-ASCII characters.\n\n\nfun box _escaped_string(\n  s: String val)\n: String val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "text": "_JsonPrint\n\n\nprimitive val _JsonPrint\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: _JsonPrint val^\n\n\n\n\nReturns\n\n\n\n\n_JsonPrint\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: _JsonPrint val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_JsonPrint\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: _JsonPrint val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_JsonPrint\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_indent\n\n\nAdd indentation to the buf to the appropriate indent_level\n\n\nfun box _indent(\n  buf: String iso,\n  indent: String val,\n  level': USize val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nbuf: \nString\n iso\n\n\nindent: \nString\n val\n\n\nlevel': \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\n_string\n\n\nGenerate string representation of the given data.\n\n\nfun box _string(\n  d: (F64 val | I64 val | Bool val | None val | String val | JsonArray box | JsonObject box),\n  buf': String iso,\n  indent: String val,\n  level: USize val,\n  pretty: Bool val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nd: (\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n box | \nJsonObject\n box)\n\n\nbuf': \nString\n iso\n\n\nindent: \nString\n val\n\n\nlevel: \nUSize\n val\n\n\npretty: \nBool\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\n_escaped_string\n\n\nGenerate a version of the given string with escapes for all non-printable\nand non-ASCII characters.\n\n\nfun box _escaped_string(\n  buf: String iso,\n  s: String val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nbuf: \nString\n iso\n\n\ns: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^", 
             "title": "primitive _JsonPrint"
         }, 
         {
@@ -51021,33 +51021,48 @@
             "title": "Private Functions"
         }, 
         {
-            "location": "/json-_JsonPrint/#_string", 
-            "text": "Generate string representation of the given data.  fun box _string(\n  d: (F64 val | I64 val | Bool val | None val | String val | JsonArray box | JsonObject box),\n  indent: String val,\n  pretty_print: Bool val = false)\n: String val", 
-            "title": "_string"
+            "location": "/json-_JsonPrint/#_indent", 
+            "text": "Add indentation to the buf to the appropriate indent_level  fun box _indent(\n  buf: String iso,\n  indent: String val,\n  level': USize val)\n: String iso^", 
+            "title": "_indent"
         }, 
         {
             "location": "/json-_JsonPrint/#parameters_2", 
-            "text": "d: ( F64  val |  I64  val |  Bool  val |  None  val |  String  val |  JsonArray  box |  JsonObject  box)  indent:  String  val  pretty_print:  Bool  val = false", 
+            "text": "buf:  String  iso  indent:  String  val  level':  USize  val", 
             "title": "Parameters"
         }, 
         {
             "location": "/json-_JsonPrint/#returns_3", 
-            "text": "String  val", 
+            "text": "String  iso^", 
             "title": "Returns"
         }, 
         {
-            "location": "/json-_JsonPrint/#_escaped_string", 
-            "text": "Generate a version of the given string with escapes for all non-printable\nand non-ASCII characters.  fun box _escaped_string(\n  s: String val)\n: String val", 
-            "title": "_escaped_string"
+            "location": "/json-_JsonPrint/#_string", 
+            "text": "Generate string representation of the given data.  fun box _string(\n  d: (F64 val | I64 val | Bool val | None val | String val | JsonArray box | JsonObject box),\n  buf': String iso,\n  indent: String val,\n  level: USize val,\n  pretty: Bool val)\n: String iso^", 
+            "title": "_string"
         }, 
         {
             "location": "/json-_JsonPrint/#parameters_3", 
-            "text": "s:  String  val", 
+            "text": "d: ( F64  val |  I64  val |  Bool  val |  None  val |  String  val |  JsonArray  box |  JsonObject  box)  buf':  String  iso  indent:  String  val  level:  USize  val  pretty:  Bool  val", 
             "title": "Parameters"
         }, 
         {
             "location": "/json-_JsonPrint/#returns_4", 
-            "text": "String  val", 
+            "text": "String  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/json-_JsonPrint/#_escaped_string", 
+            "text": "Generate a version of the given string with escapes for all non-printable\nand non-ASCII characters.  fun box _escaped_string(\n  buf: String iso,\n  s: String val)\n: String iso^", 
+            "title": "_escaped_string"
+        }, 
+        {
+            "location": "/json-_JsonPrint/#parameters_4", 
+            "text": "buf:  String  iso  s:  String  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/json-_JsonPrint/#returns_5", 
+            "text": "String  iso^", 
             "title": "Returns"
         }, 
         {
@@ -51067,7 +51082,7 @@
         }, 
         {
             "location": "/json-JsonArray/", 
-            "text": "JsonArray\n\n\nclass ref JsonArray\n\n\n\n\nConstructors\n\n\ncreate\n\n\nCreate an array with zero elements, but space for len elements.\n\n\nnew iso create(\n  len: USize val = 0)\n: JsonArray iso^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nJsonArray\n iso^\n\n\n\n\n\n\nfrom_array\n\n\nCreate a Json array from an actual array.\n\n\nnew ref from_array(\n  data': Array[(F64 val | I64 val | Bool val | None val | String val | JsonArray ref | JsonObject ref)] ref)\n: JsonArray ref^\n\n\n\n\nParameters\n\n\n\n\ndata': \nArray\n[(\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref)] ref\n\n\n\n\nReturns\n\n\n\n\nJsonArray\n ref^\n\n\n\n\n\n\nPublic fields\n\n\n\n\nvar data: \nArray\n[(\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref)] ref\n\n\n\n\n\n\nPublic Functions\n\n\nstring\n\n\nGenerate string representation of this array.\n\n\nfun box string(\n  indent: String val= \n,\n  pretty_print: Bool val = false)\n: String val\n\n\n\n\nParameters\n\n\n\n\nindent: \nString\n val= \"\"\n\n\npretty_print: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "text": "JsonArray\n\n\nclass ref JsonArray\n\n\n\n\nConstructors\n\n\ncreate\n\n\nCreate an array with zero elements, but space for len elements.\n\n\nnew iso create(\n  len: USize val = 0)\n: JsonArray iso^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nJsonArray\n iso^\n\n\n\n\n\n\nfrom_array\n\n\nCreate a Json array from an actual array.\n\n\nnew ref from_array(\n  data': Array[(F64 val | I64 val | Bool val | None val | String val | JsonArray ref | JsonObject ref)] ref)\n: JsonArray ref^\n\n\n\n\nParameters\n\n\n\n\ndata': \nArray\n[(\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref)] ref\n\n\n\n\nReturns\n\n\n\n\nJsonArray\n ref^\n\n\n\n\n\n\nPublic fields\n\n\n\n\nvar data: \nArray\n[(\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref)] ref\n\n\n\n\n\n\nPublic Functions\n\n\nstring\n\n\nGenerate string representation of this array.\n\n\nfun box string(\n  indent: String val= \n,\n  pretty_print: Bool val = false)\n: String val\n\n\n\n\nParameters\n\n\n\n\nindent: \nString\n val= \"\"\n\n\npretty_print: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_show\n\n\nAppend the string representation of this array to the provided String.\n\n\nfun box _show(\n  buf': String iso,\n  indent: String val= \n,\n  level: USize val,\n  pretty: Bool val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nbuf': \nString\n iso\n\n\nindent: \nString\n val= \"\"\n\n\nlevel: \nUSize\n val\n\n\npretty: \nBool\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^", 
             "title": "class JsonArray"
         }, 
         {
@@ -51136,8 +51151,28 @@
             "title": "Returns"
         }, 
         {
+            "location": "/json-JsonArray/#private-functions", 
+            "text": "", 
+            "title": "Private Functions"
+        }, 
+        {
+            "location": "/json-JsonArray/#_show", 
+            "text": "Append the string representation of this array to the provided String.  fun box _show(\n  buf': String iso,\n  indent: String val=  ,\n  level: USize val,\n  pretty: Bool val)\n: String iso^", 
+            "title": "_show"
+        }, 
+        {
+            "location": "/json-JsonArray/#parameters_3", 
+            "text": "buf':  String  iso  indent:  String  val= \"\"  level:  USize  val  pretty:  Bool  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/json-JsonArray/#returns_3", 
+            "text": "String  iso^", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/json-JsonObject/", 
-            "text": "JsonObject\n\n\nclass ref JsonObject\n\n\n\n\nConstructors\n\n\ncreate\n\n\nCreate a map with space for prealloc elements without triggering a\nresize. Defaults to 6.\n\n\nnew iso create(\n  prealloc: USize val = 6)\n: JsonObject iso^\n\n\n\n\nParameters\n\n\n\n\nprealloc: \nUSize\n val = 6\n\n\n\n\nReturns\n\n\n\n\nJsonObject\n iso^\n\n\n\n\n\n\nfrom_map\n\n\nCreate a Json object from a map.\n\n\nnew ref from_map(\n  data': HashMap[String val, (F64 val | I64 val | Bool val | None val | String val | JsonArray ref | JsonObject ref), HashEq[String val] val] ref)\n: JsonObject ref^\n\n\n\n\nParameters\n\n\n\n\ndata': \nHashMap\n[\nString\n val, (\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref), \nHashEq\n[\nString\n val] val] ref\n\n\n\n\nReturns\n\n\n\n\nJsonObject\n ref^\n\n\n\n\n\n\nPublic fields\n\n\n\n\nvar data: \nHashMap\n[\nString\n val, (\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref), \nHashEq\n[\nString\n val] val] ref\n\n\n\n\n\n\nPublic Functions\n\n\nstring\n\n\nGenerate string representation of this object.\n\n\nfun box string(\n  indent: String val= \n,\n  pretty_print: Bool val = false)\n: String val\n\n\n\n\nParameters\n\n\n\n\nindent: \nString\n val= \"\"\n\n\npretty_print: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "text": "JsonObject\n\n\nclass ref JsonObject\n\n\n\n\nConstructors\n\n\ncreate\n\n\nCreate a map with space for prealloc elements without triggering a\nresize. Defaults to 6.\n\n\nnew iso create(\n  prealloc: USize val = 6)\n: JsonObject iso^\n\n\n\n\nParameters\n\n\n\n\nprealloc: \nUSize\n val = 6\n\n\n\n\nReturns\n\n\n\n\nJsonObject\n iso^\n\n\n\n\n\n\nfrom_map\n\n\nCreate a Json object from a map.\n\n\nnew ref from_map(\n  data': HashMap[String val, (F64 val | I64 val | Bool val | None val | String val | JsonArray ref | JsonObject ref), HashEq[String val] val] ref)\n: JsonObject ref^\n\n\n\n\nParameters\n\n\n\n\ndata': \nHashMap\n[\nString\n val, (\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref), \nHashEq\n[\nString\n val] val] ref\n\n\n\n\nReturns\n\n\n\n\nJsonObject\n ref^\n\n\n\n\n\n\nPublic fields\n\n\n\n\nvar data: \nHashMap\n[\nString\n val, (\nF64\n val | \nI64\n val | \nBool\n val | \nNone\n val | \nString\n val | \nJsonArray\n ref | \nJsonObject\n ref), \nHashEq\n[\nString\n val] val] ref\n\n\n\n\n\n\nPublic Functions\n\n\nstring\n\n\nGenerate string representation of this object.\n\n\nfun box string(\n  indent: String val= \n,\n  pretty_print: Bool val = false)\n: String val\n\n\n\n\nParameters\n\n\n\n\nindent: \nString\n val= \"\"\n\n\npretty_print: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_show\n\n\nAppend the string representation of this object to the provided String.\n\n\nfun box _show(\n  buf': String iso,\n  indent: String val= \n,\n  level: USize val,\n  pretty: Bool val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nbuf': \nString\n iso\n\n\nindent: \nString\n val= \"\"\n\n\nlevel: \nUSize\n val\n\n\npretty: \nBool\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^", 
             "title": "class JsonObject"
         }, 
         {
@@ -51203,6 +51238,26 @@
         {
             "location": "/json-JsonObject/#returns_2", 
             "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/json-JsonObject/#private-functions", 
+            "text": "", 
+            "title": "Private Functions"
+        }, 
+        {
+            "location": "/json-JsonObject/#_show", 
+            "text": "Append the string representation of this object to the provided String.  fun box _show(\n  buf': String iso,\n  indent: String val=  ,\n  level: USize val,\n  pretty: Bool val)\n: String iso^", 
+            "title": "_show"
+        }, 
+        {
+            "location": "/json-JsonObject/#parameters_3", 
+            "text": "buf':  String  iso  indent:  String  val= \"\"  level:  USize  val  pretty:  Bool  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/json-JsonObject/#returns_3", 
+            "text": "String  iso^", 
             "title": "Returns"
         }, 
         {
