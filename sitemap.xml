@@ -1144,6 +1144,12 @@
     </url>
         
     <url>
+     <loc>None/collections-Sort/</loc>
+     <lastmod>2016-08-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/collections-Main/</loc>
      <lastmod>2016-08-17</lastmod>
      <changefreq>daily</changefreq>
@@ -1259,6 +1265,12 @@
         
     <url>
      <loc>None/collections-_TestHashSetContains/</loc>
+     <lastmod>2016-08-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/collections-_TestSort/</loc>
      <lastmod>2016-08-17</lastmod>
      <changefreq>daily</changefreq>
     </url>

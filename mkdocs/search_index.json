@@ -31032,12 +31032,12 @@
         }, 
         {
             "location": "/collections--index/", 
-            "text": "No package doc string provided for collections.\n\n\nPublic Types\n\n\n\n\ntype Map\n\n\ntype MapIs\n\n\nclass HashMap\n\n\nclass MapKeys\n\n\nclass MapValues\n\n\nclass MapPairs\n\n\ninterface Flag\n\n\nclass Flags\n\n\ntype Set\n\n\ntype SetIs\n\n\nclass HashSet\n\n\nclass SetValues\n\n\nclass RingBuffer\n\n\nclass Reverse\n\n\nclass List\n\n\nclass ListNodes\n\n\nclass ListValues\n\n\nclass ListNode\n\n\nclass Range\n\n\ninterface Hashable\n\n\ninterface HashFunction\n\n\nprimitive HashEq\n\n\nprimitive HashIs\n\n\nprimitive HashByteSeq\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _MapEmpty\n\n\nprimitive _MapDeleted\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestList\n\n\nclass _TestListsFrom\n\n\nclass _TestMap\n\n\nclass _TestMapRemove\n\n\nclass _TestMapUpsert\n\n\nclass _TestRing\n\n\nclass _TestListsMap\n\n\nclass _TestListsFlatMap\n\n\nclass _TestListsFilter\n\n\nclass _TestListsFold\n\n\nclass _TestListsEvery\n\n\nclass _TestListsExists\n\n\nclass _TestListsPartition\n\n\nclass _TestListsDrop\n\n\nclass _TestListsTake\n\n\nclass _TestListsTakeWhile\n\n\nclass _TestListsContains\n\n\nclass _TestListsReverse\n\n\nclass _TestHashSetContains", 
+            "text": "No package doc string provided for collections.\n\n\nPublic Types\n\n\n\n\ntype Map\n\n\ntype MapIs\n\n\nclass HashMap\n\n\nclass MapKeys\n\n\nclass MapValues\n\n\nclass MapPairs\n\n\nprimitive Sort\n\n\ninterface Flag\n\n\nclass Flags\n\n\ntype Set\n\n\ntype SetIs\n\n\nclass HashSet\n\n\nclass SetValues\n\n\nclass RingBuffer\n\n\nclass Reverse\n\n\nclass List\n\n\nclass ListNodes\n\n\nclass ListValues\n\n\nclass ListNode\n\n\nclass Range\n\n\ninterface Hashable\n\n\ninterface HashFunction\n\n\nprimitive HashEq\n\n\nprimitive HashIs\n\n\nprimitive HashByteSeq\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _MapEmpty\n\n\nprimitive _MapDeleted\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestList\n\n\nclass _TestListsFrom\n\n\nclass _TestMap\n\n\nclass _TestMapRemove\n\n\nclass _TestMapUpsert\n\n\nclass _TestRing\n\n\nclass _TestListsMap\n\n\nclass _TestListsFlatMap\n\n\nclass _TestListsFilter\n\n\nclass _TestListsFold\n\n\nclass _TestListsEvery\n\n\nclass _TestListsExists\n\n\nclass _TestListsPartition\n\n\nclass _TestListsDrop\n\n\nclass _TestListsTake\n\n\nclass _TestListsTakeWhile\n\n\nclass _TestListsContains\n\n\nclass _TestListsReverse\n\n\nclass _TestHashSetContains\n\n\nclass _TestSort", 
             "title": "Package"
         }, 
         {
             "location": "/collections--index/#public-types", 
-            "text": "type Map  type MapIs  class HashMap  class MapKeys  class MapValues  class MapPairs  interface Flag  class Flags  type Set  type SetIs  class HashSet  class SetValues  class RingBuffer  class Reverse  class List  class ListNodes  class ListValues  class ListNode  class Range  interface Hashable  interface HashFunction  primitive HashEq  primitive HashIs  primitive HashByteSeq", 
+            "text": "type Map  type MapIs  class HashMap  class MapKeys  class MapValues  class MapPairs  primitive Sort  interface Flag  class Flags  type Set  type SetIs  class HashSet  class SetValues  class RingBuffer  class Reverse  class List  class ListNodes  class ListValues  class ListNode  class Range  interface Hashable  interface HashFunction  primitive HashEq  primitive HashIs  primitive HashByteSeq", 
             "title": "Public Types"
         }, 
         {
@@ -31047,7 +31047,7 @@
         }, 
         {
             "location": "/collections--index/#test-types", 
-            "text": "actor Main  class _TestList  class _TestListsFrom  class _TestMap  class _TestMapRemove  class _TestMapUpsert  class _TestRing  class _TestListsMap  class _TestListsFlatMap  class _TestListsFilter  class _TestListsFold  class _TestListsEvery  class _TestListsExists  class _TestListsPartition  class _TestListsDrop  class _TestListsTake  class _TestListsTakeWhile  class _TestListsContains  class _TestListsReverse  class _TestHashSetContains", 
+            "text": "actor Main  class _TestList  class _TestListsFrom  class _TestMap  class _TestMapRemove  class _TestMapUpsert  class _TestRing  class _TestListsMap  class _TestListsFlatMap  class _TestListsFilter  class _TestListsFold  class _TestListsEvery  class _TestListsExists  class _TestListsPartition  class _TestListsDrop  class _TestListsTake  class _TestListsTakeWhile  class _TestListsContains  class _TestListsReverse  class _TestHashSetContains  class _TestSort", 
             "title": "Test Types"
         }, 
         {
@@ -31708,6 +31708,116 @@
         {
             "location": "/collections-MapPairs/#returns_2", 
             "text": "(M #read- K , M #read- V) ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-Sort/", 
+            "text": "Sort[A: \nSeq\n[B #read] ref, B: \nComparable\n[B #read] #read]\n\n\nImplementation of dual-pivot quicksort.\n\n\nprimitive val Sort[A: Seq[B #read] ref, B: Comparable[B #read] #read]\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: Sort[A ref, B #read] val^\n\n\n\n\nReturns\n\n\n\n\nSort\n[A ref, B #read] val^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nSort the given seq.\n\n\nfun box apply(\n  a: A ref)\n: A ref^\n\n\n\n\nParameters\n\n\n\n\na: A ref\n\n\n\n\nReturns\n\n\n\n\nA ref^\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: Sort[A ref, B #read] val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nSort\n[A ref, B #read] val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: Sort[A ref, B #read] val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nSort\n[A ref, B #read] val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_sort\n\n\nfun box _sort(\n  a: A ref,\n  lo: ISize val,\n  hi: ISize val)\n: None val ?\n\n\n\n\nParameters\n\n\n\n\na: A ref\n\n\nlo: \nISize\n val\n\n\nhi: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val ?\n\n\n\n\n\n\n_swap\n\n\nfun box _swap(\n  a: A ref,\n  i: ISize val,\n  j: ISize val)\n: None val ?\n\n\n\n\nParameters\n\n\n\n\na: A ref\n\n\ni: \nISize\n val\n\n\nj: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val ?", 
+            "title": "primitive Sort"
+        }, 
+        {
+            "location": "/collections-Sort/#sort91a-seq91b-read93-ref-b-comparable91b-read93-read93", 
+            "text": "Implementation of dual-pivot quicksort.  primitive val Sort[A: Seq[B #read] ref, B: Comparable[B #read] #read]", 
+            "title": "Sort[A: Seq[B #read] ref, B: Comparable[B #read] #read]"
+        }, 
+        {
+            "location": "/collections-Sort/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/collections-Sort/#create", 
+            "text": "new val create()\n: Sort[A ref, B #read] val^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/collections-Sort/#returns", 
+            "text": "Sort [A ref, B #read] val^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-Sort/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/collections-Sort/#apply", 
+            "text": "Sort the given seq.  fun box apply(\n  a: A ref)\n: A ref^", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/collections-Sort/#parameters", 
+            "text": "a: A ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-Sort/#returns_1", 
+            "text": "A ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-Sort/#eq", 
+            "text": "fun box eq(\n  that: Sort[A ref, B #read] val)\n: Bool val", 
+            "title": "eq"
+        }, 
+        {
+            "location": "/collections-Sort/#parameters_1", 
+            "text": "that:  Sort [A ref, B #read] val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-Sort/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-Sort/#ne", 
+            "text": "fun box ne(\n  that: Sort[A ref, B #read] val)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/collections-Sort/#parameters_2", 
+            "text": "that:  Sort [A ref, B #read] val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-Sort/#returns_3", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-Sort/#private-functions", 
+            "text": "", 
+            "title": "Private Functions"
+        }, 
+        {
+            "location": "/collections-Sort/#_sort", 
+            "text": "fun box _sort(\n  a: A ref,\n  lo: ISize val,\n  hi: ISize val)\n: None val ?", 
+            "title": "_sort"
+        }, 
+        {
+            "location": "/collections-Sort/#parameters_3", 
+            "text": "a: A ref  lo:  ISize  val  hi:  ISize  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-Sort/#returns_4", 
+            "text": "None  val ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-Sort/#_swap", 
+            "text": "fun box _swap(\n  a: A ref,\n  i: ISize val,\n  j: ISize val)\n: None val ?", 
+            "title": "_swap"
+        }, 
+        {
+            "location": "/collections-Sort/#parameters_4", 
+            "text": "a: A ref  i:  ISize  val  j:  ISize  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-Sort/#returns_5", 
+            "text": "None  val ?", 
             "title": "Returns"
         }, 
         {
@@ -33862,6 +33972,131 @@
         }, 
         {
             "location": "/collections-_TestHashSetContains/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-_TestSort/", 
+            "text": "_TestSort\n\n\nclass iso _TestSort is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestSort iso^\n\n\n\n\nReturns\n\n\n\n\n_TestSort\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntest_sort[A: (\nComparable\n[A val] val \n \nStringable\n[\nFormatDefault\n val, \nPrefixDefault\n val])]\n\n\nfun box test_sort[A: (Comparable[A val] val \n Stringable[FormatDefault val, PrefixDefault val])](\n  h: TestHelper val,\n  sorted: Array[A val] ref,\n  unsorted: Array[A val] ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\nsorted: \nArray\n[A val] ref\n\n\nunsorted: \nArray\n[A val] ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestSort"
+        }, 
+        {
+            "location": "/collections-_TestSort/#_testsort", 
+            "text": "class iso _TestSort is\n  UnitTest ref", 
+            "title": "_TestSort"
+        }, 
+        {
+            "location": "/collections-_TestSort/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/collections-_TestSort/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/collections-_TestSort/#create", 
+            "text": "new iso create()\n: _TestSort iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/collections-_TestSort/#returns", 
+            "text": "_TestSort  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-_TestSort/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/collections-_TestSort/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/collections-_TestSort/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-_TestSort/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/collections-_TestSort/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-_TestSort/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-_TestSort/#test_sort91a-comparable91a-val93-val-stringable91formatdefault-val-prefixdefault-val9393", 
+            "text": "fun box test_sort[A: (Comparable[A val] val   Stringable[FormatDefault val, PrefixDefault val])](\n  h: TestHelper val,\n  sorted: Array[A val] ref,\n  unsorted: Array[A val] ref)\n: None val", 
+            "title": "test_sort[A: (Comparable[A val] val &amp; Stringable[FormatDefault val, PrefixDefault val])]"
+        }, 
+        {
+            "location": "/collections-_TestSort/#parameters_1", 
+            "text": "h:  TestHelper  val  sorted:  Array [A val] ref  unsorted:  Array [A val] ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-_TestSort/#returns_3", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-_TestSort/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/collections-_TestSort/#returns_4", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-_TestSort/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/collections-_TestSort/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-_TestSort/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-_TestSort/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/collections-_TestSort/#parameters_3", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/collections-_TestSort/#returns_6", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/collections-_TestSort/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/collections-_TestSort/#returns_7", 
             "text": "String  val", 
             "title": "Returns"
         }, 
