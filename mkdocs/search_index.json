@@ -1737,7 +1737,7 @@
         }, 
         {
             "location": "/builtin-String/", 
-            "text": "String\n\n\nStrings don't specify an encoding.\n\n\nclass val String is\n  Seq[U8 val] ref,\n  Comparable[String box] ref,\n  Stringable[FormatDefault val, PrefixDefault val] box\n\n\n\n\nImplements\n\n\n\n\nSeq\n[\nU8\n val] ref\n\n\nComparable\n[\nString\n box] ref\n\n\nStringable\n[\nFormatDefault\n val, \nPrefixDefault\n val] box\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nAn empty string. Enough space for len bytes is reserved.\n\n\nnew ref create(\n  len: USize val = 0)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nfrom_array\n\n\nCreate a string from an array, reusing the underlying data pointer if the\narray is null terminated, or copying the data if it is not.\n\n\nnew val from_array(\n  data: Array[U8 val] val)\n: String val^\n\n\n\n\nParameters\n\n\n\n\ndata: \nArray\n[\nU8\n val] val\n\n\n\n\nReturns\n\n\n\n\nString\n val^\n\n\n\n\n\n\nfrom_cstring\n\n\nThe cstring is not copied. This must be done only with C-FFI functions that\nreturn pony_alloc'd character arrays. If len is not given, the pointer is\nscanned for the first null byte, which will be interpreted as the null\nterminator. Therefore, strings without null terminators must specify\na length to retain memory safety.\n\n\nnew ref from_cstring(\n  str: Pointer[U8 val] ref,\n  len: USize val = 0,\n  alloc: USize val = 0)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nstr: \nPointer\n[\nU8\n val] ref\n\n\nlen: \nUSize\n val = 0\n\n\nalloc: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ncopy_cstring\n\n\nIf the cstring is not null terminated and a length isn't specified, this\ncan crash. This will only occur if the C-FFI has been used to craft such\na pointer.\n\n\nnew ref copy_cstring(\n  str: Pointer[U8 val] box,\n  len: USize val = 0)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nstr: \nPointer\n[\nU8\n val] box\n\n\nlen: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nfrom_utf32\n\n\nCreate a UTF-8 string from a single UTF-32 code point.\n\n\nnew ref from_utf32(\n  value: U32 val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nvalue: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nPublic Functions\n\n\npush_utf32\n\n\nPush a UTF-32 code point.\n\n\nfun ref push_utf32(\n  value: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nvalue: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ncstring\n\n\nReturns a C compatible pointer to a null terminated string.\n\n\nfun box cstring()\n: Pointer[U8 val] tag\n\n\n\n\nReturns\n\n\n\n\nPointer\n[\nU8\n val] tag\n\n\n\n\n\n\narray\n\n\nReturns an Array[U8] that that reuses the underlying data pointer.\n\n\nfun val array()\n: Array[U8 val] val\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nU8\n val] val\n\n\n\n\n\n\nsize\n\n\nReturns the length of the string data in bytes.\n\n\nfun box size()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\ncodepoints\n\n\nReturns the number of unicode code points in the string between the two\noffsets. Index range [\nfrom\n .. \nto\n) is half-open.\n\n\nfun box codepoints(\n  from: ISize val = 0,\n  to: ISize val = call)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nfrom: \nISize\n val = 0\n\n\nto: \nISize\n val = call\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nspace\n\n\nReturns the space available for data, not including the null terminator.\n\n\nfun box space()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nreserve\n\n\nReserve space for len bytes. An additional byte will be reserved for the\nnull terminator.\n\n\nfun ref reserve(\n  len: USize val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ncompact\n\n\nTry to remove unused space, making it available for garbage collection. The\nrequest may be ignored. The string is returned to allow call chaining.\n\n\nfun ref compact()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nrecalc\n\n\nRecalculates the string length. This is only needed if the string is\nchanged via an FFI call. If the string is not null terminated at the\nallocated length, a null is added.\n\n\nfun ref recalc()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ntruncate\n\n\nTruncates the string at the minimum of len and space. Ensures there is a\nnull terminator. Does not check for null terminators inside the string.\n\n\nNote that memory is not freed by this operation.\n\n\nfun ref truncate(\n  len: USize val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ntrim_in_place\n\n\nTrim the string to a portion of itself, covering \nfrom\n until \nto\n.\nUnlike slice, the operation does not allocate a new string nor copy elements.\nThe same string is returned to allow call chaining.\n\n\nfun ref trim_in_place(\n  from: USize val = 0,\n  to: USize val = call)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nUSize\n val = 0\n\n\nto: \nUSize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ntrim\n\n\nReturn a shared portion of this string, covering \nfrom\n until \nto\n.\nBoth the original and the new string are immutable, as they share memory.\nThe operation does not allocate a new string pointer nor copy elements.\n\n\nfun val trim(\n  from: USize val = 0,\n  to: USize val = call)\n: String val\n\n\n\n\nParameters\n\n\n\n\nfrom: \nUSize\n val = 0\n\n\nto: \nUSize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\nis_null_terminated\n\n\nReturn true if the string is null-terminated and safe to pass to an FFI\nfunction that doesn't accept a size argument, expecting a null-terminator.\nThis method checks that there is a null byte just after the final position\nof populated bytes in the string, but does not check for other null bytes\nwhich may be present earlier in the content of the string.\nIf you need a null-terminated copy of this string, use the clone method.\n\n\nfun box is_null_terminated()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnull_terminated\n\n\nReturns a null-terminated version of the string, safe to pass to an FFI\nfunction that doesn't accept a size argument, expecting a null-terminator.\nIf the underlying string is already null terminated, this is returned;\notherwise the string is cloned and the null-terminated clone is returned.\n\n\nfun box null_terminated()\n: this-\nString ref\n\n\n\n\nReturns\n\n\n\n\nthis-\nString\n ref\n\n\n\n\n\n\nutf32\n\n\nReturn a UTF32 representation of the character at the given offset and the\nnumber of bytes needed to encode that character. If the offset does not\npoint to the beginning of a valid UTF8 encoding, return 0xFFFD (the unicode\nreplacement character) and a length of one. Raise an error if the offset is\nout of bounds.\n\n\nfun box utf32(\n  offset: ISize val)\n: (U32 val , U8 val) ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\n(\nU32\n val , \nU8\n val) ?\n\n\n\n\n\n\napply\n\n\nReturns the i-th byte. Raise an error if the index is out of bounds.\n\n\nfun box apply(\n  i: USize val)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\ni: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nupdate\n\n\nChange the i-th byte. Raise an error if the index is out of bounds.\n\n\nfun ref update(\n  i: USize val,\n  value: U8 val)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\ni: \nUSize\n val\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nat_offset\n\n\nReturns the byte at the given offset. Raise an error if the offset is out\nof bounds.\n\n\nfun box at_offset(\n  offset: ISize val)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nupdate_offset\n\n\nChanges a byte in the string, returning the previous byte at that offset.\nRaise an error if the offset is out of bounds.\n\n\nfun ref update_offset(\n  offset: ISize val,\n  value: U8 val)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nclone\n\n\nReturns a copy of the string.\n\n\nfun box clone()\n: String iso^\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nfind\n\n\nReturn the index of the n-th instance of s in the string starting from the\nbeginning. Raise an error if there is no n-th occurence of s or s is empty.\n\n\nfun box find(\n  s: String box,\n  offset: ISize val = 0,\n  nth: USize val = 0)\n: ISize val ?\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = 0\n\n\nnth: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nISize\n val ?\n\n\n\n\n\n\nrfind\n\n\nReturn the index of n-th instance of s in the string starting from the end.\nRaise an error if there is no n-th occurence of s or s is empty.\n\n\nfun box rfind(\n  s: String box,\n  offset: ISize val = call,\n  nth: USize val = 0)\n: ISize val ?\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = call\n\n\nnth: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nISize\n val ?\n\n\n\n\n\n\ncontains\n\n\nReturns true if contains s as a substring, false otherwise.\n\n\nfun box contains(\n  s: String box,\n  offset: ISize val = 0,\n  nth: USize val = 0)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = 0\n\n\nnth: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ncount\n\n\nCounts the non-overlapping occurrences of s in the string.\n\n\nfun box count(\n  s: String box,\n  offset: ISize val = 0)\n: USize val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nat\n\n\nReturns true if the substring s is present at the given offset.\n\n\nfun box at(\n  s: String box,\n  offset: ISize val = 0)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ndelete\n\n\nDelete len bytes at the supplied offset, compacting the string in place.\n\n\nfun ref delete(\n  offset: ISize val,\n  len: USize val = 1)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nlen: \nUSize\n val = 1\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nsubstring\n\n\nReturns a substring. Index range [\nfrom\n .. \nto\n) is half-open.\nReturns an empty string if nothing is in the range.\n\n\nfun box substring(\n  from: ISize val,\n  to: ISize val = call)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nISize\n val\n\n\nto: \nISize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nlower\n\n\nReturns a lower case version of the string.\n\n\nfun box lower()\n: String iso^\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nlower_in_place\n\n\nTransforms the string to lower case. Currently only knows ASCII case.\n\n\nfun ref lower_in_place()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nupper\n\n\nReturns an upper case version of the string. Currently only knows ASCII\ncase.\n\n\nfun box upper()\n: String iso^\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nupper_in_place\n\n\nTransforms the string to upper case.\n\n\nfun ref upper_in_place()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nreverse\n\n\nReturns a reversed version of the string.\n\n\nfun box reverse()\n: String iso^\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nreverse_in_place\n\n\nReverses the byte order in the string. This needs to be changed to handle\nUTF-8 correctly.\n\n\nfun ref reverse_in_place()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\npush\n\n\nAdd a byte to the end of the string.\n\n\nfun ref push(\n  value: U8 val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\npop\n\n\nRemove a byte from the end of the string.\n\n\nfun ref pop()\n: U8 val ?\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nunshift\n\n\nAdds a byte to the beginning of the string.\n\n\nfun ref unshift(\n  value: U8 val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nshift\n\n\nRemoves a byte from the beginning of the string.\n\n\nfun ref shift()\n: U8 val ?\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nappend\n\n\nAppend the elements from a sequence, starting from the given offset.\n\n\nfun ref append(\n  seq: ReadSeq[U8 val] box,\n  offset: USize val = 0,\n  len: USize val = call)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nseq: \nReadSeq\n[\nU8\n val] box\n\n\noffset: \nUSize\n val = 0\n\n\nlen: \nUSize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nconcat\n\n\nAdd len iterated bytes to the end of the string, starting from the given\noffset. The string is returned to allow call chaining.\n\n\nfun ref concat(\n  iter: Iterator[U8 val] ref,\n  offset: USize val = 0,\n  len: USize val = call)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\niter: \nIterator\n[\nU8\n val] ref\n\n\noffset: \nUSize\n val = 0\n\n\nlen: \nUSize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nclear\n\n\nTruncate the string to zero length.\n\n\nfun ref clear()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ninsert\n\n\nReturns a version of the string with the given string inserted at the given\noffset.\n\n\nfun box insert(\n  offset: ISize val,\n  that: String val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nthat: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\ninsert_in_place\n\n\nInserts the given string at the given offset. Appends the string if the\noffset is out of bounds.\n\n\nfun ref insert_in_place(\n  offset: ISize val,\n  that: String box)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ninsert_byte\n\n\nInserts a byte at the given offset. Appends if the offset is out of bounds.\n\n\nfun ref insert_byte(\n  offset: ISize val,\n  value: U8 val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ncut\n\n\nReturns a version of the string with the given range deleted.\nIndex range [\nfrom\n .. \nto\n) is half-open.\n\n\nfun box cut(\n  from: ISize val,\n  to: ISize val = call)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nISize\n val\n\n\nto: \nISize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\ncut_in_place\n\n\nCuts the given range out of the string.\nIndex range [\nfrom\n .. \nto\n) is half-open.\n\n\nfun ref cut_in_place(\n  from: ISize val,\n  to: ISize val = call)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nISize\n val\n\n\nto: \nISize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nremove\n\n\nRemove all instances of s from the string. Returns the count of removed\ninstances.\n\n\nfun ref remove(\n  s: String box)\n: USize val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nreplace\n\n\nReplace up to n occurrences of \nfrom\n in \nthis\n with \nto\n. If n is 0, all\noccurrences will be replaced.\n\n\nfun ref replace(\n  from: String box,\n  to: String box,\n  n: USize val = 0)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nString\n box\n\n\nto: \nString\n box\n\n\nn: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nsplit\n\n\nSplit the string into an array of strings. Any character in the delimiter\nstring is accepted as a delimiter. If \nn \n 0\n, then the split count is\nlimited to n.\n\n\nAdjacent delimiters result in a zero length entry in the array. For\nexample, \n\"1,,2\".split(\",\") =\n [\"1\", \"\", \"2\"]\n.\n\n\nfun box split(\n  delim: String val= \n  \u000b\f\n\n,\n  n: USize val = 0)\n: Array[String val] iso^\n\n\n\n\nParameters\n\n\n\n\ndelim: \nString\n val= \"  \u000b\f\n\"\n\n\nn: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nString\n val] iso^\n\n\n\n\n\n\nstrip\n\n\nRemove all leading and trailing characters from the string that are in s.\n\n\nfun ref strip(\n  s: String box= \n  \u000b\f\n\n)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box= \"  \u000b\f\n\"\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nrstrip\n\n\nRemove all trailing characters within the string that are in s. By default,\ntrailing whitespace is removed.\n\n\nfun ref rstrip(\n  s: String box= \n  \u000b\f\n\n)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box= \"  \u000b\f\n\"\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nlstrip\n\n\nRemove all leading characters within the string that are in s. By default,\nleading whitespace is removed.\n\n\nfun ref lstrip(\n  s: String box= \n  \u000b\f\n\n)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box= \"  \u000b\f\n\"\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nadd\n\n\nReturn a string that is a concatenation of this and that.\n\n\nfun box add(\n  that: String box)\n: String val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\njoin\n\n\nReturn a string that is a concatenation of the strings in data, using this\nas a separator.\n\n\nfun box join(\n  data: ReadSeq[Stringable[FormatDefault val, PrefixDefault val] box] box)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\ndata: \nReadSeq\n[\nStringable\n[\nFormatDefault\n val, \nPrefixDefault\n val] box] box\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\ncompare\n\n\nLexically compare two strings.\n\n\nfun box compare(\n  that: String box)\n: (Less val | Equal val | Greater val)\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\n(\nLess\n val | \nEqual\n val | \nGreater\n val)\n\n\n\n\n\n\ncompare_sub\n\n\nLexically compare at most \nn\n bytes of the substring of \nthis\n starting at\n\noffset\n with the substring of \nthat\n starting at \nthat_offset\n. The\ncomparison is case sensitive unless \nignore_case\n is \ntrue\n.\n\n\nIf the substring of \nthis\n is a proper prefix of the substring of \nthat\n,\nthen \nthis\n is \nLess\n than \nthat\n. Likewise, if \nthat\n is a proper prefix of\n\nthis\n, then \nthis\n is \nGreater\n than \nthat\n.\n\n\nBoth \noffset\n and \nthat_offset\n can be negative, in which case the offsets\nare computed from the end of the string.\n\n\nIf \nn + offset\n is greater than the length of \nthis\n, or \nn + that_offset\n\nis greater than the length of \nthat\n, then the number of positions compared\nwill be reduced to the length of the longest substring.\n\n\nNeeds to be made UTF-8 safe.\n\n\nfun box compare_sub(\n  that: String box,\n  n: USize val,\n  offset: ISize val = 0,\n  that_offset: ISize val = 0,\n  ignore_case: Bool val = false)\n: (Less val | Equal val | Greater val)\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\nn: \nUSize\n val\n\n\noffset: \nISize\n val = 0\n\n\nthat_offset: \nISize\n val = 0\n\n\nignore_case: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\n(\nLess\n val | \nEqual\n val | \nGreater\n val)\n\n\n\n\n\n\neq\n\n\nReturns true if the two strings have the same contents.\n\n\nfun box eq(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nlt\n\n\nReturns true if this is lexically less than that. Needs to be made UTF-8\nsafe.\n\n\nfun box lt(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nle\n\n\nReturns true if this is lexically less than or equal to that. Needs to be\nmade UTF-8 safe.\n\n\nfun box le(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\noffset_to_index\n\n\nfun box offset_to_index(\n  i: ISize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\ni: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nbool\n\n\nfun box bool()\n: Bool val ?\n\n\n\n\nReturns\n\n\n\n\nBool\n val ?\n\n\n\n\n\n\ni8\n\n\nfun box i8(\n  base: U8 val = 0)\n: I8 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI8\n val ?\n\n\n\n\n\n\ni16\n\n\nfun box i16(\n  base: U8 val = 0)\n: I16 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\ni32\n\n\nfun box i32(\n  base: U8 val = 0)\n: I32 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\ni64\n\n\nfun box i64(\n  base: U8 val = 0)\n: I64 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\ni128\n\n\nfun box i128(\n  base: U8 val = 0)\n: I128 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\nilong\n\n\nfun box ilong(\n  base: U8 val = 0)\n: ILong val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nILong\n val ?\n\n\n\n\n\n\nisize\n\n\nfun box isize(\n  base: U8 val = 0)\n: ISize val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nISize\n val ?\n\n\n\n\n\n\nu8\n\n\nfun box u8(\n  base: U8 val = 0)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nu16\n\n\nfun box u16(\n  base: U8 val = 0)\n: U16 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\nu32\n\n\nfun box u32(\n  base: U8 val = 0)\n: U32 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\nu64\n\n\nfun box u64(\n  base: U8 val = 0)\n: U64 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\nu128\n\n\nfun box u128(\n  base: U8 val = 0)\n: U128 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\nulong\n\n\nfun box ulong(\n  base: U8 val = 0)\n: ULong val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nULong\n val ?\n\n\n\n\n\n\nusize\n\n\nfun box usize(\n  base: U8 val = 0)\n: USize val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nUSize\n val ?\n\n\n\n\n\n\nread_int[A: ((\nI8\n val | \nI16\n val | \nI32\n val | \nI64\n val | \nI128\n val | \nILong\n val | \nISize\n val | \nU8\n val | \nU16\n val | \nU32\n val | \nU64\n val | \nU128\n val | \nULong\n val | \nUSize\n val) \n \nInteger\n[A val] val)]\n\n\nRead an integer from the specified location in this string. The integer\nvalue read and the number of characters consumed are reported.\nThe base parameter specifies the base to use, 0 indicates using the prefix,\nif any, to detect base 2, 10 or 16.\nIf no integer is found at the specified location, then (0, 0) is returned,\nsince no characters have been used.\nAn integer out of range for the target type throws an error.\nA leading minus is allowed for signed integer types.\nUnderscore characters are allowed throughout the integer and are ignored.\n\n\nfun box read_int[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) \n Integer[A val] val)](\n  offset: ISize val = 0,\n  base: U8 val = 0)\n: (A val , USize val) ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val = 0\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\n(A val , \nUSize\n val) ?\n\n\n\n\n\n\nf32\n\n\nfun box f32(\n  offset: ISize val = 0)\n: F32 val\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF32\n val\n\n\n\n\n\n\nf64\n\n\nfun box f64(\n  offset: ISize val = 0)\n: F64 val\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF64\n val\n\n\n\n\n\n\nhash\n\n\nfun box hash()\n: U64 val\n\n\n\n\nReturns\n\n\n\n\nU64\n val\n\n\n\n\n\n\nstring\n\n\nfun box string(\n  fmt: FormatSettings[FormatDefault val, PrefixDefault val] box = reference)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nfmt: \nFormatSettings\n[\nFormatDefault\n val, \nPrefixDefault\n val] box = reference\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nvalues\n\n\nReturn an iterator over the bytes in the string.\n\n\nfun box values()\n: StringBytes ref^\n\n\n\n\nReturns\n\n\n\n\nStringBytes\n ref^\n\n\n\n\n\n\nrunes\n\n\nReturn an iterator over the codepoints in the string.\n\n\nfun box runes()\n: StringRunes ref^\n\n\n\n\nReturns\n\n\n\n\nStringRunes\n ref^\n\n\n\n\n\n\nge\n\n\nfun box ge(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ngt\n\n\nfun box gt(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_cstring\n\n\nReturns a C compatible pointer to a null terminated string.\n\n\nfun box _cstring()\n: Pointer[U8 val] box\n\n\n\n\nReturns\n\n\n\n\nPointer\n[\nU8\n val] box\n\n\n\n\n\n\n_append\n\n\nfun iso _append(\n  s: String box)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\n_to_int[A: ((\nI8\n val | \nI16\n val | \nI32\n val | \nI64\n val | \nI128\n val | \nILong\n val | \nISize\n val | \nU8\n val | \nU16\n val | \nU32\n val | \nU64\n val | \nU128\n val | \nULong\n val | \nUSize\n val) \n \nInteger\n[A val] val)]\n\n\nConvert the \nwhole\n string to the specified type.\nIf there are any other characters in the string, or the integer found is\nout of range for the target type then an error is thrown.\n\n\nfun box _to_int[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) \n Integer[A val] val)](\n  base: U8 val)\n: A val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nA val ?\n\n\n\n\n\n\n_read_int_base[A: ((\nI8\n val | \nI16\n val | \nI32\n val | \nI64\n val | \nI128\n val | \nILong\n val | \nISize\n val | \nU8\n val | \nU16\n val | \nU32\n val | \nU64\n val | \nU128\n val | \nULong\n val | \nUSize\n val) \n \nInteger\n[A val] val)]\n\n\nDetermine the base of an integer starting at the specified index.\nIf a non-0 base is given use that. If given base is 0 read the base\nspecifying prefix, if any, to detect base 2 or 16.\nIf no base is specified and no prefix is found default to decimal.\nNote that a leading 0 does NOT imply octal.\nReport the base found and the number of characters in the prefix.\n\n\nfun box _read_int_base[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) \n Integer[A val] val)](\n  base: U8 val,\n  index: USize val)\n: (A val , USize val)\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val\n\n\nindex: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\n(A val , \nUSize\n val)\n\n\n\n\n\n\n_set\n\n\nUnsafe update, used internally.\n\n\nfun ref _set(\n  i: USize val,\n  value: U8 val)\n: U8 val\n\n\n\n\nParameters\n\n\n\n\ni: \nUSize\n val\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val", 
+            "text": "String\n\n\nStrings don't specify an encoding.\n\n\nclass val String is\n  Seq[U8 val] ref,\n  Comparable[String box] ref,\n  Stringable[FormatDefault val, PrefixDefault val] box\n\n\n\n\nImplements\n\n\n\n\nSeq\n[\nU8\n val] ref\n\n\nComparable\n[\nString\n box] ref\n\n\nStringable\n[\nFormatDefault\n val, \nPrefixDefault\n val] box\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nAn empty string. Enough space for len bytes is reserved.\n\n\nnew ref create(\n  len: USize val = 0)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nfrom_array\n\n\nCreate a string from an array, reusing the underlying data pointer if the\narray is null terminated, or copying the data if it is not.\n\n\nnew val from_array(\n  data: Array[U8 val] val)\n: String val^\n\n\n\n\nParameters\n\n\n\n\ndata: \nArray\n[\nU8\n val] val\n\n\n\n\nReturns\n\n\n\n\nString\n val^\n\n\n\n\n\n\nfrom_iso_array\n\n\nCreate a string from an array, reusing the underlying data pointer\n\n\nnew iso from_iso_array(\n  data: Array[U8 val] iso)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nfrom_cstring\n\n\nThe cstring is not copied. This must be done only with C-FFI functions that\nreturn pony_alloc'd character arrays. If len is not given, the pointer is\nscanned for the first null byte, which will be interpreted as the null\nterminator. Therefore, strings without null terminators must specify\na length to retain memory safety.\n\n\nnew ref from_cstring(\n  str: Pointer[U8 val] ref,\n  len: USize val = 0,\n  alloc: USize val = 0)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nstr: \nPointer\n[\nU8\n val] ref\n\n\nlen: \nUSize\n val = 0\n\n\nalloc: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ncopy_cstring\n\n\nIf the cstring is not null terminated and a length isn't specified, this\ncan crash. This will only occur if the C-FFI has been used to craft such\na pointer.\n\n\nnew ref copy_cstring(\n  str: Pointer[U8 val] box,\n  len: USize val = 0)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nstr: \nPointer\n[\nU8\n val] box\n\n\nlen: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nfrom_utf32\n\n\nCreate a UTF-8 string from a single UTF-32 code point.\n\n\nnew ref from_utf32(\n  value: U32 val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nvalue: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nPublic Functions\n\n\npush_utf32\n\n\nPush a UTF-32 code point.\n\n\nfun ref push_utf32(\n  value: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nvalue: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ncstring\n\n\nReturns a C compatible pointer to a null terminated string.\n\n\nfun box cstring()\n: Pointer[U8 val] tag\n\n\n\n\nReturns\n\n\n\n\nPointer\n[\nU8\n val] tag\n\n\n\n\n\n\narray\n\n\nReturns an Array[U8] that that reuses the underlying data pointer.\n\n\nfun val array()\n: Array[U8 val] val\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nU8\n val] val\n\n\n\n\n\n\nsize\n\n\nReturns the length of the string data in bytes.\n\n\nfun box size()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\ncodepoints\n\n\nReturns the number of unicode code points in the string between the two\noffsets. Index range [\nfrom\n .. \nto\n) is half-open.\n\n\nfun box codepoints(\n  from: ISize val = 0,\n  to: ISize val = call)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nfrom: \nISize\n val = 0\n\n\nto: \nISize\n val = call\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nspace\n\n\nReturns the space available for data, not including the null terminator.\n\n\nfun box space()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nreserve\n\n\nReserve space for len bytes. An additional byte will be reserved for the\nnull terminator.\n\n\nfun ref reserve(\n  len: USize val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ncompact\n\n\nTry to remove unused space, making it available for garbage collection. The\nrequest may be ignored. The string is returned to allow call chaining.\n\n\nfun ref compact()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nrecalc\n\n\nRecalculates the string length. This is only needed if the string is\nchanged via an FFI call. If the string is not null terminated at the\nallocated length, a null is added.\n\n\nfun ref recalc()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ntruncate\n\n\nTruncates the string at the minimum of len and space. Ensures there is a\nnull terminator. Does not check for null terminators inside the string.\n\n\nNote that memory is not freed by this operation.\n\n\nfun ref truncate(\n  len: USize val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ntrim_in_place\n\n\nTrim the string to a portion of itself, covering \nfrom\n until \nto\n.\nUnlike slice, the operation does not allocate a new string nor copy elements.\nThe same string is returned to allow call chaining.\n\n\nfun ref trim_in_place(\n  from: USize val = 0,\n  to: USize val = call)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nUSize\n val = 0\n\n\nto: \nUSize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ntrim\n\n\nReturn a shared portion of this string, covering \nfrom\n until \nto\n.\nBoth the original and the new string are immutable, as they share memory.\nThe operation does not allocate a new string pointer nor copy elements.\n\n\nfun val trim(\n  from: USize val = 0,\n  to: USize val = call)\n: String val\n\n\n\n\nParameters\n\n\n\n\nfrom: \nUSize\n val = 0\n\n\nto: \nUSize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\nis_null_terminated\n\n\nReturn true if the string is null-terminated and safe to pass to an FFI\nfunction that doesn't accept a size argument, expecting a null-terminator.\nThis method checks that there is a null byte just after the final position\nof populated bytes in the string, but does not check for other null bytes\nwhich may be present earlier in the content of the string.\nIf you need a null-terminated copy of this string, use the clone method.\n\n\nfun box is_null_terminated()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnull_terminated\n\n\nReturns a null-terminated version of the string, safe to pass to an FFI\nfunction that doesn't accept a size argument, expecting a null-terminator.\nIf the underlying string is already null terminated, this is returned;\notherwise the string is cloned and the null-terminated clone is returned.\n\n\nfun box null_terminated()\n: this-\nString ref\n\n\n\n\nReturns\n\n\n\n\nthis-\nString\n ref\n\n\n\n\n\n\nutf32\n\n\nReturn a UTF32 representation of the character at the given offset and the\nnumber of bytes needed to encode that character. If the offset does not\npoint to the beginning of a valid UTF8 encoding, return 0xFFFD (the unicode\nreplacement character) and a length of one. Raise an error if the offset is\nout of bounds.\n\n\nfun box utf32(\n  offset: ISize val)\n: (U32 val , U8 val) ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\n(\nU32\n val , \nU8\n val) ?\n\n\n\n\n\n\napply\n\n\nReturns the i-th byte. Raise an error if the index is out of bounds.\n\n\nfun box apply(\n  i: USize val)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\ni: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nupdate\n\n\nChange the i-th byte. Raise an error if the index is out of bounds.\n\n\nfun ref update(\n  i: USize val,\n  value: U8 val)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\ni: \nUSize\n val\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nat_offset\n\n\nReturns the byte at the given offset. Raise an error if the offset is out\nof bounds.\n\n\nfun box at_offset(\n  offset: ISize val)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nupdate_offset\n\n\nChanges a byte in the string, returning the previous byte at that offset.\nRaise an error if the offset is out of bounds.\n\n\nfun ref update_offset(\n  offset: ISize val,\n  value: U8 val)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nclone\n\n\nReturns a copy of the string.\n\n\nfun box clone()\n: String iso^\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nfind\n\n\nReturn the index of the n-th instance of s in the string starting from the\nbeginning. Raise an error if there is no n-th occurence of s or s is empty.\n\n\nfun box find(\n  s: String box,\n  offset: ISize val = 0,\n  nth: USize val = 0)\n: ISize val ?\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = 0\n\n\nnth: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nISize\n val ?\n\n\n\n\n\n\nrfind\n\n\nReturn the index of n-th instance of s in the string starting from the end.\nRaise an error if there is no n-th occurence of s or s is empty.\n\n\nfun box rfind(\n  s: String box,\n  offset: ISize val = call,\n  nth: USize val = 0)\n: ISize val ?\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = call\n\n\nnth: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nISize\n val ?\n\n\n\n\n\n\ncontains\n\n\nReturns true if contains s as a substring, false otherwise.\n\n\nfun box contains(\n  s: String box,\n  offset: ISize val = 0,\n  nth: USize val = 0)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = 0\n\n\nnth: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ncount\n\n\nCounts the non-overlapping occurrences of s in the string.\n\n\nfun box count(\n  s: String box,\n  offset: ISize val = 0)\n: USize val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nat\n\n\nReturns true if the substring s is present at the given offset.\n\n\nfun box at(\n  s: String box,\n  offset: ISize val = 0)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\noffset: \nISize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ndelete\n\n\nDelete len bytes at the supplied offset, compacting the string in place.\n\n\nfun ref delete(\n  offset: ISize val,\n  len: USize val = 1)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nlen: \nUSize\n val = 1\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nsubstring\n\n\nReturns a substring. Index range [\nfrom\n .. \nto\n) is half-open.\nReturns an empty string if nothing is in the range.\n\n\nfun box substring(\n  from: ISize val,\n  to: ISize val = call)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nISize\n val\n\n\nto: \nISize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nlower\n\n\nReturns a lower case version of the string.\n\n\nfun box lower()\n: String iso^\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nlower_in_place\n\n\nTransforms the string to lower case. Currently only knows ASCII case.\n\n\nfun ref lower_in_place()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nupper\n\n\nReturns an upper case version of the string. Currently only knows ASCII\ncase.\n\n\nfun box upper()\n: String iso^\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nupper_in_place\n\n\nTransforms the string to upper case.\n\n\nfun ref upper_in_place()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nreverse\n\n\nReturns a reversed version of the string.\n\n\nfun box reverse()\n: String iso^\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nreverse_in_place\n\n\nReverses the byte order in the string. This needs to be changed to handle\nUTF-8 correctly.\n\n\nfun ref reverse_in_place()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\npush\n\n\nAdd a byte to the end of the string.\n\n\nfun ref push(\n  value: U8 val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\npop\n\n\nRemove a byte from the end of the string.\n\n\nfun ref pop()\n: U8 val ?\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nunshift\n\n\nAdds a byte to the beginning of the string.\n\n\nfun ref unshift(\n  value: U8 val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nshift\n\n\nRemoves a byte from the beginning of the string.\n\n\nfun ref shift()\n: U8 val ?\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nappend\n\n\nAppend the elements from a sequence, starting from the given offset.\n\n\nfun ref append(\n  seq: ReadSeq[U8 val] box,\n  offset: USize val = 0,\n  len: USize val = call)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nseq: \nReadSeq\n[\nU8\n val] box\n\n\noffset: \nUSize\n val = 0\n\n\nlen: \nUSize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nconcat\n\n\nAdd len iterated bytes to the end of the string, starting from the given\noffset. The string is returned to allow call chaining.\n\n\nfun ref concat(\n  iter: Iterator[U8 val] ref,\n  offset: USize val = 0,\n  len: USize val = call)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\niter: \nIterator\n[\nU8\n val] ref\n\n\noffset: \nUSize\n val = 0\n\n\nlen: \nUSize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nclear\n\n\nTruncate the string to zero length.\n\n\nfun ref clear()\n: String ref^\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ninsert\n\n\nReturns a version of the string with the given string inserted at the given\noffset.\n\n\nfun box insert(\n  offset: ISize val,\n  that: String val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nthat: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\ninsert_in_place\n\n\nInserts the given string at the given offset. Appends the string if the\noffset is out of bounds.\n\n\nfun ref insert_in_place(\n  offset: ISize val,\n  that: String box)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ninsert_byte\n\n\nInserts a byte at the given offset. Appends if the offset is out of bounds.\n\n\nfun ref insert_byte(\n  offset: ISize val,\n  value: U8 val)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\ncut\n\n\nReturns a version of the string with the given range deleted.\nIndex range [\nfrom\n .. \nto\n) is half-open.\n\n\nfun box cut(\n  from: ISize val,\n  to: ISize val = call)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nISize\n val\n\n\nto: \nISize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\ncut_in_place\n\n\nCuts the given range out of the string.\nIndex range [\nfrom\n .. \nto\n) is half-open.\n\n\nfun ref cut_in_place(\n  from: ISize val,\n  to: ISize val = call)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nISize\n val\n\n\nto: \nISize\n val = call\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nremove\n\n\nRemove all instances of s from the string. Returns the count of removed\ninstances.\n\n\nfun ref remove(\n  s: String box)\n: USize val\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nreplace\n\n\nReplace up to n occurrences of \nfrom\n in \nthis\n with \nto\n. If n is 0, all\noccurrences will be replaced.\n\n\nfun ref replace(\n  from: String box,\n  to: String box,\n  n: USize val = 0)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nString\n box\n\n\nto: \nString\n box\n\n\nn: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nsplit\n\n\nSplit the string into an array of strings. Any character in the delimiter\nstring is accepted as a delimiter. If \nn \n 0\n, then the split count is\nlimited to n.\n\n\nAdjacent delimiters result in a zero length entry in the array. For\nexample, \n\"1,,2\".split(\",\") =\n [\"1\", \"\", \"2\"]\n.\n\n\nfun box split(\n  delim: String val= \n  \u000b\f\n\n,\n  n: USize val = 0)\n: Array[String val] iso^\n\n\n\n\nParameters\n\n\n\n\ndelim: \nString\n val= \"  \u000b\f\n\"\n\n\nn: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nString\n val] iso^\n\n\n\n\n\n\nstrip\n\n\nRemove all leading and trailing characters from the string that are in s.\n\n\nfun ref strip(\n  s: String box= \n  \u000b\f\n\n)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box= \"  \u000b\f\n\"\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nrstrip\n\n\nRemove all trailing characters within the string that are in s. By default,\ntrailing whitespace is removed.\n\n\nfun ref rstrip(\n  s: String box= \n  \u000b\f\n\n)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box= \"  \u000b\f\n\"\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nlstrip\n\n\nRemove all leading characters within the string that are in s. By default,\nleading whitespace is removed.\n\n\nfun ref lstrip(\n  s: String box= \n  \u000b\f\n\n)\n: String ref^\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box= \"  \u000b\f\n\"\n\n\n\n\nReturns\n\n\n\n\nString\n ref^\n\n\n\n\n\n\nadd\n\n\nReturn a string that is a concatenation of this and that.\n\n\nfun box add(\n  that: String box)\n: String val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\njoin\n\n\nReturn a string that is a concatenation of the strings in data, using this\nas a separator.\n\n\nfun box join(\n  data: ReadSeq[Stringable[FormatDefault val, PrefixDefault val] box] box)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\ndata: \nReadSeq\n[\nStringable\n[\nFormatDefault\n val, \nPrefixDefault\n val] box] box\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\ncompare\n\n\nLexically compare two strings.\n\n\nfun box compare(\n  that: String box)\n: (Less val | Equal val | Greater val)\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\n(\nLess\n val | \nEqual\n val | \nGreater\n val)\n\n\n\n\n\n\ncompare_sub\n\n\nLexically compare at most \nn\n bytes of the substring of \nthis\n starting at\n\noffset\n with the substring of \nthat\n starting at \nthat_offset\n. The\ncomparison is case sensitive unless \nignore_case\n is \ntrue\n.\n\n\nIf the substring of \nthis\n is a proper prefix of the substring of \nthat\n,\nthen \nthis\n is \nLess\n than \nthat\n. Likewise, if \nthat\n is a proper prefix of\n\nthis\n, then \nthis\n is \nGreater\n than \nthat\n.\n\n\nBoth \noffset\n and \nthat_offset\n can be negative, in which case the offsets\nare computed from the end of the string.\n\n\nIf \nn + offset\n is greater than the length of \nthis\n, or \nn + that_offset\n\nis greater than the length of \nthat\n, then the number of positions compared\nwill be reduced to the length of the longest substring.\n\n\nNeeds to be made UTF-8 safe.\n\n\nfun box compare_sub(\n  that: String box,\n  n: USize val,\n  offset: ISize val = 0,\n  that_offset: ISize val = 0,\n  ignore_case: Bool val = false)\n: (Less val | Equal val | Greater val)\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\nn: \nUSize\n val\n\n\noffset: \nISize\n val = 0\n\n\nthat_offset: \nISize\n val = 0\n\n\nignore_case: \nBool\n val = false\n\n\n\n\nReturns\n\n\n\n\n(\nLess\n val | \nEqual\n val | \nGreater\n val)\n\n\n\n\n\n\neq\n\n\nReturns true if the two strings have the same contents.\n\n\nfun box eq(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nlt\n\n\nReturns true if this is lexically less than that. Needs to be made UTF-8\nsafe.\n\n\nfun box lt(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nle\n\n\nReturns true if this is lexically less than or equal to that. Needs to be\nmade UTF-8 safe.\n\n\nfun box le(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\noffset_to_index\n\n\nfun box offset_to_index(\n  i: ISize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\ni: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nbool\n\n\nfun box bool()\n: Bool val ?\n\n\n\n\nReturns\n\n\n\n\nBool\n val ?\n\n\n\n\n\n\ni8\n\n\nfun box i8(\n  base: U8 val = 0)\n: I8 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI8\n val ?\n\n\n\n\n\n\ni16\n\n\nfun box i16(\n  base: U8 val = 0)\n: I16 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\ni32\n\n\nfun box i32(\n  base: U8 val = 0)\n: I32 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\ni64\n\n\nfun box i64(\n  base: U8 val = 0)\n: I64 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\ni128\n\n\nfun box i128(\n  base: U8 val = 0)\n: I128 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\nilong\n\n\nfun box ilong(\n  base: U8 val = 0)\n: ILong val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nILong\n val ?\n\n\n\n\n\n\nisize\n\n\nfun box isize(\n  base: U8 val = 0)\n: ISize val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nISize\n val ?\n\n\n\n\n\n\nu8\n\n\nfun box u8(\n  base: U8 val = 0)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\nu16\n\n\nfun box u16(\n  base: U8 val = 0)\n: U16 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\nu32\n\n\nfun box u32(\n  base: U8 val = 0)\n: U32 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\nu64\n\n\nfun box u64(\n  base: U8 val = 0)\n: U64 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\nu128\n\n\nfun box u128(\n  base: U8 val = 0)\n: U128 val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\nulong\n\n\nfun box ulong(\n  base: U8 val = 0)\n: ULong val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nULong\n val ?\n\n\n\n\n\n\nusize\n\n\nfun box usize(\n  base: U8 val = 0)\n: USize val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\nUSize\n val ?\n\n\n\n\n\n\nread_int[A: ((\nI8\n val | \nI16\n val | \nI32\n val | \nI64\n val | \nI128\n val | \nILong\n val | \nISize\n val | \nU8\n val | \nU16\n val | \nU32\n val | \nU64\n val | \nU128\n val | \nULong\n val | \nUSize\n val) \n \nInteger\n[A val] val)]\n\n\nRead an integer from the specified location in this string. The integer\nvalue read and the number of characters consumed are reported.\nThe base parameter specifies the base to use, 0 indicates using the prefix,\nif any, to detect base 2, 10 or 16.\nIf no integer is found at the specified location, then (0, 0) is returned,\nsince no characters have been used.\nAn integer out of range for the target type throws an error.\nA leading minus is allowed for signed integer types.\nUnderscore characters are allowed throughout the integer and are ignored.\n\n\nfun box read_int[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) \n Integer[A val] val)](\n  offset: ISize val = 0,\n  base: U8 val = 0)\n: (A val , USize val) ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val = 0\n\n\nbase: \nU8\n val = 0\n\n\n\n\nReturns\n\n\n\n\n(A val , \nUSize\n val) ?\n\n\n\n\n\n\nf32\n\n\nfun box f32(\n  offset: ISize val = 0)\n: F32 val\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF32\n val\n\n\n\n\n\n\nf64\n\n\nfun box f64(\n  offset: ISize val = 0)\n: F64 val\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF64\n val\n\n\n\n\n\n\nhash\n\n\nfun box hash()\n: U64 val\n\n\n\n\nReturns\n\n\n\n\nU64\n val\n\n\n\n\n\n\nstring\n\n\nfun box string(\n  fmt: FormatSettings[FormatDefault val, PrefixDefault val] box = reference)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nfmt: \nFormatSettings\n[\nFormatDefault\n val, \nPrefixDefault\n val] box = reference\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nvalues\n\n\nReturn an iterator over the bytes in the string.\n\n\nfun box values()\n: StringBytes ref^\n\n\n\n\nReturns\n\n\n\n\nStringBytes\n ref^\n\n\n\n\n\n\nrunes\n\n\nReturn an iterator over the codepoints in the string.\n\n\nfun box runes()\n: StringRunes ref^\n\n\n\n\nReturns\n\n\n\n\nStringRunes\n ref^\n\n\n\n\n\n\nge\n\n\nfun box ge(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ngt\n\n\nfun box gt(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: String box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_cstring\n\n\nReturns a C compatible pointer to a null terminated string.\n\n\nfun box _cstring()\n: Pointer[U8 val] box\n\n\n\n\nReturns\n\n\n\n\nPointer\n[\nU8\n val] box\n\n\n\n\n\n\n_append\n\n\nfun iso _append(\n  s: String box)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\ns: \nString\n box\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\n_to_int[A: ((\nI8\n val | \nI16\n val | \nI32\n val | \nI64\n val | \nI128\n val | \nILong\n val | \nISize\n val | \nU8\n val | \nU16\n val | \nU32\n val | \nU64\n val | \nU128\n val | \nULong\n val | \nUSize\n val) \n \nInteger\n[A val] val)]\n\n\nConvert the \nwhole\n string to the specified type.\nIf there are any other characters in the string, or the integer found is\nout of range for the target type then an error is thrown.\n\n\nfun box _to_int[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) \n Integer[A val] val)](\n  base: U8 val)\n: A val ?\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nA val ?\n\n\n\n\n\n\n_read_int_base[A: ((\nI8\n val | \nI16\n val | \nI32\n val | \nI64\n val | \nI128\n val | \nILong\n val | \nISize\n val | \nU8\n val | \nU16\n val | \nU32\n val | \nU64\n val | \nU128\n val | \nULong\n val | \nUSize\n val) \n \nInteger\n[A val] val)]\n\n\nDetermine the base of an integer starting at the specified index.\nIf a non-0 base is given use that. If given base is 0 read the base\nspecifying prefix, if any, to detect base 2 or 16.\nIf no base is specified and no prefix is found default to decimal.\nNote that a leading 0 does NOT imply octal.\nReport the base found and the number of characters in the prefix.\n\n\nfun box _read_int_base[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) \n Integer[A val] val)](\n  base: U8 val,\n  index: USize val)\n: (A val , USize val)\n\n\n\n\nParameters\n\n\n\n\nbase: \nU8\n val\n\n\nindex: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\n(A val , \nUSize\n val)\n\n\n\n\n\n\n_set\n\n\nUnsafe update, used internally.\n\n\nfun ref _set(\n  i: USize val,\n  value: U8 val)\n: U8 val\n\n\n\n\nParameters\n\n\n\n\ni: \nUSize\n val\n\n\nvalue: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nU8\n val", 
             "title": "class String"
         }, 
         {
@@ -1786,17 +1786,32 @@
             "title": "Returns"
         }, 
         {
+            "location": "/builtin-String/#from_iso_array", 
+            "text": "Create a string from an array, reusing the underlying data pointer  new iso from_iso_array(\n  data: Array[U8 val] iso)\n: String iso^", 
+            "title": "from_iso_array"
+        }, 
+        {
+            "location": "/builtin-String/#parameters_2", 
+            "text": "data:  Array [ U8  val] iso", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/builtin-String/#returns_2", 
+            "text": "String  iso^", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/builtin-String/#from_cstring", 
             "text": "The cstring is not copied. This must be done only with C-FFI functions that\nreturn pony_alloc'd character arrays. If len is not given, the pointer is\nscanned for the first null byte, which will be interpreted as the null\nterminator. Therefore, strings without null terminators must specify\na length to retain memory safety.  new ref from_cstring(\n  str: Pointer[U8 val] ref,\n  len: USize val = 0,\n  alloc: USize val = 0)\n: String ref^", 
             "title": "from_cstring"
         }, 
         {
-            "location": "/builtin-String/#parameters_2", 
+            "location": "/builtin-String/#parameters_3", 
             "text": "str:  Pointer [ U8  val] ref  len:  USize  val = 0  alloc:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_2", 
+            "location": "/builtin-String/#returns_3", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -1806,12 +1821,12 @@
             "title": "copy_cstring"
         }, 
         {
-            "location": "/builtin-String/#parameters_3", 
+            "location": "/builtin-String/#parameters_4", 
             "text": "str:  Pointer [ U8  val] box  len:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_3", 
+            "location": "/builtin-String/#returns_4", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -1821,12 +1836,12 @@
             "title": "from_utf32"
         }, 
         {
-            "location": "/builtin-String/#parameters_4", 
+            "location": "/builtin-String/#parameters_5", 
             "text": "value:  U32  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_4", 
+            "location": "/builtin-String/#returns_5", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -1841,12 +1856,12 @@
             "title": "push_utf32"
         }, 
         {
-            "location": "/builtin-String/#parameters_5", 
+            "location": "/builtin-String/#parameters_6", 
             "text": "value:  U32  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_5", 
+            "location": "/builtin-String/#returns_6", 
             "text": "None  val", 
             "title": "Returns"
         }, 
@@ -1856,7 +1871,7 @@
             "title": "cstring"
         }, 
         {
-            "location": "/builtin-String/#returns_6", 
+            "location": "/builtin-String/#returns_7", 
             "text": "Pointer [ U8  val] tag", 
             "title": "Returns"
         }, 
@@ -1866,7 +1881,7 @@
             "title": "array"
         }, 
         {
-            "location": "/builtin-String/#returns_7", 
+            "location": "/builtin-String/#returns_8", 
             "text": "Array [ U8  val] val", 
             "title": "Returns"
         }, 
@@ -1876,7 +1891,7 @@
             "title": "size"
         }, 
         {
-            "location": "/builtin-String/#returns_8", 
+            "location": "/builtin-String/#returns_9", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -1886,12 +1901,12 @@
             "title": "codepoints"
         }, 
         {
-            "location": "/builtin-String/#parameters_6", 
+            "location": "/builtin-String/#parameters_7", 
             "text": "from:  ISize  val = 0  to:  ISize  val = call", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_9", 
+            "location": "/builtin-String/#returns_10", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -1901,7 +1916,7 @@
             "title": "space"
         }, 
         {
-            "location": "/builtin-String/#returns_10", 
+            "location": "/builtin-String/#returns_11", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -1911,12 +1926,12 @@
             "title": "reserve"
         }, 
         {
-            "location": "/builtin-String/#parameters_7", 
+            "location": "/builtin-String/#parameters_8", 
             "text": "len:  USize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_11", 
+            "location": "/builtin-String/#returns_12", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -1926,7 +1941,7 @@
             "title": "compact"
         }, 
         {
-            "location": "/builtin-String/#returns_12", 
+            "location": "/builtin-String/#returns_13", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -1936,7 +1951,7 @@
             "title": "recalc"
         }, 
         {
-            "location": "/builtin-String/#returns_13", 
+            "location": "/builtin-String/#returns_14", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -1946,12 +1961,12 @@
             "title": "truncate"
         }, 
         {
-            "location": "/builtin-String/#parameters_8", 
+            "location": "/builtin-String/#parameters_9", 
             "text": "len:  USize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_14", 
+            "location": "/builtin-String/#returns_15", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -1961,12 +1976,12 @@
             "title": "trim_in_place"
         }, 
         {
-            "location": "/builtin-String/#parameters_9", 
+            "location": "/builtin-String/#parameters_10", 
             "text": "from:  USize  val = 0  to:  USize  val = call", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_15", 
+            "location": "/builtin-String/#returns_16", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -1976,12 +1991,12 @@
             "title": "trim"
         }, 
         {
-            "location": "/builtin-String/#parameters_10", 
+            "location": "/builtin-String/#parameters_11", 
             "text": "from:  USize  val = 0  to:  USize  val = call", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_16", 
+            "location": "/builtin-String/#returns_17", 
             "text": "String  val", 
             "title": "Returns"
         }, 
@@ -1991,7 +2006,7 @@
             "title": "is_null_terminated"
         }, 
         {
-            "location": "/builtin-String/#returns_17", 
+            "location": "/builtin-String/#returns_18", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -2001,7 +2016,7 @@
             "title": "null_terminated"
         }, 
         {
-            "location": "/builtin-String/#returns_18", 
+            "location": "/builtin-String/#returns_19", 
             "text": "this- String  ref", 
             "title": "Returns"
         }, 
@@ -2011,12 +2026,12 @@
             "title": "utf32"
         }, 
         {
-            "location": "/builtin-String/#parameters_11", 
+            "location": "/builtin-String/#parameters_12", 
             "text": "offset:  ISize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_19", 
+            "location": "/builtin-String/#returns_20", 
             "text": "( U32  val ,  U8  val) ?", 
             "title": "Returns"
         }, 
@@ -2026,12 +2041,12 @@
             "title": "apply"
         }, 
         {
-            "location": "/builtin-String/#parameters_12", 
+            "location": "/builtin-String/#parameters_13", 
             "text": "i:  USize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_20", 
+            "location": "/builtin-String/#returns_21", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -2041,12 +2056,12 @@
             "title": "update"
         }, 
         {
-            "location": "/builtin-String/#parameters_13", 
+            "location": "/builtin-String/#parameters_14", 
             "text": "i:  USize  val  value:  U8  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_21", 
+            "location": "/builtin-String/#returns_22", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -2056,12 +2071,12 @@
             "title": "at_offset"
         }, 
         {
-            "location": "/builtin-String/#parameters_14", 
+            "location": "/builtin-String/#parameters_15", 
             "text": "offset:  ISize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_22", 
+            "location": "/builtin-String/#returns_23", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -2071,12 +2086,12 @@
             "title": "update_offset"
         }, 
         {
-            "location": "/builtin-String/#parameters_15", 
+            "location": "/builtin-String/#parameters_16", 
             "text": "offset:  ISize  val  value:  U8  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_23", 
+            "location": "/builtin-String/#returns_24", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -2086,7 +2101,7 @@
             "title": "clone"
         }, 
         {
-            "location": "/builtin-String/#returns_24", 
+            "location": "/builtin-String/#returns_25", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2096,12 +2111,12 @@
             "title": "find"
         }, 
         {
-            "location": "/builtin-String/#parameters_16", 
+            "location": "/builtin-String/#parameters_17", 
             "text": "s:  String  box  offset:  ISize  val = 0  nth:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_25", 
+            "location": "/builtin-String/#returns_26", 
             "text": "ISize  val ?", 
             "title": "Returns"
         }, 
@@ -2111,12 +2126,12 @@
             "title": "rfind"
         }, 
         {
-            "location": "/builtin-String/#parameters_17", 
+            "location": "/builtin-String/#parameters_18", 
             "text": "s:  String  box  offset:  ISize  val = call  nth:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_26", 
+            "location": "/builtin-String/#returns_27", 
             "text": "ISize  val ?", 
             "title": "Returns"
         }, 
@@ -2126,12 +2141,12 @@
             "title": "contains"
         }, 
         {
-            "location": "/builtin-String/#parameters_18", 
+            "location": "/builtin-String/#parameters_19", 
             "text": "s:  String  box  offset:  ISize  val = 0  nth:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_27", 
+            "location": "/builtin-String/#returns_28", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -2141,12 +2156,12 @@
             "title": "count"
         }, 
         {
-            "location": "/builtin-String/#parameters_19", 
+            "location": "/builtin-String/#parameters_20", 
             "text": "s:  String  box  offset:  ISize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_28", 
+            "location": "/builtin-String/#returns_29", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -2156,12 +2171,12 @@
             "title": "at"
         }, 
         {
-            "location": "/builtin-String/#parameters_20", 
+            "location": "/builtin-String/#parameters_21", 
             "text": "s:  String  box  offset:  ISize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_29", 
+            "location": "/builtin-String/#returns_30", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -2171,12 +2186,12 @@
             "title": "delete"
         }, 
         {
-            "location": "/builtin-String/#parameters_21", 
+            "location": "/builtin-String/#parameters_22", 
             "text": "offset:  ISize  val  len:  USize  val = 1", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_30", 
+            "location": "/builtin-String/#returns_31", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2186,12 +2201,12 @@
             "title": "substring"
         }, 
         {
-            "location": "/builtin-String/#parameters_22", 
+            "location": "/builtin-String/#parameters_23", 
             "text": "from:  ISize  val  to:  ISize  val = call", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_31", 
+            "location": "/builtin-String/#returns_32", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2201,7 +2216,7 @@
             "title": "lower"
         }, 
         {
-            "location": "/builtin-String/#returns_32", 
+            "location": "/builtin-String/#returns_33", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2211,7 +2226,7 @@
             "title": "lower_in_place"
         }, 
         {
-            "location": "/builtin-String/#returns_33", 
+            "location": "/builtin-String/#returns_34", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2221,7 +2236,7 @@
             "title": "upper"
         }, 
         {
-            "location": "/builtin-String/#returns_34", 
+            "location": "/builtin-String/#returns_35", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2231,7 +2246,7 @@
             "title": "upper_in_place"
         }, 
         {
-            "location": "/builtin-String/#returns_35", 
+            "location": "/builtin-String/#returns_36", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2241,7 +2256,7 @@
             "title": "reverse"
         }, 
         {
-            "location": "/builtin-String/#returns_36", 
+            "location": "/builtin-String/#returns_37", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2251,7 +2266,7 @@
             "title": "reverse_in_place"
         }, 
         {
-            "location": "/builtin-String/#returns_37", 
+            "location": "/builtin-String/#returns_38", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2261,12 +2276,12 @@
             "title": "push"
         }, 
         {
-            "location": "/builtin-String/#parameters_23", 
+            "location": "/builtin-String/#parameters_24", 
             "text": "value:  U8  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_38", 
+            "location": "/builtin-String/#returns_39", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2276,7 +2291,7 @@
             "title": "pop"
         }, 
         {
-            "location": "/builtin-String/#returns_39", 
+            "location": "/builtin-String/#returns_40", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -2286,12 +2301,12 @@
             "title": "unshift"
         }, 
         {
-            "location": "/builtin-String/#parameters_24", 
+            "location": "/builtin-String/#parameters_25", 
             "text": "value:  U8  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_40", 
+            "location": "/builtin-String/#returns_41", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2301,7 +2316,7 @@
             "title": "shift"
         }, 
         {
-            "location": "/builtin-String/#returns_41", 
+            "location": "/builtin-String/#returns_42", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -2311,12 +2326,12 @@
             "title": "append"
         }, 
         {
-            "location": "/builtin-String/#parameters_25", 
+            "location": "/builtin-String/#parameters_26", 
             "text": "seq:  ReadSeq [ U8  val] box  offset:  USize  val = 0  len:  USize  val = call", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_42", 
+            "location": "/builtin-String/#returns_43", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2326,12 +2341,12 @@
             "title": "concat"
         }, 
         {
-            "location": "/builtin-String/#parameters_26", 
+            "location": "/builtin-String/#parameters_27", 
             "text": "iter:  Iterator [ U8  val] ref  offset:  USize  val = 0  len:  USize  val = call", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_43", 
+            "location": "/builtin-String/#returns_44", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2341,7 +2356,7 @@
             "title": "clear"
         }, 
         {
-            "location": "/builtin-String/#returns_44", 
+            "location": "/builtin-String/#returns_45", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2351,12 +2366,12 @@
             "title": "insert"
         }, 
         {
-            "location": "/builtin-String/#parameters_27", 
+            "location": "/builtin-String/#parameters_28", 
             "text": "offset:  ISize  val  that:  String  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_45", 
+            "location": "/builtin-String/#returns_46", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2366,12 +2381,12 @@
             "title": "insert_in_place"
         }, 
         {
-            "location": "/builtin-String/#parameters_28", 
+            "location": "/builtin-String/#parameters_29", 
             "text": "offset:  ISize  val  that:  String  box", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_46", 
+            "location": "/builtin-String/#returns_47", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2381,12 +2396,12 @@
             "title": "insert_byte"
         }, 
         {
-            "location": "/builtin-String/#parameters_29", 
+            "location": "/builtin-String/#parameters_30", 
             "text": "offset:  ISize  val  value:  U8  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_47", 
+            "location": "/builtin-String/#returns_48", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2396,12 +2411,12 @@
             "title": "cut"
         }, 
         {
-            "location": "/builtin-String/#parameters_30", 
+            "location": "/builtin-String/#parameters_31", 
             "text": "from:  ISize  val  to:  ISize  val = call", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_48", 
+            "location": "/builtin-String/#returns_49", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2411,12 +2426,12 @@
             "title": "cut_in_place"
         }, 
         {
-            "location": "/builtin-String/#parameters_31", 
+            "location": "/builtin-String/#parameters_32", 
             "text": "from:  ISize  val  to:  ISize  val = call", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_49", 
+            "location": "/builtin-String/#returns_50", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2426,12 +2441,12 @@
             "title": "remove"
         }, 
         {
-            "location": "/builtin-String/#parameters_32", 
+            "location": "/builtin-String/#parameters_33", 
             "text": "s:  String  box", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_50", 
+            "location": "/builtin-String/#returns_51", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -2441,12 +2456,12 @@
             "title": "replace"
         }, 
         {
-            "location": "/builtin-String/#parameters_33", 
+            "location": "/builtin-String/#parameters_34", 
             "text": "from:  String  box  to:  String  box  n:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_51", 
+            "location": "/builtin-String/#returns_52", 
             "text": "String  ref^", 
             "title": "Returns"
         }, 
@@ -2456,12 +2471,12 @@
             "title": "split"
         }, 
         {
-            "location": "/builtin-String/#parameters_34", 
+            "location": "/builtin-String/#parameters_35", 
             "text": "delim:  String  val= \"  \u000b\f\n\"  n:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_52", 
+            "location": "/builtin-String/#returns_53", 
             "text": "Array [ String  val] iso^", 
             "title": "Returns"
         }, 
@@ -2469,21 +2484,6 @@
             "location": "/builtin-String/#strip", 
             "text": "Remove all leading and trailing characters from the string that are in s.  fun ref strip(\n  s: String box=    \u000b\f )\n: String ref^", 
             "title": "strip"
-        }, 
-        {
-            "location": "/builtin-String/#parameters_35", 
-            "text": "s:  String  box= \"  \u000b\f\n\"", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/builtin-String/#returns_53", 
-            "text": "String  ref^", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/builtin-String/#rstrip", 
-            "text": "Remove all trailing characters within the string that are in s. By default,\ntrailing whitespace is removed.  fun ref rstrip(\n  s: String box=    \u000b\f )\n: String ref^", 
-            "title": "rstrip"
         }, 
         {
             "location": "/builtin-String/#parameters_36", 
@@ -2496,9 +2496,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/builtin-String/#lstrip", 
-            "text": "Remove all leading characters within the string that are in s. By default,\nleading whitespace is removed.  fun ref lstrip(\n  s: String box=    \u000b\f )\n: String ref^", 
-            "title": "lstrip"
+            "location": "/builtin-String/#rstrip", 
+            "text": "Remove all trailing characters within the string that are in s. By default,\ntrailing whitespace is removed.  fun ref rstrip(\n  s: String box=    \u000b\f )\n: String ref^", 
+            "title": "rstrip"
         }, 
         {
             "location": "/builtin-String/#parameters_37", 
@@ -2511,17 +2511,32 @@
             "title": "Returns"
         }, 
         {
+            "location": "/builtin-String/#lstrip", 
+            "text": "Remove all leading characters within the string that are in s. By default,\nleading whitespace is removed.  fun ref lstrip(\n  s: String box=    \u000b\f )\n: String ref^", 
+            "title": "lstrip"
+        }, 
+        {
+            "location": "/builtin-String/#parameters_38", 
+            "text": "s:  String  box= \"  \u000b\f\n\"", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/builtin-String/#returns_56", 
+            "text": "String  ref^", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/builtin-String/#add", 
             "text": "Return a string that is a concatenation of this and that.  fun box add(\n  that: String box)\n: String val", 
             "title": "add"
         }, 
         {
-            "location": "/builtin-String/#parameters_38", 
+            "location": "/builtin-String/#parameters_39", 
             "text": "that:  String  box", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_56", 
+            "location": "/builtin-String/#returns_57", 
             "text": "String  val", 
             "title": "Returns"
         }, 
@@ -2531,12 +2546,12 @@
             "title": "join"
         }, 
         {
-            "location": "/builtin-String/#parameters_39", 
+            "location": "/builtin-String/#parameters_40", 
             "text": "data:  ReadSeq [ Stringable [ FormatDefault  val,  PrefixDefault  val] box] box", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_57", 
+            "location": "/builtin-String/#returns_58", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2546,12 +2561,12 @@
             "title": "compare"
         }, 
         {
-            "location": "/builtin-String/#parameters_40", 
+            "location": "/builtin-String/#parameters_41", 
             "text": "that:  String  box", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_58", 
+            "location": "/builtin-String/#returns_59", 
             "text": "( Less  val |  Equal  val |  Greater  val)", 
             "title": "Returns"
         }, 
@@ -2561,12 +2576,12 @@
             "title": "compare_sub"
         }, 
         {
-            "location": "/builtin-String/#parameters_41", 
+            "location": "/builtin-String/#parameters_42", 
             "text": "that:  String  box  n:  USize  val  offset:  ISize  val = 0  that_offset:  ISize  val = 0  ignore_case:  Bool  val = false", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_59", 
+            "location": "/builtin-String/#returns_60", 
             "text": "( Less  val |  Equal  val |  Greater  val)", 
             "title": "Returns"
         }, 
@@ -2574,21 +2589,6 @@
             "location": "/builtin-String/#eq", 
             "text": "Returns true if the two strings have the same contents.  fun box eq(\n  that: String box)\n: Bool val", 
             "title": "eq"
-        }, 
-        {
-            "location": "/builtin-String/#parameters_42", 
-            "text": "that:  String  box", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/builtin-String/#returns_60", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/builtin-String/#lt", 
-            "text": "Returns true if this is lexically less than that. Needs to be made UTF-8\nsafe.  fun box lt(\n  that: String box)\n: Bool val", 
-            "title": "lt"
         }, 
         {
             "location": "/builtin-String/#parameters_43", 
@@ -2601,9 +2601,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/builtin-String/#le", 
-            "text": "Returns true if this is lexically less than or equal to that. Needs to be\nmade UTF-8 safe.  fun box le(\n  that: String box)\n: Bool val", 
-            "title": "le"
+            "location": "/builtin-String/#lt", 
+            "text": "Returns true if this is lexically less than that. Needs to be made UTF-8\nsafe.  fun box lt(\n  that: String box)\n: Bool val", 
+            "title": "lt"
         }, 
         {
             "location": "/builtin-String/#parameters_44", 
@@ -2616,17 +2616,32 @@
             "title": "Returns"
         }, 
         {
+            "location": "/builtin-String/#le", 
+            "text": "Returns true if this is lexically less than or equal to that. Needs to be\nmade UTF-8 safe.  fun box le(\n  that: String box)\n: Bool val", 
+            "title": "le"
+        }, 
+        {
+            "location": "/builtin-String/#parameters_45", 
+            "text": "that:  String  box", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/builtin-String/#returns_63", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/builtin-String/#offset_to_index", 
             "text": "fun box offset_to_index(\n  i: ISize val)\n: USize val", 
             "title": "offset_to_index"
         }, 
         {
-            "location": "/builtin-String/#parameters_45", 
+            "location": "/builtin-String/#parameters_46", 
             "text": "i:  ISize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_63", 
+            "location": "/builtin-String/#returns_64", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -2636,7 +2651,7 @@
             "title": "bool"
         }, 
         {
-            "location": "/builtin-String/#returns_64", 
+            "location": "/builtin-String/#returns_65", 
             "text": "Bool  val ?", 
             "title": "Returns"
         }, 
@@ -2646,12 +2661,12 @@
             "title": "i8"
         }, 
         {
-            "location": "/builtin-String/#parameters_46", 
+            "location": "/builtin-String/#parameters_47", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_65", 
+            "location": "/builtin-String/#returns_66", 
             "text": "I8  val ?", 
             "title": "Returns"
         }, 
@@ -2661,12 +2676,12 @@
             "title": "i16"
         }, 
         {
-            "location": "/builtin-String/#parameters_47", 
+            "location": "/builtin-String/#parameters_48", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_66", 
+            "location": "/builtin-String/#returns_67", 
             "text": "I16  val ?", 
             "title": "Returns"
         }, 
@@ -2676,12 +2691,12 @@
             "title": "i32"
         }, 
         {
-            "location": "/builtin-String/#parameters_48", 
+            "location": "/builtin-String/#parameters_49", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_67", 
+            "location": "/builtin-String/#returns_68", 
             "text": "I32  val ?", 
             "title": "Returns"
         }, 
@@ -2691,12 +2706,12 @@
             "title": "i64"
         }, 
         {
-            "location": "/builtin-String/#parameters_49", 
+            "location": "/builtin-String/#parameters_50", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_68", 
+            "location": "/builtin-String/#returns_69", 
             "text": "I64  val ?", 
             "title": "Returns"
         }, 
@@ -2706,12 +2721,12 @@
             "title": "i128"
         }, 
         {
-            "location": "/builtin-String/#parameters_50", 
+            "location": "/builtin-String/#parameters_51", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_69", 
+            "location": "/builtin-String/#returns_70", 
             "text": "I128  val ?", 
             "title": "Returns"
         }, 
@@ -2721,12 +2736,12 @@
             "title": "ilong"
         }, 
         {
-            "location": "/builtin-String/#parameters_51", 
+            "location": "/builtin-String/#parameters_52", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_70", 
+            "location": "/builtin-String/#returns_71", 
             "text": "ILong  val ?", 
             "title": "Returns"
         }, 
@@ -2736,12 +2751,12 @@
             "title": "isize"
         }, 
         {
-            "location": "/builtin-String/#parameters_52", 
+            "location": "/builtin-String/#parameters_53", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_71", 
+            "location": "/builtin-String/#returns_72", 
             "text": "ISize  val ?", 
             "title": "Returns"
         }, 
@@ -2751,12 +2766,12 @@
             "title": "u8"
         }, 
         {
-            "location": "/builtin-String/#parameters_53", 
+            "location": "/builtin-String/#parameters_54", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_72", 
+            "location": "/builtin-String/#returns_73", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -2766,12 +2781,12 @@
             "title": "u16"
         }, 
         {
-            "location": "/builtin-String/#parameters_54", 
+            "location": "/builtin-String/#parameters_55", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_73", 
+            "location": "/builtin-String/#returns_74", 
             "text": "U16  val ?", 
             "title": "Returns"
         }, 
@@ -2781,12 +2796,12 @@
             "title": "u32"
         }, 
         {
-            "location": "/builtin-String/#parameters_55", 
+            "location": "/builtin-String/#parameters_56", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_74", 
+            "location": "/builtin-String/#returns_75", 
             "text": "U32  val ?", 
             "title": "Returns"
         }, 
@@ -2796,12 +2811,12 @@
             "title": "u64"
         }, 
         {
-            "location": "/builtin-String/#parameters_56", 
+            "location": "/builtin-String/#parameters_57", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_75", 
+            "location": "/builtin-String/#returns_76", 
             "text": "U64  val ?", 
             "title": "Returns"
         }, 
@@ -2811,12 +2826,12 @@
             "title": "u128"
         }, 
         {
-            "location": "/builtin-String/#parameters_57", 
+            "location": "/builtin-String/#parameters_58", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_76", 
+            "location": "/builtin-String/#returns_77", 
             "text": "U128  val ?", 
             "title": "Returns"
         }, 
@@ -2826,12 +2841,12 @@
             "title": "ulong"
         }, 
         {
-            "location": "/builtin-String/#parameters_58", 
+            "location": "/builtin-String/#parameters_59", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_77", 
+            "location": "/builtin-String/#returns_78", 
             "text": "ULong  val ?", 
             "title": "Returns"
         }, 
@@ -2841,12 +2856,12 @@
             "title": "usize"
         }, 
         {
-            "location": "/builtin-String/#parameters_59", 
+            "location": "/builtin-String/#parameters_60", 
             "text": "base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_78", 
+            "location": "/builtin-String/#returns_79", 
             "text": "USize  val ?", 
             "title": "Returns"
         }, 
@@ -2856,12 +2871,12 @@
             "title": "read_int[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) &amp; Integer[A val] val)]"
         }, 
         {
-            "location": "/builtin-String/#parameters_60", 
+            "location": "/builtin-String/#parameters_61", 
             "text": "offset:  ISize  val = 0  base:  U8  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_79", 
+            "location": "/builtin-String/#returns_80", 
             "text": "(A val ,  USize  val) ?", 
             "title": "Returns"
         }, 
@@ -2871,12 +2886,12 @@
             "title": "f32"
         }, 
         {
-            "location": "/builtin-String/#parameters_61", 
+            "location": "/builtin-String/#parameters_62", 
             "text": "offset:  ISize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_80", 
+            "location": "/builtin-String/#returns_81", 
             "text": "F32  val", 
             "title": "Returns"
         }, 
@@ -2886,12 +2901,12 @@
             "title": "f64"
         }, 
         {
-            "location": "/builtin-String/#parameters_62", 
+            "location": "/builtin-String/#parameters_63", 
             "text": "offset:  ISize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_81", 
+            "location": "/builtin-String/#returns_82", 
             "text": "F64  val", 
             "title": "Returns"
         }, 
@@ -2901,7 +2916,7 @@
             "title": "hash"
         }, 
         {
-            "location": "/builtin-String/#returns_82", 
+            "location": "/builtin-String/#returns_83", 
             "text": "U64  val", 
             "title": "Returns"
         }, 
@@ -2911,12 +2926,12 @@
             "title": "string"
         }, 
         {
-            "location": "/builtin-String/#parameters_63", 
+            "location": "/builtin-String/#parameters_64", 
             "text": "fmt:  FormatSettings [ FormatDefault  val,  PrefixDefault  val] box = reference", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_83", 
+            "location": "/builtin-String/#returns_84", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -2926,7 +2941,7 @@
             "title": "values"
         }, 
         {
-            "location": "/builtin-String/#returns_84", 
+            "location": "/builtin-String/#returns_85", 
             "text": "StringBytes  ref^", 
             "title": "Returns"
         }, 
@@ -2936,7 +2951,7 @@
             "title": "runes"
         }, 
         {
-            "location": "/builtin-String/#returns_85", 
+            "location": "/builtin-String/#returns_86", 
             "text": "StringRunes  ref^", 
             "title": "Returns"
         }, 
@@ -2944,21 +2959,6 @@
             "location": "/builtin-String/#ge", 
             "text": "fun box ge(\n  that: String box)\n: Bool val", 
             "title": "ge"
-        }, 
-        {
-            "location": "/builtin-String/#parameters_64", 
-            "text": "that:  String  box", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/builtin-String/#returns_86", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/builtin-String/#gt", 
-            "text": "fun box gt(\n  that: String box)\n: Bool val", 
-            "title": "gt"
         }, 
         {
             "location": "/builtin-String/#parameters_65", 
@@ -2971,9 +2971,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/builtin-String/#ne", 
-            "text": "fun box ne(\n  that: String box)\n: Bool val", 
-            "title": "ne"
+            "location": "/builtin-String/#gt", 
+            "text": "fun box gt(\n  that: String box)\n: Bool val", 
+            "title": "gt"
         }, 
         {
             "location": "/builtin-String/#parameters_66", 
@@ -2982,6 +2982,21 @@
         }, 
         {
             "location": "/builtin-String/#returns_88", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/builtin-String/#ne", 
+            "text": "fun box ne(\n  that: String box)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/builtin-String/#parameters_67", 
+            "text": "that:  String  box", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/builtin-String/#returns_89", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -2996,7 +3011,7 @@
             "title": "_cstring"
         }, 
         {
-            "location": "/builtin-String/#returns_89", 
+            "location": "/builtin-String/#returns_90", 
             "text": "Pointer [ U8  val] box", 
             "title": "Returns"
         }, 
@@ -3006,12 +3021,12 @@
             "title": "_append"
         }, 
         {
-            "location": "/builtin-String/#parameters_67", 
+            "location": "/builtin-String/#parameters_68", 
             "text": "s:  String  box", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_90", 
+            "location": "/builtin-String/#returns_91", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -3021,12 +3036,12 @@
             "title": "_to_int[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) &amp; Integer[A val] val)]"
         }, 
         {
-            "location": "/builtin-String/#parameters_68", 
+            "location": "/builtin-String/#parameters_69", 
             "text": "base:  U8  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_91", 
+            "location": "/builtin-String/#returns_92", 
             "text": "A val ?", 
             "title": "Returns"
         }, 
@@ -3036,12 +3051,12 @@
             "title": "_read_int_base[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) &amp; Integer[A val] val)]"
         }, 
         {
-            "location": "/builtin-String/#parameters_69", 
+            "location": "/builtin-String/#parameters_70", 
             "text": "base:  U8  val  index:  USize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_92", 
+            "location": "/builtin-String/#returns_93", 
             "text": "(A val ,  USize  val)", 
             "title": "Returns"
         }, 
@@ -3051,12 +3066,12 @@
             "title": "_set"
         }, 
         {
-            "location": "/builtin-String/#parameters_70", 
+            "location": "/builtin-String/#parameters_71", 
             "text": "i:  USize  val  value:  U8  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/builtin-String/#returns_93", 
+            "location": "/builtin-String/#returns_94", 
             "text": "U8  val", 
             "title": "Returns"
         }, 
