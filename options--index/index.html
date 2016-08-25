@@ -4285,13 +4285,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../options-TestOptions/">primitive TestOptions</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../options-_TestLongOptions/">class _TestLongOptions</a>
         
     </li>
@@ -5503,7 +5496,7 @@ actor Main
     _env.out.print(&quot;The Float is &quot; + _a_float.string())
 
   fun ref arguments() ? =&gt;
-    var options = Options(_env)
+    var options = Options(_env.args)
 
     options
       .add(&quot;string&quot;, &quot;t&quot;, StringArgument)
@@ -5536,7 +5529,6 @@ actor Main
 
 <h2 id="public-types">Public Types</h2>
 <ul>
-<li><a href="../options-TestOptions/">primitive TestOptions</a></li>
 <li><a href="../options-StringArgument/">primitive StringArgument</a></li>
 <li><a href="../options-I64Argument/">primitive I64Argument</a></li>
 <li><a href="../options-F64Argument/">primitive F64Argument</a></li>

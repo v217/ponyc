@@ -68912,7 +68912,7 @@
         }, 
         {
             "location": "/options--index/", 
-            "text": "Options package\n\n\nThe Options package provides support for parsing command line arguments.\n\n\nExample program\n\n\nuse \noptions\n\n\nactor Main\n  let _env: Env\n  // Some values we can set via command line options\n  var _a_string: String = \ndefault\n\n  var _a_number: USize = 0\n  var _a_float: Float = F64(0.0)\n\n  new create(env: Env) =\n\n    _env = env\n    try\n      arguments()\n    end\n\n    _env.out.print(\nThe String is \n + _a_string)\n    _env.out.print(\nThe Number is \n + _a_number.string())\n    _env.out.print(\nThe Float is \n + _a_float.string())\n\n  fun ref arguments() ? =\n\n    var options = Options(_env)\n\n    options\n      .add(\nstring\n, \nt\n, StringArgument)\n      .add(\nnumber\n, \ni\n, I64Argument)\n      .add(\nfloat\n, \nc\n, F64Argument)\n\n    for option in options do\n      match option\n      | (\nstring\n, let arg: String) =\n _a_string = arg\n      | (\nnumber\n, let arg: I64) =\n _a_number = arg.usize()\n      | (\nfloat\n, let arg: F64) =\n _a_float = arg\n      | let err: ParseError =\n err.report(_env.out) ; usage() ; error\n      end\n    end\n\n  fun ref usage() =\n\n    // this exists inside a doc-string to create the docs you are reading\n    // in real code, we would use a single string literal for this but\n    // docstrings are themselves string literals and you can't put a\n    // string literal in a string literal. That would lead to total\n    // protonic reversal. In your own code, use a string literal instead\n    // of string concatenation for this.\n    _env.out.print(\n      \nprogram [OPTIONS]\\n\n +\n      \n  --string      N   a string argument. Defaults to 'default'.\\n\n +\n      \n  --number      N   a number argument. Defaults to 0.\\n\n +\n      \n  --float       N   a floating point argument. Defaults to 0.0.\\n\n\n      )\n\n\n\n\nPublic Types\n\n\n\n\nprimitive TestOptions\n\n\nprimitive StringArgument\n\n\nprimitive I64Argument\n\n\nprimitive F64Argument\n\n\nprimitive Required\n\n\nprimitive Optional\n\n\nprimitive UnrecognisedOption\n\n\nprimitive AmbiguousMatch\n\n\nprimitive MissingArgument\n\n\nprimitive InvalidArgument\n\n\ntype ArgumentType\n\n\ntype ErrorReason\n\n\ntype ParsedOption\n\n\ninterface ParseError\n\n\nclass Options\n\n\nprimitive EnvVars\n\n\n\n\nPrivate Types\n\n\n\n\nclass _Option\n\n\nclass _ErrorPrinter\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestLongOptions\n\n\nclass _TestShortOptions\n\n\nclass _TestCombineShortOptions\n\n\nclass _TestCombineShortArg\n\n\nclass _TestArgLeadingDash", 
+            "text": "Options package\n\n\nThe Options package provides support for parsing command line arguments.\n\n\nExample program\n\n\nuse \noptions\n\n\nactor Main\n  let _env: Env\n  // Some values we can set via command line options\n  var _a_string: String = \ndefault\n\n  var _a_number: USize = 0\n  var _a_float: Float = F64(0.0)\n\n  new create(env: Env) =\n\n    _env = env\n    try\n      arguments()\n    end\n\n    _env.out.print(\nThe String is \n + _a_string)\n    _env.out.print(\nThe Number is \n + _a_number.string())\n    _env.out.print(\nThe Float is \n + _a_float.string())\n\n  fun ref arguments() ? =\n\n    var options = Options(_env.args)\n\n    options\n      .add(\nstring\n, \nt\n, StringArgument)\n      .add(\nnumber\n, \ni\n, I64Argument)\n      .add(\nfloat\n, \nc\n, F64Argument)\n\n    for option in options do\n      match option\n      | (\nstring\n, let arg: String) =\n _a_string = arg\n      | (\nnumber\n, let arg: I64) =\n _a_number = arg.usize()\n      | (\nfloat\n, let arg: F64) =\n _a_float = arg\n      | let err: ParseError =\n err.report(_env.out) ; usage() ; error\n      end\n    end\n\n  fun ref usage() =\n\n    // this exists inside a doc-string to create the docs you are reading\n    // in real code, we would use a single string literal for this but\n    // docstrings are themselves string literals and you can't put a\n    // string literal in a string literal. That would lead to total\n    // protonic reversal. In your own code, use a string literal instead\n    // of string concatenation for this.\n    _env.out.print(\n      \nprogram [OPTIONS]\\n\n +\n      \n  --string      N   a string argument. Defaults to 'default'.\\n\n +\n      \n  --number      N   a number argument. Defaults to 0.\\n\n +\n      \n  --float       N   a floating point argument. Defaults to 0.0.\\n\n\n      )\n\n\n\n\nPublic Types\n\n\n\n\nprimitive StringArgument\n\n\nprimitive I64Argument\n\n\nprimitive F64Argument\n\n\nprimitive Required\n\n\nprimitive Optional\n\n\nprimitive UnrecognisedOption\n\n\nprimitive AmbiguousMatch\n\n\nprimitive MissingArgument\n\n\nprimitive InvalidArgument\n\n\ntype ArgumentType\n\n\ntype ErrorReason\n\n\ntype ParsedOption\n\n\ninterface ParseError\n\n\nclass Options\n\n\nprimitive EnvVars\n\n\n\n\nPrivate Types\n\n\n\n\nclass _Option\n\n\nclass _ErrorPrinter\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestLongOptions\n\n\nclass _TestShortOptions\n\n\nclass _TestCombineShortOptions\n\n\nclass _TestCombineShortArg\n\n\nclass _TestArgLeadingDash", 
             "title": "Package"
         }, 
         {
@@ -68922,12 +68922,12 @@
         }, 
         {
             "location": "/options--index/#example-program", 
-            "text": "use  options \n\nactor Main\n  let _env: Env\n  // Some values we can set via command line options\n  var _a_string: String =  default \n  var _a_number: USize = 0\n  var _a_float: Float = F64(0.0)\n\n  new create(env: Env) = \n    _env = env\n    try\n      arguments()\n    end\n\n    _env.out.print( The String is   + _a_string)\n    _env.out.print( The Number is   + _a_number.string())\n    _env.out.print( The Float is   + _a_float.string())\n\n  fun ref arguments() ? = \n    var options = Options(_env)\n\n    options\n      .add( string ,  t , StringArgument)\n      .add( number ,  i , I64Argument)\n      .add( float ,  c , F64Argument)\n\n    for option in options do\n      match option\n      | ( string , let arg: String) =  _a_string = arg\n      | ( number , let arg: I64) =  _a_number = arg.usize()\n      | ( float , let arg: F64) =  _a_float = arg\n      | let err: ParseError =  err.report(_env.out) ; usage() ; error\n      end\n    end\n\n  fun ref usage() = \n    // this exists inside a doc-string to create the docs you are reading\n    // in real code, we would use a single string literal for this but\n    // docstrings are themselves string literals and you can't put a\n    // string literal in a string literal. That would lead to total\n    // protonic reversal. In your own code, use a string literal instead\n    // of string concatenation for this.\n    _env.out.print(\n       program [OPTIONS]\\n  +\n         --string      N   a string argument. Defaults to 'default'.\\n  +\n         --number      N   a number argument. Defaults to 0.\\n  +\n         --float       N   a floating point argument. Defaults to 0.0.\\n \n      )", 
+            "text": "use  options \n\nactor Main\n  let _env: Env\n  // Some values we can set via command line options\n  var _a_string: String =  default \n  var _a_number: USize = 0\n  var _a_float: Float = F64(0.0)\n\n  new create(env: Env) = \n    _env = env\n    try\n      arguments()\n    end\n\n    _env.out.print( The String is   + _a_string)\n    _env.out.print( The Number is   + _a_number.string())\n    _env.out.print( The Float is   + _a_float.string())\n\n  fun ref arguments() ? = \n    var options = Options(_env.args)\n\n    options\n      .add( string ,  t , StringArgument)\n      .add( number ,  i , I64Argument)\n      .add( float ,  c , F64Argument)\n\n    for option in options do\n      match option\n      | ( string , let arg: String) =  _a_string = arg\n      | ( number , let arg: I64) =  _a_number = arg.usize()\n      | ( float , let arg: F64) =  _a_float = arg\n      | let err: ParseError =  err.report(_env.out) ; usage() ; error\n      end\n    end\n\n  fun ref usage() = \n    // this exists inside a doc-string to create the docs you are reading\n    // in real code, we would use a single string literal for this but\n    // docstrings are themselves string literals and you can't put a\n    // string literal in a string literal. That would lead to total\n    // protonic reversal. In your own code, use a string literal instead\n    // of string concatenation for this.\n    _env.out.print(\n       program [OPTIONS]\\n  +\n         --string      N   a string argument. Defaults to 'default'.\\n  +\n         --number      N   a number argument. Defaults to 0.\\n  +\n         --float       N   a floating point argument. Defaults to 0.0.\\n \n      )", 
             "title": "Example program"
         }, 
         {
             "location": "/options--index/#public-types", 
-            "text": "primitive TestOptions  primitive StringArgument  primitive I64Argument  primitive F64Argument  primitive Required  primitive Optional  primitive UnrecognisedOption  primitive AmbiguousMatch  primitive MissingArgument  primitive InvalidArgument  type ArgumentType  type ErrorReason  type ParsedOption  interface ParseError  class Options  primitive EnvVars", 
+            "text": "primitive StringArgument  primitive I64Argument  primitive F64Argument  primitive Required  primitive Optional  primitive UnrecognisedOption  primitive AmbiguousMatch  primitive MissingArgument  primitive InvalidArgument  type ArgumentType  type ErrorReason  type ParsedOption  interface ParseError  class Options  primitive EnvVars", 
             "title": "Public Types"
         }, 
         {
@@ -69003,81 +69003,6 @@
         {
             "location": "/options-Main/#returns_2", 
             "text": "None  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/options-TestOptions/", 
-            "text": "TestOptions\n\n\nprimitive val TestOptions\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: TestOptions val^\n\n\n\n\nReturns\n\n\n\n\nTestOptions\n val^\n\n\n\n\n\n\nPublic Functions\n\n\nfrom\n\n\nfun box from(\n  renv: Env val,\n  args: Array[String val] val)\n: Options ref\n\n\n\n\nParameters\n\n\n\n\nrenv: \nEnv\n val\n\n\nargs: \nArray\n[\nString\n val] val\n\n\n\n\nReturns\n\n\n\n\nOptions\n ref\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: TestOptions val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nTestOptions\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: TestOptions val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nTestOptions\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
-            "title": "primitive TestOptions"
-        }, 
-        {
-            "location": "/options-TestOptions/#testoptions", 
-            "text": "primitive val TestOptions", 
-            "title": "TestOptions"
-        }, 
-        {
-            "location": "/options-TestOptions/#constructors", 
-            "text": "", 
-            "title": "Constructors"
-        }, 
-        {
-            "location": "/options-TestOptions/#create", 
-            "text": "new val create()\n: TestOptions val^", 
-            "title": "create"
-        }, 
-        {
-            "location": "/options-TestOptions/#returns", 
-            "text": "TestOptions  val^", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/options-TestOptions/#public-functions", 
-            "text": "", 
-            "title": "Public Functions"
-        }, 
-        {
-            "location": "/options-TestOptions/#from", 
-            "text": "fun box from(\n  renv: Env val,\n  args: Array[String val] val)\n: Options ref", 
-            "title": "from"
-        }, 
-        {
-            "location": "/options-TestOptions/#parameters", 
-            "text": "renv:  Env  val  args:  Array [ String  val] val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/options-TestOptions/#returns_1", 
-            "text": "Options  ref", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/options-TestOptions/#eq", 
-            "text": "fun box eq(\n  that: TestOptions val)\n: Bool val", 
-            "title": "eq"
-        }, 
-        {
-            "location": "/options-TestOptions/#parameters_1", 
-            "text": "that:  TestOptions  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/options-TestOptions/#returns_2", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/options-TestOptions/#ne", 
-            "text": "fun box ne(\n  that: TestOptions val)\n: Bool val", 
-            "title": "ne"
-        }, 
-        {
-            "location": "/options-TestOptions/#parameters_2", 
-            "text": "that:  TestOptions  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/options-TestOptions/#returns_3", 
-            "text": "Bool  val", 
             "title": "Returns"
         }, 
         {
@@ -70257,7 +70182,7 @@
         }, 
         {
             "location": "/options-Options/", 
-            "text": "Options\n\n\nclass ref Options is\n  Iterator[((String val , (None val | String val | I64 val | F64 val)) | ParseError ref | None val)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[((\nString\n val , (\nNone\n val | \nString\n val | \nI64\n val | \nF64\n val)) | \nParseError\n ref | \nNone\n val)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  env: Env val,\n  fatal: Bool val = true)\n: Options ref^\n\n\n\n\nParameters\n\n\n\n\nenv: \nEnv\n val\n\n\nfatal: \nBool\n val = true\n\n\n\n\nReturns\n\n\n\n\nOptions\n ref^\n\n\n\n\n\n\nPublic Functions\n\n\nadd\n\n\nAdds a new named option to the parser configuration.\n\n\nfun ref add(\n  long: String val,\n  short: (None val | String val) = reference,\n  arg: (None val | StringArgument val | I64Argument val | F64Argument val) = reference,\n  mode: (Required val | Optional val) = reference)\n: Options ref\n\n\n\n\nParameters\n\n\n\n\nlong: \nString\n val\n\n\nshort: (\nNone\n val | \nString\n val) = reference\n\n\narg: (\nNone\n val | \nStringArgument\n val | \nI64Argument\n val | \nF64Argument\n val) = reference\n\n\nmode: (\nRequired\n val | \nOptional\n val) = reference\n\n\n\n\nReturns\n\n\n\n\nOptions\n ref\n\n\n\n\n\n\nremaining\n\n\nReturns all unprocessed command line arguments. After parsing all options,\nthis will only include positional arguments, potentially unrecognised and\nambiguous options and invalid arguments.\n\n\nfun ref remaining()\n: Array[String ref] ref\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nString\n ref] ref\n\n\n\n\n\n\nhas_next\n\n\nParsing options is done if either an error occurs and fatal error reporting\nis turned on, or if all command line arguments have been processed.\n\n\nfun box has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nSkips all positional arguments and attemps to match named options. Returns\na ParsedOption on success, a ParseError on error, or None if no named\noptions are found.\n\n\nfun ref next()\n: ((String val , (None val | String val | I64 val | F64 val)) | ParseError ref | None val)\n\n\n\n\nReturns\n\n\n\n\n((\nString\n val , (\nNone\n val | \nString\n val | \nI64\n val | \nF64\n val)) | \nParseError\n ref | \nNone\n val)\n\n\n\n\n\n\nPrivate Functions\n\n\n_strip\n\n\nStrips accepted options from the copied array of command line arguments.\n\n\nfun ref _strip(\n  opt: _Option ref,\n  matched: String ref,\n  start: ISize val,\n  finish: ISize val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nopt: \n_Option\n ref\n\n\nmatched: \nString\n ref\n\n\nstart: \nISize\n val\n\n\nfinish: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_select\n\n\nSelects an option from the configuration depending on the current command\nline argument.\n\n\nfun ref _select(\n  candidate: String ref,\n  start: ISize val,\n  offset: ISize val,\n  finish: ISize val)\n: (_Option ref | ParseError ref)\n\n\n\n\nParameters\n\n\n\n\ncandidate: \nString\n ref\n\n\nstart: \nISize\n val\n\n\noffset: \nISize\n val\n\n\nfinish: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\n(\n_Option\n ref | \nParseError\n ref)\n\n\n\n\n\n\n_skip\n\n\nSkips all non-options. Returns true if a named option has been found, false\notherwise.\n\n\nfun ref _skip()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\n_verify\n\n\nVerifies whether a parsed option from the command line is well-formed. That\nis, checking whether required or optional arguments are supplied. Returns\na ParsedOption on success, a ParseError otherwise.\n\n\nfun ref _verify(\n  opt: _Option ref,\n  combined: Bool val)\n: ((String val , (None val | String val | I64 val | F64 val)) | ParseError ref)\n\n\n\n\nParameters\n\n\n\n\nopt: \n_Option\n ref\n\n\ncombined: \nBool\n val\n\n\n\n\nReturns\n\n\n\n\n((\nString\n val , (\nNone\n val | \nString\n val | \nI64\n val | \nF64\n val)) | \nParseError\n ref)", 
+            "text": "Options\n\n\nclass ref Options is\n  Iterator[((String val , (None val | String val | I64 val | F64 val)) | ParseError ref | None val)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[((\nString\n val , (\nNone\n val | \nString\n val | \nI64\n val | \nF64\n val)) | \nParseError\n ref | \nNone\n val)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  args: Array[String val] box,\n  fatal: Bool val = true)\n: Options ref^\n\n\n\n\nParameters\n\n\n\n\nargs: \nArray\n[\nString\n val] box\n\n\nfatal: \nBool\n val = true\n\n\n\n\nReturns\n\n\n\n\nOptions\n ref^\n\n\n\n\n\n\nPublic Functions\n\n\nadd\n\n\nAdds a new named option to the parser configuration.\n\n\nfun ref add(\n  long: String val,\n  short: (None val | String val) = reference,\n  arg: (None val | StringArgument val | I64Argument val | F64Argument val) = reference,\n  mode: (Required val | Optional val) = reference)\n: Options ref\n\n\n\n\nParameters\n\n\n\n\nlong: \nString\n val\n\n\nshort: (\nNone\n val | \nString\n val) = reference\n\n\narg: (\nNone\n val | \nStringArgument\n val | \nI64Argument\n val | \nF64Argument\n val) = reference\n\n\nmode: (\nRequired\n val | \nOptional\n val) = reference\n\n\n\n\nReturns\n\n\n\n\nOptions\n ref\n\n\n\n\n\n\nremaining\n\n\nReturns all unprocessed command line arguments. After parsing all options,\nthis will only include positional arguments, potentially unrecognised and\nambiguous options and invalid arguments.\n\n\nfun ref remaining()\n: Array[String ref] ref\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nString\n ref] ref\n\n\n\n\n\n\nhas_next\n\n\nParsing options is done if either an error occurs and fatal error reporting\nis turned on, or if all command line arguments have been processed.\n\n\nfun box has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nSkips all positional arguments and attemps to match named options. Returns\na ParsedOption on success, a ParseError on error, or None if no named\noptions are found.\n\n\nfun ref next()\n: ((String val , (None val | String val | I64 val | F64 val)) | ParseError ref | None val)\n\n\n\n\nReturns\n\n\n\n\n((\nString\n val , (\nNone\n val | \nString\n val | \nI64\n val | \nF64\n val)) | \nParseError\n ref | \nNone\n val)\n\n\n\n\n\n\nPrivate Functions\n\n\n_strip\n\n\nStrips accepted options from the copied array of command line arguments.\n\n\nfun ref _strip(\n  opt: _Option ref,\n  matched: String ref,\n  start: ISize val,\n  finish: ISize val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nopt: \n_Option\n ref\n\n\nmatched: \nString\n ref\n\n\nstart: \nISize\n val\n\n\nfinish: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_select\n\n\nSelects an option from the configuration depending on the current command\nline argument.\n\n\nfun ref _select(\n  candidate: String ref,\n  start: ISize val,\n  offset: ISize val,\n  finish: ISize val)\n: (_Option ref | ParseError ref)\n\n\n\n\nParameters\n\n\n\n\ncandidate: \nString\n ref\n\n\nstart: \nISize\n val\n\n\noffset: \nISize\n val\n\n\nfinish: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\n(\n_Option\n ref | \nParseError\n ref)\n\n\n\n\n\n\n_skip\n\n\nSkips all non-options. Returns true if a named option has been found, false\notherwise.\n\n\nfun ref _skip()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\n_verify\n\n\nVerifies whether a parsed option from the command line is well-formed. That\nis, checking whether required or optional arguments are supplied. Returns\na ParsedOption on success, a ParseError otherwise.\n\n\nfun ref _verify(\n  opt: _Option ref,\n  combined: Bool val)\n: ((String val , (None val | String val | I64 val | F64 val)) | ParseError ref)\n\n\n\n\nParameters\n\n\n\n\nopt: \n_Option\n ref\n\n\ncombined: \nBool\n val\n\n\n\n\nReturns\n\n\n\n\n((\nString\n val , (\nNone\n val | \nString\n val | \nI64\n val | \nF64\n val)) | \nParseError\n ref)", 
             "title": "class Options"
         }, 
         {
@@ -70277,12 +70202,12 @@
         }, 
         {
             "location": "/options-Options/#create", 
-            "text": "new ref create(\n  env: Env val,\n  fatal: Bool val = true)\n: Options ref^", 
+            "text": "new ref create(\n  args: Array[String val] box,\n  fatal: Bool val = true)\n: Options ref^", 
             "title": "create"
         }, 
         {
             "location": "/options-Options/#parameters", 
-            "text": "env:  Env  val  fatal:  Bool  val = true", 
+            "text": "args:  Array [ String  val] box  fatal:  Bool  val = true", 
             "title": "Parameters"
         }, 
         {
