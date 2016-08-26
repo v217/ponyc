@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Packages\n\n\n\n\npackages/stdlib\n\n\nassert\n\n\nbuffered\n\n\nbuiltin\n\n\nbuiltin_test\n\n\nbureaucracy\n\n\ncapsicum\n\n\ncollections\n\n\ncollections/persistent\n\n\ncrypto\n\n\ndebug\n\n\nencode/base64\n\n\nfiles\n\n\nglob\n\n\nini\n\n\nitertools\n\n\njson\n\n\nlogger\n\n\nmath\n\n\nnet\n\n\nnet/http\n\n\nnet/ssl\n\n\noptions\n\n\nponytest\n\n\nprocess\n\n\npromises\n\n\nrandom\n\n\nregex\n\n\nserialise\n\n\nsignals\n\n\nstrings\n\n\nterm\n\n\ntime", 
+            "text": "Packages\n\n\n\n\npackages/stdlib\n\n\nassert\n\n\nbuffered\n\n\nbuiltin\n\n\nbuiltin_test\n\n\nbureaucracy\n\n\ncapsicum\n\n\ncollections\n\n\ncollections/persistent\n\n\ncrypto\n\n\ndebug\n\n\nencode/base64\n\n\nfiles\n\n\nglob\n\n\nini\n\n\nitertools\n\n\njson\n\n\nlogger\n\n\nmath\n\n\nnet\n\n\nnet/http\n\n\nnet/ssl\n\n\noptions\n\n\nponybench\n\n\nponytest\n\n\nprocess\n\n\npromises\n\n\nrandom\n\n\nregex\n\n\nserialise\n\n\nsignals\n\n\nstrings\n\n\nterm\n\n\ntime", 
             "title": "stdlib"
         }, 
         {
@@ -70593,6 +70593,636 @@
         {
             "location": "/options-EnvVars/#returns_3", 
             "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench--index/", 
+            "text": "The PonyBench package provides a microbenchmarking framework. It is designed to\neasily benchmark synchronous and asynchronous operations.\n\n\nExample program\n\n\nThe following is a complete program with multiple trivial benchmarks followed\nby their output.\n\n\nuse \nponybench\n\nuse \npromises\n\n\nactor Main\n  new create(env: Env) =\n\n    let bench = PonyBench(env)\n\n    // benchmark Fib with different inputs\n    bench[USize](\nfib 5\n, lambda(): USize =\n Fib(5) end)\n    bench[USize](\nfib 10\n, lambda(): USize =\n Fib(10) end)\n    bench[USize](\nfib 20\n, lambda(): USize =\n Fib(20) end)\n    bench[USize](\nfib 40\n, lambda(): USize =\n Fib(40) end)\n\n    // show what happens when a benchmark fails\n    bench[String](\nfail\n, lambda(): String ? =\n error end)\n\n    // async benchmark\n    bench.async[USize](\nasync\n, object iso\n      fun apply(): Promise[USize] =\n\n        let p = Promise[USize]\n        p(0)\n    end)\n\n    // async benchmark timeout\n    bench.async[USize](\ntimeout\n, object iso\n      fun apply(): Promise[USize] =\n\n        let p = Promise[USize]\n        if false then p(0) else p end\n    end, 1_000_000)\n\n    // benchmarks with set ops\n    bench[USize](\nadd\n, lambda(): USize =\n 1 + 2 end, 10_000_000)\n    bench[USize](\nsub\n, lambda(): USize =\n 2 - 1 end, 10_000_000)\n\nprimitive Fib\n  fun apply(n: USize): USize =\n\n    if n \n 2 then\n      n\n    else\n      apply(n-1) + apply(n-2)\n    end\n\n\n\n\nOutput:\n\n\nfib 5      50000000         36 ns/op\nfib 10     3000000         448 ns/op\nfib 20       30000       58828 ns/op\nfib 40           2   865802018 ns/op\n**** FAILED Benchmark: fail\nasync        300000      10166 ns/op\n**** FAILED Benchmark: timeout\nadd       10000000           3 ns/op\nsub       10000000           3 ns/op\n\n\n\n\nPublic Types\n\n\n\n\nactor PonyBench\n\n\n\n\nPrivate Types\n\n\n\n\ninterface _BenchNotify\n\n\nactor _Bench\n\n\nactor _BenchAsync\n\n\nactor _PromiseNotify\n\n\nactor _AutoBench\n\n\nclass _AutoOps\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestAutoOps", 
+            "title": "Package"
+        }, 
+        {
+            "location": "/ponybench--index/#example-program", 
+            "text": "The following is a complete program with multiple trivial benchmarks followed\nby their output.  use  ponybench \nuse  promises \n\nactor Main\n  new create(env: Env) = \n    let bench = PonyBench(env)\n\n    // benchmark Fib with different inputs\n    bench[USize]( fib 5 , lambda(): USize =  Fib(5) end)\n    bench[USize]( fib 10 , lambda(): USize =  Fib(10) end)\n    bench[USize]( fib 20 , lambda(): USize =  Fib(20) end)\n    bench[USize]( fib 40 , lambda(): USize =  Fib(40) end)\n\n    // show what happens when a benchmark fails\n    bench[String]( fail , lambda(): String ? =  error end)\n\n    // async benchmark\n    bench.async[USize]( async , object iso\n      fun apply(): Promise[USize] = \n        let p = Promise[USize]\n        p(0)\n    end)\n\n    // async benchmark timeout\n    bench.async[USize]( timeout , object iso\n      fun apply(): Promise[USize] = \n        let p = Promise[USize]\n        if false then p(0) else p end\n    end, 1_000_000)\n\n    // benchmarks with set ops\n    bench[USize]( add , lambda(): USize =  1 + 2 end, 10_000_000)\n    bench[USize]( sub , lambda(): USize =  2 - 1 end, 10_000_000)\n\nprimitive Fib\n  fun apply(n: USize): USize = \n    if n   2 then\n      n\n    else\n      apply(n-1) + apply(n-2)\n    end  Output:  fib 5      50000000         36 ns/op\nfib 10     3000000         448 ns/op\nfib 20       30000       58828 ns/op\nfib 40           2   865802018 ns/op\n**** FAILED Benchmark: fail\nasync        300000      10166 ns/op\n**** FAILED Benchmark: timeout\nadd       10000000           3 ns/op\nsub       10000000           3 ns/op", 
+            "title": "Example program"
+        }, 
+        {
+            "location": "/ponybench--index/#public-types", 
+            "text": "actor PonyBench", 
+            "title": "Public Types"
+        }, 
+        {
+            "location": "/ponybench--index/#private-types", 
+            "text": "interface _BenchNotify  actor _Bench  actor _BenchAsync  actor _PromiseNotify  actor _AutoBench  class _AutoOps", 
+            "title": "Private Types"
+        }, 
+        {
+            "location": "/ponybench--index/#test-types", 
+            "text": "actor Main  class _TestAutoOps", 
+            "title": "Test Types"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/", 
+            "text": "PonyBench\n\n\nactor tag PonyBench\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew tag create(\n  env: Env val)\n: PonyBench tag^\n\n\n\n\nParameters\n\n\n\n\nenv: \nEnv\n val\n\n\n\n\nReturns\n\n\n\n\nPonyBench\n tag^\n\n\n\n\n\n\nPublic Behaviours\n\n\napply[A: \nAny\n #share]\n\n\nBenchmark the function \nf\n by calling it repeatedly and output a simple\naverage of the total run time over the amount of times \nf\n is called. This\namount can be set manually as \nops\n or to the default value of 0 which will\ntrigger the benchmark runner to increase the value of \nops\n until it is\nsatisfied with the stability of the benchmark.\n\n\nbe apply[A: Any #share](\n  name: String val,\n  f: {(): A ?}[A #share] val,\n  ops: U64 val = 0)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\nf: {(): A ?}[A #share] val\n\n\nops: \nU64\n val = 0\n\n\n\n\n\n\nasync[A: \nAny\n #share]\n\n\nBenchmark the time taken for the promise returned by \nf\n to be fulfilled.\nIf \ntimeout\n is greater than 0, the benchmark will fail if the promise is\nnot fulfilled within the time given. This check for timeout is done before\nthe benchmarks are counted towards an average run time.\n\n\nbe async[A: Any #share](\n  name: String val,\n  f: {(): Promise[A] ?}[A #share] val,\n  timeout: U64 val = 0,\n  ops: U64 val = 0)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\nf: {(): Promise[A] ?}[A #share] val\n\n\ntimeout: \nU64\n val = 0\n\n\nops: \nU64\n val = 0\n\n\n\n\n\n\nPrivate Behaviours\n\n\n_result\n\n\nbe _result(\n  name: String val,\n  ops: U64 val,\n  nspo: U64 val)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\nops: \nU64\n val\n\n\nnspo: \nU64\n val\n\n\n\n\n\n\n_failure\n\n\nbe _failure(\n  name: String val)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_update\n\n\nfun ref _update(\n  name: String val,\n  result: String val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\nresult: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_next\n\n\nfun ref _next()\n: None val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "title": "actor PonyBench"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#ponybench", 
+            "text": "actor tag PonyBench", 
+            "title": "PonyBench"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#create", 
+            "text": "new tag create(\n  env: Env val)\n: PonyBench tag^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#parameters", 
+            "text": "env:  Env  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#returns", 
+            "text": "PonyBench  tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#public-behaviours", 
+            "text": "", 
+            "title": "Public Behaviours"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#apply91a-any-share93", 
+            "text": "Benchmark the function  f  by calling it repeatedly and output a simple\naverage of the total run time over the amount of times  f  is called. This\namount can be set manually as  ops  or to the default value of 0 which will\ntrigger the benchmark runner to increase the value of  ops  until it is\nsatisfied with the stability of the benchmark.  be apply[A: Any #share](\n  name: String val,\n  f: {(): A ?}[A #share] val,\n  ops: U64 val = 0)", 
+            "title": "apply[A: Any #share]"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#parameters_1", 
+            "text": "name:  String  val  f: {(): A ?}[A #share] val  ops:  U64  val = 0", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#async91a-any-share93", 
+            "text": "Benchmark the time taken for the promise returned by  f  to be fulfilled.\nIf  timeout  is greater than 0, the benchmark will fail if the promise is\nnot fulfilled within the time given. This check for timeout is done before\nthe benchmarks are counted towards an average run time.  be async[A: Any #share](\n  name: String val,\n  f: {(): Promise[A] ?}[A #share] val,\n  timeout: U64 val = 0,\n  ops: U64 val = 0)", 
+            "title": "async[A: Any #share]"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#parameters_2", 
+            "text": "name:  String  val  f: {(): Promise[A] ?}[A #share] val  timeout:  U64  val = 0  ops:  U64  val = 0", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#private-behaviours", 
+            "text": "", 
+            "title": "Private Behaviours"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#_result", 
+            "text": "be _result(\n  name: String val,\n  ops: U64 val,\n  nspo: U64 val)", 
+            "title": "_result"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#parameters_3", 
+            "text": "name:  String  val  ops:  U64  val  nspo:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#_failure", 
+            "text": "be _failure(\n  name: String val)", 
+            "title": "_failure"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#parameters_4", 
+            "text": "name:  String  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#private-functions", 
+            "text": "", 
+            "title": "Private Functions"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#_update", 
+            "text": "fun ref _update(\n  name: String val,\n  result: String val)\n: None val", 
+            "title": "_update"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#parameters_5", 
+            "text": "name:  String  val  result:  String  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#returns_1", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#_next", 
+            "text": "fun ref _next()\n: None val", 
+            "title": "_next"
+        }, 
+        {
+            "location": "/ponybench-PonyBench/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_BenchNotify/", 
+            "text": "_BenchNotify\n\n\ninterface tag _BenchNotify\n\n\n\n\nPrivate Behaviours\n\n\n_result\n\n\nbe _result(\n  name: String val,\n  ops: U64 val,\n  nspo: U64 val)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\nops: \nU64\n val\n\n\nnspo: \nU64\n val\n\n\n\n\n\n\n_failure\n\n\nbe _failure(\n  name: String val)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val", 
+            "title": "interface _BenchNotify"
+        }, 
+        {
+            "location": "/ponybench-_BenchNotify/#_benchnotify", 
+            "text": "interface tag _BenchNotify", 
+            "title": "_BenchNotify"
+        }, 
+        {
+            "location": "/ponybench-_BenchNotify/#private-behaviours", 
+            "text": "", 
+            "title": "Private Behaviours"
+        }, 
+        {
+            "location": "/ponybench-_BenchNotify/#_result", 
+            "text": "be _result(\n  name: String val,\n  ops: U64 val,\n  nspo: U64 val)", 
+            "title": "_result"
+        }, 
+        {
+            "location": "/ponybench-_BenchNotify/#parameters", 
+            "text": "name:  String  val  ops:  U64  val  nspo:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_BenchNotify/#_failure", 
+            "text": "be _failure(\n  name: String val)", 
+            "title": "_failure"
+        }, 
+        {
+            "location": "/ponybench-_BenchNotify/#parameters_1", 
+            "text": "name:  String  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_Bench/", 
+            "text": "_Bench[A: \nAny\n #share]\n\n\nactor tag _Bench[A: Any #share]\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew tag create(\n  notify: _BenchNotify tag)\n: _Bench[A #share] tag^\n\n\n\n\nParameters\n\n\n\n\nnotify: \n_BenchNotify\n tag\n\n\n\n\nReturns\n\n\n\n\n_Bench\n[A #share] tag^\n\n\n\n\n\n\nPublic Behaviours\n\n\napply\n\n\nbe apply(\n  name: String val,\n  f: {(): A ?}[A #share] val,\n  ops: U64 val)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\nf: {(): A ?}[A #share] val\n\n\nops: \nU64\n val", 
+            "title": "actor _Bench"
+        }, 
+        {
+            "location": "/ponybench-_Bench/#_bench91a-any-share93", 
+            "text": "actor tag _Bench[A: Any #share]", 
+            "title": "_Bench[A: Any #share]"
+        }, 
+        {
+            "location": "/ponybench-_Bench/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/ponybench-_Bench/#create", 
+            "text": "new tag create(\n  notify: _BenchNotify tag)\n: _Bench[A #share] tag^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/ponybench-_Bench/#parameters", 
+            "text": "notify:  _BenchNotify  tag", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_Bench/#returns", 
+            "text": "_Bench [A #share] tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_Bench/#public-behaviours", 
+            "text": "", 
+            "title": "Public Behaviours"
+        }, 
+        {
+            "location": "/ponybench-_Bench/#apply", 
+            "text": "be apply(\n  name: String val,\n  f: {(): A ?}[A #share] val,\n  ops: U64 val)", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/ponybench-_Bench/#parameters_1", 
+            "text": "name:  String  val  f: {(): A ?}[A #share] val  ops:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/", 
+            "text": "_BenchAsync[A: \nAny\n #share]\n\n\nactor tag _BenchAsync[A: Any #share]\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew tag create(\n  notify: _BenchNotify tag)\n: _BenchAsync[A #share] tag^\n\n\n\n\nParameters\n\n\n\n\nnotify: \n_BenchNotify\n tag\n\n\n\n\nReturns\n\n\n\n\n_BenchAsync\n[A #share] tag^\n\n\n\n\n\n\nPublic Behaviours\n\n\napply\n\n\nbe apply(\n  name: String val,\n  f: {(): Promise[A] ?}[A #share] val,\n  ops: U64 val)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\nf: {(): Promise[A] ?}[A #share] val\n\n\nops: \nU64\n val", 
+            "title": "actor _BenchAsync"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/#_benchasync91a-any-share93", 
+            "text": "actor tag _BenchAsync[A: Any #share]", 
+            "title": "_BenchAsync[A: Any #share]"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/#create", 
+            "text": "new tag create(\n  notify: _BenchNotify tag)\n: _BenchAsync[A #share] tag^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/#parameters", 
+            "text": "notify:  _BenchNotify  tag", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/#returns", 
+            "text": "_BenchAsync [A #share] tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/#public-behaviours", 
+            "text": "", 
+            "title": "Public Behaviours"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/#apply", 
+            "text": "be apply(\n  name: String val,\n  f: {(): Promise[A] ?}[A #share] val,\n  ops: U64 val)", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/ponybench-_BenchAsync/#parameters_1", 
+            "text": "name:  String  val  f: {(): Promise[A] ?}[A #share] val  ops:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_PromiseNotify/", 
+            "text": "_PromiseNotify\n\n\nactor tag _PromiseNotify\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew tag create(\n  notify: _BenchNotify tag,\n  name: String val,\n  ops: U64 val)\n: _PromiseNotify tag^\n\n\n\n\nParameters\n\n\n\n\nnotify: \n_BenchNotify\n tag\n\n\nname: \nString\n val\n\n\nops: \nU64\n val\n\n\n\n\nReturns\n\n\n\n\n_PromiseNotify\n tag^\n\n\n\n\n\n\nPublic Behaviours\n\n\napply\n\n\nbe apply()", 
+            "title": "actor _PromiseNotify"
+        }, 
+        {
+            "location": "/ponybench-_PromiseNotify/#_promisenotify", 
+            "text": "actor tag _PromiseNotify", 
+            "title": "_PromiseNotify"
+        }, 
+        {
+            "location": "/ponybench-_PromiseNotify/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/ponybench-_PromiseNotify/#create", 
+            "text": "new tag create(\n  notify: _BenchNotify tag,\n  name: String val,\n  ops: U64 val)\n: _PromiseNotify tag^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/ponybench-_PromiseNotify/#parameters", 
+            "text": "notify:  _BenchNotify  tag  name:  String  val  ops:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_PromiseNotify/#returns", 
+            "text": "_PromiseNotify  tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_PromiseNotify/#public-behaviours", 
+            "text": "", 
+            "title": "Public Behaviours"
+        }, 
+        {
+            "location": "/ponybench-_PromiseNotify/#apply", 
+            "text": "be apply()", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/ponybench-Main/", 
+            "text": "Main\n\n\nactor tag Main is\n  TestList ref\n\n\n\n\nImplements\n\n\n\n\nTestList\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew tag create(\n  env: Env val)\n: Main tag^\n\n\n\n\nParameters\n\n\n\n\nenv: \nEnv\n val\n\n\n\n\nReturns\n\n\n\n\nMain\n tag^\n\n\n\n\n\n\nmake\n\n\nnew tag make()\n: Main tag^\n\n\n\n\nReturns\n\n\n\n\nMain\n tag^\n\n\n\n\n\n\nPublic Functions\n\n\ntests\n\n\nfun tag tests(\n  test: PonyTest tag)\n: None val\n\n\n\n\nParameters\n\n\n\n\ntest: \nPonyTest\n tag\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "title": "actor Main"
+        }, 
+        {
+            "location": "/ponybench-Main/#main", 
+            "text": "actor tag Main is\n  TestList ref", 
+            "title": "Main"
+        }, 
+        {
+            "location": "/ponybench-Main/#implements", 
+            "text": "TestList  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/ponybench-Main/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/ponybench-Main/#create", 
+            "text": "new tag create(\n  env: Env val)\n: Main tag^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/ponybench-Main/#parameters", 
+            "text": "env:  Env  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-Main/#returns", 
+            "text": "Main  tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-Main/#make", 
+            "text": "new tag make()\n: Main tag^", 
+            "title": "make"
+        }, 
+        {
+            "location": "/ponybench-Main/#returns_1", 
+            "text": "Main  tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-Main/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/ponybench-Main/#tests", 
+            "text": "fun tag tests(\n  test: PonyTest tag)\n: None val", 
+            "title": "tests"
+        }, 
+        {
+            "location": "/ponybench-Main/#parameters_1", 
+            "text": "test:  PonyTest  tag", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-Main/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/", 
+            "text": "_TestAutoOps\n\n\nclass iso _TestAutoOps is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestAutoOps iso^\n\n\n\n\nReturns\n\n\n\n\n_TestAutoOps\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestAutoOps"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#_testautoops", 
+            "text": "class iso _TestAutoOps is\n  UnitTest ref", 
+            "title": "_TestAutoOps"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#create", 
+            "text": "new iso create()\n: _TestAutoOps iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#returns", 
+            "text": "_TestAutoOps  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/ponybench-_TestAutoOps/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/", 
+            "text": "_AutoBench[A: \nAny\n #share]\n\n\nactor tag _AutoBench[A: Any #share]\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew tag create(\n  notify: _BenchNotify tag,\n  name: String val,\n  f: ({(): A ?}[A #share] val | {(): Promise[A] ?}[A #share] val),\n  bench_time: U64 val = 1000000000,\n  max_ops: U64 val = 100000000)\n: _AutoBench[A #share] tag^\n\n\n\n\nParameters\n\n\n\n\nnotify: \n_BenchNotify\n tag\n\n\nname: \nString\n val\n\n\nf: ({(): A ?}[A #share] val | {(): Promise[A] ?}[A #share] val)\n\n\nbench_time: \nU64\n val = 1000000000\n\n\nmax_ops: \nU64\n val = 100000000\n\n\n\n\nReturns\n\n\n\n\n_AutoBench\n[A #share] tag^\n\n\n\n\n\n\nPublic Behaviours\n\n\napply\n\n\nbe apply(\n  ops: U64 val = 1)\n\n\n\n\nParameters\n\n\n\n\nops: \nU64\n val = 1\n\n\n\n\n\n\nPrivate Behaviours\n\n\n_result\n\n\nbe _result(\n  name: String val,\n  ops: U64 val,\n  nspo: U64 val)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val\n\n\nops: \nU64\n val\n\n\nnspo: \nU64\n val\n\n\n\n\n\n\n_failure\n\n\nbe _failure(\n  name: String val)\n\n\n\n\nParameters\n\n\n\n\nname: \nString\n val", 
+            "title": "actor _AutoBench"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#_autobench91a-any-share93", 
+            "text": "actor tag _AutoBench[A: Any #share]", 
+            "title": "_AutoBench[A: Any #share]"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#create", 
+            "text": "new tag create(\n  notify: _BenchNotify tag,\n  name: String val,\n  f: ({(): A ?}[A #share] val | {(): Promise[A] ?}[A #share] val),\n  bench_time: U64 val = 1000000000,\n  max_ops: U64 val = 100000000)\n: _AutoBench[A #share] tag^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#parameters", 
+            "text": "notify:  _BenchNotify  tag  name:  String  val  f: ({(): A ?}[A #share] val | {(): Promise[A] ?}[A #share] val)  bench_time:  U64  val = 1000000000  max_ops:  U64  val = 100000000", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#returns", 
+            "text": "_AutoBench [A #share] tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#public-behaviours", 
+            "text": "", 
+            "title": "Public Behaviours"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#apply", 
+            "text": "be apply(\n  ops: U64 val = 1)", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#parameters_1", 
+            "text": "ops:  U64  val = 1", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#private-behaviours", 
+            "text": "", 
+            "title": "Private Behaviours"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#_result", 
+            "text": "be _result(\n  name: String val,\n  ops: U64 val,\n  nspo: U64 val)", 
+            "title": "_result"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#parameters_2", 
+            "text": "name:  String  val  ops:  U64  val  nspo:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#_failure", 
+            "text": "be _failure(\n  name: String val)", 
+            "title": "_failure"
+        }, 
+        {
+            "location": "/ponybench-_AutoBench/#parameters_3", 
+            "text": "name:  String  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/", 
+            "text": "_AutoOps\n\n\nclass ref _AutoOps\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  bench_time: U64 val,\n  max_ops: U64 val)\n: _AutoOps ref^\n\n\n\n\nParameters\n\n\n\n\nbench_time: \nU64\n val\n\n\nmax_ops: \nU64\n val\n\n\n\n\nReturns\n\n\n\n\n_AutoOps\n ref^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nfun box apply(\n  ops: U64 val,\n  time: U64 val,\n  nspo: U64 val)\n: (U64 val | None val)\n\n\n\n\nParameters\n\n\n\n\nops: \nU64\n val\n\n\ntime: \nU64\n val\n\n\nnspo: \nU64\n val\n\n\n\n\nReturns\n\n\n\n\n(\nU64\n val | \nNone\n val)\n\n\n\n\n\n\nPrivate Functions\n\n\n_round_down_10\n\n\nRound down to the nearest power of 10.\n\n\nfun box _round_down_10(\n  x: U64 val)\n: U64 val\n\n\n\n\nParameters\n\n\n\n\nx: \nU64\n val\n\n\n\n\nReturns\n\n\n\n\nU64\n val\n\n\n\n\n\n\n_round_up\n\n\nRound x up to a number of the form [1ex, 2ex, 3ex, 5ex].\n\n\nfun box _round_up(\n  x: U64 val)\n: U64 val\n\n\n\n\nParameters\n\n\n\n\nx: \nU64\n val\n\n\n\n\nReturns\n\n\n\n\nU64\n val", 
+            "title": "class _AutoOps"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#_autoops", 
+            "text": "class ref _AutoOps", 
+            "title": "_AutoOps"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#create", 
+            "text": "new ref create(\n  bench_time: U64 val,\n  max_ops: U64 val)\n: _AutoOps ref^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#parameters", 
+            "text": "bench_time:  U64  val  max_ops:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#returns", 
+            "text": "_AutoOps  ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#apply", 
+            "text": "fun box apply(\n  ops: U64 val,\n  time: U64 val,\n  nspo: U64 val)\n: (U64 val | None val)", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#parameters_1", 
+            "text": "ops:  U64  val  time:  U64  val  nspo:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#returns_1", 
+            "text": "( U64  val |  None  val)", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#private-functions", 
+            "text": "", 
+            "title": "Private Functions"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#_round_down_10", 
+            "text": "Round down to the nearest power of 10.  fun box _round_down_10(\n  x: U64 val)\n: U64 val", 
+            "title": "_round_down_10"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#parameters_2", 
+            "text": "x:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#returns_2", 
+            "text": "U64  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#_round_up", 
+            "text": "Round x up to a number of the form [1ex, 2ex, 3ex, 5ex].  fun box _round_up(\n  x: U64 val)\n: U64 val", 
+            "title": "_round_up"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#parameters_3", 
+            "text": "x:  U64  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/ponybench-_AutoOps/#returns_3", 
+            "text": "U64  val", 
             "title": "Returns"
         }, 
         {
