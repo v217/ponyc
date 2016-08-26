@@ -5566,6 +5566,57 @@ make it long enough.</li>
 the generated string, or both.</li>
 <li>fill: The character to pad a string with if it is shorter than width.</li>
 </ul>
+<p>The following code prints out every 100th number from -1000 to 1000
+(inclusive) and applies different formatting options to them.</p>
+<pre><code class="pony">use &quot;collections&quot;
+
+actor Main
+  let width: USize = 20
+  let header_fmt: FormatSettingsHolder val = recover
+    FormatSettingsHolder.set_width(width).set_align(AlignRight)
+  end
+  let original_fmt: FormatSettingsInt val = recover
+    FormatSettingsInt.set_width(width)
+  end
+  let hex_fmt: FormatSettingsInt val = recover
+    FormatSettingsInt.set_format(FormatHex).set_width(width)
+  end
+  let hex_bare_fmt: FormatSettingsInt val = recover
+    FormatSettingsInt.set_format(FormatHexBare).set_width(width)
+  end
+  let hex_small_fmt: FormatSettingsInt val = recover
+    FormatSettingsInt.set_format(FormatHexSmall).set_width(width)
+  end
+  let hex_small_bare_fmt: FormatSettingsInt val = recover
+    FormatSettingsInt.set_format(FormatHexSmallBare).set_width(width)
+  end
+  let hex_prec_fmt:FormatSettingsInt val = recover
+    FormatSettingsInt.set_format(FormatHex).set_width(width).set_precision(8)
+  end
+
+  new create(env: Env) =&gt;
+    let header = recover
+      String.append(&quot;Original&quot;.string(header_fmt))
+        .append(&quot;FormatHex&quot;.string(header_fmt))
+        .append(&quot;FormatHexBare&quot;.string(header_fmt))
+        .append(&quot;FormatHexSmall&quot;.string(header_fmt))
+        .append(&quot;FormatHexSmallBare&quot;.string(header_fmt))
+        .append(&quot;FormatHex prec&quot;.string(header_fmt))
+    end
+    env.out.print(consume header)
+    for x in Range[I64](-1000, 1001, 100) do
+      let line = recover
+        String.append(x.string(original_fmt))
+          .append(x.string(hex_fmt))
+          .append(x.string(hex_bare_fmt))
+          .append(x.string(hex_small_fmt))
+          .append(x.string(hex_small_bare_fmt))
+          .append(x.string(hex_prec_fmt))
+      end
+      env.out.print(consume line)
+    end
+</code></pre>
+
 <pre><code class="pony">interface box FormatSettings[optional F: FormatSpec val, optional P: PrefixSpec val]
 </code></pre>
 
