@@ -43742,7 +43742,7 @@
         }, 
         {
             "location": "/files--index/", 
-            "text": "No package doc string provided for files.\n\n\nPublic Types\n\n\n\n\ninterface WalkHandler\n\n\nclass FilePath\n\n\nactor FileStream\n\n\nprimitive FileOK\n\n\nprimitive FileError\n\n\ntype FileErrNo\n\n\nprimitive CreateFile\n\n\nprimitive OpenFile\n\n\nclass File\n\n\nclass FileLines\n\n\nclass Directory\n\n\nprimitive FileCreate\n\n\nprimitive FileChmod\n\n\nprimitive FileChown\n\n\nprimitive FileLink\n\n\nprimitive FileLookup\n\n\nprimitive FileMkdir\n\n\nprimitive FileRead\n\n\nprimitive FileRemove\n\n\nprimitive FileRename\n\n\nprimitive FileSeek\n\n\nprimitive FileStat\n\n\nprimitive FileSync\n\n\nprimitive FileTime\n\n\nprimitive FileTruncate\n\n\nprimitive FileWrite\n\n\nprimitive FileExec\n\n\ntype FileCaps\n\n\nprimitive Path\n\n\nclass FileInfo\n\n\nclass FileMode\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _FileDes\n\n\nprimitive _FileHandle\n\n\nprimitive _FileHelper\n\n\nprimitive _DirectoryHandle\n\n\nprimitive _DirectoryEntry\n\n\nprimitive _PathSep\n\n\nprimitive _PathDot\n\n\nprimitive _PathDot2\n\n\nprimitive _PathOther\n\n\ntype _PathState\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestMkdtemp\n\n\nclass _TestWalk\n\n\nclass _TestDirectoryOpen", 
+            "text": "No package doc string provided for files.\n\n\nPublic Types\n\n\n\n\ninterface WalkHandler\n\n\nclass FilePath\n\n\nactor FileStream\n\n\nprimitive FileOK\n\n\nprimitive FileError\n\n\ntype FileErrNo\n\n\nprimitive CreateFile\n\n\nprimitive OpenFile\n\n\nclass File\n\n\nclass FileLines\n\n\nclass Directory\n\n\nprimitive FileCreate\n\n\nprimitive FileChmod\n\n\nprimitive FileChown\n\n\nprimitive FileLink\n\n\nprimitive FileLookup\n\n\nprimitive FileMkdir\n\n\nprimitive FileRead\n\n\nprimitive FileRemove\n\n\nprimitive FileRename\n\n\nprimitive FileSeek\n\n\nprimitive FileStat\n\n\nprimitive FileSync\n\n\nprimitive FileTime\n\n\nprimitive FileTruncate\n\n\nprimitive FileWrite\n\n\nprimitive FileExec\n\n\ntype FileCaps\n\n\nprimitive Path\n\n\nclass FileInfo\n\n\nclass FileMode\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _FileDes\n\n\nprimitive _FileHandle\n\n\nprimitive _FileHelper\n\n\nprimitive _DirectoryHandle\n\n\nprimitive _DirectoryEntry\n\n\nprimitive _PathSep\n\n\nprimitive _PathDot\n\n\nprimitive _PathDot2\n\n\nprimitive _PathOther\n\n\ntype _PathState\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestMkdtemp\n\n\nclass _TestWalk\n\n\nclass _TestDirectoryOpen\n\n\nclass _TestPathClean\n\n\nclass _TestPathJoin\n\n\nclass _TestPathRel\n\n\nclass _TestPathSplit\n\n\nclass _TestPathDir\n\n\nclass _TestPathBase\n\n\nclass _TestPathExt\n\n\nclass _TestPathVolume", 
             "title": "Package"
         }, 
         {
@@ -43757,7 +43757,7 @@
         }, 
         {
             "location": "/files--index/#test-types", 
-            "text": "actor Main  class _TestMkdtemp  class _TestWalk  class _TestDirectoryOpen", 
+            "text": "actor Main  class _TestMkdtemp  class _TestWalk  class _TestDirectoryOpen  class _TestPathClean  class _TestPathJoin  class _TestPathRel  class _TestPathSplit  class _TestPathDir  class _TestPathBase  class _TestPathExt  class _TestPathVolume", 
             "title": "Test Types"
         }, 
         {
@@ -45537,6 +45537,886 @@
         }, 
         {
             "location": "/files-_TestDirectoryOpen/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathClean/", 
+            "text": "_TestPathClean\n\n\nclass iso _TestPathClean is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPathClean iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPathClean\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestPathClean"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#_testpathclean", 
+            "text": "class iso _TestPathClean is\n  UnitTest ref", 
+            "title": "_TestPathClean"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#create", 
+            "text": "new iso create()\n: _TestPathClean iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#returns", 
+            "text": "_TestPathClean  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestPathClean/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/", 
+            "text": "_TestPathJoin\n\n\nclass iso _TestPathJoin is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPathJoin iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPathJoin\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestPathJoin"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#_testpathjoin", 
+            "text": "class iso _TestPathJoin is\n  UnitTest ref", 
+            "title": "_TestPathJoin"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#create", 
+            "text": "new iso create()\n: _TestPathJoin iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#returns", 
+            "text": "_TestPathJoin  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestPathJoin/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathRel/", 
+            "text": "_TestPathRel\n\n\nclass iso _TestPathRel is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPathRel iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPathRel\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val ?\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val ?\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestPathRel"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#_testpathrel", 
+            "text": "class iso _TestPathRel is\n  UnitTest ref", 
+            "title": "_TestPathRel"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#create", 
+            "text": "new iso create()\n: _TestPathRel iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#returns", 
+            "text": "_TestPathRel  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val ?", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#returns_2", 
+            "text": "None  val ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestPathRel/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/", 
+            "text": "_TestPathSplit\n\n\nclass iso _TestPathSplit is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPathSplit iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPathSplit\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestPathSplit"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#_testpathsplit", 
+            "text": "class iso _TestPathSplit is\n  UnitTest ref", 
+            "title": "_TestPathSplit"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#create", 
+            "text": "new iso create()\n: _TestPathSplit iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#returns", 
+            "text": "_TestPathSplit  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestPathSplit/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathDir/", 
+            "text": "_TestPathDir\n\n\nclass iso _TestPathDir is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPathDir iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPathDir\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestPathDir"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#_testpathdir", 
+            "text": "class iso _TestPathDir is\n  UnitTest ref", 
+            "title": "_TestPathDir"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#create", 
+            "text": "new iso create()\n: _TestPathDir iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#returns", 
+            "text": "_TestPathDir  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestPathDir/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathBase/", 
+            "text": "_TestPathBase\n\n\nclass iso _TestPathBase is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPathBase iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPathBase\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestPathBase"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#_testpathbase", 
+            "text": "class iso _TestPathBase is\n  UnitTest ref", 
+            "title": "_TestPathBase"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#create", 
+            "text": "new iso create()\n: _TestPathBase iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#returns", 
+            "text": "_TestPathBase  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestPathBase/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathExt/", 
+            "text": "_TestPathExt\n\n\nclass iso _TestPathExt is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPathExt iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPathExt\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestPathExt"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#_testpathext", 
+            "text": "class iso _TestPathExt is\n  UnitTest ref", 
+            "title": "_TestPathExt"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#create", 
+            "text": "new iso create()\n: _TestPathExt iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#returns", 
+            "text": "_TestPathExt  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestPathExt/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/", 
+            "text": "_TestPathVolume\n\n\nclass iso _TestPathVolume is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPathVolume iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPathVolume\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestPathVolume"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#_testpathvolume", 
+            "text": "class iso _TestPathVolume is\n  UnitTest ref", 
+            "title": "_TestPathVolume"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#create", 
+            "text": "new iso create()\n: _TestPathVolume iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#returns", 
+            "text": "_TestPathVolume  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestPathVolume/#returns_6", 
             "text": "String  val", 
             "title": "Returns"
         }, 
