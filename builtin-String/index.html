@@ -1145,6 +1145,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestStringRFind/">class _TestStringRFind</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestArrayAppend/">class _TestArrayAppend</a>
         
     </li>
@@ -6043,8 +6050,9 @@ beginning. Raise an error if there is no n-th occurence of s or s is empty.</p>
 </ul>
 <hr />
 <h3 id="rfind">rfind</h3>
-<p>Return the index of n-th instance of s in the string starting from the end.
-Raise an error if there is no n-th occurence of s or s is empty.</p>
+<p>Return the index of n-th instance of <code>s</code> in the string starting from the
+end. The <code>offset</code> represents the highest index to included in the search.
+Raise an error if there is no n-th occurence of <code>s</code> or <code>s</code> is empty.</p>
 <pre><code class="pony">fun box rfind(
   s: String box,
   offset: ISize val = call,
