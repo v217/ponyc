@@ -5802,15 +5802,19 @@ In all cases, join(head, tail) returns a path to the same location as path
 <hr />
 <h3 id="base">base</h3>
 <p>Return the path after the last separator, or the whole path if there is no
-separator.</p>
+separator.
+If <code>with_ext</code> is <code>false</code>, the extension as defined by the <code>ext()</code> method
+will be omitted from the result.</p>
 <pre><code class="pony">fun box base(
-  path: String val)
+  path: String val,
+  with_ext: Bool val = true)
 : String val
 </code></pre>
 
 <h4 id="parameters_8">Parameters</h4>
 <ul>
 <li>path: <a href="../builtin-String">String</a> val</li>
+<li>with_ext: <a href="../builtin-Bool">Bool</a> val = true</li>
 </ul>
 <h4 id="returns_11">Returns</h4>
 <ul>
