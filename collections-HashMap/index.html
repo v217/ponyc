@@ -5706,11 +5706,12 @@ We call</p>
 <p>If we have not yet added the key "new-key" to the map and we call</p>
 <p>m.upsert("new-key", 4, lambda(x: U64, y: U64): U64 =&gt; x + y end)</p>
 <p>then "new-key" is added to the map with a value of 4.</p>
+<p>Returns the value that we set the key to</p>
 <pre><code class="pony">fun ref upsert(
   key: K,
   value: V,
   f: {(V, V): V^}[K, V, H val] box)
-: HashMap[K, V, H val] ref^
+: V ?
 </code></pre>
 
 <h4 id="parameters_3">Parameters</h4>
@@ -5721,7 +5722,7 @@ We call</p>
 </ul>
 <h4 id="returns_5">Returns</h4>
 <ul>
-<li><a href="../collections-HashMap">HashMap</a>[K, V, H val] ref^</li>
+<li>V ?</li>
 </ul>
 <hr />
 <h3 id="insert">insert</h3>
