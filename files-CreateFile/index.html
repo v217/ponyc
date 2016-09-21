@@ -2286,6 +2286,55 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../files-FileEOF/">primitive FileEOF</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FileBadFileNumber/">primitive FileBadFileNumber</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FileExists/">primitive FileExists</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FilePermissionDenied/">primitive FilePermissionDenied</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EBADF/">primitive _EBADF</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EEXIST/">primitive _EEXIST</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EACCES/">primitive _EACCES</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../files-FileErrNo/">type FileErrNo</a>
         
     </li>
@@ -2417,6 +2466,20 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../files-_TestPathVolume/">class _TestPathVolume</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpenError/">class _TestFileOpenError</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileEOF/">class _TestFileEOF</a>
         
     </li>
 
@@ -5638,7 +5701,7 @@ contents if it does exist.</p>
 <h3 id="apply">apply</h3>
 <pre><code class="pony">fun box apply(
   from: FilePath val)
-: (File ref | FileOK val | FileError val)
+: (File ref | FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
@@ -5647,7 +5710,7 @@ contents if it does exist.</p>
 </ul>
 <h4 id="returns_1">Returns</h4>
 <ul>
-<li>(<a href="../files-File">File</a> ref | <a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val)</li>
+<li>(<a href="../files-File">File</a> ref | <a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
 </ul>
 <hr />
 <h3 id="eq">eq</h3>

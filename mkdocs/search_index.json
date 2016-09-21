@@ -43742,22 +43742,22 @@
         }, 
         {
             "location": "/files--index/", 
-            "text": "No package doc string provided for files.\n\n\nPublic Types\n\n\n\n\ninterface WalkHandler\n\n\nclass FilePath\n\n\nactor FileStream\n\n\nprimitive FileOK\n\n\nprimitive FileError\n\n\ntype FileErrNo\n\n\nprimitive CreateFile\n\n\nprimitive OpenFile\n\n\nclass File\n\n\nclass FileLines\n\n\nclass Directory\n\n\nprimitive FileCreate\n\n\nprimitive FileChmod\n\n\nprimitive FileChown\n\n\nprimitive FileLink\n\n\nprimitive FileLookup\n\n\nprimitive FileMkdir\n\n\nprimitive FileRead\n\n\nprimitive FileRemove\n\n\nprimitive FileRename\n\n\nprimitive FileSeek\n\n\nprimitive FileStat\n\n\nprimitive FileSync\n\n\nprimitive FileTime\n\n\nprimitive FileTruncate\n\n\nprimitive FileWrite\n\n\nprimitive FileExec\n\n\ntype FileCaps\n\n\nprimitive Path\n\n\nclass FileInfo\n\n\nclass FileMode\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _FileDes\n\n\nprimitive _FileHandle\n\n\nprimitive _FileHelper\n\n\nprimitive _DirectoryHandle\n\n\nprimitive _DirectoryEntry\n\n\nprimitive _PathSep\n\n\nprimitive _PathDot\n\n\nprimitive _PathDot2\n\n\nprimitive _PathOther\n\n\ntype _PathState\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestMkdtemp\n\n\nclass _TestWalk\n\n\nclass _TestDirectoryOpen\n\n\nclass _TestPathClean\n\n\nclass _TestPathJoin\n\n\nclass _TestPathRel\n\n\nclass _TestPathSplit\n\n\nclass _TestPathDir\n\n\nclass _TestPathBase\n\n\nclass _TestPathExt\n\n\nclass _TestPathVolume", 
+            "text": "No package doc string provided for files.\n\n\nPublic Types\n\n\n\n\ninterface WalkHandler\n\n\nclass FilePath\n\n\nactor FileStream\n\n\nprimitive FileOK\n\n\nprimitive FileError\n\n\nprimitive FileEOF\n\n\nprimitive FileBadFileNumber\n\n\nprimitive FileExists\n\n\nprimitive FilePermissionDenied\n\n\ntype FileErrNo\n\n\nprimitive CreateFile\n\n\nprimitive OpenFile\n\n\nclass File\n\n\nclass FileLines\n\n\nclass Directory\n\n\nprimitive FileCreate\n\n\nprimitive FileChmod\n\n\nprimitive FileChown\n\n\nprimitive FileLink\n\n\nprimitive FileLookup\n\n\nprimitive FileMkdir\n\n\nprimitive FileRead\n\n\nprimitive FileRemove\n\n\nprimitive FileRename\n\n\nprimitive FileSeek\n\n\nprimitive FileStat\n\n\nprimitive FileSync\n\n\nprimitive FileTime\n\n\nprimitive FileTruncate\n\n\nprimitive FileWrite\n\n\nprimitive FileExec\n\n\ntype FileCaps\n\n\nprimitive Path\n\n\nclass FileInfo\n\n\nclass FileMode\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _FileDes\n\n\nprimitive _FileHandle\n\n\nprimitive _EBADF\n\n\nprimitive _EEXIST\n\n\nprimitive _EACCES\n\n\nprimitive _FileHelper\n\n\nprimitive _DirectoryHandle\n\n\nprimitive _DirectoryEntry\n\n\nprimitive _PathSep\n\n\nprimitive _PathDot\n\n\nprimitive _PathDot2\n\n\nprimitive _PathOther\n\n\ntype _PathState\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestMkdtemp\n\n\nclass _TestWalk\n\n\nclass _TestDirectoryOpen\n\n\nclass _TestPathClean\n\n\nclass _TestPathJoin\n\n\nclass _TestPathRel\n\n\nclass _TestPathSplit\n\n\nclass _TestPathDir\n\n\nclass _TestPathBase\n\n\nclass _TestPathExt\n\n\nclass _TestPathVolume\n\n\nclass _TestFileOpenError\n\n\nclass _TestFileEOF", 
             "title": "Package"
         }, 
         {
             "location": "/files--index/#public-types", 
-            "text": "interface WalkHandler  class FilePath  actor FileStream  primitive FileOK  primitive FileError  type FileErrNo  primitive CreateFile  primitive OpenFile  class File  class FileLines  class Directory  primitive FileCreate  primitive FileChmod  primitive FileChown  primitive FileLink  primitive FileLookup  primitive FileMkdir  primitive FileRead  primitive FileRemove  primitive FileRename  primitive FileSeek  primitive FileStat  primitive FileSync  primitive FileTime  primitive FileTruncate  primitive FileWrite  primitive FileExec  type FileCaps  primitive Path  class FileInfo  class FileMode", 
+            "text": "interface WalkHandler  class FilePath  actor FileStream  primitive FileOK  primitive FileError  primitive FileEOF  primitive FileBadFileNumber  primitive FileExists  primitive FilePermissionDenied  type FileErrNo  primitive CreateFile  primitive OpenFile  class File  class FileLines  class Directory  primitive FileCreate  primitive FileChmod  primitive FileChown  primitive FileLink  primitive FileLookup  primitive FileMkdir  primitive FileRead  primitive FileRemove  primitive FileRename  primitive FileSeek  primitive FileStat  primitive FileSync  primitive FileTime  primitive FileTruncate  primitive FileWrite  primitive FileExec  type FileCaps  primitive Path  class FileInfo  class FileMode", 
             "title": "Public Types"
         }, 
         {
             "location": "/files--index/#private-types", 
-            "text": "primitive _FileDes  primitive _FileHandle  primitive _FileHelper  primitive _DirectoryHandle  primitive _DirectoryEntry  primitive _PathSep  primitive _PathDot  primitive _PathDot2  primitive _PathOther  type _PathState", 
+            "text": "primitive _FileDes  primitive _FileHandle  primitive _EBADF  primitive _EEXIST  primitive _EACCES  primitive _FileHelper  primitive _DirectoryHandle  primitive _DirectoryEntry  primitive _PathSep  primitive _PathDot  primitive _PathDot2  primitive _PathOther  type _PathState", 
             "title": "Private Types"
         }, 
         {
             "location": "/files--index/#test-types", 
-            "text": "actor Main  class _TestMkdtemp  class _TestWalk  class _TestDirectoryOpen  class _TestPathClean  class _TestPathJoin  class _TestPathRel  class _TestPathSplit  class _TestPathDir  class _TestPathBase  class _TestPathExt  class _TestPathVolume", 
+            "text": "actor Main  class _TestMkdtemp  class _TestWalk  class _TestDirectoryOpen  class _TestPathClean  class _TestPathJoin  class _TestPathRel  class _TestPathSplit  class _TestPathDir  class _TestPathBase  class _TestPathExt  class _TestPathVolume  class _TestFileOpenError  class _TestFileEOF", 
             "title": "Test Types"
         }, 
         {
@@ -44416,23 +44416,473 @@
             "title": "Returns"
         }, 
         {
+            "location": "/files-FileEOF/", 
+            "text": "FileEOF\n\n\nprimitive val FileEOF\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: FileEOF val^\n\n\n\n\nReturns\n\n\n\n\nFileEOF\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: FileEOF val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFileEOF\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: FileEOF val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFileEOF\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "title": "primitive FileEOF"
+        }, 
+        {
+            "location": "/files-FileEOF/#fileeof", 
+            "text": "primitive val FileEOF", 
+            "title": "FileEOF"
+        }, 
+        {
+            "location": "/files-FileEOF/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-FileEOF/#create", 
+            "text": "new val create()\n: FileEOF val^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-FileEOF/#returns", 
+            "text": "FileEOF  val^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FileEOF/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-FileEOF/#eq", 
+            "text": "fun box eq(\n  that: FileEOF val)\n: Bool val", 
+            "title": "eq"
+        }, 
+        {
+            "location": "/files-FileEOF/#parameters", 
+            "text": "that:  FileEOF  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-FileEOF/#returns_1", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FileEOF/#ne", 
+            "text": "fun box ne(\n  that: FileEOF val)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/files-FileEOF/#parameters_1", 
+            "text": "that:  FileEOF  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-FileEOF/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/", 
+            "text": "FileBadFileNumber\n\n\nprimitive val FileBadFileNumber\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: FileBadFileNumber val^\n\n\n\n\nReturns\n\n\n\n\nFileBadFileNumber\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: FileBadFileNumber val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFileBadFileNumber\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: FileBadFileNumber val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFileBadFileNumber\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "title": "primitive FileBadFileNumber"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#filebadfilenumber", 
+            "text": "primitive val FileBadFileNumber", 
+            "title": "FileBadFileNumber"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#create", 
+            "text": "new val create()\n: FileBadFileNumber val^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#returns", 
+            "text": "FileBadFileNumber  val^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#eq", 
+            "text": "fun box eq(\n  that: FileBadFileNumber val)\n: Bool val", 
+            "title": "eq"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#parameters", 
+            "text": "that:  FileBadFileNumber  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#returns_1", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#ne", 
+            "text": "fun box ne(\n  that: FileBadFileNumber val)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#parameters_1", 
+            "text": "that:  FileBadFileNumber  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-FileBadFileNumber/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FileExists/", 
+            "text": "FileExists\n\n\nprimitive val FileExists\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: FileExists val^\n\n\n\n\nReturns\n\n\n\n\nFileExists\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: FileExists val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFileExists\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: FileExists val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFileExists\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "title": "primitive FileExists"
+        }, 
+        {
+            "location": "/files-FileExists/#fileexists", 
+            "text": "primitive val FileExists", 
+            "title": "FileExists"
+        }, 
+        {
+            "location": "/files-FileExists/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-FileExists/#create", 
+            "text": "new val create()\n: FileExists val^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-FileExists/#returns", 
+            "text": "FileExists  val^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FileExists/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-FileExists/#eq", 
+            "text": "fun box eq(\n  that: FileExists val)\n: Bool val", 
+            "title": "eq"
+        }, 
+        {
+            "location": "/files-FileExists/#parameters", 
+            "text": "that:  FileExists  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-FileExists/#returns_1", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FileExists/#ne", 
+            "text": "fun box ne(\n  that: FileExists val)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/files-FileExists/#parameters_1", 
+            "text": "that:  FileExists  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-FileExists/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/", 
+            "text": "FilePermissionDenied\n\n\nprimitive val FilePermissionDenied\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: FilePermissionDenied val^\n\n\n\n\nReturns\n\n\n\n\nFilePermissionDenied\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: FilePermissionDenied val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFilePermissionDenied\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: FilePermissionDenied val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFilePermissionDenied\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "title": "primitive FilePermissionDenied"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#filepermissiondenied", 
+            "text": "primitive val FilePermissionDenied", 
+            "title": "FilePermissionDenied"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#create", 
+            "text": "new val create()\n: FilePermissionDenied val^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#returns", 
+            "text": "FilePermissionDenied  val^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#eq", 
+            "text": "fun box eq(\n  that: FilePermissionDenied val)\n: Bool val", 
+            "title": "eq"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#parameters", 
+            "text": "that:  FilePermissionDenied  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#returns_1", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#ne", 
+            "text": "fun box ne(\n  that: FilePermissionDenied val)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#parameters_1", 
+            "text": "that:  FilePermissionDenied  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-FilePermissionDenied/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EBADF/", 
+            "text": "_EBADF\n\n\nprimitive val _EBADF\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: _EBADF val^\n\n\n\n\nReturns\n\n\n\n\n_EBADF\n val^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nfun box apply()\n: I32 val\n\n\n\n\nReturns\n\n\n\n\nI32\n val\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: _EBADF val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_EBADF\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: _EBADF val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_EBADF\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "title": "primitive _EBADF"
+        }, 
+        {
+            "location": "/files-_EBADF/#_ebadf", 
+            "text": "primitive val _EBADF", 
+            "title": "_EBADF"
+        }, 
+        {
+            "location": "/files-_EBADF/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_EBADF/#create", 
+            "text": "new val create()\n: _EBADF val^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_EBADF/#returns", 
+            "text": "_EBADF  val^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EBADF/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_EBADF/#apply", 
+            "text": "fun box apply()\n: I32 val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_EBADF/#returns_1", 
+            "text": "I32  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EBADF/#eq", 
+            "text": "fun box eq(\n  that: _EBADF val)\n: Bool val", 
+            "title": "eq"
+        }, 
+        {
+            "location": "/files-_EBADF/#parameters", 
+            "text": "that:  _EBADF  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_EBADF/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EBADF/#ne", 
+            "text": "fun box ne(\n  that: _EBADF val)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/files-_EBADF/#parameters_1", 
+            "text": "that:  _EBADF  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_EBADF/#returns_3", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EEXIST/", 
+            "text": "_EEXIST\n\n\nprimitive val _EEXIST\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: _EEXIST val^\n\n\n\n\nReturns\n\n\n\n\n_EEXIST\n val^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nfun box apply()\n: I32 val\n\n\n\n\nReturns\n\n\n\n\nI32\n val\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: _EEXIST val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_EEXIST\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: _EEXIST val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_EEXIST\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "title": "primitive _EEXIST"
+        }, 
+        {
+            "location": "/files-_EEXIST/#_eexist", 
+            "text": "primitive val _EEXIST", 
+            "title": "_EEXIST"
+        }, 
+        {
+            "location": "/files-_EEXIST/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_EEXIST/#create", 
+            "text": "new val create()\n: _EEXIST val^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_EEXIST/#returns", 
+            "text": "_EEXIST  val^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EEXIST/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_EEXIST/#apply", 
+            "text": "fun box apply()\n: I32 val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_EEXIST/#returns_1", 
+            "text": "I32  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EEXIST/#eq", 
+            "text": "fun box eq(\n  that: _EEXIST val)\n: Bool val", 
+            "title": "eq"
+        }, 
+        {
+            "location": "/files-_EEXIST/#parameters", 
+            "text": "that:  _EEXIST  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_EEXIST/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EEXIST/#ne", 
+            "text": "fun box ne(\n  that: _EEXIST val)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/files-_EEXIST/#parameters_1", 
+            "text": "that:  _EEXIST  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_EEXIST/#returns_3", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EACCES/", 
+            "text": "_EACCES\n\n\nprimitive val _EACCES\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: _EACCES val^\n\n\n\n\nReturns\n\n\n\n\n_EACCES\n val^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nfun box apply()\n: I32 val\n\n\n\n\nReturns\n\n\n\n\nI32\n val\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: _EACCES val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_EACCES\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: _EACCES val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_EACCES\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "title": "primitive _EACCES"
+        }, 
+        {
+            "location": "/files-_EACCES/#_eacces", 
+            "text": "primitive val _EACCES", 
+            "title": "_EACCES"
+        }, 
+        {
+            "location": "/files-_EACCES/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_EACCES/#create", 
+            "text": "new val create()\n: _EACCES val^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_EACCES/#returns", 
+            "text": "_EACCES  val^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EACCES/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_EACCES/#apply", 
+            "text": "fun box apply()\n: I32 val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_EACCES/#returns_1", 
+            "text": "I32  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EACCES/#eq", 
+            "text": "fun box eq(\n  that: _EACCES val)\n: Bool val", 
+            "title": "eq"
+        }, 
+        {
+            "location": "/files-_EACCES/#parameters", 
+            "text": "that:  _EACCES  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_EACCES/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_EACCES/#ne", 
+            "text": "fun box ne(\n  that: _EACCES val)\n: Bool val", 
+            "title": "ne"
+        }, 
+        {
+            "location": "/files-_EACCES/#parameters_1", 
+            "text": "that:  _EACCES  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_EACCES/#returns_3", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/files-FileErrNo/", 
-            "text": "FileErrNo\n\n\ntype FileErrNo is\n  (FileOK val | FileError val)\n\n\n\n\nType Alias For\n\n\n\n\n(\nFileOK\n val | \nFileError\n val)", 
+            "text": "FileErrNo\n\n\ntype FileErrNo is\n  (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)\n\n\n\n\nType Alias For\n\n\n\n\n(\nFileOK\n val | \nFileError\n val | \nFileEOF\n val | \nFileBadFileNumber\n val | \nFileExists\n val | \nFilePermissionDenied\n val)", 
             "title": "type FileErrNo"
         }, 
         {
             "location": "/files-FileErrNo/#fileerrno", 
-            "text": "type FileErrNo is\n  (FileOK val | FileError val)", 
+            "text": "type FileErrNo is\n  (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)", 
             "title": "FileErrNo"
         }, 
         {
             "location": "/files-FileErrNo/#type-alias-for", 
-            "text": "( FileOK  val |  FileError  val)", 
+            "text": "( FileOK  val |  FileError  val |  FileEOF  val |  FileBadFileNumber  val |  FileExists  val |  FilePermissionDenied  val)", 
             "title": "Type Alias For"
         }, 
         {
             "location": "/files-CreateFile/", 
-            "text": "CreateFile\n\n\nOpen a File for read/write, creating if it doesn't exist, preserving the\ncontents if it does exist.\n\n\nprimitive val CreateFile\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: CreateFile val^\n\n\n\n\nReturns\n\n\n\n\nCreateFile\n val^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nfun box apply(\n  from: FilePath val)\n: (File ref | FileOK val | FileError val)\n\n\n\n\nParameters\n\n\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\n(\nFile\n ref | \nFileOK\n val | \nFileError\n val)\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: CreateFile val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nCreateFile\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: CreateFile val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nCreateFile\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "text": "CreateFile\n\n\nOpen a File for read/write, creating if it doesn't exist, preserving the\ncontents if it does exist.\n\n\nprimitive val CreateFile\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: CreateFile val^\n\n\n\n\nReturns\n\n\n\n\nCreateFile\n val^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nfun box apply(\n  from: FilePath val)\n: (File ref | FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)\n\n\n\n\nParameters\n\n\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\n(\nFile\n ref | \nFileOK\n val | \nFileError\n val | \nFileEOF\n val | \nFileBadFileNumber\n val | \nFileExists\n val | \nFilePermissionDenied\n val)\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: CreateFile val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nCreateFile\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: CreateFile val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nCreateFile\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
             "title": "primitive CreateFile"
         }, 
         {
@@ -44462,7 +44912,7 @@
         }, 
         {
             "location": "/files-CreateFile/#apply", 
-            "text": "fun box apply(\n  from: FilePath val)\n: (File ref | FileOK val | FileError val)", 
+            "text": "fun box apply(\n  from: FilePath val)\n: (File ref | FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)", 
             "title": "apply"
         }, 
         {
@@ -44472,7 +44922,7 @@
         }, 
         {
             "location": "/files-CreateFile/#returns_1", 
-            "text": "( File  ref |  FileOK  val |  FileError  val)", 
+            "text": "( File  ref |  FileOK  val |  FileError  val |  FileEOF  val |  FileBadFileNumber  val |  FileExists  val |  FilePermissionDenied  val)", 
             "title": "Returns"
         }, 
         {
@@ -44507,7 +44957,7 @@
         }, 
         {
             "location": "/files-OpenFile/", 
-            "text": "OpenFile\n\n\nOpen a File for read only.\n\n\nprimitive val OpenFile\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: OpenFile val^\n\n\n\n\nReturns\n\n\n\n\nOpenFile\n val^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nfun box apply(\n  from: FilePath val)\n: (File ref | FileOK val | FileError val)\n\n\n\n\nParameters\n\n\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\n(\nFile\n ref | \nFileOK\n val | \nFileError\n val)\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: OpenFile val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nOpenFile\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: OpenFile val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nOpenFile\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
+            "text": "OpenFile\n\n\nOpen a File for read only.\n\n\nprimitive val OpenFile\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: OpenFile val^\n\n\n\n\nReturns\n\n\n\n\nOpenFile\n val^\n\n\n\n\n\n\nPublic Functions\n\n\napply\n\n\nfun box apply(\n  from: FilePath val)\n: (File ref | FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)\n\n\n\n\nParameters\n\n\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\n(\nFile\n ref | \nFileOK\n val | \nFileError\n val | \nFileEOF\n val | \nFileBadFileNumber\n val | \nFileExists\n val | \nFilePermissionDenied\n val)\n\n\n\n\n\n\neq\n\n\nfun box eq(\n  that: OpenFile val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nOpenFile\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: OpenFile val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nOpenFile\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
             "title": "primitive OpenFile"
         }, 
         {
@@ -44537,7 +44987,7 @@
         }, 
         {
             "location": "/files-OpenFile/#apply", 
-            "text": "fun box apply(\n  from: FilePath val)\n: (File ref | FileOK val | FileError val)", 
+            "text": "fun box apply(\n  from: FilePath val)\n: (File ref | FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)", 
             "title": "apply"
         }, 
         {
@@ -44547,7 +44997,7 @@
         }, 
         {
             "location": "/files-OpenFile/#returns_1", 
-            "text": "( File  ref |  FileOK  val |  FileError  val)", 
+            "text": "( File  ref |  FileOK  val |  FileError  val |  FileEOF  val |  FileBadFileNumber  val |  FileExists  val |  FilePermissionDenied  val)", 
             "title": "Returns"
         }, 
         {
@@ -44582,7 +45032,7 @@
         }, 
         {
             "location": "/files-File/", 
-            "text": "File\n\n\nOperations on a file.\n\n\nclass ref File\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  from: FilePath val)\n: File ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref^\n\n\n\n\n\n\nopen\n\n\nnew ref open(\n  from: FilePath val)\n: File ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref^\n\n\n\n\n\n\n_descriptor\n\n\nnew ref _descriptor(\n  fd: I32 val,\n  from: FilePath val)\n: File ref^ ?\n\n\n\n\nParameters\n\n\n\n\nfd: \nI32\n val\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref^ ?\n\n\n\n\n\n\nPublic fields\n\n\n\n\nlet path: \nFilePath\n val\n\n\n\n\n\n\n\n\nlet writeable: \nBool\n val\n\n\n\n\n\n\nPublic Functions\n\n\nerrno\n\n\nReturns the last error code set for this File\n\n\nfun box errno()\n: (FileOK val | FileError val)\n\n\n\n\nReturns\n\n\n\n\n(\nFileOK\n val | \nFileError\n val)\n\n\n\n\n\n\nvalid\n\n\nReturns true if the file is currently open.\n\n\nfun box valid()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nget_fd\n\n\nReturns the underlying file descriptor.\nRaises an error if the file is not currently open.\n\n\nfun box get_fd()\n: I32 val ?\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\nline\n\n\nReturns a line as a String. The newline is not included in the string. If\nthere is no more data, this raises an error.\n\n\nfun ref line()\n: String iso^ ?\n\n\n\n\nReturns\n\n\n\n\nString\n iso^ ?\n\n\n\n\n\n\nread\n\n\nReturns up to len bytes.\n\n\nfun ref read(\n  len: USize val)\n: Array[U8 val] iso^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nU8\n val] iso^\n\n\n\n\n\n\nread_string\n\n\nReturns up to len bytes. The resulting string may have internal null\ncharacters.\n\n\nfun ref read_string(\n  len: USize val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nprint\n\n\nSame as write, buts adds a newline.\n\n\nfun ref print(\n  data: (String box | Array[U8 val] box))\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n box | \nArray\n[\nU8\n val] box)\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nprintv\n\n\nPrint an iterable collection of ByteSeqs.\n\n\nfun ref printv(\n  data: ByteSeqIter box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ndata: \nByteSeqIter\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nwrite\n\n\nReturns false if the file wasn't opened with write permission.\nReturns false and closes the file if not all the bytes were written.\n\n\nfun ref write(\n  data: (String box | Array[U8 val] box))\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n box | \nArray\n[\nU8\n val] box)\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nwritev\n\n\nWrite an iterable collection of ByteSeqs.\n\n\nfun ref writev(\n  data: ByteSeqIter box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ndata: \nByteSeqIter\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nposition\n\n\nReturn the current cursor position in the file.\n\n\nfun box position()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nsize\n\n\nReturn the total length of the file.\n\n\nfun ref size()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nseek_start\n\n\nSet the cursor position relative to the start of the file.\n\n\nfun ref seek_start(\n  offset: USize val)\n: File ref\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nseek_end\n\n\nSet the cursor position relative to the end of the file.\n\n\nfun ref seek_end(\n  offset: USize val)\n: File ref\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nseek\n\n\nMove the cursor position.\n\n\nfun ref seek(\n  offset: ISize val)\n: File ref\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nflush\n\n\nFlush the file.\n\n\nfun ref flush()\n: File ref\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nsync\n\n\nSync the file contents to physical storage.\n\n\nfun ref sync()\n: File ref\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nset_length\n\n\nChange the file size. If it is made larger, the new contents are undefined.\n\n\nfun ref set_length(\n  len: USize val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ninfo\n\n\nReturn a FileInfo for this directory. Raise an error if the fd is invalid\nor if we don't have FileStat permission.\n\n\nfun box info()\n: FileInfo val ?\n\n\n\n\nReturns\n\n\n\n\nFileInfo\n val ?\n\n\n\n\n\n\nchmod\n\n\nSet the FileMode for this directory.\n\n\nfun box chmod(\n  mode: FileMode box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nmode: \nFileMode\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nchown\n\n\nSet the owner and group for this directory. Does nothing on Windows.\n\n\nfun box chown(\n  uid: U32 val,\n  gid: U32 val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nuid: \nU32\n val\n\n\ngid: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ntouch\n\n\nSet the last access and modification times of the directory to now.\n\n\nfun box touch()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nset_time\n\n\nSet the last access and modification times of the directory to the given\nvalues.\n\n\nfun box set_time(\n  atime: (I64 val , I64 val),\n  mtime: (I64 val , I64 val))\n: Bool val\n\n\n\n\nParameters\n\n\n\n\natime: (\nI64\n val , \nI64\n val)\n\n\nmtime: (\nI64\n val , \nI64\n val)\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nlines\n\n\nReturns an iterator for reading lines from the file.\n\n\nfun ref lines()\n: FileLines ref\n\n\n\n\nReturns\n\n\n\n\nFileLines\n ref\n\n\n\n\n\n\ndispose\n\n\nClose the file. Future operations will do nothing.\n\n\nfun ref dispose()\n: None val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_seek\n\n\nMove the cursor position.\n\n\nfun ref _seek(\n  offset: ISize val,\n  base: I32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nbase: \nI32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_get_fd\n\n\nGet the file descriptor associated with the file handle.\n\n\nfun tag _get_fd(\n  handle: Pointer[_FileHandle val] ref)\n: I32 val\n\n\n\n\nParameters\n\n\n\n\nhandle: \nPointer\n[\n_FileHandle\n val] ref\n\n\n\n\nReturns\n\n\n\n\nI32\n val\n\n\n\n\n\n\n_final\n\n\nClose the file.\n\n\nfun box _final()\n: None val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "File\n\n\nOperations on a file.\n\n\nclass ref File\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  from: FilePath val)\n: File ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref^\n\n\n\n\n\n\nopen\n\n\nnew ref open(\n  from: FilePath val)\n: File ref^\n\n\n\n\nParameters\n\n\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref^\n\n\n\n\n\n\n_descriptor\n\n\nnew ref _descriptor(\n  fd: I32 val,\n  from: FilePath val)\n: File ref^ ?\n\n\n\n\nParameters\n\n\n\n\nfd: \nI32\n val\n\n\nfrom: \nFilePath\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref^ ?\n\n\n\n\n\n\nPublic fields\n\n\n\n\nlet path: \nFilePath\n val\n\n\n\n\n\n\n\n\nlet writeable: \nBool\n val\n\n\n\n\n\n\nPublic Functions\n\n\nerrno\n\n\nReturns the last error code set for this File\n\n\nfun box errno()\n: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)\n\n\n\n\nReturns\n\n\n\n\n(\nFileOK\n val | \nFileError\n val | \nFileEOF\n val | \nFileBadFileNumber\n val | \nFileExists\n val | \nFilePermissionDenied\n val)\n\n\n\n\n\n\nclear_errno\n\n\nClears the last error code set for this File.\nClears the error indicator for the stream.\n\n\nfun ref clear_errno()\n: None val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nget_stream_error\n\n\nChecks for errors after File stream operations.\nRetrieves errno if ferror is true.\n\n\nfun box get_stream_error()\n: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)\n\n\n\n\nReturns\n\n\n\n\n(\nFileOK\n val | \nFileError\n val | \nFileEOF\n val | \nFileBadFileNumber\n val | \nFileExists\n val | \nFilePermissionDenied\n val)\n\n\n\n\n\n\nvalid\n\n\nReturns true if the file is currently open.\n\n\nfun box valid()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nget_fd\n\n\nReturns the underlying file descriptor.\nRaises an error if the file is not currently open.\n\n\nfun box get_fd()\n: I32 val ?\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\nline\n\n\nReturns a line as a String. The newline is not included in the string. If\nthere is no more data, this raises an error.\n\n\nfun ref line()\n: String iso^ ?\n\n\n\n\nReturns\n\n\n\n\nString\n iso^ ?\n\n\n\n\n\n\nread\n\n\nReturns up to len bytes.\n\n\nfun ref read(\n  len: USize val)\n: Array[U8 val] iso^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nU8\n val] iso^\n\n\n\n\n\n\nread_string\n\n\nReturns up to len bytes. The resulting string may have internal null\ncharacters.\n\n\nfun ref read_string(\n  len: USize val)\n: String iso^\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nString\n iso^\n\n\n\n\n\n\nprint\n\n\nSame as write, buts adds a newline.\n\n\nfun ref print(\n  data: (String box | Array[U8 val] box))\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n box | \nArray\n[\nU8\n val] box)\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nprintv\n\n\nPrint an iterable collection of ByteSeqs.\n\n\nfun ref printv(\n  data: ByteSeqIter box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ndata: \nByteSeqIter\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nwrite\n\n\nReturns false if the file wasn't opened with write permission.\nReturns false and closes the file if not all the bytes were written.\n\n\nfun ref write(\n  data: (String box | Array[U8 val] box))\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n box | \nArray\n[\nU8\n val] box)\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nwritev\n\n\nWrite an iterable collection of ByteSeqs.\n\n\nfun ref writev(\n  data: ByteSeqIter box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\ndata: \nByteSeqIter\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nposition\n\n\nReturn the current cursor position in the file.\n\n\nfun ref position()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nsize\n\n\nReturn the total length of the file.\n\n\nfun ref size()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nseek_start\n\n\nSet the cursor position relative to the start of the file.\n\n\nfun ref seek_start(\n  offset: USize val)\n: File ref\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nseek_end\n\n\nSet the cursor position relative to the end of the file.\n\n\nfun ref seek_end(\n  offset: USize val)\n: File ref\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nseek\n\n\nMove the cursor position.\n\n\nfun ref seek(\n  offset: ISize val)\n: File ref\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nflush\n\n\nFlush the file.\n\n\nfun ref flush()\n: File ref\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nsync\n\n\nSync the file contents to physical storage.\n\n\nfun ref sync()\n: File ref\n\n\n\n\nReturns\n\n\n\n\nFile\n ref\n\n\n\n\n\n\nset_length\n\n\nChange the file size. If it is made larger, the new contents are undefined.\n\n\nfun ref set_length(\n  len: USize val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ninfo\n\n\nReturn a FileInfo for this directory. Raise an error if the fd is invalid\nor if we don't have FileStat permission.\n\n\nfun box info()\n: FileInfo val ?\n\n\n\n\nReturns\n\n\n\n\nFileInfo\n val ?\n\n\n\n\n\n\nchmod\n\n\nSet the FileMode for this directory.\n\n\nfun box chmod(\n  mode: FileMode box)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nmode: \nFileMode\n box\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nchown\n\n\nSet the owner and group for this directory. Does nothing on Windows.\n\n\nfun box chown(\n  uid: U32 val,\n  gid: U32 val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nuid: \nU32\n val\n\n\ngid: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\ntouch\n\n\nSet the last access and modification times of the directory to now.\n\n\nfun box touch()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nset_time\n\n\nSet the last access and modification times of the directory to the given\nvalues.\n\n\nfun box set_time(\n  atime: (I64 val , I64 val),\n  mtime: (I64 val , I64 val))\n: Bool val\n\n\n\n\nParameters\n\n\n\n\natime: (\nI64\n val , \nI64\n val)\n\n\nmtime: (\nI64\n val , \nI64\n val)\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nlines\n\n\nReturns an iterator for reading lines from the file.\n\n\nfun ref lines()\n: FileLines ref\n\n\n\n\nReturns\n\n\n\n\nFileLines\n ref\n\n\n\n\n\n\ndispose\n\n\nClose the file. Future operations will do nothing.\n\n\nfun ref dispose()\n: None val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_get_error\n\n\nFetch errno from the OS.\n\n\nfun box _get_error()\n: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)\n\n\n\n\nReturns\n\n\n\n\n(\nFileOK\n val | \nFileError\n val | \nFileEOF\n val | \nFileBadFileNumber\n val | \nFileExists\n val | \nFilePermissionDenied\n val)\n\n\n\n\n\n\n_seek\n\n\nMove the cursor position.\n\n\nfun ref _seek(\n  offset: ISize val,\n  base: I32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\noffset: \nISize\n val\n\n\nbase: \nI32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_get_fd\n\n\nGet the file descriptor associated with the file handle.\n\n\nfun tag _get_fd(\n  handle: Pointer[_FileHandle val] ref)\n: I32 val\n\n\n\n\nParameters\n\n\n\n\nhandle: \nPointer\n[\n_FileHandle\n val] ref\n\n\n\n\nReturns\n\n\n\n\nI32\n val\n\n\n\n\n\n\n_final\n\n\nClose the file.\n\n\nfun box _final()\n: None val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "class File"
         }, 
         {
@@ -44652,12 +45102,32 @@
         }, 
         {
             "location": "/files-File/#errno", 
-            "text": "Returns the last error code set for this File  fun box errno()\n: (FileOK val | FileError val)", 
+            "text": "Returns the last error code set for this File  fun box errno()\n: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)", 
             "title": "errno"
         }, 
         {
             "location": "/files-File/#returns_3", 
-            "text": "( FileOK  val |  FileError  val)", 
+            "text": "( FileOK  val |  FileError  val |  FileEOF  val |  FileBadFileNumber  val |  FileExists  val |  FilePermissionDenied  val)", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-File/#clear_errno", 
+            "text": "Clears the last error code set for this File.\nClears the error indicator for the stream.  fun ref clear_errno()\n: None val", 
+            "title": "clear_errno"
+        }, 
+        {
+            "location": "/files-File/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-File/#get_stream_error", 
+            "text": "Checks for errors after File stream operations.\nRetrieves errno if ferror is true.  fun box get_stream_error()\n: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)", 
+            "title": "get_stream_error"
+        }, 
+        {
+            "location": "/files-File/#returns_5", 
+            "text": "( FileOK  val |  FileError  val |  FileEOF  val |  FileBadFileNumber  val |  FileExists  val |  FilePermissionDenied  val)", 
             "title": "Returns"
         }, 
         {
@@ -44666,7 +45136,7 @@
             "title": "valid"
         }, 
         {
-            "location": "/files-File/#returns_4", 
+            "location": "/files-File/#returns_6", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44676,7 +45146,7 @@
             "title": "get_fd"
         }, 
         {
-            "location": "/files-File/#returns_5", 
+            "location": "/files-File/#returns_7", 
             "text": "I32  val ?", 
             "title": "Returns"
         }, 
@@ -44686,7 +45156,7 @@
             "title": "line"
         }, 
         {
-            "location": "/files-File/#returns_6", 
+            "location": "/files-File/#returns_8", 
             "text": "String  iso^ ?", 
             "title": "Returns"
         }, 
@@ -44701,7 +45171,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_7", 
+            "location": "/files-File/#returns_9", 
             "text": "Array [ U8  val] iso^", 
             "title": "Returns"
         }, 
@@ -44716,7 +45186,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_8", 
+            "location": "/files-File/#returns_10", 
             "text": "String  iso^", 
             "title": "Returns"
         }, 
@@ -44731,7 +45201,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_9", 
+            "location": "/files-File/#returns_11", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44746,7 +45216,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_10", 
+            "location": "/files-File/#returns_12", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44761,7 +45231,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_11", 
+            "location": "/files-File/#returns_13", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44776,17 +45246,17 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_12", 
+            "location": "/files-File/#returns_14", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
         {
             "location": "/files-File/#position", 
-            "text": "Return the current cursor position in the file.  fun box position()\n: USize val", 
+            "text": "Return the current cursor position in the file.  fun ref position()\n: USize val", 
             "title": "position"
         }, 
         {
-            "location": "/files-File/#returns_13", 
+            "location": "/files-File/#returns_15", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -44796,7 +45266,7 @@
             "title": "size"
         }, 
         {
-            "location": "/files-File/#returns_14", 
+            "location": "/files-File/#returns_16", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -44811,7 +45281,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_15", 
+            "location": "/files-File/#returns_17", 
             "text": "File  ref", 
             "title": "Returns"
         }, 
@@ -44826,7 +45296,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_16", 
+            "location": "/files-File/#returns_18", 
             "text": "File  ref", 
             "title": "Returns"
         }, 
@@ -44841,7 +45311,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_17", 
+            "location": "/files-File/#returns_19", 
             "text": "File  ref", 
             "title": "Returns"
         }, 
@@ -44851,7 +45321,7 @@
             "title": "flush"
         }, 
         {
-            "location": "/files-File/#returns_18", 
+            "location": "/files-File/#returns_20", 
             "text": "File  ref", 
             "title": "Returns"
         }, 
@@ -44861,7 +45331,7 @@
             "title": "sync"
         }, 
         {
-            "location": "/files-File/#returns_19", 
+            "location": "/files-File/#returns_21", 
             "text": "File  ref", 
             "title": "Returns"
         }, 
@@ -44876,7 +45346,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_20", 
+            "location": "/files-File/#returns_22", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44886,7 +45356,7 @@
             "title": "info"
         }, 
         {
-            "location": "/files-File/#returns_21", 
+            "location": "/files-File/#returns_23", 
             "text": "FileInfo  val ?", 
             "title": "Returns"
         }, 
@@ -44901,7 +45371,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_22", 
+            "location": "/files-File/#returns_24", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44916,7 +45386,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_23", 
+            "location": "/files-File/#returns_25", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44926,7 +45396,7 @@
             "title": "touch"
         }, 
         {
-            "location": "/files-File/#returns_24", 
+            "location": "/files-File/#returns_26", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44941,7 +45411,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_25", 
+            "location": "/files-File/#returns_27", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -44951,7 +45421,7 @@
             "title": "lines"
         }, 
         {
-            "location": "/files-File/#returns_26", 
+            "location": "/files-File/#returns_28", 
             "text": "FileLines  ref", 
             "title": "Returns"
         }, 
@@ -44961,7 +45431,7 @@
             "title": "dispose"
         }, 
         {
-            "location": "/files-File/#returns_27", 
+            "location": "/files-File/#returns_29", 
             "text": "None  val", 
             "title": "Returns"
         }, 
@@ -44969,6 +45439,16 @@
             "location": "/files-File/#private-functions", 
             "text": "", 
             "title": "Private Functions"
+        }, 
+        {
+            "location": "/files-File/#_get_error", 
+            "text": "Fetch errno from the OS.  fun box _get_error()\n: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)", 
+            "title": "_get_error"
+        }, 
+        {
+            "location": "/files-File/#returns_30", 
+            "text": "( FileOK  val |  FileError  val |  FileEOF  val |  FileBadFileNumber  val |  FileExists  val |  FilePermissionDenied  val)", 
+            "title": "Returns"
         }, 
         {
             "location": "/files-File/#_seek", 
@@ -44981,7 +45461,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_28", 
+            "location": "/files-File/#returns_31", 
             "text": "None  val", 
             "title": "Returns"
         }, 
@@ -44996,7 +45476,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/files-File/#returns_29", 
+            "location": "/files-File/#returns_32", 
             "text": "I32  val", 
             "title": "Returns"
         }, 
@@ -45006,7 +45486,7 @@
             "title": "_final"
         }, 
         {
-            "location": "/files-File/#returns_30", 
+            "location": "/files-File/#returns_33", 
             "text": "None  val", 
             "title": "Returns"
         }, 
@@ -46417,6 +46897,226 @@
         }, 
         {
             "location": "/files-_TestPathVolume/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/", 
+            "text": "_TestFileOpenError\n\n\nclass iso _TestFileOpenError is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestFileOpenError iso^\n\n\n\n\nReturns\n\n\n\n\n_TestFileOpenError\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestFileOpenError"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#_testfileopenerror", 
+            "text": "class iso _TestFileOpenError is\n  UnitTest ref", 
+            "title": "_TestFileOpenError"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#create", 
+            "text": "new iso create()\n: _TestFileOpenError iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#returns", 
+            "text": "_TestFileOpenError  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestFileOpenError/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/", 
+            "text": "_TestFileEOF\n\n\nclass iso _TestFileEOF is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestFileEOF iso^\n\n\n\n\nReturns\n\n\n\n\n_TestFileEOF\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestFileEOF"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#_testfileeof", 
+            "text": "class iso _TestFileEOF is\n  UnitTest ref", 
+            "title": "_TestFileEOF"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#create", 
+            "text": "new iso create()\n: _TestFileEOF iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#returns", 
+            "text": "_TestFileEOF  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/files-_TestFileEOF/#returns_6", 
             "text": "String  val", 
             "title": "Returns"
         }, 

@@ -2286,6 +2286,55 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../files-FileEOF/">primitive FileEOF</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FileBadFileNumber/">primitive FileBadFileNumber</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FileExists/">primitive FileExists</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FilePermissionDenied/">primitive FilePermissionDenied</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EBADF/">primitive _EBADF</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EEXIST/">primitive _EEXIST</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EACCES/">primitive _EACCES</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../files-FileErrNo/">type FileErrNo</a>
         
     </li>
@@ -2421,6 +2470,20 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../files-_TestPathVolume/">class _TestPathVolume</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpenError/">class _TestFileOpenError</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileEOF/">class _TestFileEOF</a>
         
     </li>
 
@@ -5687,12 +5750,36 @@
 <h3 id="errno">errno</h3>
 <p>Returns the last error code set for this File</p>
 <pre><code class="pony">fun box errno()
-: (FileOK val | FileError val)
+: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)
 </code></pre>
 
 <h4 id="returns_3">Returns</h4>
 <ul>
-<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val)</li>
+<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
+</ul>
+<hr />
+<h3 id="clear_errno">clear_errno</h3>
+<p>Clears the last error code set for this File.
+Clears the error indicator for the stream.</p>
+<pre><code class="pony">fun ref clear_errno()
+: None val
+</code></pre>
+
+<h4 id="returns_4">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="get_stream_error">get_stream_error</h3>
+<p>Checks for errors after File stream operations.
+Retrieves errno if ferror is true.</p>
+<pre><code class="pony">fun box get_stream_error()
+: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)
+</code></pre>
+
+<h4 id="returns_5">Returns</h4>
+<ul>
+<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
 </ul>
 <hr />
 <h3 id="valid">valid</h3>
@@ -5701,7 +5788,7 @@
 : Bool val
 </code></pre>
 
-<h4 id="returns_4">Returns</h4>
+<h4 id="returns_6">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -5713,7 +5800,7 @@ Raises an error if the file is not currently open.</p>
 : I32 val ?
 </code></pre>
 
-<h4 id="returns_5">Returns</h4>
+<h4 id="returns_7">Returns</h4>
 <ul>
 <li><a href="../builtin-I32">I32</a> val ?</li>
 </ul>
@@ -5725,7 +5812,7 @@ there is no more data, this raises an error.</p>
 : String iso^ ?
 </code></pre>
 
-<h4 id="returns_6">Returns</h4>
+<h4 id="returns_8">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^ ?</li>
 </ul>
@@ -5741,7 +5828,7 @@ there is no more data, this raises an error.</p>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_7">Returns</h4>
+<h4 id="returns_9">Returns</h4>
 <ul>
 <li><a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] iso^</li>
 </ul>
@@ -5758,7 +5845,7 @@ characters.</p>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_8">Returns</h4>
+<h4 id="returns_10">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -5774,7 +5861,7 @@ characters.</p>
 <ul>
 <li>data: (<a href="../builtin-String">String</a> box | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] box)</li>
 </ul>
-<h4 id="returns_9">Returns</h4>
+<h4 id="returns_11">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -5790,7 +5877,7 @@ characters.</p>
 <ul>
 <li>data: <a href="../builtin-ByteSeqIter">ByteSeqIter</a> box</li>
 </ul>
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_12">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -5807,7 +5894,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 <ul>
 <li>data: (<a href="../builtin-String">String</a> box | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] box)</li>
 </ul>
-<h4 id="returns_11">Returns</h4>
+<h4 id="returns_13">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -5823,18 +5910,18 @@ Returns false and closes the file if not all the bytes were written.</p>
 <ul>
 <li>data: <a href="../builtin-ByteSeqIter">ByteSeqIter</a> box</li>
 </ul>
-<h4 id="returns_12">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
 <h3 id="position">position</h3>
 <p>Return the current cursor position in the file.</p>
-<pre><code class="pony">fun box position()
+<pre><code class="pony">fun ref position()
 : USize val
 </code></pre>
 
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -5845,7 +5932,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 : USize val
 </code></pre>
 
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -5861,7 +5948,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 <ul>
 <li>offset: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../files-File">File</a> ref</li>
 </ul>
@@ -5877,7 +5964,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 <ul>
 <li>offset: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../files-File">File</a> ref</li>
 </ul>
@@ -5893,7 +5980,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 </ul>
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../files-File">File</a> ref</li>
 </ul>
@@ -5904,7 +5991,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 : File ref
 </code></pre>
 
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../files-File">File</a> ref</li>
 </ul>
@@ -5915,7 +6002,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 : File ref
 </code></pre>
 
-<h4 id="returns_19">Returns</h4>
+<h4 id="returns_21">Returns</h4>
 <ul>
 <li><a href="../files-File">File</a> ref</li>
 </ul>
@@ -5931,7 +6018,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_20">Returns</h4>
+<h4 id="returns_22">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -5943,7 +6030,7 @@ or if we don't have FileStat permission.</p>
 : FileInfo val ?
 </code></pre>
 
-<h4 id="returns_21">Returns</h4>
+<h4 id="returns_23">Returns</h4>
 <ul>
 <li><a href="../files-FileInfo">FileInfo</a> val ?</li>
 </ul>
@@ -5959,7 +6046,7 @@ or if we don't have FileStat permission.</p>
 <ul>
 <li>mode: <a href="../files-FileMode">FileMode</a> box</li>
 </ul>
-<h4 id="returns_22">Returns</h4>
+<h4 id="returns_24">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -5977,7 +6064,7 @@ or if we don't have FileStat permission.</p>
 <li>uid: <a href="../builtin-U32">U32</a> val</li>
 <li>gid: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_23">Returns</h4>
+<h4 id="returns_25">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -5988,7 +6075,7 @@ or if we don't have FileStat permission.</p>
 : Bool val
 </code></pre>
 
-<h4 id="returns_24">Returns</h4>
+<h4 id="returns_26">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6007,7 +6094,7 @@ values.</p>
 <li>atime: (<a href="../builtin-I64">I64</a> val , <a href="../builtin-I64">I64</a> val)</li>
 <li>mtime: (<a href="../builtin-I64">I64</a> val , <a href="../builtin-I64">I64</a> val)</li>
 </ul>
-<h4 id="returns_25">Returns</h4>
+<h4 id="returns_27">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6018,7 +6105,7 @@ values.</p>
 : FileLines ref
 </code></pre>
 
-<h4 id="returns_26">Returns</h4>
+<h4 id="returns_28">Returns</h4>
 <ul>
 <li><a href="../files-FileLines">FileLines</a> ref</li>
 </ul>
@@ -6029,12 +6116,23 @@ values.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_27">Returns</h4>
+<h4 id="returns_29">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h2 id="private-functions">Private Functions</h2>
+<h3 id="_get_error">_get_error</h3>
+<p>Fetch errno from the OS.</p>
+<pre><code class="pony">fun box _get_error()
+: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)
+</code></pre>
+
+<h4 id="returns_30">Returns</h4>
+<ul>
+<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
+</ul>
+<hr />
 <h3 id="_seek">_seek</h3>
 <p>Move the cursor position.</p>
 <pre><code class="pony">fun ref _seek(
@@ -6048,7 +6146,7 @@ values.</p>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>base: <a href="../builtin-I32">I32</a> val</li>
 </ul>
-<h4 id="returns_28">Returns</h4>
+<h4 id="returns_31">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6064,7 +6162,7 @@ values.</p>
 <ul>
 <li>handle: <a href="../builtin-Pointer">Pointer</a>[<a href="../files-_FileHandle">_FileHandle</a> val] ref</li>
 </ul>
-<h4 id="returns_29">Returns</h4>
+<h4 id="returns_32">Returns</h4>
 <ul>
 <li><a href="../builtin-I32">I32</a> val</li>
 </ul>
@@ -6075,7 +6173,7 @@ values.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_30">Returns</h4>
+<h4 id="returns_33">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>

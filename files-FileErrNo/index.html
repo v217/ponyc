@@ -2285,6 +2285,55 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FileEOF/">primitive FileEOF</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FileBadFileNumber/">primitive FileBadFileNumber</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FileExists/">primitive FileExists</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-FilePermissionDenied/">primitive FilePermissionDenied</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EBADF/">primitive _EBADF</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EEXIST/">primitive _EEXIST</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_EACCES/">primitive _EACCES</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
         <a class="current" href="./">type FileErrNo</a>
         
@@ -2415,6 +2464,20 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../files-_TestPathVolume/">class _TestPathVolume</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpenError/">class _TestFileOpenError</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileEOF/">class _TestFileEOF</a>
         
     </li>
 
@@ -5617,12 +5680,12 @@
               
                 <h1 id="fileerrno">FileErrNo</h1>
 <pre><code class="pony">type FileErrNo is
-  (FileOK val | FileError val)
+  (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)
 </code></pre>
 
 <h4 id="type-alias-for">Type Alias For</h4>
 <ul>
-<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val)</li>
+<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
 </ul>
 <hr />
               
@@ -5635,7 +5698,7 @@
         <a href="../files-CreateFile/" class="btn btn-neutral float-right" title="primitive CreateFile">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../files-FileError/" class="btn btn-neutral" title="primitive FileError"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../files-_EACCES/" class="btn btn-neutral" title="primitive _EACCES"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -5661,7 +5724,7 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../files-FileError/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../files-_EACCES/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../files-CreateFile/" style="color: #fcfcfc">Next &raquo;</a></span>

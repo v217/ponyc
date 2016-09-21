@@ -1878,6 +1878,48 @@
     </url>
         
     <url>
+     <loc>None/files-FileEOF/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/files-FileBadFileNumber/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/files-FileExists/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/files-FilePermissionDenied/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/files-_EBADF/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/files-_EEXIST/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/files-_EACCES/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/files-FileErrNo/</loc>
      <lastmod>2016-09-21</lastmod>
      <changefreq>daily</changefreq>
@@ -1981,6 +2023,18 @@
         
     <url>
      <loc>None/files-_TestPathVolume/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/files-_TestFileOpenError/</loc>
+     <lastmod>2016-09-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/files-_TestFileEOF/</loc>
      <lastmod>2016-09-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
