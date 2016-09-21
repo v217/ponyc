@@ -4882,6 +4882,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../process-_TestExpect/">class _TestExpect</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../process-_ProcessClient/">class _ProcessClient</a>
         
     </li>
@@ -5614,29 +5621,26 @@
 </code></pre>
 
 <h2 id="public-functions">Public Functions</h2>
-<h3 id="stdout">stdout</h3>
-<p>ProcessMonitor calls this when new data is received on STDOUT of the
-forked process</p>
-<pre><code class="pony">fun ref stdout(
-  process: ProcessMonitor ref,
-  data: Array[U8 val] iso)
+<h3 id="created">created</h3>
+<p>ProcessMonitor calls this when it is created.</p>
+<pre><code class="pony">fun ref created(
+  process: ProcessMonitor ref)
 : None val
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
 <li>process: <a href="../process-ProcessMonitor">ProcessMonitor</a> ref</li>
-<li>data: <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] iso</li>
 </ul>
 <h4 id="returns">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
-<h3 id="stderr">stderr</h3>
-<p>ProcessMonitor calls this when new data is received on STDERR of the
+<h3 id="stdout">stdout</h3>
+<p>ProcessMonitor calls this when new data is received on STDOUT of the
 forked process</p>
-<pre><code class="pony">fun ref stderr(
+<pre><code class="pony">fun ref stdout(
   process: ProcessMonitor ref,
   data: Array[U8 val] iso)
 : None val
@@ -5652,6 +5656,25 @@ forked process</p>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
+<h3 id="stderr">stderr</h3>
+<p>ProcessMonitor calls this when new data is received on STDERR of the
+forked process</p>
+<pre><code class="pony">fun ref stderr(
+  process: ProcessMonitor ref,
+  data: Array[U8 val] iso)
+: None val
+</code></pre>
+
+<h4 id="parameters_2">Parameters</h4>
+<ul>
+<li>process: <a href="../process-ProcessMonitor">ProcessMonitor</a> ref</li>
+<li>data: <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] iso</li>
+</ul>
+<h4 id="returns_2">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
 <h3 id="failed">failed</h3>
 <p>ProcessMonitor calls this if we run into errors communicating with the
 forked process.</p>
@@ -5661,14 +5684,34 @@ forked process.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_2">Parameters</h4>
+<h4 id="parameters_3">Parameters</h4>
 <ul>
 <li>process: <a href="../process-ProcessMonitor">ProcessMonitor</a> ref</li>
 <li>err: (<a href="../process-ExecveError">ExecveError</a> val | <a href="../process-CloseError">CloseError</a> val | <a href="../process-Dup2Error">Dup2Error</a> val | <a href="../process-FcntlError">FcntlError</a> val | <a href="../process-ForkError">ForkError</a> val | <a href="../process-KillError">KillError</a> val | <a href="../process-PipeError">PipeError</a> val | <a href="../process-ReadError">ReadError</a> val | <a href="../process-Unsupported">Unsupported</a> val | <a href="../process-WaitpidError">WaitpidError</a> val | <a href="../process-WriteError">WriteError</a> val | <a href="../process-CapError">CapError</a> val)</li>
 </ul>
-<h4 id="returns_2">Returns</h4>
+<h4 id="returns_3">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="expect">expect</h3>
+<p>Called when the process monitor has been told to expect a certain quantity
+of bytes. This allows nested notifiers to change the expected quantity,
+which allows a lower level protocol to handle any framing.</p>
+<pre><code class="pony">fun ref expect(
+  process: ProcessMonitor ref,
+  qty: USize val)
+: USize val
+</code></pre>
+
+<h4 id="parameters_4">Parameters</h4>
+<ul>
+<li>process: <a href="../process-ProcessMonitor">ProcessMonitor</a> ref</li>
+<li>qty: <a href="../builtin-USize">USize</a> val</li>
+</ul>
+<h4 id="returns_4">Returns</h4>
+<ul>
+<li><a href="../builtin-USize">USize</a> val</li>
 </ul>
 <hr />
 <h3 id="dispose">dispose</h3>
@@ -5680,12 +5723,12 @@ We return the exit code of the child process.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_3">Parameters</h4>
+<h4 id="parameters_5">Parameters</h4>
 <ul>
 <li>process: <a href="../process-ProcessMonitor">ProcessMonitor</a> ref</li>
 <li>child_exit_code: <a href="../builtin-I32">I32</a> val</li>
 </ul>
-<h4 id="returns_3">Returns</h4>
+<h4 id="returns_5">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
