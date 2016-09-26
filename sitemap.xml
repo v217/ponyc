@@ -4126,6 +4126,18 @@
     </url>
         
     <url>
+     <loc>None/process-_TestWritevOrdering/</loc>
+     <lastmod>2016-09-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/process-_TestPrintvOrdering/</loc>
+     <lastmod>2016-09-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/process-_ProcessClient/</loc>
      <lastmod>2016-09-26</lastmod>
      <changefreq>daily</changefreq>

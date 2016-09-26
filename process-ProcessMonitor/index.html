@@ -4969,6 +4969,20 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../process-_TestWritevOrdering/">class _TestWritevOrdering</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../process-_TestPrintvOrdering/">class _TestPrintvOrdering</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../process-_ProcessClient/">class _ProcessClient</a>
         
     </li>
@@ -5961,13 +5975,43 @@ by another thread.</p>
 <li><a href="../builtin-None">None</a> val ?</li>
 </ul>
 <hr />
+<h3 id="_print_final">_print_final</h3>
+<pre><code class="pony">fun ref _print_final(
+  data: (String val | Array[U8 val] val))
+: None val
+</code></pre>
+
+<h4 id="parameters_15">Parameters</h4>
+<ul>
+<li>data: (<a href="../builtin-String">String</a> val | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] val)</li>
+</ul>
+<h4 id="returns_10">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="_write_final">_write_final</h3>
+<pre><code class="pony">fun ref _write_final(
+  data: (String val | Array[U8 val] val))
+: None val
+</code></pre>
+
+<h4 id="parameters_16">Parameters</h4>
+<ul>
+<li>data: (<a href="../builtin-String">String</a> val | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] val)</li>
+</ul>
+<h4 id="returns_11">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
 <h3 id="_kill_child">_kill_child</h3>
 <p>Terminate the child process.</p>
 <pre><code class="pony">fun box _kill_child()
 : None val ?
 </code></pre>
 
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_12">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val ?</li>
 </ul>
@@ -5979,11 +6023,11 @@ by another thread.</p>
 : Pointer[AsioEvent val] tag
 </code></pre>
 
-<h4 id="parameters_15">Parameters</h4>
+<h4 id="parameters_17">Parameters</h4>
 <ul>
 <li>fd: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_11">Returns</h4>
+<h4 id="returns_13">Returns</h4>
 <ul>
 <li><a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-AsioEvent">AsioEvent</a> val] tag</li>
 </ul>
@@ -5995,11 +6039,11 @@ by another thread.</p>
 : String box
 </code></pre>
 
-<h4 id="parameters_16">Parameters</h4>
+<h4 id="parameters_18">Parameters</h4>
 <ul>
 <li>flags: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_12">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> box</li>
 </ul>
@@ -6011,11 +6055,11 @@ by another thread.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_17">Parameters</h4>
+<h4 id="parameters_19">Parameters</h4>
 <ul>
 <li>fd: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6026,7 +6070,7 @@ by another thread.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6037,7 +6081,7 @@ by another thread.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6053,11 +6097,11 @@ causal messaging. Events get processed one <em>after</em> another.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_18">Parameters</h4>
+<h4 id="parameters_20">Parameters</h4>
 <ul>
 <li>fd: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6067,7 +6111,7 @@ causal messaging. Events get processed one <em>after</em> another.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
