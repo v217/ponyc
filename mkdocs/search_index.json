@@ -57182,7 +57182,7 @@
         }, 
         {
             "location": "/net--index/", 
-            "text": "Net package\n\n\nThe Net package provides support for creating UDP and TCP clients and\nservers, reading and writing network data, and establishing UDP and\nTCP connections.\n\n\nPublic Types\n\n\n\n\nprimitive NetAuth\n\n\nprimitive DNSAuth\n\n\nprimitive UDPAuth\n\n\nprimitive TCPAuth\n\n\nprimitive TCPListenAuth\n\n\nprimitive TCPConnectAuth\n\n\ninterface TCPConnectionNotify\n\n\ntype TCPConnectionAuth\n\n\nactor TCPConnection\n\n\ntype DNSLookupAuth\n\n\nprimitive DNS\n\n\ninterface UDPNotify\n\n\ntype UDPSocketAuth\n\n\nactor UDPSocket\n\n\ninterface TCPListenNotify\n\n\nclass IPAddress\n\n\ntype TCPListenerAuth\n\n\nactor TCPListener\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestPing\n\n\nclass _TestPong\n\n\nclass _TestBroadcast\n\n\nclass _TestTCP\n\n\nclass _TestTCPExpect\n\n\nclass _TestTCPExpectNotify\n\n\nclass _TestTCPWritev\n\n\nclass _TestTCPWritevNotify", 
+            "text": "Net package\n\n\nThe Net package provides support for creating UDP and TCP clients and\nservers, reading and writing network data, and establishing UDP and\nTCP connections.\n\n\nPublic Types\n\n\n\n\nprimitive NetAuth\n\n\nprimitive DNSAuth\n\n\nprimitive UDPAuth\n\n\nprimitive TCPAuth\n\n\nprimitive TCPListenAuth\n\n\nprimitive TCPConnectAuth\n\n\ninterface TCPConnectionNotify\n\n\ntype TCPConnectionAuth\n\n\nactor TCPConnection\n\n\ntype DNSLookupAuth\n\n\nprimitive DNS\n\n\ninterface UDPNotify\n\n\ntype UDPSocketAuth\n\n\nactor UDPSocket\n\n\ninterface TCPListenNotify\n\n\nclass IPAddress\n\n\ntype TCPListenerAuth\n\n\nactor TCPListener\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestPing\n\n\nclass _TestPong\n\n\nclass _TestBroadcast\n\n\nclass _TestTCP\n\n\nclass _TestTCPExpect\n\n\nclass _TestTCPExpectNotify\n\n\nclass _TestTCPWritev\n\n\nclass _TestTCPWritevNotifyClient\n\n\nclass _TestTCPWritevNotifyServer", 
             "title": "Package"
         }, 
         {
@@ -57197,7 +57197,7 @@
         }, 
         {
             "location": "/net--index/#test-types", 
-            "text": "actor Main  class _TestPing  class _TestPong  class _TestBroadcast  class _TestTCP  class _TestTCPExpect  class _TestTCPExpectNotify  class _TestTCPWritev  class _TestTCPWritevNotify", 
+            "text": "actor Main  class _TestPing  class _TestPong  class _TestBroadcast  class _TestTCP  class _TestTCPExpect  class _TestTCPExpectNotify  class _TestTCPWritev  class _TestTCPWritevNotifyClient  class _TestTCPWritevNotifyServer", 
             "title": "Test Types"
         }, 
         {
@@ -57592,7 +57592,7 @@
         }, 
         {
             "location": "/net-TCPConnectionNotify/", 
-            "text": "TCPConnectionNotify\n\n\nNotifications for TCP connections.\n\n\nFor an example of using this class please see the documentation for the\n\nTCPConnection\n and \nTCPListener\n actors.\n\n\ninterface ref TCPConnectionNotify\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nCalled when a TCPConnection is accepted by a TCPListener.\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nCalled if name resolution succeeded for a TCPConnection and we are now\nwaiting for a connection to the server to succeed. The count is the number\nof connections we're trying. The notifier will be informed each time the\ncount changes, until a connection is made or connect_failed() is called.\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nCalled when we have successfully connected to the server.\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nCalled when we have failed to connect to all possible addresses for the\nserver. At this point, the connection will never be established.\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nA raw TCPConnection has no authentication mechanism. However, when\nprotocols are wrapped in other protocols, this can be used to report an\nauthentication failure in a lower level protocol (e.g. SSL).\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nCalled when data is sent on the connection. This gives the notifier an\nopportunity to modify sent data before it is written. The notifier can\nraise an error if the data is swallowed entirely.\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val) ?\n\n\n\n\n\n\nsentv\n\n\nCalled when multiple chunks of data are sent to the connection in a single\ncall. This gives the notifier an opportunity to modify the sent data chunks\nbefore they are written. The notifier can raise an error to defer to using\nmultiple calls of the sent method instead of one call to this one.\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val ?\n\n\n\n\n\n\nreceived\n\n\nCalled when new data is received on the connection.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nCalled when the connection has been told to expect a certain quantity of\nbytes. This allows nested notifiers to change the expected quantity, which\nallows a lower level protocol to handle any framing (e.g. SSL).\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nCalled when the connection is closed.\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "TCPConnectionNotify\n\n\nNotifications for TCP connections.\n\n\nFor an example of using this class please see the documentation for the\n\nTCPConnection\n and \nTCPListener\n actors.\n\n\ninterface ref TCPConnectionNotify\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nCalled when a TCPConnection is accepted by a TCPListener.\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nCalled if name resolution succeeded for a TCPConnection and we are now\nwaiting for a connection to the server to succeed. The count is the number\nof connections we're trying. The notifier will be informed each time the\ncount changes, until a connection is made or connect_failed() is called.\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nCalled when we have successfully connected to the server.\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nCalled when we have failed to connect to all possible addresses for the\nserver. At this point, the connection will never be established.\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nA raw TCPConnection has no authentication mechanism. However, when\nprotocols are wrapped in other protocols, this can be used to report an\nauthentication failure in a lower level protocol (e.g. SSL).\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nCalled when data is sent on the connection. This gives the notifier an\nopportunity to modify sent data before it is written. To swallow data,\nreturn an empty string.\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nsentv\n\n\nCalled when multiple chunks of data are sent to the connection in a single\ncall. This gives the notifier an opportunity to modify the sent data chunks\nbefore they are written. To swallow the send, return an empty\nArray[String].\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nreceived\n\n\nCalled when new data is received on the connection.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nCalled when the connection has been told to expect a certain quantity of\nbytes. This allows nested notifiers to change the expected quantity, which\nallows a lower level protocol to handle any framing (e.g. SSL).\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nCalled when the connection is closed.\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "interface TCPConnectionNotify"
         }, 
         {
@@ -57682,7 +57682,7 @@
         }, 
         {
             "location": "/net-TCPConnectionNotify/#sent", 
-            "text": "Called when data is sent on the connection. This gives the notifier an\nopportunity to modify sent data before it is written. The notifier can\nraise an error if the data is swallowed entirely.  fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?", 
+            "text": "Called when data is sent on the connection. This gives the notifier an\nopportunity to modify sent data before it is written. To swallow data,\nreturn an empty string.  fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)", 
             "title": "sent"
         }, 
         {
@@ -57692,12 +57692,12 @@
         }, 
         {
             "location": "/net-TCPConnectionNotify/#returns_5", 
-            "text": "( String  val |  Array [ U8  val] val) ?", 
+            "text": "( String  val |  Array [ U8  val] val)", 
             "title": "Returns"
         }, 
         {
             "location": "/net-TCPConnectionNotify/#sentv", 
-            "text": "Called when multiple chunks of data are sent to the connection in a single\ncall. This gives the notifier an opportunity to modify the sent data chunks\nbefore they are written. The notifier can raise an error to defer to using\nmultiple calls of the sent method instead of one call to this one.  fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?", 
+            "text": "Called when multiple chunks of data are sent to the connection in a single\ncall. This gives the notifier an opportunity to modify the sent data chunks\nbefore they are written. To swallow the send, return an empty\nArray[String].  fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
             "title": "sentv"
         }, 
         {
@@ -57707,7 +57707,7 @@
         }, 
         {
             "location": "/net-TCPConnectionNotify/#returns_6", 
-            "text": "ByteSeqIter  val ?", 
+            "text": "ByteSeqIter  val", 
             "title": "Returns"
         }, 
         {
@@ -58982,7 +58982,7 @@
         }, 
         {
             "location": "/net-_TestTCPExpectNotify/", 
-            "text": "_TestTCPExpectNotify\n\n\nclass ref _TestTCPExpectNotify is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  h: TestHelper val,\n  server: Bool val)\n: _TestTCPExpectNotify iso^\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\nserver: \nBool\n val\n\n\n\n\nReturns\n\n\n\n\n_TestTCPExpectNotify\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nreceived\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val) ?\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val ?\n\n\n\n\n\n\nclosed\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_send\n\n\nfun ref _send(\n  conn: TCPConnection ref,\n  data: String val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "_TestTCPExpectNotify\n\n\nclass ref _TestTCPExpectNotify is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  h: TestHelper val,\n  server: Bool val)\n: _TestTCPExpectNotify iso^\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\nserver: \nBool\n val\n\n\n\n\nReturns\n\n\n\n\n_TestTCPExpectNotify\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nreceived\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nclosed\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_send\n\n\nfun ref _send(\n  conn: TCPConnection ref,\n  data: String val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nString\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "class _TestTCPExpectNotify"
         }, 
         {
@@ -59127,7 +59127,7 @@
         }, 
         {
             "location": "/net-_TestTCPExpectNotify/#sent", 
-            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?", 
+            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)", 
             "title": "sent"
         }, 
         {
@@ -59137,12 +59137,12 @@
         }, 
         {
             "location": "/net-_TestTCPExpectNotify/#returns_8", 
-            "text": "( String  val |  Array [ U8  val] val) ?", 
+            "text": "( String  val |  Array [ U8  val] val)", 
             "title": "Returns"
         }, 
         {
             "location": "/net-_TestTCPExpectNotify/#sentv", 
-            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?", 
+            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
             "title": "sentv"
         }, 
         {
@@ -59152,7 +59152,7 @@
         }, 
         {
             "location": "/net-_TestTCPExpectNotify/#returns_9", 
-            "text": "ByteSeqIter  val ?", 
+            "text": "ByteSeqIter  val", 
             "title": "Returns"
         }, 
         {
@@ -59301,192 +59301,382 @@
             "title": "Returns"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/", 
-            "text": "_TestTCPWritevNotify\n\n\nclass ref _TestTCPWritevNotify is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  h: TestHelper val,\n  server: Bool val)\n: _TestTCPWritevNotify iso^\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\nserver: \nBool\n val\n\n\n\n\nReturns\n\n\n\n\n_TestTCPWritevNotify\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val) ?\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val ?\n\n\n\n\n\n\nreceived\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\naccepted\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
-            "title": "class _TestTCPWritevNotify"
+            "location": "/net-_TestTCPWritevNotifyClient/", 
+            "text": "_TestTCPWritevNotifyClient\n\n\nclass ref _TestTCPWritevNotifyClient is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  h: TestHelper val)\n: _TestTCPWritevNotifyClient iso^\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\n_TestTCPWritevNotifyClient\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nconnected\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\naccepted\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nreceived\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "title": "class _TestTCPWritevNotifyClient"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#_testtcpwritevnotify", 
-            "text": "class ref _TestTCPWritevNotify is\n  TCPConnectionNotify ref", 
-            "title": "_TestTCPWritevNotify"
+            "location": "/net-_TestTCPWritevNotifyClient/#_testtcpwritevnotifyclient", 
+            "text": "class ref _TestTCPWritevNotifyClient is\n  TCPConnectionNotify ref", 
+            "title": "_TestTCPWritevNotifyClient"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#implements", 
+            "location": "/net-_TestTCPWritevNotifyClient/#implements", 
             "text": "TCPConnectionNotify  ref", 
             "title": "Implements"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#constructors", 
+            "location": "/net-_TestTCPWritevNotifyClient/#constructors", 
             "text": "", 
             "title": "Constructors"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#create", 
-            "text": "new iso create(\n  h: TestHelper val,\n  server: Bool val)\n: _TestTCPWritevNotify iso^", 
+            "location": "/net-_TestTCPWritevNotifyClient/#create", 
+            "text": "new iso create(\n  h: TestHelper val)\n: _TestTCPWritevNotifyClient iso^", 
             "title": "create"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#parameters", 
-            "text": "h:  TestHelper  val  server:  Bool  val", 
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters", 
+            "text": "h:  TestHelper  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#returns", 
-            "text": "_TestTCPWritevNotify  iso^", 
+            "location": "/net-_TestTCPWritevNotifyClient/#returns", 
+            "text": "_TestTCPWritevNotifyClient  iso^", 
             "title": "Returns"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#public-functions", 
+            "location": "/net-_TestTCPWritevNotifyClient/#public-functions", 
             "text": "", 
             "title": "Public Functions"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#sent", 
-            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?", 
-            "title": "sent"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#parameters_1", 
-            "text": "conn:  TCPConnection  ref  data: ( String  val |  Array [ U8  val] val)", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#returns_1", 
-            "text": "( String  val |  Array [ U8  val] val) ?", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#sentv", 
-            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?", 
+            "location": "/net-_TestTCPWritevNotifyClient/#sentv", 
+            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
             "title": "sentv"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#parameters_2", 
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_1", 
             "text": "conn:  TCPConnection  ref  data:  ByteSeqIter  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#returns_2", 
-            "text": "ByteSeqIter  val ?", 
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_1", 
+            "text": "ByteSeqIter  val", 
             "title": "Returns"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#received", 
-            "text": "fun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val", 
-            "title": "received"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#parameters_3", 
-            "text": "conn:  TCPConnection  ref  data:  Array [ U8  val] iso", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#returns_3", 
-            "text": "None  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#connect_failed", 
-            "text": "fun ref connect_failed(\n  conn: TCPConnection ref)\n: None val", 
-            "title": "connect_failed"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#parameters_4", 
-            "text": "conn:  TCPConnection  ref", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#returns_4", 
-            "text": "None  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/net-_TestTCPWritevNotify/#connected", 
+            "location": "/net-_TestTCPWritevNotifyClient/#connected", 
             "text": "fun ref connected(\n  conn: TCPConnection ref)\n: None val", 
             "title": "connected"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#parameters_5", 
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_2", 
             "text": "conn:  TCPConnection  ref", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#returns_5", 
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_2", 
             "text": "None  val", 
             "title": "Returns"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#accepted", 
+            "location": "/net-_TestTCPWritevNotifyClient/#connect_failed", 
+            "text": "fun ref connect_failed(\n  conn: TCPConnection ref)\n: None val", 
+            "title": "connect_failed"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_3", 
+            "text": "conn:  TCPConnection  ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_3", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#accepted", 
             "text": "fun ref accepted(\n  conn: TCPConnection ref)\n: None val", 
             "title": "accepted"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#parameters_6", 
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_4", 
             "text": "conn:  TCPConnection  ref", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#returns_6", 
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_4", 
             "text": "None  val", 
             "title": "Returns"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#connecting", 
+            "location": "/net-_TestTCPWritevNotifyClient/#connecting", 
             "text": "fun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val", 
             "title": "connecting"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#parameters_7", 
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_5", 
             "text": "conn:  TCPConnection  ref  count:  U32  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#returns_7", 
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_5", 
             "text": "None  val", 
             "title": "Returns"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#auth_failed", 
+            "location": "/net-_TestTCPWritevNotifyClient/#auth_failed", 
             "text": "fun ref auth_failed(\n  conn: TCPConnection ref)\n: None val", 
             "title": "auth_failed"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#parameters_8", 
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_6", 
             "text": "conn:  TCPConnection  ref", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#returns_8", 
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_6", 
             "text": "None  val", 
             "title": "Returns"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#expect", 
+            "location": "/net-_TestTCPWritevNotifyClient/#sent", 
+            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)", 
+            "title": "sent"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_7", 
+            "text": "conn:  TCPConnection  ref  data: ( String  val |  Array [ U8  val] val)", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_7", 
+            "text": "( String  val |  Array [ U8  val] val)", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#received", 
+            "text": "fun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val", 
+            "title": "received"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_8", 
+            "text": "conn:  TCPConnection  ref  data:  Array [ U8  val] iso", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_8", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyClient/#expect", 
             "text": "fun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val", 
             "title": "expect"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#parameters_9", 
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_9", 
             "text": "conn:  TCPConnection  ref  qty:  USize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#returns_9", 
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_9", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#closed", 
+            "location": "/net-_TestTCPWritevNotifyClient/#closed", 
             "text": "fun ref closed(\n  conn: TCPConnection ref)\n: None val", 
             "title": "closed"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#parameters_10", 
+            "location": "/net-_TestTCPWritevNotifyClient/#parameters_10", 
             "text": "conn:  TCPConnection  ref", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPWritevNotify/#returns_10", 
+            "location": "/net-_TestTCPWritevNotifyClient/#returns_10", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/", 
+            "text": "_TestTCPWritevNotifyServer\n\n\nclass ref _TestTCPWritevNotifyServer is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  h: TestHelper val)\n: _TestTCPWritevNotifyServer iso^\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\n_TestTCPWritevNotifyServer\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nreceived\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\naccepted\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "title": "class _TestTCPWritevNotifyServer"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#_testtcpwritevnotifyserver", 
+            "text": "class ref _TestTCPWritevNotifyServer is\n  TCPConnectionNotify ref", 
+            "title": "_TestTCPWritevNotifyServer"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#implements", 
+            "text": "TCPConnectionNotify  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#create", 
+            "text": "new iso create(\n  h: TestHelper val)\n: _TestTCPWritevNotifyServer iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns", 
+            "text": "_TestTCPWritevNotifyServer  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#received", 
+            "text": "fun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val", 
+            "title": "received"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_1", 
+            "text": "conn:  TCPConnection  ref  data:  Array [ U8  val] iso", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_1", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#accepted", 
+            "text": "fun ref accepted(\n  conn: TCPConnection ref)\n: None val", 
+            "title": "accepted"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_2", 
+            "text": "conn:  TCPConnection  ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#connecting", 
+            "text": "fun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val", 
+            "title": "connecting"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_3", 
+            "text": "conn:  TCPConnection  ref  count:  U32  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_3", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#connected", 
+            "text": "fun ref connected(\n  conn: TCPConnection ref)\n: None val", 
+            "title": "connected"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_4", 
+            "text": "conn:  TCPConnection  ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#connect_failed", 
+            "text": "fun ref connect_failed(\n  conn: TCPConnection ref)\n: None val", 
+            "title": "connect_failed"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_5", 
+            "text": "conn:  TCPConnection  ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#auth_failed", 
+            "text": "fun ref auth_failed(\n  conn: TCPConnection ref)\n: None val", 
+            "title": "auth_failed"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_6", 
+            "text": "conn:  TCPConnection  ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_6", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#sent", 
+            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)", 
+            "title": "sent"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_7", 
+            "text": "conn:  TCPConnection  ref  data: ( String  val |  Array [ U8  val] val)", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_7", 
+            "text": "( String  val |  Array [ U8  val] val)", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#sentv", 
+            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
+            "title": "sentv"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_8", 
+            "text": "conn:  TCPConnection  ref  data:  ByteSeqIter  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_8", 
+            "text": "ByteSeqIter  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#expect", 
+            "text": "fun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val", 
+            "title": "expect"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_9", 
+            "text": "conn:  TCPConnection  ref  qty:  USize  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_9", 
+            "text": "USize  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#closed", 
+            "text": "fun ref closed(\n  conn: TCPConnection ref)\n: None val", 
+            "title": "closed"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#parameters_10", 
+            "text": "conn:  TCPConnection  ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-_TestTCPWritevNotifyServer/#returns_10", 
             "text": "None  val", 
             "title": "Returns"
         }, 
@@ -67772,7 +67962,7 @@
         }, 
         {
             "location": "/net-http-_ResponseBuilder/", 
-            "text": "_ResponseBuilder\n\n\nThis builds a response payload using received chunks of data.\n\n\nclass ref _ResponseBuilder is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  client: _ClientConnection tag)\n: _ResponseBuilder iso^\n\n\n\n\nParameters\n\n\n\n\nclient: \n_ClientConnection\n tag\n\n\n\n\nReturns\n\n\n\n\n_ResponseBuilder\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nconnected\n\n\nTell the client we have connected.\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nThe connection could not be established. Tell the client not to proceed.\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nSSL authentication failed. Tell the client not to proceed.\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nreceived\n\n\nAssemble chunks of data into a response. When we have a whole response,\ngive it to the client and start a new one.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nclosed\n\n\nThe connection has closed, possibly prematurely.\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\naccepted\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val) ?\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val ?\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_dispatch\n\n\nDispatch responses if we have any.\n\n\nfun ref _dispatch(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "_ResponseBuilder\n\n\nThis builds a response payload using received chunks of data.\n\n\nclass ref _ResponseBuilder is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  client: _ClientConnection tag)\n: _ResponseBuilder iso^\n\n\n\n\nParameters\n\n\n\n\nclient: \n_ClientConnection\n tag\n\n\n\n\nReturns\n\n\n\n\n_ResponseBuilder\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nconnected\n\n\nTell the client we have connected.\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nThe connection could not be established. Tell the client not to proceed.\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nSSL authentication failed. Tell the client not to proceed.\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nreceived\n\n\nAssemble chunks of data into a response. When we have a whole response,\ngive it to the client and start a new one.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nclosed\n\n\nThe connection has closed, possibly prematurely.\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\naccepted\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_dispatch\n\n\nDispatch responses if we have any.\n\n\nfun ref _dispatch(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "class _ResponseBuilder"
         }, 
         {
@@ -67917,7 +68107,7 @@
         }, 
         {
             "location": "/net-http-_ResponseBuilder/#sent", 
-            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?", 
+            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)", 
             "title": "sent"
         }, 
         {
@@ -67927,12 +68117,12 @@
         }, 
         {
             "location": "/net-http-_ResponseBuilder/#returns_8", 
-            "text": "( String  val |  Array [ U8  val] val) ?", 
+            "text": "( String  val |  Array [ U8  val] val)", 
             "title": "Returns"
         }, 
         {
             "location": "/net-http-_ResponseBuilder/#sentv", 
-            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?", 
+            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
             "title": "sentv"
         }, 
         {
@@ -67942,7 +68132,7 @@
         }, 
         {
             "location": "/net-http-_ResponseBuilder/#returns_9", 
-            "text": "ByteSeqIter  val ?", 
+            "text": "ByteSeqIter  val", 
             "title": "Returns"
         }, 
         {
@@ -68197,7 +68387,7 @@
         }, 
         {
             "location": "/net-http-_RequestBuilder/", 
-            "text": "_RequestBuilder\n\n\nThis builds a request payload using received chunks of data.\n\n\nclass ref _RequestBuilder is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  handler: RequestHandler val,\n  logger: Logger val,\n  reversedns: (AmbientAuth val | NetAuth val | DNSAuth val | None val))\n: _RequestBuilder iso^\n\n\n\n\nParameters\n\n\n\n\nhandler: \nRequestHandler\n val\n\n\nlogger: \nLogger\n val\n\n\nreversedns: (\nAmbientAuth\n val | \nNetAuth\n val | \nDNSAuth\n val | \nNone\n val)\n\n\n\n\nReturns\n\n\n\n\n_RequestBuilder\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nCreate a server connection to handle response ordering.\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nreceived\n\n\nAssemble chunks of data into a request. When we have a whole request,\ndispatch it.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val) ?\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val ?\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "_RequestBuilder\n\n\nThis builds a request payload using received chunks of data.\n\n\nclass ref _RequestBuilder is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  handler: RequestHandler val,\n  logger: Logger val,\n  reversedns: (AmbientAuth val | NetAuth val | DNSAuth val | None val))\n: _RequestBuilder iso^\n\n\n\n\nParameters\n\n\n\n\nhandler: \nRequestHandler\n val\n\n\nlogger: \nLogger\n val\n\n\nreversedns: (\nAmbientAuth\n val | \nNetAuth\n val | \nDNSAuth\n val | \nNone\n val)\n\n\n\n\nReturns\n\n\n\n\n_RequestBuilder\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nCreate a server connection to handle response ordering.\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nreceived\n\n\nAssemble chunks of data into a request. When we have a whole request,\ndispatch it.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "class _RequestBuilder"
         }, 
         {
@@ -68327,7 +68517,7 @@
         }, 
         {
             "location": "/net-http-_RequestBuilder/#sent", 
-            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?", 
+            "text": "fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)", 
             "title": "sent"
         }, 
         {
@@ -68337,12 +68527,12 @@
         }, 
         {
             "location": "/net-http-_RequestBuilder/#returns_7", 
-            "text": "( String  val |  Array [ U8  val] val) ?", 
+            "text": "( String  val |  Array [ U8  val] val)", 
             "title": "Returns"
         }, 
         {
             "location": "/net-http-_RequestBuilder/#sentv", 
-            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?", 
+            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
             "title": "sentv"
         }, 
         {
@@ -68352,7 +68542,7 @@
         }, 
         {
             "location": "/net-http-_RequestBuilder/#returns_8", 
-            "text": "ByteSeqIter  val ?", 
+            "text": "ByteSeqIter  val", 
             "title": "Returns"
         }, 
         {
@@ -69737,7 +69927,7 @@
         }, 
         {
             "location": "/net-ssl-SSLConnection/", 
-            "text": "SSLConnection\n\n\nWrap another protocol in an SSL connection.\n\n\nclass ref SSLConnection is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  notify: TCPConnectionNotify iso,\n  ssl: SSL iso)\n: SSLConnection iso^\n\n\n\n\nParameters\n\n\n\n\nnotify: \nTCPConnectionNotify\n iso\n\n\nssl: \nSSL\n iso\n\n\n\n\nReturns\n\n\n\n\nSSLConnection\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nForward to the wrapped protocol.\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nForward to the wrapped protocol.\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nSwallow this event until the handshake is complete.\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nForward to the wrapped protocol.\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nPass the data to the SSL session and check for both new application data\nand new destination data.\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val) ?\n\n\n\n\n\n\nreceived\n\n\nPass the data to the SSL session and check for both new application data\nand new destination data.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nKeep track of the expect count for the wrapped protocol. Always tell the\nTCPConnection to read all available data.\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nForward to the wrapped protocol.\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val ?\n\n\n\n\n\n\nPrivate Functions\n\n\n_poll\n\n\nChecks for both new application data and new destination data. Informs the\nwrapped protocol that is has connected when the handshake is complete.\n\n\nfun ref _poll(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "SSLConnection\n\n\nWrap another protocol in an SSL connection.\n\n\nclass ref SSLConnection is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  notify: TCPConnectionNotify iso,\n  ssl: SSL iso)\n: SSLConnection iso^\n\n\n\n\nParameters\n\n\n\n\nnotify: \nTCPConnectionNotify\n iso\n\n\nssl: \nSSL\n iso\n\n\n\n\nReturns\n\n\n\n\nSSLConnection\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nForward to the wrapped protocol.\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nForward to the wrapped protocol.\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nSwallow this event until the handshake is complete.\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nForward to the wrapped protocol.\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nPass the data to the SSL session and check for both new application data\nand new destination data.\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nreceived\n\n\nPass the data to the SSL session and check for both new application data\nand new destination data.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nKeep track of the expect count for the wrapped protocol. Always tell the\nTCPConnection to read all available data.\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nForward to the wrapped protocol.\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_poll\n\n\nChecks for both new application data and new destination data. Informs the\nwrapped protocol that is has connected when the handshake is complete.\n\n\nfun ref _poll(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "class SSLConnection"
         }, 
         {
@@ -69837,7 +70027,7 @@
         }, 
         {
             "location": "/net-ssl-SSLConnection/#sent", 
-            "text": "Pass the data to the SSL session and check for both new application data\nand new destination data.  fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val) ?", 
+            "text": "Pass the data to the SSL session and check for both new application data\nand new destination data.  fun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)", 
             "title": "sent"
         }, 
         {
@@ -69847,7 +70037,7 @@
         }, 
         {
             "location": "/net-ssl-SSLConnection/#returns_5", 
-            "text": "( String  val |  Array [ U8  val] val) ?", 
+            "text": "( String  val |  Array [ U8  val] val)", 
             "title": "Returns"
         }, 
         {
@@ -69912,7 +70102,7 @@
         }, 
         {
             "location": "/net-ssl-SSLConnection/#sentv", 
-            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val ?", 
+            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
             "title": "sentv"
         }, 
         {
@@ -69922,7 +70112,7 @@
         }, 
         {
             "location": "/net-ssl-SSLConnection/#returns_10", 
-            "text": "ByteSeqIter  val ?", 
+            "text": "ByteSeqIter  val", 
             "title": "Returns"
         }, 
         {

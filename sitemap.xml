@@ -2872,7 +2872,13 @@
     </url>
         
     <url>
-     <loc>None/net-_TestTCPWritevNotify/</loc>
+     <loc>None/net-_TestTCPWritevNotifyClient/</loc>
+     <lastmod>2016-09-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/net-_TestTCPWritevNotifyServer/</loc>
      <lastmod>2016-09-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
