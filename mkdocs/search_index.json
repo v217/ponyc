@@ -267,7 +267,7 @@
         }, 
         {
             "location": "/buffered-Reader/", 
-            "text": "Reader\n\n\nStore network data and provide a parsing interface.\n\n\nReader\n provides a way to extract typed data from a sequence of\nbytes. The \nReader\n manages the underlying data structures to\nprovide a read cursor over a contiguous sequence of bytes. It is\nuseful for decoding data that is received over a network or stored\nin a file. Chunk of bytes are added to the \nReader\n using the\n\nappend\n method, and typed data is extracted using the getter\nmethods.\n\n\nFor example, suppose we have a UDP-based network data protocol where\nmessages consist of the following:\n\n\n\n\nlist_size\n - the number of items in the following list of items\n  as a big-endian 32-bit integer\n\n\nzero or more items of the following data:\n\n\na big-endian 64-bit floating point number\n\n\na string that starts with a big-endian 32-bit integer that\n    specifies the length of the string, followed by a number of\n    bytes that represent the string\n\n\n\n\nA message would be something like this:\n\n\n[message_length][list_size][float1][string1][float2][string2]...\n\n\n\n\nThe following program uses a \nReader\n to decode a message of\nthis type and print them:\n\n\nuse \nnet\n\nuse \ncollections\n\n\nclass Notify is StdinNotify\n  let _env: Env\n  new create(env: Env) =\n\n    _env = env\n  fun ref apply(data: Array[U8] iso) =\n\n    let rb = Reader\n    rb.append(consume data)\n    try\n      while true do\n        let len = rb.i32_be()\n        let items = rb.i32_be().usize()\n        for range in Range(0, items) do\n          let f = rb.f32_be()\n          let str_len = rb.i32_be().usize()\n          let str = String.from_array(rb.block(str_len))\n          _env.out.print(\n[(\n + f.string() + \n), (\n + str + \n)]\n)\n        end\n      end\n    end\n\nactor Main\n  new create(env: Env) =\n\n    env.input(recover Notify(env) end, 1024)\n\n\n\n\nclass ref Reader\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: Reader iso^\n\n\n\n\nReturns\n\n\n\n\nReader\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nsize\n\n\nReturn the number of available bytes.\n\n\nfun box size()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclear\n\n\nDiscard all pending data.\n\n\nfun ref clear()\n: Reader ref^\n\n\n\n\nReturns\n\n\n\n\nReader\n ref^\n\n\n\n\n\n\nappend\n\n\nAdd a chunk of data.\n\n\nfun ref append(\n  data: Array[U8 val] val)\n: Reader ref^\n\n\n\n\nParameters\n\n\n\n\ndata: \nArray\n[\nU8\n val] val\n\n\n\n\nReturns\n\n\n\n\nReader\n ref^\n\n\n\n\n\n\nskip\n\n\nSkip n bytes.\n\n\nfun ref skip(\n  n: USize val)\n: Reader ref^ ?\n\n\n\n\nParameters\n\n\n\n\nn: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nReader\n ref^ ?\n\n\n\n\n\n\nblock\n\n\nReturn a block as a contiguous chunk of memory.\n\n\nfun ref block(\n  len: USize val)\n: Array[U8 val] iso^ ?\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nU8\n val] iso^ ?\n\n\n\n\n\n\nline\n\n\nReturn a \\n or \\r\\n terminated line as a string. The newline is not\nincluded in the returned string, but it is removed from the network buffer.\n\n\nfun ref line()\n: String val ?\n\n\n\n\nReturns\n\n\n\n\nString\n val ?\n\n\n\n\n\n\nu8\n\n\nGet a U8. Raise an error if there isn't enough data.\n\n\nfun ref u8()\n: U8 val ?\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\ni8\n\n\nGet an I8.\n\n\nfun ref i8()\n: I8 val ?\n\n\n\n\nReturns\n\n\n\n\nI8\n val ?\n\n\n\n\n\n\nu16_be\n\n\nGet a big-endian U16.\n\n\nfun ref u16_be()\n: U16 val ?\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\nu16_le\n\n\nGet a little-endian U16.\n\n\nfun ref u16_le()\n: U16 val ?\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\ni16_be\n\n\nGet a big-endian I16.\n\n\nfun ref i16_be()\n: I16 val ?\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\ni16_le\n\n\nGet a little-endian I16.\n\n\nfun ref i16_le()\n: I16 val ?\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\nu32_be\n\n\nGet a big-endian U32.\n\n\nfun ref u32_be()\n: U32 val ?\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\nu32_le\n\n\nGet a little-endian U32.\n\n\nfun ref u32_le()\n: U32 val ?\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\ni32_be\n\n\nGet a big-endian I32.\n\n\nfun ref i32_be()\n: I32 val ?\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\ni32_le\n\n\nGet a little-endian I32.\n\n\nfun ref i32_le()\n: I32 val ?\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\nu64_be\n\n\nGet a big-endian U64.\n\n\nfun ref u64_be()\n: U64 val ?\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\nu64_le\n\n\nGet a little-endian U64.\n\n\nfun ref u64_le()\n: U64 val ?\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\ni64_be\n\n\nGet a big-endian I64.\n\n\nfun ref i64_be()\n: I64 val ?\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\ni64_le\n\n\nGet a little-endian I64.\n\n\nfun ref i64_le()\n: I64 val ?\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\nu128_be\n\n\nGet a big-endian U128.\n\n\nfun ref u128_be()\n: U128 val ?\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\nu128_le\n\n\nGet a little-endian U128.\n\n\nfun ref u128_le()\n: U128 val ?\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\ni128_be\n\n\nGet a big-endian I129.\n\n\nfun ref i128_be()\n: I128 val ?\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\ni128_le\n\n\nGet a little-endian I128.\n\n\nfun ref i128_le()\n: I128 val ?\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\nf32_be\n\n\nGet a big-endian F32.\n\n\nfun ref f32_be()\n: F32 val ?\n\n\n\n\nReturns\n\n\n\n\nF32\n val ?\n\n\n\n\n\n\nf32_le\n\n\nGet a little-endian F32.\n\n\nfun ref f32_le()\n: F32 val ?\n\n\n\n\nReturns\n\n\n\n\nF32\n val ?\n\n\n\n\n\n\nf64_be\n\n\nGet a big-endian F64.\n\n\nfun ref f64_be()\n: F64 val ?\n\n\n\n\nReturns\n\n\n\n\nF64\n val ?\n\n\n\n\n\n\nf64_le\n\n\nGet a little-endian F64.\n\n\nfun ref f64_le()\n: F64 val ?\n\n\n\n\nReturns\n\n\n\n\nF64\n val ?\n\n\n\n\n\n\npeek_u8\n\n\nPeek at a U8 at the given offset. Raise an error if there isn't enough\ndata.\n\n\nfun box peek_u8(\n  offset: USize val = 0)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\npeek_i8\n\n\nPeek at an I8.\n\n\nfun box peek_i8(\n  offset: USize val = 0)\n: I8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI8\n val ?\n\n\n\n\n\n\npeek_u16_be\n\n\nPeek at a big-endian U16.\n\n\nfun box peek_u16_be(\n  offset: USize val = 0)\n: U16 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\npeek_u16_le\n\n\nPeek at a little-endian U16.\n\n\nfun box peek_u16_le(\n  offset: USize val = 0)\n: U16 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\npeek_i16_be\n\n\nPeek at a big-endian I16.\n\n\nfun box peek_i16_be(\n  offset: USize val = 0)\n: I16 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\npeek_i16_le\n\n\nPeek at a little-endian I16.\n\n\nfun box peek_i16_le(\n  offset: USize val = 0)\n: I16 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\npeek_u32_be\n\n\nPeek at a big-endian U32.\n\n\nfun box peek_u32_be(\n  offset: USize val = 0)\n: U32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\npeek_u32_le\n\n\nPeek at a little-endian U32.\n\n\nfun box peek_u32_le(\n  offset: USize val = 0)\n: U32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\npeek_i32_be\n\n\nPeek at a big-endian I32.\n\n\nfun box peek_i32_be(\n  offset: USize val = 0)\n: I32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\npeek_i32_le\n\n\nPeek at a little-endian I32.\n\n\nfun box peek_i32_le(\n  offset: USize val = 0)\n: I32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\npeek_u64_be\n\n\nPeek at a big-endian U64.\n\n\nfun box peek_u64_be(\n  offset: USize val = 0)\n: U64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\npeek_u64_le\n\n\nPeek at a little-endian U64.\n\n\nfun box peek_u64_le(\n  offset: USize val = 0)\n: U64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\npeek_i64_be\n\n\nPeek at a big-endian I64.\n\n\nfun box peek_i64_be(\n  offset: USize val = 0)\n: I64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\npeek_i64_le\n\n\nPeek at a little-endian I64.\n\n\nfun box peek_i64_le(\n  offset: USize val = 0)\n: I64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\npeek_u128_be\n\n\nPeek at a big-endian U128.\n\n\nfun box peek_u128_be(\n  offset: USize val = 0)\n: U128 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\npeek_u128_le\n\n\nPeek at a little-endian U128.\n\n\nfun box peek_u128_le(\n  offset: USize val = 0)\n: U128 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\npeek_i128_be\n\n\nPeek at a big-endian I129.\n\n\nfun box peek_i128_be(\n  offset: USize val = 0)\n: I128 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\npeek_i128_le\n\n\nPeek at a little-endian I128.\n\n\nfun box peek_i128_le(\n  offset: USize val = 0)\n: I128 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\npeek_f32_be\n\n\nPeek at a big-endian F32.\n\n\nfun box peek_f32_be(\n  offset: USize val = 0)\n: F32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF32\n val ?\n\n\n\n\n\n\npeek_f32_le\n\n\nPeek at a little-endian F32.\n\n\nfun box peek_f32_le(\n  offset: USize val = 0)\n: F32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF32\n val ?\n\n\n\n\n\n\npeek_f64_be\n\n\nPeek at a big-endian F64.\n\n\nfun box peek_f64_be(\n  offset: USize val = 0)\n: F64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF64\n val ?\n\n\n\n\n\n\npeek_f64_le\n\n\nPeek at a little-endian F64.\n\n\nfun box peek_f64_le(\n  offset: USize val = 0)\n: F64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF64\n val ?\n\n\n\n\n\n\nPrivate Functions\n\n\n_byte\n\n\nGet a single byte.\n\n\nfun ref _byte()\n: U8 val ?\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\n_peek_byte\n\n\nGet the byte at the given offset without moving the cursor forward.\nRaise an error if the given offset is not yet available.\n\n\nfun box _peek_byte(\n  offset: USize val = 0)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\n_line_length\n\n\nGet the length of a pending line. Raise an error if there is no pending\nline.\n\n\nfun ref _line_length()\n: USize val ?\n\n\n\n\nReturns\n\n\n\n\nUSize\n val ?", 
+            "text": "Reader\n\n\nStore network data and provide a parsing interface.\n\n\nReader\n provides a way to extract typed data from a sequence of\nbytes. The \nReader\n manages the underlying data structures to\nprovide a read cursor over a contiguous sequence of bytes. It is\nuseful for decoding data that is received over a network or stored\nin a file. Chunk of bytes are added to the \nReader\n using the\n\nappend\n method, and typed data is extracted using the getter\nmethods.\n\n\nFor example, suppose we have a UDP-based network data protocol where\nmessages consist of the following:\n\n\n\n\nlist_size\n - the number of items in the following list of items\n  as a big-endian 32-bit integer\n\n\nzero or more items of the following data:\n\n\na big-endian 64-bit floating point number\n\n\na string that starts with a big-endian 32-bit integer that\n    specifies the length of the string, followed by a number of\n    bytes that represent the string\n\n\n\n\nA message would be something like this:\n\n\n[message_length][list_size][float1][string1][float2][string2]...\n\n\n\n\nThe following program uses a \nReader\n to decode a message of\nthis type and print them:\n\n\nuse \nnet\n\nuse \ncollections\n\n\nclass Notify is StdinNotify\n  let _env: Env\n  new create(env: Env) =\n\n    _env = env\n  fun ref apply(data: Array[U8] iso) =\n\n    let rb = Reader\n    rb.append(consume data)\n    try\n      while true do\n        let len = rb.i32_be()\n        let items = rb.i32_be().usize()\n        for range in Range(0, items) do\n          let f = rb.f32_be()\n          let str_len = rb.i32_be().usize()\n          let str = String.from_array(rb.block(str_len))\n          _env.out.print(\n[(\n + f.string() + \n), (\n + str + \n)]\n)\n        end\n      end\n    end\n\nactor Main\n  new create(env: Env) =\n\n    env.input(recover Notify(env) end, 1024)\n\n\n\n\nclass ref Reader\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: Reader iso^\n\n\n\n\nReturns\n\n\n\n\nReader\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nsize\n\n\nReturn the number of available bytes.\n\n\nfun box size()\n: USize val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclear\n\n\nDiscard all pending data.\n\n\nfun ref clear()\n: Reader ref^\n\n\n\n\nReturns\n\n\n\n\nReader\n ref^\n\n\n\n\n\n\nappend\n\n\nAdd a chunk of data.\n\n\nfun ref append(\n  data: Array[U8 val] val)\n: Reader ref^\n\n\n\n\nParameters\n\n\n\n\ndata: \nArray\n[\nU8\n val] val\n\n\n\n\nReturns\n\n\n\n\nReader\n ref^\n\n\n\n\n\n\nskip\n\n\nSkip n bytes.\n\n\nfun ref skip(\n  n: USize val)\n: Reader ref^ ?\n\n\n\n\nParameters\n\n\n\n\nn: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nReader\n ref^ ?\n\n\n\n\n\n\nblock\n\n\nReturn a block as a contiguous chunk of memory.\n\n\nfun ref block(\n  len: USize val)\n: Array[U8 val] iso^ ?\n\n\n\n\nParameters\n\n\n\n\nlen: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nU8\n val] iso^ ?\n\n\n\n\n\n\nread_until\n\n\nFind the first occurence of the separator and return the block of bytes\nbefore its position. The separator is not included in the returned array,\nbut it is removed from the buffer. To read a line of text, prefer line()\nthat handles \\n and \\r\\n.\n\n\nfun ref read_until(\n  separator: U8 val)\n: Array[U8 val] iso^ ?\n\n\n\n\nParameters\n\n\n\n\nseparator: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nArray\n[\nU8\n val] iso^ ?\n\n\n\n\n\n\nline\n\n\nReturn a \\n or \\r\\n terminated line as a string. The newline is not\nincluded in the returned string, but it is removed from the network buffer.\n\n\nfun ref line()\n: String val ?\n\n\n\n\nReturns\n\n\n\n\nString\n val ?\n\n\n\n\n\n\nu8\n\n\nGet a U8. Raise an error if there isn't enough data.\n\n\nfun ref u8()\n: U8 val ?\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\ni8\n\n\nGet an I8.\n\n\nfun ref i8()\n: I8 val ?\n\n\n\n\nReturns\n\n\n\n\nI8\n val ?\n\n\n\n\n\n\nu16_be\n\n\nGet a big-endian U16.\n\n\nfun ref u16_be()\n: U16 val ?\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\nu16_le\n\n\nGet a little-endian U16.\n\n\nfun ref u16_le()\n: U16 val ?\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\ni16_be\n\n\nGet a big-endian I16.\n\n\nfun ref i16_be()\n: I16 val ?\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\ni16_le\n\n\nGet a little-endian I16.\n\n\nfun ref i16_le()\n: I16 val ?\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\nu32_be\n\n\nGet a big-endian U32.\n\n\nfun ref u32_be()\n: U32 val ?\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\nu32_le\n\n\nGet a little-endian U32.\n\n\nfun ref u32_le()\n: U32 val ?\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\ni32_be\n\n\nGet a big-endian I32.\n\n\nfun ref i32_be()\n: I32 val ?\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\ni32_le\n\n\nGet a little-endian I32.\n\n\nfun ref i32_le()\n: I32 val ?\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\nu64_be\n\n\nGet a big-endian U64.\n\n\nfun ref u64_be()\n: U64 val ?\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\nu64_le\n\n\nGet a little-endian U64.\n\n\nfun ref u64_le()\n: U64 val ?\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\ni64_be\n\n\nGet a big-endian I64.\n\n\nfun ref i64_be()\n: I64 val ?\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\ni64_le\n\n\nGet a little-endian I64.\n\n\nfun ref i64_le()\n: I64 val ?\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\nu128_be\n\n\nGet a big-endian U128.\n\n\nfun ref u128_be()\n: U128 val ?\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\nu128_le\n\n\nGet a little-endian U128.\n\n\nfun ref u128_le()\n: U128 val ?\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\ni128_be\n\n\nGet a big-endian I129.\n\n\nfun ref i128_be()\n: I128 val ?\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\ni128_le\n\n\nGet a little-endian I128.\n\n\nfun ref i128_le()\n: I128 val ?\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\nf32_be\n\n\nGet a big-endian F32.\n\n\nfun ref f32_be()\n: F32 val ?\n\n\n\n\nReturns\n\n\n\n\nF32\n val ?\n\n\n\n\n\n\nf32_le\n\n\nGet a little-endian F32.\n\n\nfun ref f32_le()\n: F32 val ?\n\n\n\n\nReturns\n\n\n\n\nF32\n val ?\n\n\n\n\n\n\nf64_be\n\n\nGet a big-endian F64.\n\n\nfun ref f64_be()\n: F64 val ?\n\n\n\n\nReturns\n\n\n\n\nF64\n val ?\n\n\n\n\n\n\nf64_le\n\n\nGet a little-endian F64.\n\n\nfun ref f64_le()\n: F64 val ?\n\n\n\n\nReturns\n\n\n\n\nF64\n val ?\n\n\n\n\n\n\npeek_u8\n\n\nPeek at a U8 at the given offset. Raise an error if there isn't enough\ndata.\n\n\nfun box peek_u8(\n  offset: USize val = 0)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\npeek_i8\n\n\nPeek at an I8.\n\n\nfun box peek_i8(\n  offset: USize val = 0)\n: I8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI8\n val ?\n\n\n\n\n\n\npeek_u16_be\n\n\nPeek at a big-endian U16.\n\n\nfun box peek_u16_be(\n  offset: USize val = 0)\n: U16 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\npeek_u16_le\n\n\nPeek at a little-endian U16.\n\n\nfun box peek_u16_le(\n  offset: USize val = 0)\n: U16 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU16\n val ?\n\n\n\n\n\n\npeek_i16_be\n\n\nPeek at a big-endian I16.\n\n\nfun box peek_i16_be(\n  offset: USize val = 0)\n: I16 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\npeek_i16_le\n\n\nPeek at a little-endian I16.\n\n\nfun box peek_i16_le(\n  offset: USize val = 0)\n: I16 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI16\n val ?\n\n\n\n\n\n\npeek_u32_be\n\n\nPeek at a big-endian U32.\n\n\nfun box peek_u32_be(\n  offset: USize val = 0)\n: U32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\npeek_u32_le\n\n\nPeek at a little-endian U32.\n\n\nfun box peek_u32_le(\n  offset: USize val = 0)\n: U32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU32\n val ?\n\n\n\n\n\n\npeek_i32_be\n\n\nPeek at a big-endian I32.\n\n\nfun box peek_i32_be(\n  offset: USize val = 0)\n: I32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\npeek_i32_le\n\n\nPeek at a little-endian I32.\n\n\nfun box peek_i32_le(\n  offset: USize val = 0)\n: I32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI32\n val ?\n\n\n\n\n\n\npeek_u64_be\n\n\nPeek at a big-endian U64.\n\n\nfun box peek_u64_be(\n  offset: USize val = 0)\n: U64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\npeek_u64_le\n\n\nPeek at a little-endian U64.\n\n\nfun box peek_u64_le(\n  offset: USize val = 0)\n: U64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU64\n val ?\n\n\n\n\n\n\npeek_i64_be\n\n\nPeek at a big-endian I64.\n\n\nfun box peek_i64_be(\n  offset: USize val = 0)\n: I64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\npeek_i64_le\n\n\nPeek at a little-endian I64.\n\n\nfun box peek_i64_le(\n  offset: USize val = 0)\n: I64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI64\n val ?\n\n\n\n\n\n\npeek_u128_be\n\n\nPeek at a big-endian U128.\n\n\nfun box peek_u128_be(\n  offset: USize val = 0)\n: U128 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\npeek_u128_le\n\n\nPeek at a little-endian U128.\n\n\nfun box peek_u128_le(\n  offset: USize val = 0)\n: U128 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU128\n val ?\n\n\n\n\n\n\npeek_i128_be\n\n\nPeek at a big-endian I129.\n\n\nfun box peek_i128_be(\n  offset: USize val = 0)\n: I128 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\npeek_i128_le\n\n\nPeek at a little-endian I128.\n\n\nfun box peek_i128_le(\n  offset: USize val = 0)\n: I128 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nI128\n val ?\n\n\n\n\n\n\npeek_f32_be\n\n\nPeek at a big-endian F32.\n\n\nfun box peek_f32_be(\n  offset: USize val = 0)\n: F32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF32\n val ?\n\n\n\n\n\n\npeek_f32_le\n\n\nPeek at a little-endian F32.\n\n\nfun box peek_f32_le(\n  offset: USize val = 0)\n: F32 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF32\n val ?\n\n\n\n\n\n\npeek_f64_be\n\n\nPeek at a big-endian F64.\n\n\nfun box peek_f64_be(\n  offset: USize val = 0)\n: F64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF64\n val ?\n\n\n\n\n\n\npeek_f64_le\n\n\nPeek at a little-endian F64.\n\n\nfun box peek_f64_le(\n  offset: USize val = 0)\n: F64 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nF64\n val ?\n\n\n\n\n\n\nPrivate Functions\n\n\n_byte\n\n\nGet a single byte.\n\n\nfun ref _byte()\n: U8 val ?\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\n_peek_byte\n\n\nGet the byte at the given offset without moving the cursor forward.\nRaise an error if the given offset is not yet available.\n\n\nfun box _peek_byte(\n  offset: USize val = 0)\n: U8 val ?\n\n\n\n\nParameters\n\n\n\n\noffset: \nUSize\n val = 0\n\n\n\n\nReturns\n\n\n\n\nU8\n val ?\n\n\n\n\n\n\n_distance_of\n\n\nGet the distance to the first occurence of the given byte\n\n\nfun ref _distance_of(\n  byte: U8 val)\n: USize val ?\n\n\n\n\nParameters\n\n\n\n\nbyte: \nU8\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val ?\n\n\n\n\n\n\n_search_length\n\n\nGet the length of a pending line. Raise an error if there is no pending\nline.\n\n\nfun ref _search_length()\n: USize val ?\n\n\n\n\nReturns\n\n\n\n\nUSize\n val ?", 
             "title": "class Reader"
         }, 
         {
@@ -361,12 +361,27 @@
             "title": "Returns"
         }, 
         {
+            "location": "/buffered-Reader/#read_until", 
+            "text": "Find the first occurence of the separator and return the block of bytes\nbefore its position. The separator is not included in the returned array,\nbut it is removed from the buffer. To read a line of text, prefer line()\nthat handles \\n and \\r\\n.  fun ref read_until(\n  separator: U8 val)\n: Array[U8 val] iso^ ?", 
+            "title": "read_until"
+        }, 
+        {
+            "location": "/buffered-Reader/#parameters_3", 
+            "text": "separator:  U8  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/buffered-Reader/#returns_6", 
+            "text": "Array [ U8  val] iso^ ?", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/buffered-Reader/#line", 
             "text": "Return a \\n or \\r\\n terminated line as a string. The newline is not\nincluded in the returned string, but it is removed from the network buffer.  fun ref line()\n: String val ?", 
             "title": "line"
         }, 
         {
-            "location": "/buffered-Reader/#returns_6", 
+            "location": "/buffered-Reader/#returns_7", 
             "text": "String  val ?", 
             "title": "Returns"
         }, 
@@ -376,7 +391,7 @@
             "title": "u8"
         }, 
         {
-            "location": "/buffered-Reader/#returns_7", 
+            "location": "/buffered-Reader/#returns_8", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -386,7 +401,7 @@
             "title": "i8"
         }, 
         {
-            "location": "/buffered-Reader/#returns_8", 
+            "location": "/buffered-Reader/#returns_9", 
             "text": "I8  val ?", 
             "title": "Returns"
         }, 
@@ -396,7 +411,7 @@
             "title": "u16_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_9", 
+            "location": "/buffered-Reader/#returns_10", 
             "text": "U16  val ?", 
             "title": "Returns"
         }, 
@@ -406,7 +421,7 @@
             "title": "u16_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_10", 
+            "location": "/buffered-Reader/#returns_11", 
             "text": "U16  val ?", 
             "title": "Returns"
         }, 
@@ -416,7 +431,7 @@
             "title": "i16_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_11", 
+            "location": "/buffered-Reader/#returns_12", 
             "text": "I16  val ?", 
             "title": "Returns"
         }, 
@@ -426,7 +441,7 @@
             "title": "i16_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_12", 
+            "location": "/buffered-Reader/#returns_13", 
             "text": "I16  val ?", 
             "title": "Returns"
         }, 
@@ -436,7 +451,7 @@
             "title": "u32_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_13", 
+            "location": "/buffered-Reader/#returns_14", 
             "text": "U32  val ?", 
             "title": "Returns"
         }, 
@@ -446,7 +461,7 @@
             "title": "u32_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_14", 
+            "location": "/buffered-Reader/#returns_15", 
             "text": "U32  val ?", 
             "title": "Returns"
         }, 
@@ -456,7 +471,7 @@
             "title": "i32_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_15", 
+            "location": "/buffered-Reader/#returns_16", 
             "text": "I32  val ?", 
             "title": "Returns"
         }, 
@@ -466,7 +481,7 @@
             "title": "i32_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_16", 
+            "location": "/buffered-Reader/#returns_17", 
             "text": "I32  val ?", 
             "title": "Returns"
         }, 
@@ -476,7 +491,7 @@
             "title": "u64_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_17", 
+            "location": "/buffered-Reader/#returns_18", 
             "text": "U64  val ?", 
             "title": "Returns"
         }, 
@@ -486,7 +501,7 @@
             "title": "u64_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_18", 
+            "location": "/buffered-Reader/#returns_19", 
             "text": "U64  val ?", 
             "title": "Returns"
         }, 
@@ -496,7 +511,7 @@
             "title": "i64_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_19", 
+            "location": "/buffered-Reader/#returns_20", 
             "text": "I64  val ?", 
             "title": "Returns"
         }, 
@@ -506,7 +521,7 @@
             "title": "i64_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_20", 
+            "location": "/buffered-Reader/#returns_21", 
             "text": "I64  val ?", 
             "title": "Returns"
         }, 
@@ -516,7 +531,7 @@
             "title": "u128_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_21", 
+            "location": "/buffered-Reader/#returns_22", 
             "text": "U128  val ?", 
             "title": "Returns"
         }, 
@@ -526,7 +541,7 @@
             "title": "u128_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_22", 
+            "location": "/buffered-Reader/#returns_23", 
             "text": "U128  val ?", 
             "title": "Returns"
         }, 
@@ -536,7 +551,7 @@
             "title": "i128_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_23", 
+            "location": "/buffered-Reader/#returns_24", 
             "text": "I128  val ?", 
             "title": "Returns"
         }, 
@@ -546,7 +561,7 @@
             "title": "i128_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_24", 
+            "location": "/buffered-Reader/#returns_25", 
             "text": "I128  val ?", 
             "title": "Returns"
         }, 
@@ -556,7 +571,7 @@
             "title": "f32_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_25", 
+            "location": "/buffered-Reader/#returns_26", 
             "text": "F32  val ?", 
             "title": "Returns"
         }, 
@@ -566,7 +581,7 @@
             "title": "f32_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_26", 
+            "location": "/buffered-Reader/#returns_27", 
             "text": "F32  val ?", 
             "title": "Returns"
         }, 
@@ -576,7 +591,7 @@
             "title": "f64_be"
         }, 
         {
-            "location": "/buffered-Reader/#returns_27", 
+            "location": "/buffered-Reader/#returns_28", 
             "text": "F64  val ?", 
             "title": "Returns"
         }, 
@@ -586,7 +601,7 @@
             "title": "f64_le"
         }, 
         {
-            "location": "/buffered-Reader/#returns_28", 
+            "location": "/buffered-Reader/#returns_29", 
             "text": "F64  val ?", 
             "title": "Returns"
         }, 
@@ -596,12 +611,12 @@
             "title": "peek_u8"
         }, 
         {
-            "location": "/buffered-Reader/#parameters_3", 
+            "location": "/buffered-Reader/#parameters_4", 
             "text": "offset:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/buffered-Reader/#returns_29", 
+            "location": "/buffered-Reader/#returns_30", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -611,12 +626,12 @@
             "title": "peek_i8"
         }, 
         {
-            "location": "/buffered-Reader/#parameters_4", 
+            "location": "/buffered-Reader/#parameters_5", 
             "text": "offset:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/buffered-Reader/#returns_30", 
+            "location": "/buffered-Reader/#returns_31", 
             "text": "I8  val ?", 
             "title": "Returns"
         }, 
@@ -624,21 +639,6 @@
             "location": "/buffered-Reader/#peek_u16_be", 
             "text": "Peek at a big-endian U16.  fun box peek_u16_be(\n  offset: USize val = 0)\n: U16 val ?", 
             "title": "peek_u16_be"
-        }, 
-        {
-            "location": "/buffered-Reader/#parameters_5", 
-            "text": "offset:  USize  val = 0", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/buffered-Reader/#returns_31", 
-            "text": "U16  val ?", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/buffered-Reader/#peek_u16_le", 
-            "text": "Peek at a little-endian U16.  fun box peek_u16_le(\n  offset: USize val = 0)\n: U16 val ?", 
-            "title": "peek_u16_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_6", 
@@ -651,9 +651,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_i16_be", 
-            "text": "Peek at a big-endian I16.  fun box peek_i16_be(\n  offset: USize val = 0)\n: I16 val ?", 
-            "title": "peek_i16_be"
+            "location": "/buffered-Reader/#peek_u16_le", 
+            "text": "Peek at a little-endian U16.  fun box peek_u16_le(\n  offset: USize val = 0)\n: U16 val ?", 
+            "title": "peek_u16_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_7", 
@@ -662,13 +662,13 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_33", 
-            "text": "I16  val ?", 
+            "text": "U16  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_i16_le", 
-            "text": "Peek at a little-endian I16.  fun box peek_i16_le(\n  offset: USize val = 0)\n: I16 val ?", 
-            "title": "peek_i16_le"
+            "location": "/buffered-Reader/#peek_i16_be", 
+            "text": "Peek at a big-endian I16.  fun box peek_i16_be(\n  offset: USize val = 0)\n: I16 val ?", 
+            "title": "peek_i16_be"
         }, 
         {
             "location": "/buffered-Reader/#parameters_8", 
@@ -681,9 +681,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_u32_be", 
-            "text": "Peek at a big-endian U32.  fun box peek_u32_be(\n  offset: USize val = 0)\n: U32 val ?", 
-            "title": "peek_u32_be"
+            "location": "/buffered-Reader/#peek_i16_le", 
+            "text": "Peek at a little-endian I16.  fun box peek_i16_le(\n  offset: USize val = 0)\n: I16 val ?", 
+            "title": "peek_i16_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_9", 
@@ -692,13 +692,13 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_35", 
-            "text": "U32  val ?", 
+            "text": "I16  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_u32_le", 
-            "text": "Peek at a little-endian U32.  fun box peek_u32_le(\n  offset: USize val = 0)\n: U32 val ?", 
-            "title": "peek_u32_le"
+            "location": "/buffered-Reader/#peek_u32_be", 
+            "text": "Peek at a big-endian U32.  fun box peek_u32_be(\n  offset: USize val = 0)\n: U32 val ?", 
+            "title": "peek_u32_be"
         }, 
         {
             "location": "/buffered-Reader/#parameters_10", 
@@ -711,9 +711,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_i32_be", 
-            "text": "Peek at a big-endian I32.  fun box peek_i32_be(\n  offset: USize val = 0)\n: I32 val ?", 
-            "title": "peek_i32_be"
+            "location": "/buffered-Reader/#peek_u32_le", 
+            "text": "Peek at a little-endian U32.  fun box peek_u32_le(\n  offset: USize val = 0)\n: U32 val ?", 
+            "title": "peek_u32_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_11", 
@@ -722,13 +722,13 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_37", 
-            "text": "I32  val ?", 
+            "text": "U32  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_i32_le", 
-            "text": "Peek at a little-endian I32.  fun box peek_i32_le(\n  offset: USize val = 0)\n: I32 val ?", 
-            "title": "peek_i32_le"
+            "location": "/buffered-Reader/#peek_i32_be", 
+            "text": "Peek at a big-endian I32.  fun box peek_i32_be(\n  offset: USize val = 0)\n: I32 val ?", 
+            "title": "peek_i32_be"
         }, 
         {
             "location": "/buffered-Reader/#parameters_12", 
@@ -741,9 +741,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_u64_be", 
-            "text": "Peek at a big-endian U64.  fun box peek_u64_be(\n  offset: USize val = 0)\n: U64 val ?", 
-            "title": "peek_u64_be"
+            "location": "/buffered-Reader/#peek_i32_le", 
+            "text": "Peek at a little-endian I32.  fun box peek_i32_le(\n  offset: USize val = 0)\n: I32 val ?", 
+            "title": "peek_i32_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_13", 
@@ -752,13 +752,13 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_39", 
-            "text": "U64  val ?", 
+            "text": "I32  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_u64_le", 
-            "text": "Peek at a little-endian U64.  fun box peek_u64_le(\n  offset: USize val = 0)\n: U64 val ?", 
-            "title": "peek_u64_le"
+            "location": "/buffered-Reader/#peek_u64_be", 
+            "text": "Peek at a big-endian U64.  fun box peek_u64_be(\n  offset: USize val = 0)\n: U64 val ?", 
+            "title": "peek_u64_be"
         }, 
         {
             "location": "/buffered-Reader/#parameters_14", 
@@ -771,9 +771,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_i64_be", 
-            "text": "Peek at a big-endian I64.  fun box peek_i64_be(\n  offset: USize val = 0)\n: I64 val ?", 
-            "title": "peek_i64_be"
+            "location": "/buffered-Reader/#peek_u64_le", 
+            "text": "Peek at a little-endian U64.  fun box peek_u64_le(\n  offset: USize val = 0)\n: U64 val ?", 
+            "title": "peek_u64_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_15", 
@@ -782,13 +782,13 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_41", 
-            "text": "I64  val ?", 
+            "text": "U64  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_i64_le", 
-            "text": "Peek at a little-endian I64.  fun box peek_i64_le(\n  offset: USize val = 0)\n: I64 val ?", 
-            "title": "peek_i64_le"
+            "location": "/buffered-Reader/#peek_i64_be", 
+            "text": "Peek at a big-endian I64.  fun box peek_i64_be(\n  offset: USize val = 0)\n: I64 val ?", 
+            "title": "peek_i64_be"
         }, 
         {
             "location": "/buffered-Reader/#parameters_16", 
@@ -801,9 +801,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_u128_be", 
-            "text": "Peek at a big-endian U128.  fun box peek_u128_be(\n  offset: USize val = 0)\n: U128 val ?", 
-            "title": "peek_u128_be"
+            "location": "/buffered-Reader/#peek_i64_le", 
+            "text": "Peek at a little-endian I64.  fun box peek_i64_le(\n  offset: USize val = 0)\n: I64 val ?", 
+            "title": "peek_i64_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_17", 
@@ -812,13 +812,13 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_43", 
-            "text": "U128  val ?", 
+            "text": "I64  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_u128_le", 
-            "text": "Peek at a little-endian U128.  fun box peek_u128_le(\n  offset: USize val = 0)\n: U128 val ?", 
-            "title": "peek_u128_le"
+            "location": "/buffered-Reader/#peek_u128_be", 
+            "text": "Peek at a big-endian U128.  fun box peek_u128_be(\n  offset: USize val = 0)\n: U128 val ?", 
+            "title": "peek_u128_be"
         }, 
         {
             "location": "/buffered-Reader/#parameters_18", 
@@ -831,9 +831,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_i128_be", 
-            "text": "Peek at a big-endian I129.  fun box peek_i128_be(\n  offset: USize val = 0)\n: I128 val ?", 
-            "title": "peek_i128_be"
+            "location": "/buffered-Reader/#peek_u128_le", 
+            "text": "Peek at a little-endian U128.  fun box peek_u128_le(\n  offset: USize val = 0)\n: U128 val ?", 
+            "title": "peek_u128_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_19", 
@@ -842,13 +842,13 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_45", 
-            "text": "I128  val ?", 
+            "text": "U128  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_i128_le", 
-            "text": "Peek at a little-endian I128.  fun box peek_i128_le(\n  offset: USize val = 0)\n: I128 val ?", 
-            "title": "peek_i128_le"
+            "location": "/buffered-Reader/#peek_i128_be", 
+            "text": "Peek at a big-endian I129.  fun box peek_i128_be(\n  offset: USize val = 0)\n: I128 val ?", 
+            "title": "peek_i128_be"
         }, 
         {
             "location": "/buffered-Reader/#parameters_20", 
@@ -861,9 +861,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_f32_be", 
-            "text": "Peek at a big-endian F32.  fun box peek_f32_be(\n  offset: USize val = 0)\n: F32 val ?", 
-            "title": "peek_f32_be"
+            "location": "/buffered-Reader/#peek_i128_le", 
+            "text": "Peek at a little-endian I128.  fun box peek_i128_le(\n  offset: USize val = 0)\n: I128 val ?", 
+            "title": "peek_i128_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_21", 
@@ -872,13 +872,13 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_47", 
-            "text": "F32  val ?", 
+            "text": "I128  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_f32_le", 
-            "text": "Peek at a little-endian F32.  fun box peek_f32_le(\n  offset: USize val = 0)\n: F32 val ?", 
-            "title": "peek_f32_le"
+            "location": "/buffered-Reader/#peek_f32_be", 
+            "text": "Peek at a big-endian F32.  fun box peek_f32_be(\n  offset: USize val = 0)\n: F32 val ?", 
+            "title": "peek_f32_be"
         }, 
         {
             "location": "/buffered-Reader/#parameters_22", 
@@ -891,9 +891,9 @@
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#peek_f64_be", 
-            "text": "Peek at a big-endian F64.  fun box peek_f64_be(\n  offset: USize val = 0)\n: F64 val ?", 
-            "title": "peek_f64_be"
+            "location": "/buffered-Reader/#peek_f32_le", 
+            "text": "Peek at a little-endian F32.  fun box peek_f32_le(\n  offset: USize val = 0)\n: F32 val ?", 
+            "title": "peek_f32_le"
         }, 
         {
             "location": "/buffered-Reader/#parameters_23", 
@@ -902,6 +902,21 @@
         }, 
         {
             "location": "/buffered-Reader/#returns_49", 
+            "text": "F32  val ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/buffered-Reader/#peek_f64_be", 
+            "text": "Peek at a big-endian F64.  fun box peek_f64_be(\n  offset: USize val = 0)\n: F64 val ?", 
+            "title": "peek_f64_be"
+        }, 
+        {
+            "location": "/buffered-Reader/#parameters_24", 
+            "text": "offset:  USize  val = 0", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/buffered-Reader/#returns_50", 
             "text": "F64  val ?", 
             "title": "Returns"
         }, 
@@ -911,12 +926,12 @@
             "title": "peek_f64_le"
         }, 
         {
-            "location": "/buffered-Reader/#parameters_24", 
+            "location": "/buffered-Reader/#parameters_25", 
             "text": "offset:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/buffered-Reader/#returns_50", 
+            "location": "/buffered-Reader/#returns_51", 
             "text": "F64  val ?", 
             "title": "Returns"
         }, 
@@ -931,7 +946,7 @@
             "title": "_byte"
         }, 
         {
-            "location": "/buffered-Reader/#returns_51", 
+            "location": "/buffered-Reader/#returns_52", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
@@ -941,22 +956,37 @@
             "title": "_peek_byte"
         }, 
         {
-            "location": "/buffered-Reader/#parameters_25", 
+            "location": "/buffered-Reader/#parameters_26", 
             "text": "offset:  USize  val = 0", 
             "title": "Parameters"
         }, 
         {
-            "location": "/buffered-Reader/#returns_52", 
+            "location": "/buffered-Reader/#returns_53", 
             "text": "U8  val ?", 
             "title": "Returns"
         }, 
         {
-            "location": "/buffered-Reader/#_line_length", 
-            "text": "Get the length of a pending line. Raise an error if there is no pending\nline.  fun ref _line_length()\n: USize val ?", 
-            "title": "_line_length"
+            "location": "/buffered-Reader/#_distance_of", 
+            "text": "Get the distance to the first occurence of the given byte  fun ref _distance_of(\n  byte: U8 val)\n: USize val ?", 
+            "title": "_distance_of"
         }, 
         {
-            "location": "/buffered-Reader/#returns_53", 
+            "location": "/buffered-Reader/#parameters_27", 
+            "text": "byte:  U8  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/buffered-Reader/#returns_54", 
+            "text": "USize  val ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/buffered-Reader/#_search_length", 
+            "text": "Get the length of a pending line. Raise an error if there is no pending\nline.  fun ref _search_length()\n: USize val ?", 
+            "title": "_search_length"
+        }, 
+        {
+            "location": "/buffered-Reader/#returns_55", 
             "text": "USize  val ?", 
             "title": "Returns"
         }, 

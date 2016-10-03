@@ -5842,6 +5842,25 @@ actor Main
 <li><a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] iso^ ?</li>
 </ul>
 <hr />
+<h3 id="read_until">read_until</h3>
+<p>Find the first occurence of the separator and return the block of bytes
+before its position. The separator is not included in the returned array,
+but it is removed from the buffer. To read a line of text, prefer line()
+that handles \n and \r\n.</p>
+<pre><code class="pony">fun ref read_until(
+  separator: U8 val)
+: Array[U8 val] iso^ ?
+</code></pre>
+
+<h4 id="parameters_3">Parameters</h4>
+<ul>
+<li>separator: <a href="../builtin-U8">U8</a> val</li>
+</ul>
+<h4 id="returns_6">Returns</h4>
+<ul>
+<li><a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] iso^ ?</li>
+</ul>
+<hr />
 <h3 id="line">line</h3>
 <p>Return a \n or \r\n terminated line as a string. The newline is not
 included in the returned string, but it is removed from the network buffer.</p>
@@ -5849,7 +5868,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : String val ?
 </code></pre>
 
-<h4 id="returns_6">Returns</h4>
+<h4 id="returns_7">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> val ?</li>
 </ul>
@@ -5860,7 +5879,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="returns_7">Returns</h4>
+<h4 id="returns_8">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -5871,7 +5890,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I8 val ?
 </code></pre>
 
-<h4 id="returns_8">Returns</h4>
+<h4 id="returns_9">Returns</h4>
 <ul>
 <li><a href="../builtin-I8">I8</a> val ?</li>
 </ul>
@@ -5882,7 +5901,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U16 val ?
 </code></pre>
 
-<h4 id="returns_9">Returns</h4>
+<h4 id="returns_10">Returns</h4>
 <ul>
 <li><a href="../builtin-U16">U16</a> val ?</li>
 </ul>
@@ -5893,7 +5912,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U16 val ?
 </code></pre>
 
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_11">Returns</h4>
 <ul>
 <li><a href="../builtin-U16">U16</a> val ?</li>
 </ul>
@@ -5904,7 +5923,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I16 val ?
 </code></pre>
 
-<h4 id="returns_11">Returns</h4>
+<h4 id="returns_12">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val ?</li>
 </ul>
@@ -5915,7 +5934,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I16 val ?
 </code></pre>
 
-<h4 id="returns_12">Returns</h4>
+<h4 id="returns_13">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val ?</li>
 </ul>
@@ -5926,7 +5945,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U32 val ?
 </code></pre>
 
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-U32">U32</a> val ?</li>
 </ul>
@@ -5937,7 +5956,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U32 val ?
 </code></pre>
 
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li><a href="../builtin-U32">U32</a> val ?</li>
 </ul>
@@ -5948,7 +5967,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I32 val ?
 </code></pre>
 
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-I32">I32</a> val ?</li>
 </ul>
@@ -5959,7 +5978,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I32 val ?
 </code></pre>
 
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../builtin-I32">I32</a> val ?</li>
 </ul>
@@ -5970,7 +5989,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U64 val ?
 </code></pre>
 
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val ?</li>
 </ul>
@@ -5981,7 +6000,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U64 val ?
 </code></pre>
 
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val ?</li>
 </ul>
@@ -5992,7 +6011,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I64 val ?
 </code></pre>
 
-<h4 id="returns_19">Returns</h4>
+<h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../builtin-I64">I64</a> val ?</li>
 </ul>
@@ -6003,7 +6022,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I64 val ?
 </code></pre>
 
-<h4 id="returns_20">Returns</h4>
+<h4 id="returns_21">Returns</h4>
 <ul>
 <li><a href="../builtin-I64">I64</a> val ?</li>
 </ul>
@@ -6014,7 +6033,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U128 val ?
 </code></pre>
 
-<h4 id="returns_21">Returns</h4>
+<h4 id="returns_22">Returns</h4>
 <ul>
 <li><a href="../builtin-U128">U128</a> val ?</li>
 </ul>
@@ -6025,7 +6044,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : U128 val ?
 </code></pre>
 
-<h4 id="returns_22">Returns</h4>
+<h4 id="returns_23">Returns</h4>
 <ul>
 <li><a href="../builtin-U128">U128</a> val ?</li>
 </ul>
@@ -6036,7 +6055,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I128 val ?
 </code></pre>
 
-<h4 id="returns_23">Returns</h4>
+<h4 id="returns_24">Returns</h4>
 <ul>
 <li><a href="../builtin-I128">I128</a> val ?</li>
 </ul>
@@ -6047,7 +6066,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : I128 val ?
 </code></pre>
 
-<h4 id="returns_24">Returns</h4>
+<h4 id="returns_25">Returns</h4>
 <ul>
 <li><a href="../builtin-I128">I128</a> val ?</li>
 </ul>
@@ -6058,7 +6077,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : F32 val ?
 </code></pre>
 
-<h4 id="returns_25">Returns</h4>
+<h4 id="returns_26">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val ?</li>
 </ul>
@@ -6069,7 +6088,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : F32 val ?
 </code></pre>
 
-<h4 id="returns_26">Returns</h4>
+<h4 id="returns_27">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val ?</li>
 </ul>
@@ -6080,7 +6099,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : F64 val ?
 </code></pre>
 
-<h4 id="returns_27">Returns</h4>
+<h4 id="returns_28">Returns</h4>
 <ul>
 <li><a href="../builtin-F64">F64</a> val ?</li>
 </ul>
@@ -6091,7 +6110,7 @@ included in the returned string, but it is removed from the network buffer.</p>
 : F64 val ?
 </code></pre>
 
-<h4 id="returns_28">Returns</h4>
+<h4 id="returns_29">Returns</h4>
 <ul>
 <li><a href="../builtin-F64">F64</a> val ?</li>
 </ul>
@@ -6104,11 +6123,11 @@ data.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_3">Parameters</h4>
+<h4 id="parameters_4">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_29">Returns</h4>
+<h4 id="returns_30">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -6120,11 +6139,11 @@ data.</p>
 : I8 val ?
 </code></pre>
 
-<h4 id="parameters_4">Parameters</h4>
+<h4 id="parameters_5">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_30">Returns</h4>
+<h4 id="returns_31">Returns</h4>
 <ul>
 <li><a href="../builtin-I8">I8</a> val ?</li>
 </ul>
@@ -6132,22 +6151,6 @@ data.</p>
 <h3 id="peek_u16_be">peek_u16_be</h3>
 <p>Peek at a big-endian U16.</p>
 <pre><code class="pony">fun box peek_u16_be(
-  offset: USize val = 0)
-: U16 val ?
-</code></pre>
-
-<h4 id="parameters_5">Parameters</h4>
-<ul>
-<li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
-</ul>
-<h4 id="returns_31">Returns</h4>
-<ul>
-<li><a href="../builtin-U16">U16</a> val ?</li>
-</ul>
-<hr />
-<h3 id="peek_u16_le">peek_u16_le</h3>
-<p>Peek at a little-endian U16.</p>
-<pre><code class="pony">fun box peek_u16_le(
   offset: USize val = 0)
 : U16 val ?
 </code></pre>
@@ -6161,11 +6164,11 @@ data.</p>
 <li><a href="../builtin-U16">U16</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_i16_be">peek_i16_be</h3>
-<p>Peek at a big-endian I16.</p>
-<pre><code class="pony">fun box peek_i16_be(
+<h3 id="peek_u16_le">peek_u16_le</h3>
+<p>Peek at a little-endian U16.</p>
+<pre><code class="pony">fun box peek_u16_le(
   offset: USize val = 0)
-: I16 val ?
+: U16 val ?
 </code></pre>
 
 <h4 id="parameters_7">Parameters</h4>
@@ -6174,12 +6177,12 @@ data.</p>
 </ul>
 <h4 id="returns_33">Returns</h4>
 <ul>
-<li><a href="../builtin-I16">I16</a> val ?</li>
+<li><a href="../builtin-U16">U16</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_i16_le">peek_i16_le</h3>
-<p>Peek at a little-endian I16.</p>
-<pre><code class="pony">fun box peek_i16_le(
+<h3 id="peek_i16_be">peek_i16_be</h3>
+<p>Peek at a big-endian I16.</p>
+<pre><code class="pony">fun box peek_i16_be(
   offset: USize val = 0)
 : I16 val ?
 </code></pre>
@@ -6193,11 +6196,11 @@ data.</p>
 <li><a href="../builtin-I16">I16</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_u32_be">peek_u32_be</h3>
-<p>Peek at a big-endian U32.</p>
-<pre><code class="pony">fun box peek_u32_be(
+<h3 id="peek_i16_le">peek_i16_le</h3>
+<p>Peek at a little-endian I16.</p>
+<pre><code class="pony">fun box peek_i16_le(
   offset: USize val = 0)
-: U32 val ?
+: I16 val ?
 </code></pre>
 
 <h4 id="parameters_9">Parameters</h4>
@@ -6206,12 +6209,12 @@ data.</p>
 </ul>
 <h4 id="returns_35">Returns</h4>
 <ul>
-<li><a href="../builtin-U32">U32</a> val ?</li>
+<li><a href="../builtin-I16">I16</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_u32_le">peek_u32_le</h3>
-<p>Peek at a little-endian U32.</p>
-<pre><code class="pony">fun box peek_u32_le(
+<h3 id="peek_u32_be">peek_u32_be</h3>
+<p>Peek at a big-endian U32.</p>
+<pre><code class="pony">fun box peek_u32_be(
   offset: USize val = 0)
 : U32 val ?
 </code></pre>
@@ -6225,11 +6228,11 @@ data.</p>
 <li><a href="../builtin-U32">U32</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_i32_be">peek_i32_be</h3>
-<p>Peek at a big-endian I32.</p>
-<pre><code class="pony">fun box peek_i32_be(
+<h3 id="peek_u32_le">peek_u32_le</h3>
+<p>Peek at a little-endian U32.</p>
+<pre><code class="pony">fun box peek_u32_le(
   offset: USize val = 0)
-: I32 val ?
+: U32 val ?
 </code></pre>
 
 <h4 id="parameters_11">Parameters</h4>
@@ -6238,12 +6241,12 @@ data.</p>
 </ul>
 <h4 id="returns_37">Returns</h4>
 <ul>
-<li><a href="../builtin-I32">I32</a> val ?</li>
+<li><a href="../builtin-U32">U32</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_i32_le">peek_i32_le</h3>
-<p>Peek at a little-endian I32.</p>
-<pre><code class="pony">fun box peek_i32_le(
+<h3 id="peek_i32_be">peek_i32_be</h3>
+<p>Peek at a big-endian I32.</p>
+<pre><code class="pony">fun box peek_i32_be(
   offset: USize val = 0)
 : I32 val ?
 </code></pre>
@@ -6257,11 +6260,11 @@ data.</p>
 <li><a href="../builtin-I32">I32</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_u64_be">peek_u64_be</h3>
-<p>Peek at a big-endian U64.</p>
-<pre><code class="pony">fun box peek_u64_be(
+<h3 id="peek_i32_le">peek_i32_le</h3>
+<p>Peek at a little-endian I32.</p>
+<pre><code class="pony">fun box peek_i32_le(
   offset: USize val = 0)
-: U64 val ?
+: I32 val ?
 </code></pre>
 
 <h4 id="parameters_13">Parameters</h4>
@@ -6270,12 +6273,12 @@ data.</p>
 </ul>
 <h4 id="returns_39">Returns</h4>
 <ul>
-<li><a href="../builtin-U64">U64</a> val ?</li>
+<li><a href="../builtin-I32">I32</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_u64_le">peek_u64_le</h3>
-<p>Peek at a little-endian U64.</p>
-<pre><code class="pony">fun box peek_u64_le(
+<h3 id="peek_u64_be">peek_u64_be</h3>
+<p>Peek at a big-endian U64.</p>
+<pre><code class="pony">fun box peek_u64_be(
   offset: USize val = 0)
 : U64 val ?
 </code></pre>
@@ -6289,11 +6292,11 @@ data.</p>
 <li><a href="../builtin-U64">U64</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_i64_be">peek_i64_be</h3>
-<p>Peek at a big-endian I64.</p>
-<pre><code class="pony">fun box peek_i64_be(
+<h3 id="peek_u64_le">peek_u64_le</h3>
+<p>Peek at a little-endian U64.</p>
+<pre><code class="pony">fun box peek_u64_le(
   offset: USize val = 0)
-: I64 val ?
+: U64 val ?
 </code></pre>
 
 <h4 id="parameters_15">Parameters</h4>
@@ -6302,12 +6305,12 @@ data.</p>
 </ul>
 <h4 id="returns_41">Returns</h4>
 <ul>
-<li><a href="../builtin-I64">I64</a> val ?</li>
+<li><a href="../builtin-U64">U64</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_i64_le">peek_i64_le</h3>
-<p>Peek at a little-endian I64.</p>
-<pre><code class="pony">fun box peek_i64_le(
+<h3 id="peek_i64_be">peek_i64_be</h3>
+<p>Peek at a big-endian I64.</p>
+<pre><code class="pony">fun box peek_i64_be(
   offset: USize val = 0)
 : I64 val ?
 </code></pre>
@@ -6321,11 +6324,11 @@ data.</p>
 <li><a href="../builtin-I64">I64</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_u128_be">peek_u128_be</h3>
-<p>Peek at a big-endian U128.</p>
-<pre><code class="pony">fun box peek_u128_be(
+<h3 id="peek_i64_le">peek_i64_le</h3>
+<p>Peek at a little-endian I64.</p>
+<pre><code class="pony">fun box peek_i64_le(
   offset: USize val = 0)
-: U128 val ?
+: I64 val ?
 </code></pre>
 
 <h4 id="parameters_17">Parameters</h4>
@@ -6334,12 +6337,12 @@ data.</p>
 </ul>
 <h4 id="returns_43">Returns</h4>
 <ul>
-<li><a href="../builtin-U128">U128</a> val ?</li>
+<li><a href="../builtin-I64">I64</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_u128_le">peek_u128_le</h3>
-<p>Peek at a little-endian U128.</p>
-<pre><code class="pony">fun box peek_u128_le(
+<h3 id="peek_u128_be">peek_u128_be</h3>
+<p>Peek at a big-endian U128.</p>
+<pre><code class="pony">fun box peek_u128_be(
   offset: USize val = 0)
 : U128 val ?
 </code></pre>
@@ -6353,11 +6356,11 @@ data.</p>
 <li><a href="../builtin-U128">U128</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_i128_be">peek_i128_be</h3>
-<p>Peek at a big-endian I129.</p>
-<pre><code class="pony">fun box peek_i128_be(
+<h3 id="peek_u128_le">peek_u128_le</h3>
+<p>Peek at a little-endian U128.</p>
+<pre><code class="pony">fun box peek_u128_le(
   offset: USize val = 0)
-: I128 val ?
+: U128 val ?
 </code></pre>
 
 <h4 id="parameters_19">Parameters</h4>
@@ -6366,12 +6369,12 @@ data.</p>
 </ul>
 <h4 id="returns_45">Returns</h4>
 <ul>
-<li><a href="../builtin-I128">I128</a> val ?</li>
+<li><a href="../builtin-U128">U128</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_i128_le">peek_i128_le</h3>
-<p>Peek at a little-endian I128.</p>
-<pre><code class="pony">fun box peek_i128_le(
+<h3 id="peek_i128_be">peek_i128_be</h3>
+<p>Peek at a big-endian I129.</p>
+<pre><code class="pony">fun box peek_i128_be(
   offset: USize val = 0)
 : I128 val ?
 </code></pre>
@@ -6385,11 +6388,11 @@ data.</p>
 <li><a href="../builtin-I128">I128</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_f32_be">peek_f32_be</h3>
-<p>Peek at a big-endian F32.</p>
-<pre><code class="pony">fun box peek_f32_be(
+<h3 id="peek_i128_le">peek_i128_le</h3>
+<p>Peek at a little-endian I128.</p>
+<pre><code class="pony">fun box peek_i128_le(
   offset: USize val = 0)
-: F32 val ?
+: I128 val ?
 </code></pre>
 
 <h4 id="parameters_21">Parameters</h4>
@@ -6398,12 +6401,12 @@ data.</p>
 </ul>
 <h4 id="returns_47">Returns</h4>
 <ul>
-<li><a href="../builtin-F32">F32</a> val ?</li>
+<li><a href="../builtin-I128">I128</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_f32_le">peek_f32_le</h3>
-<p>Peek at a little-endian F32.</p>
-<pre><code class="pony">fun box peek_f32_le(
+<h3 id="peek_f32_be">peek_f32_be</h3>
+<p>Peek at a big-endian F32.</p>
+<pre><code class="pony">fun box peek_f32_be(
   offset: USize val = 0)
 : F32 val ?
 </code></pre>
@@ -6417,11 +6420,11 @@ data.</p>
 <li><a href="../builtin-F32">F32</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_f64_be">peek_f64_be</h3>
-<p>Peek at a big-endian F64.</p>
-<pre><code class="pony">fun box peek_f64_be(
+<h3 id="peek_f32_le">peek_f32_le</h3>
+<p>Peek at a little-endian F32.</p>
+<pre><code class="pony">fun box peek_f32_le(
   offset: USize val = 0)
-: F64 val ?
+: F32 val ?
 </code></pre>
 
 <h4 id="parameters_23">Parameters</h4>
@@ -6430,12 +6433,12 @@ data.</p>
 </ul>
 <h4 id="returns_49">Returns</h4>
 <ul>
-<li><a href="../builtin-F64">F64</a> val ?</li>
+<li><a href="../builtin-F32">F32</a> val ?</li>
 </ul>
 <hr />
-<h3 id="peek_f64_le">peek_f64_le</h3>
-<p>Peek at a little-endian F64.</p>
-<pre><code class="pony">fun box peek_f64_le(
+<h3 id="peek_f64_be">peek_f64_be</h3>
+<p>Peek at a big-endian F64.</p>
+<pre><code class="pony">fun box peek_f64_be(
   offset: USize val = 0)
 : F64 val ?
 </code></pre>
@@ -6449,6 +6452,22 @@ data.</p>
 <li><a href="../builtin-F64">F64</a> val ?</li>
 </ul>
 <hr />
+<h3 id="peek_f64_le">peek_f64_le</h3>
+<p>Peek at a little-endian F64.</p>
+<pre><code class="pony">fun box peek_f64_le(
+  offset: USize val = 0)
+: F64 val ?
+</code></pre>
+
+<h4 id="parameters_25">Parameters</h4>
+<ul>
+<li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
+</ul>
+<h4 id="returns_51">Returns</h4>
+<ul>
+<li><a href="../builtin-F64">F64</a> val ?</li>
+</ul>
+<hr />
 <h2 id="private-functions">Private Functions</h2>
 <h3 id="_byte">_byte</h3>
 <p>Get a single byte.</p>
@@ -6456,7 +6475,7 @@ data.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="returns_51">Returns</h4>
+<h4 id="returns_52">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -6469,23 +6488,39 @@ Raise an error if the given offset is not yet available.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_25">Parameters</h4>
+<h4 id="parameters_26">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_52">Returns</h4>
+<h4 id="returns_53">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
 <hr />
-<h3 id="_line_length">_line_length</h3>
-<p>Get the length of a pending line. Raise an error if there is no pending
-line.</p>
-<pre><code class="pony">fun ref _line_length()
+<h3 id="_distance_of">_distance_of</h3>
+<p>Get the distance to the first occurence of the given byte</p>
+<pre><code class="pony">fun ref _distance_of(
+  byte: U8 val)
 : USize val ?
 </code></pre>
 
-<h4 id="returns_53">Returns</h4>
+<h4 id="parameters_27">Parameters</h4>
+<ul>
+<li>byte: <a href="../builtin-U8">U8</a> val</li>
+</ul>
+<h4 id="returns_54">Returns</h4>
+<ul>
+<li><a href="../builtin-USize">USize</a> val ?</li>
+</ul>
+<hr />
+<h3 id="_search_length">_search_length</h3>
+<p>Get the length of a pending line. Raise an error if there is no pending
+line.</p>
+<pre><code class="pony">fun ref _search_length()
+: USize val ?
+</code></pre>
+
+<h4 id="returns_55">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val ?</li>
 </ul>
