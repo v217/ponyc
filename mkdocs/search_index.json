@@ -51067,7 +51067,7 @@
         }, 
         {
             "location": "/itertools--index/", 
-            "text": "Itertools Package\n\n\nProvide a set of classes for doing useful things with\niterators. Inspired by Python's itertools library.\n\n\nChain -- chain together two iterators\n\n\nLimit -- return only the specified number of itmes from the given\niterator\n\n\nZip2, Zip3, Zip4, Zip5 -- zip together N iterators\n\n\nRepeat -- create an iterator that reapeatedly returns the given value\n\n\nCycle -- create an iterator that infinitley loops over the items of\nthe given iterator\n\n\nMapFn -- create an iterator that applies a function to the value of\nthe given iterator\n\n\nFilter -- create an iterator that only returns items that match a\npredicate\n\n\nPublic Types\n\n\n\n\nclass Repeat\n\n\nclass Take\n\n\nclass Filter\n\n\nclass MapFn\n\n\nclass Zip2\n\n\nclass Zip3\n\n\nclass Zip4\n\n\nclass Zip5\n\n\nclass Chain\n\n\nclass Cycle\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _None\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestChain\n\n\nclass _TestZip\n\n\nclass _TestRepeat\n\n\nclass _TestTake\n\n\nclass _TestCycle\n\n\nclass _TestMapFn\n\n\nclass _TestFilter", 
+            "text": "Itertools Package\n\n\nProvide a set of classes for doing useful things with\niterators. Inspired by Python's itertools library.\n\n\nChain -- chain together two iterators\n\n\nLimit -- return only the specified number of itmes from the given\niterator\n\n\nZip2, Zip3, Zip4, Zip5 -- zip together N iterators\n\n\nRepeat -- create an iterator that reapeatedly returns the given value\n\n\nCycle -- create an iterator that infinitley loops over the items of\nthe given iterator\n\n\nMapFn -- create an iterator that applies a function to the value of\nthe given iterator\n\n\nFilter -- create an iterator that only returns items that match a\npredicate\n\n\nPublic Types\n\n\n\n\nclass Repeat\n\n\nclass Take\n\n\nclass Iter\n\n\nclass Filter\n\n\nclass MapFn\n\n\nclass Zip2\n\n\nclass Zip3\n\n\nclass Zip4\n\n\nclass Zip5\n\n\nclass Chain\n\n\nclass Cycle\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _None\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestChain\n\n\nclass _TestZip\n\n\nclass _TestRepeat\n\n\nclass _TestTake\n\n\nclass _TestCycle\n\n\nclass _TestMapFn\n\n\nclass _TestFilter\n\n\nclass _TestIterCycle\n\n\nclass _TestIterEnum\n\n\nclass _TestIterFilter\n\n\nclass _TestIterFold\n\n\nclass _TestIterMap\n\n\nclass _TestIterTake\n\n\nclass _TestIterZip", 
             "title": "Package"
         }, 
         {
@@ -51077,7 +51077,7 @@
         }, 
         {
             "location": "/itertools--index/#public-types", 
-            "text": "class Repeat  class Take  class Filter  class MapFn  class Zip2  class Zip3  class Zip4  class Zip5  class Chain  class Cycle", 
+            "text": "class Repeat  class Take  class Iter  class Filter  class MapFn  class Zip2  class Zip3  class Zip4  class Zip5  class Chain  class Cycle", 
             "title": "Public Types"
         }, 
         {
@@ -51087,7 +51087,7 @@
         }, 
         {
             "location": "/itertools--index/#test-types", 
-            "text": "actor Main  class _TestChain  class _TestZip  class _TestRepeat  class _TestTake  class _TestCycle  class _TestMapFn  class _TestFilter", 
+            "text": "actor Main  class _TestChain  class _TestZip  class _TestRepeat  class _TestTake  class _TestCycle  class _TestMapFn  class _TestFilter  class _TestIterCycle  class _TestIterEnum  class _TestIterFilter  class _TestIterFold  class _TestIterMap  class _TestIterTake  class _TestIterZip", 
             "title": "Test Types"
         }, 
         {
@@ -51218,6 +51218,221 @@
         {
             "location": "/itertools-Take/#returns_2", 
             "text": "A ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/", 
+            "text": "Iter[A: A]\n\n\nWrapper class containing methods to modify iterators.\n\n\nclass ref Iter[A: A] is\n  Iterator[A] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[A] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  iter: Iterator[A] ref)\n: Iter[A] ref^\n\n\n\n\nParameters\n\n\n\n\niter: \nIterator\n[A] ref\n\n\n\n\nReturns\n\n\n\n\nIter\n[A] ref^\n\n\n\n\n\n\nchain\n\n\nTake an iterator of iterators and work through them, returning the\nitems of the first one, then the second one, and so on.\n\n\nnew ref chain(\n  outer_iterator: Iterator[Iterator[A] ref] ref)\n: Iter[A] ref^\n\n\n\n\nParameters\n\n\n\n\nouter_iterator: \nIterator\n[\nIterator\n[A] ref] ref\n\n\n\n\nReturns\n\n\n\n\nIter\n[A] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: A ?\n\n\n\n\nReturns\n\n\n\n\nA ?\n\n\n\n\n\n\ncycle\n\n\nRepeatedly cycle through the values from the iterator.\n\n\nWARNING: The values returned by the original iterator are cached, so\nthe input iterator should be finite.\n\n\nfun ref cycle()\n: Iter[A!] ref\n\n\n\n\nReturns\n\n\n\n\nIter\n[A!] ref\n\n\n\n\n\n\nenum[optional B: (\nReal\n[B val] val \n (\nI8\n val | \nI16\n val | \nI32\n val | \nI64\n val | \nI128\n val | \nILong\n val | \nISize\n val | \nU8\n val | \nU16\n val | \nU32\n val | \nU64\n val | \nU128\n val | \nULong\n val | \nUSize\n val | \nF32\n val | \nF64\n val))]\n\n\nAn iterator which yields the current iteration count as well as the next\nvalue from the iterator.\n\n\nfun ref enum[optional B: (Real[B val] val \n (I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val | F32 val | F64 val))]()\n: Iter[(B val , A)] ref^\n\n\n\n\nReturns\n\n\n\n\nIter\n[(B val , A)] ref^\n\n\n\n\n\n\nfilter\n\n\nTake a predicate function and return an iterator that only returns items\nthat match the predicate.\n\n\nfun ref filter(\n  fn: {(A!): Bool ?}[A] box)\n: Iter[A] ref^\n\n\n\n\nParameters\n\n\n\n\nfn: {(A!): Bool ?}[A] box\n\n\n\n\nReturns\n\n\n\n\nIter\n[A] ref^\n\n\n\n\n\n\nfold[B: B]\n\n\nApply a function to every element, producing an accumulated value.\n\n\nfun ref fold[B: B](\n  f: {(B, A!): B^ ?}[A, B] box,\n  acc: B)\n: B^ ?\n\n\n\n\nParameters\n\n\n\n\nf: {(B, A!): B^ ?}[A, B] box\n\n\nacc: B\n\n\n\n\nReturns\n\n\n\n\nB^ ?\n\n\n\n\n\n\nmap[B: B]\n\n\nReturn an iterator where each item's value is the application of the given\nfunction to the value in the original iterator.\n\n\nfun ref map[B: B](\n  f: {(A!): B ?}[A, B] box)\n: Iter[B] ref\n\n\n\n\nParameters\n\n\n\n\nf: {(A!): B ?}[A, B] box\n\n\n\n\nReturns\n\n\n\n\nIter\n[B] ref\n\n\n\n\n\n\ntake\n\n\nOnly return a specified number of items.\n\n\nfun ref take(\n  n: USize val)\n: Iter[A] ref\n\n\n\n\nParameters\n\n\n\n\nn: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nIter\n[A] ref\n\n\n\n\n\n\nzip[B: B]\n\n\nZip two iterators together so that each call to next() results in the\na tuple with the next value of the first iterator and the next value\nof the second iterator. The number of items returned is the minimum of\nthe number of items returned by the two iterators.\n\n\nfun ref zip[B: B](\n  i2: Iterator[B] ref)\n: Iter[(A , B)] ref^\n\n\n\n\nParameters\n\n\n\n\ni2: \nIterator\n[B] ref\n\n\n\n\nReturns\n\n\n\n\nIter\n[(A , B)] ref^\n\n\n\n\n\n\nzip2[B: B, C: C]\n\n\nZip three iterators together so that each call to next() results in\nthe a tuple with the next value of the first iterator, the next value\nof the second iterator, and the value of the third iterator. The\nnumber of items returned is the minimum of the number of items\nreturned by the three iterators.\n\n\nfun ref zip2[B: B, C: C](\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref)\n: Iter[(A , B , C)] ref^\n\n\n\n\nParameters\n\n\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\n\n\nReturns\n\n\n\n\nIter\n[(A , B , C)] ref^\n\n\n\n\n\n\nzip3[B: B, C: C, D: D]\n\n\nZip four iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned is the minimum of the number of items returned by the\niterators.\n\n\nfun ref zip3[B: B, C: C, D: D](\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref,\n  i4: Iterator[D] ref)\n: Iter[(A , B , C , D)] ref^\n\n\n\n\nParameters\n\n\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\ni4: \nIterator\n[D] ref\n\n\n\n\nReturns\n\n\n\n\nIter\n[(A , B , C , D)] ref^\n\n\n\n\n\n\nzip4[B: B, C: C, D: D, E: E]\n\n\nZip five iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned is the minimum of the number of items returned by the\niterators.\n\n\nfun ref zip4[B: B, C: C, D: D, E: E](\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref,\n  i4: Iterator[D] ref,\n  i5: Iterator[E] ref)\n: Iter[(A , B , C , D , E)] ref^\n\n\n\n\nParameters\n\n\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\ni4: \nIterator\n[D] ref\n\n\ni5: \nIterator\n[E] ref\n\n\n\n\nReturns\n\n\n\n\nIter\n[(A , B , C , D , E)] ref^", 
+            "title": "class Iter"
+        }, 
+        {
+            "location": "/itertools-Iter/#iter91a-a93", 
+            "text": "Wrapper class containing methods to modify iterators.  class ref Iter[A: A] is\n  Iterator[A] ref", 
+            "title": "Iter[A: A]"
+        }, 
+        {
+            "location": "/itertools-Iter/#implements", 
+            "text": "Iterator [A] ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/itertools-Iter/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/itertools-Iter/#create", 
+            "text": "new ref create(\n  iter: Iterator[A] ref)\n: Iter[A] ref^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters", 
+            "text": "iter:  Iterator [A] ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns", 
+            "text": "Iter [A] ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#chain", 
+            "text": "Take an iterator of iterators and work through them, returning the\nitems of the first one, then the second one, and so on.  new ref chain(\n  outer_iterator: Iterator[Iterator[A] ref] ref)\n: Iter[A] ref^", 
+            "title": "chain"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_1", 
+            "text": "outer_iterator:  Iterator [ Iterator [A] ref] ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_1", 
+            "text": "Iter [A] ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/itertools-Iter/#has_next", 
+            "text": "fun ref has_next()\n: Bool val", 
+            "title": "has_next"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_2", 
+            "text": "Bool  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#next", 
+            "text": "fun ref next()\n: A ?", 
+            "title": "next"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_3", 
+            "text": "A ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#cycle", 
+            "text": "Repeatedly cycle through the values from the iterator.  WARNING: The values returned by the original iterator are cached, so\nthe input iterator should be finite.  fun ref cycle()\n: Iter[A!] ref", 
+            "title": "cycle"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_4", 
+            "text": "Iter [A!] ref", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#enum91optional-b-real91b-val93-val-i8-val-i16-val-i32-val-i64-val-i128-val-ilong-val-isize-val-u8-val-u16-val-u32-val-u64-val-u128-val-ulong-val-usize-val-f32-val-f64-val93", 
+            "text": "An iterator which yields the current iteration count as well as the next\nvalue from the iterator.  fun ref enum[optional B: (Real[B val] val   (I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val | F32 val | F64 val))]()\n: Iter[(B val , A)] ref^", 
+            "title": "enum[optional B: (Real[B val] val &amp; (I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val | F32 val | F64 val))]"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_5", 
+            "text": "Iter [(B val , A)] ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#filter", 
+            "text": "Take a predicate function and return an iterator that only returns items\nthat match the predicate.  fun ref filter(\n  fn: {(A!): Bool ?}[A] box)\n: Iter[A] ref^", 
+            "title": "filter"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_2", 
+            "text": "fn: {(A!): Bool ?}[A] box", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_6", 
+            "text": "Iter [A] ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#fold91b-b93", 
+            "text": "Apply a function to every element, producing an accumulated value.  fun ref fold[B: B](\n  f: {(B, A!): B^ ?}[A, B] box,\n  acc: B)\n: B^ ?", 
+            "title": "fold[B: B]"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_3", 
+            "text": "f: {(B, A!): B^ ?}[A, B] box  acc: B", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_7", 
+            "text": "B^ ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#map91b-b93", 
+            "text": "Return an iterator where each item's value is the application of the given\nfunction to the value in the original iterator.  fun ref map[B: B](\n  f: {(A!): B ?}[A, B] box)\n: Iter[B] ref", 
+            "title": "map[B: B]"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_4", 
+            "text": "f: {(A!): B ?}[A, B] box", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_8", 
+            "text": "Iter [B] ref", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#take", 
+            "text": "Only return a specified number of items.  fun ref take(\n  n: USize val)\n: Iter[A] ref", 
+            "title": "take"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_5", 
+            "text": "n:  USize  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_9", 
+            "text": "Iter [A] ref", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#zip91b-b93", 
+            "text": "Zip two iterators together so that each call to next() results in the\na tuple with the next value of the first iterator and the next value\nof the second iterator. The number of items returned is the minimum of\nthe number of items returned by the two iterators.  fun ref zip[B: B](\n  i2: Iterator[B] ref)\n: Iter[(A , B)] ref^", 
+            "title": "zip[B: B]"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_6", 
+            "text": "i2:  Iterator [B] ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_10", 
+            "text": "Iter [(A , B)] ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#zip291b-b-c-c93", 
+            "text": "Zip three iterators together so that each call to next() results in\nthe a tuple with the next value of the first iterator, the next value\nof the second iterator, and the value of the third iterator. The\nnumber of items returned is the minimum of the number of items\nreturned by the three iterators.  fun ref zip2[B: B, C: C](\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref)\n: Iter[(A , B , C)] ref^", 
+            "title": "zip2[B: B, C: C]"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_7", 
+            "text": "i2:  Iterator [B] ref  i3:  Iterator [C] ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_11", 
+            "text": "Iter [(A , B , C)] ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#zip391b-b-c-c-d-d93", 
+            "text": "Zip four iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned is the minimum of the number of items returned by the\niterators.  fun ref zip3[B: B, C: C, D: D](\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref,\n  i4: Iterator[D] ref)\n: Iter[(A , B , C , D)] ref^", 
+            "title": "zip3[B: B, C: C, D: D]"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_8", 
+            "text": "i2:  Iterator [B] ref  i3:  Iterator [C] ref  i4:  Iterator [D] ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_12", 
+            "text": "Iter [(A , B , C , D)] ref^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-Iter/#zip491b-b-c-c-d-d-e-e93", 
+            "text": "Zip five iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned is the minimum of the number of items returned by the\niterators.  fun ref zip4[B: B, C: C, D: D, E: E](\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref,\n  i4: Iterator[D] ref,\n  i5: Iterator[E] ref)\n: Iter[(A , B , C , D , E)] ref^", 
+            "title": "zip4[B: B, C: C, D: D, E: E]"
+        }, 
+        {
+            "location": "/itertools-Iter/#parameters_9", 
+            "text": "i2:  Iterator [B] ref  i3:  Iterator [C] ref  i4:  Iterator [D] ref  i5:  Iterator [E] ref", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-Iter/#returns_13", 
+            "text": "Iter [(A , B , C , D , E)] ref^", 
             "title": "Returns"
         }, 
         {
@@ -52056,6 +52271,776 @@
             "title": "Returns"
         }, 
         {
+            "location": "/itertools-_TestIterCycle/", 
+            "text": "_TestIterCycle\n\n\nclass iso _TestIterCycle is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestIterCycle iso^\n\n\n\n\nReturns\n\n\n\n\n_TestIterCycle\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestIterCycle"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#_testitercycle", 
+            "text": "class iso _TestIterCycle is\n  UnitTest ref", 
+            "title": "_TestIterCycle"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#create", 
+            "text": "new iso create()\n: _TestIterCycle iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#returns", 
+            "text": "_TestIterCycle  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/itertools-_TestIterCycle/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/", 
+            "text": "_TestIterEnum\n\n\nclass iso _TestIterEnum is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestIterEnum iso^\n\n\n\n\nReturns\n\n\n\n\n_TestIterEnum\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val ?\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val ?\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestIterEnum"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#_testiterenum", 
+            "text": "class iso _TestIterEnum is\n  UnitTest ref", 
+            "title": "_TestIterEnum"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#create", 
+            "text": "new iso create()\n: _TestIterEnum iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#returns", 
+            "text": "_TestIterEnum  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val ?", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#returns_2", 
+            "text": "None  val ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/itertools-_TestIterEnum/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/", 
+            "text": "_TestIterFilter\n\n\nclass iso _TestIterFilter is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestIterFilter iso^\n\n\n\n\nReturns\n\n\n\n\n_TestIterFilter\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestIterFilter"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#_testiterfilter", 
+            "text": "class iso _TestIterFilter is\n  UnitTest ref", 
+            "title": "_TestIterFilter"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#create", 
+            "text": "new iso create()\n: _TestIterFilter iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#returns", 
+            "text": "_TestIterFilter  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/itertools-_TestIterFilter/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/", 
+            "text": "_TestIterFold\n\n\nclass iso _TestIterFold is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestIterFold iso^\n\n\n\n\nReturns\n\n\n\n\n_TestIterFold\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val ?\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val ?\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestIterFold"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#_testiterfold", 
+            "text": "class iso _TestIterFold is\n  UnitTest ref", 
+            "title": "_TestIterFold"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#create", 
+            "text": "new iso create()\n: _TestIterFold iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#returns", 
+            "text": "_TestIterFold  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val ?", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#returns_2", 
+            "text": "None  val ?", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/itertools-_TestIterFold/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/", 
+            "text": "_TestIterMap\n\n\nclass iso _TestIterMap is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestIterMap iso^\n\n\n\n\nReturns\n\n\n\n\n_TestIterMap\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestIterMap"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#_testitermap", 
+            "text": "class iso _TestIterMap is\n  UnitTest ref", 
+            "title": "_TestIterMap"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#create", 
+            "text": "new iso create()\n: _TestIterMap iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#returns", 
+            "text": "_TestIterMap  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/itertools-_TestIterMap/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/", 
+            "text": "_TestIterTake\n\n\nclass iso _TestIterTake is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestIterTake iso^\n\n\n\n\nReturns\n\n\n\n\n_TestIterTake\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestIterTake"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#_testitertake", 
+            "text": "class iso _TestIterTake is\n  UnitTest ref", 
+            "title": "_TestIterTake"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#create", 
+            "text": "new iso create()\n: _TestIterTake iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#returns", 
+            "text": "_TestIterTake  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/itertools-_TestIterTake/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/", 
+            "text": "_TestIterZip\n\n\nclass iso _TestIterZip is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestIterZip iso^\n\n\n\n\nReturns\n\n\n\n\n_TestIterZip\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "title": "class _TestIterZip"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#_testiterzip", 
+            "text": "class iso _TestIterZip is\n  UnitTest ref", 
+            "title": "_TestIterZip"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#create", 
+            "text": "new iso create()\n: _TestIterZip iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#returns", 
+            "text": "_TestIterZip  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/itertools-_TestIterZip/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/itertools-_None/", 
             "text": "_None\n\n\nprimitive val _None\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: _None val^\n\n\n\n\nReturns\n\n\n\n\n_None\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: _None val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_None\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: _None val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \n_None\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
             "title": "primitive _None"
@@ -52262,12 +53247,12 @@
         }, 
         {
             "location": "/itertools-Zip2/", 
-            "text": "Zip2[A: A, B: B]\n\n\nZip two iterators together so that each call to next() results in the\na tuple with the next value of the first iterator and the next value\nof the second iterator. The number of items returned it the minimum of\nthe number of items returned by the two iterators.\n\n\nExample program\n\n\nPrint the following:\n\n\n1 a\n2 b\n3 c\n\n\n\n\nuse \nitertools\n\n\nactor Main\n  new create(env: Env) =\n\n    var i1: Array[I32] ref = [as I32: 1, 2, 3]\n    var i2: Array[String] ref = [\na\n, \nb\n, \nq\n, \nf\n]\n\n    for (x, y) in Zip2[I32, String](i1.values(), i2.values()) do\n      env.out.print(\n.add(x.string()).add(\n \n).add(y))\n    end\n\n\n\n\nclass ref Zip2[A: A, B: B] is\n  Iterator[(A , B)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[(A , B)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  i1: Iterator[A] ref,\n  i2: Iterator[B] ref)\n: Zip2[A, B] ref^\n\n\n\n\nParameters\n\n\n\n\ni1: \nIterator\n[A] ref\n\n\ni2: \nIterator\n[B] ref\n\n\n\n\nReturns\n\n\n\n\nZip2\n[A, B] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: (A , B) ?\n\n\n\n\nReturns\n\n\n\n\n(A , B) ?", 
+            "text": "Zip2[A: A, B: B]\n\n\nZip two iterators together so that each call to next() results in the\na tuple with the next value of the first iterator and the next value\nof the second iterator. The number of items returned is the minimum of\nthe number of items returned by the two iterators.\n\n\nExample program\n\n\nPrint the following:\n\n\n1 a\n2 b\n3 c\n\n\n\n\nuse \nitertools\n\n\nactor Main\n  new create(env: Env) =\n\n    var i1: Array[I32] ref = [as I32: 1, 2, 3]\n    var i2: Array[String] ref = [\na\n, \nb\n, \nq\n, \nf\n]\n\n    for (x, y) in Zip2[I32, String](i1.values(), i2.values()) do\n      env.out.print(\n.add(x.string()).add(\n \n).add(y))\n    end\n\n\n\n\nclass ref Zip2[A: A, B: B] is\n  Iterator[(A , B)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[(A , B)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  i1: Iterator[A] ref,\n  i2: Iterator[B] ref)\n: Zip2[A, B] ref^\n\n\n\n\nParameters\n\n\n\n\ni1: \nIterator\n[A] ref\n\n\ni2: \nIterator\n[B] ref\n\n\n\n\nReturns\n\n\n\n\nZip2\n[A, B] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: (A , B) ?\n\n\n\n\nReturns\n\n\n\n\n(A , B) ?", 
             "title": "class Zip2"
         }, 
         {
             "location": "/itertools-Zip2/#zip291a-a-b-b93", 
-            "text": "Zip two iterators together so that each call to next() results in the\na tuple with the next value of the first iterator and the next value\nof the second iterator. The number of items returned it the minimum of\nthe number of items returned by the two iterators.", 
+            "text": "Zip two iterators together so that each call to next() results in the\na tuple with the next value of the first iterator and the next value\nof the second iterator. The number of items returned is the minimum of\nthe number of items returned by the two iterators.", 
             "title": "Zip2[A: A, B: B]"
         }, 
         {
@@ -52327,12 +53312,12 @@
         }, 
         {
             "location": "/itertools-Zip3/", 
-            "text": "Zip3[A: A, B: B, C: C]\n\n\nZip three iterators together so that each call to next() results in\nthe a tuple with the next value of the first iterator, the next value\nof the second iterator, and the value of the third iterator. The\nnumber of items returned it the minimum of the number of items\nreturned by the three iterators.\n\n\nExample Program\n\n\nPrint the following:\n\n\n1 a 0.5\n2 b 9.8\n3 c 3.3\n\n\n\n\nuse \nitertools\n\n\nactor Main\n  new create(env: Env) =\n\n    var i1: Array[I32] ref = [as I32: 1, 2, 3]\n    var i2: Array[String] ref = [\na\n, \nb\n, \nq\n, \nf\n]\n    var i3: Array[Float] ref = [as F32: 0.5, 9.8, 3.3]\n\n    for (x, y, z) in Zip3[I32, String, F32](i1.values(), i2.values(),\n      i3.values()) do\n      env.out.print(\n.add(x.string()).add(\n \n).add(y).add(\n \n)\n        .add(z.string()))\n    end\n\n\n\n\nclass ref Zip3[A: A, B: B, C: C] is\n  Iterator[(A , B , C)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[(A , B , C)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  i1: Iterator[A] ref,\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref)\n: Zip3[A, B, C] ref^\n\n\n\n\nParameters\n\n\n\n\ni1: \nIterator\n[A] ref\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\n\n\nReturns\n\n\n\n\nZip3\n[A, B, C] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: (A , B , C) ?\n\n\n\n\nReturns\n\n\n\n\n(A , B , C) ?", 
+            "text": "Zip3[A: A, B: B, C: C]\n\n\nZip three iterators together so that each call to next() results in\nthe a tuple with the next value of the first iterator, the next value\nof the second iterator, and the value of the third iterator. The\nnumber of items returned is the minimum of the number of items\nreturned by the three iterators.\n\n\nExample Program\n\n\nPrint the following:\n\n\n1 a 0.5\n2 b 9.8\n3 c 3.3\n\n\n\n\nuse \nitertools\n\n\nactor Main\n  new create(env: Env) =\n\n    var i1: Array[I32] ref = [as I32: 1, 2, 3]\n    var i2: Array[String] ref = [\na\n, \nb\n, \nq\n, \nf\n]\n    var i3: Array[Float] ref = [as F32: 0.5, 9.8, 3.3]\n\n    for (x, y, z) in Zip3[I32, String, F32](i1.values(), i2.values(),\n      i3.values()) do\n      env.out.print(\n.add(x.string()).add(\n \n).add(y).add(\n \n)\n        .add(z.string()))\n    end\n\n\n\n\nclass ref Zip3[A: A, B: B, C: C] is\n  Iterator[(A , B , C)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[(A , B , C)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  i1: Iterator[A] ref,\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref)\n: Zip3[A, B, C] ref^\n\n\n\n\nParameters\n\n\n\n\ni1: \nIterator\n[A] ref\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\n\n\nReturns\n\n\n\n\nZip3\n[A, B, C] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: (A , B , C) ?\n\n\n\n\nReturns\n\n\n\n\n(A , B , C) ?", 
             "title": "class Zip3"
         }, 
         {
             "location": "/itertools-Zip3/#zip391a-a-b-b-c-c93", 
-            "text": "Zip three iterators together so that each call to next() results in\nthe a tuple with the next value of the first iterator, the next value\nof the second iterator, and the value of the third iterator. The\nnumber of items returned it the minimum of the number of items\nreturned by the three iterators.", 
+            "text": "Zip three iterators together so that each call to next() results in\nthe a tuple with the next value of the first iterator, the next value\nof the second iterator, and the value of the third iterator. The\nnumber of items returned is the minimum of the number of items\nreturned by the three iterators.", 
             "title": "Zip3[A: A, B: B, C: C]"
         }, 
         {
@@ -52392,12 +53377,12 @@
         }, 
         {
             "location": "/itertools-Zip4/", 
-            "text": "Zip4[A: A, B: B, C: C, D: D]\n\n\nZip four iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned it the minimum of the number of items returned by the\niterators.\n\n\nExample Program\n\n\nPrint the following:\n\n\n1 a 0.5 m\n2 b 9.8 n\n3 c 3.3 o\n\n\n\n\nuse \nitertools\n\n\nactor Main\n  new create(env: Env) =\n\n    var i1: Array[I32] ref = [as I32: 1, 2, 3]\n    var i2: Array[String] ref = [\na\n, \nb\n, \nq\n, \nf\n]\n    var i3: Array[Float] ref = [as F32: 0.5, 9.8, 3.3]\n    var i4: Array[String] ref = [\nm\n, \nn\n, \no\n, \np\n, \nq\n, \nr\n]\n\n    for (x, y, z, xx) in Zip3[I32, String, F32](i1.values(), i2.values(),\n      i3.values(), i4.values()) do\n      env.out.print(\n.add(x.string()).add(\n \n).add(y).add(\n \n)\n        .add(z.string()).add(\n \n).add(xx.string()))\n    end\n\n\n\n\nclass ref Zip4[A: A, B: B, C: C, D: D] is\n  Iterator[(A , B , C , D)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[(A , B , C , D)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  i1: Iterator[A] ref,\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref,\n  i4: Iterator[D] ref)\n: Zip4[A, B, C, D] ref^\n\n\n\n\nParameters\n\n\n\n\ni1: \nIterator\n[A] ref\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\ni4: \nIterator\n[D] ref\n\n\n\n\nReturns\n\n\n\n\nZip4\n[A, B, C, D] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: (A , B , C , D) ?\n\n\n\n\nReturns\n\n\n\n\n(A , B , C , D) ?", 
+            "text": "Zip4[A: A, B: B, C: C, D: D]\n\n\nZip four iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned is the minimum of the number of items returned by the\niterators.\n\n\nExample Program\n\n\nPrint the following:\n\n\n1 a 0.5 m\n2 b 9.8 n\n3 c 3.3 o\n\n\n\n\nuse \nitertools\n\n\nactor Main\n  new create(env: Env) =\n\n    var i1: Array[I32] ref = [as I32: 1, 2, 3]\n    var i2: Array[String] ref = [\na\n, \nb\n, \nq\n, \nf\n]\n    var i3: Array[Float] ref = [as F32: 0.5, 9.8, 3.3]\n    var i4: Array[String] ref = [\nm\n, \nn\n, \no\n, \np\n, \nq\n, \nr\n]\n\n    for (x, y, z, xx) in Zip3[I32, String, F32](i1.values(), i2.values(),\n      i3.values(), i4.values()) do\n      env.out.print(\n.add(x.string()).add(\n \n).add(y).add(\n \n)\n        .add(z.string()).add(\n \n).add(xx.string()))\n    end\n\n\n\n\nclass ref Zip4[A: A, B: B, C: C, D: D] is\n  Iterator[(A , B , C , D)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[(A , B , C , D)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  i1: Iterator[A] ref,\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref,\n  i4: Iterator[D] ref)\n: Zip4[A, B, C, D] ref^\n\n\n\n\nParameters\n\n\n\n\ni1: \nIterator\n[A] ref\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\ni4: \nIterator\n[D] ref\n\n\n\n\nReturns\n\n\n\n\nZip4\n[A, B, C, D] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: (A , B , C , D) ?\n\n\n\n\nReturns\n\n\n\n\n(A , B , C , D) ?", 
             "title": "class Zip4"
         }, 
         {
             "location": "/itertools-Zip4/#zip491a-a-b-b-c-c-d-d93", 
-            "text": "Zip four iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned it the minimum of the number of items returned by the\niterators.", 
+            "text": "Zip four iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned is the minimum of the number of items returned by the\niterators.", 
             "title": "Zip4[A: A, B: B, C: C, D: D]"
         }, 
         {
@@ -52457,12 +53442,12 @@
         }, 
         {
             "location": "/itertools-Zip5/", 
-            "text": "Zip5[A: A, B: B, C: C, D: D, E: E]\n\n\nZip five iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned it the minimum of the number of items returned by the\niterators.\n\n\nExample Program\n\n\nPrint the following:\n\n\n1 a 0.5 m 2\n2 b 9.8 n 6\n3 c 3.3 o 5\n\n\n\n\nuse \nitertools\n\n\nactor Main\n  new create(env: Env) =\n\n    var i1: Array[I32] ref = [as I32: 1, 2, 3]\n    var i2: Array[String] ref = [\na\n, \nb\n, \nq\n, \nf\n]\n    var i3: Array[Float] ref = [as F32: 0.5, 9.8, 3.3]\n    var i4: Array[String] ref = [\nm\n, \nn\n, \no\n, \np\n, \nq\n, \nr\n]\n    var i5: Array[I32] ref = [as I32: 2, 6, 5, 3, 5]\n\n    for (x, y, z, xx, yy) in Zip3[I32, String, F32](i1.values(), i2.values(),\n      i3.values(), i4.values(), i5.values()) do\n      env.out.print(\n.add(x.string()).add(\n \n).add(y).add(\n \n)\n        .add(z).add(\n \n).add(xx.string()).add(\n \n).add(yy.string()))\n    end\n\n\n\n\nclass ref Zip5[A: A, B: B, C: C, D: D, E: E] is\n  Iterator[(A , B , C , D , E)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[(A , B , C , D , E)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  i1: Iterator[A] ref,\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref,\n  i4: Iterator[D] ref,\n  i5: Iterator[E] ref)\n: Zip5[A, B, C, D, E] ref^\n\n\n\n\nParameters\n\n\n\n\ni1: \nIterator\n[A] ref\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\ni4: \nIterator\n[D] ref\n\n\ni5: \nIterator\n[E] ref\n\n\n\n\nReturns\n\n\n\n\nZip5\n[A, B, C, D, E] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: (A , B , C , D , E) ?\n\n\n\n\nReturns\n\n\n\n\n(A , B , C , D , E) ?", 
+            "text": "Zip5[A: A, B: B, C: C, D: D, E: E]\n\n\nZip five iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned is the minimum of the number of items returned by the\niterators.\n\n\nExample Program\n\n\nPrint the following:\n\n\n1 a 0.5 m 2\n2 b 9.8 n 6\n3 c 3.3 o 5\n\n\n\n\nuse \nitertools\n\n\nactor Main\n  new create(env: Env) =\n\n    var i1: Array[I32] ref = [as I32: 1, 2, 3]\n    var i2: Array[String] ref = [\na\n, \nb\n, \nq\n, \nf\n]\n    var i3: Array[Float] ref = [as F32: 0.5, 9.8, 3.3]\n    var i4: Array[String] ref = [\nm\n, \nn\n, \no\n, \np\n, \nq\n, \nr\n]\n    var i5: Array[I32] ref = [as I32: 2, 6, 5, 3, 5]\n\n    for (x, y, z, xx, yy) in Zip3[I32, String, F32](i1.values(), i2.values(),\n      i3.values(), i4.values(), i5.values()) do\n      env.out.print(\n.add(x.string()).add(\n \n).add(y).add(\n \n)\n        .add(z).add(\n \n).add(xx.string()).add(\n \n).add(yy.string()))\n    end\n\n\n\n\nclass ref Zip5[A: A, B: B, C: C, D: D, E: E] is\n  Iterator[(A , B , C , D , E)] ref\n\n\n\n\nImplements\n\n\n\n\nIterator\n[(A , B , C , D , E)] ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew ref create(\n  i1: Iterator[A] ref,\n  i2: Iterator[B] ref,\n  i3: Iterator[C] ref,\n  i4: Iterator[D] ref,\n  i5: Iterator[E] ref)\n: Zip5[A, B, C, D, E] ref^\n\n\n\n\nParameters\n\n\n\n\ni1: \nIterator\n[A] ref\n\n\ni2: \nIterator\n[B] ref\n\n\ni3: \nIterator\n[C] ref\n\n\ni4: \nIterator\n[D] ref\n\n\ni5: \nIterator\n[E] ref\n\n\n\n\nReturns\n\n\n\n\nZip5\n[A, B, C, D, E] ref^\n\n\n\n\n\n\nPublic Functions\n\n\nhas_next\n\n\nfun ref has_next()\n: Bool val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nnext\n\n\nfun ref next()\n: (A , B , C , D , E) ?\n\n\n\n\nReturns\n\n\n\n\n(A , B , C , D , E) ?", 
             "title": "class Zip5"
         }, 
         {
             "location": "/itertools-Zip5/#zip591a-a-b-b-c-c-d-d-e-e93", 
-            "text": "Zip five iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned it the minimum of the number of items returned by the\niterators.", 
+            "text": "Zip five iterators together so that each call to next() results in the\na tuple with the next value of each of the iterators. The number of\nitems returned is the minimum of the number of items returned by the\niterators.", 
             "title": "Zip5[A: A, B: B, C: C, D: D, E: E]"
         }, 
         {
