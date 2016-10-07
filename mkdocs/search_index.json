@@ -13282,7 +13282,7 @@
         }, 
         {
             "location": "/builtin-StdStream/", 
-            "text": "StdStream\n\n\nAsynchronous access to stdout and stderr. The constructors are private to\nensure that access is provided only via an environment.\n\n\nactor tag StdStream\n\n\n\n\nConstructors\n\n\n_out\n\n\nCreate an async stream for stdout.\n\n\nnew tag _out()\n: StdStream tag^\n\n\n\n\nReturns\n\n\n\n\nStdStream\n tag^\n\n\n\n\n\n\n_err\n\n\nCreate an async stream for stderr.\n\n\nnew tag _err()\n: StdStream tag^\n\n\n\n\nReturns\n\n\n\n\nStdStream\n tag^\n\n\n\n\n\n\nPublic Behaviours\n\n\nprint\n\n\nPrint some bytes and insert a newline afterwards.\n\n\nbe print(\n  data: (String val | Array[U8 val] val))\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nwrite\n\n\nPrint some bytes without inserting a newline afterwards.\n\n\nbe write(\n  data: (String val | Array[U8 val] val))\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nprintv\n\n\nPrint an iterable collection of ByteSeqs.\n\n\nbe printv(\n  data: ByteSeqIter val)\n\n\n\n\nParameters\n\n\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\n\n\nwritev\n\n\nWrite an iterable collection of ByteSeqs.\n\n\nbe writev(\n  data: ByteSeqIter val)\n\n\n\n\nParameters\n\n\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_write\n\n\nWrite the bytes without explicitly flushing.\n\n\nfun ref _write(\n  data: (String val | Array[U8 val] val))\n: None val\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "StdStream\n\n\nAsynchronous access to stdout and stderr. The constructors are private to\nensure that access is provided only via an environment.\n\n\nactor tag StdStream\n\n\n\n\nConstructors\n\n\n_out\n\n\nCreate an async stream for stdout.\n\n\nnew tag _out()\n: StdStream tag^\n\n\n\n\nReturns\n\n\n\n\nStdStream\n tag^\n\n\n\n\n\n\n_err\n\n\nCreate an async stream for stderr.\n\n\nnew tag _err()\n: StdStream tag^\n\n\n\n\nReturns\n\n\n\n\nStdStream\n tag^\n\n\n\n\n\n\nPublic Behaviours\n\n\nprint\n\n\nPrint some bytes and insert a newline afterwards.\n\n\nbe print(\n  data: (String val | Array[U8 val] val))\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nwrite\n\n\nPrint some bytes without inserting a newline afterwards.\n\n\nbe write(\n  data: (String val | Array[U8 val] val))\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nprintv\n\n\nPrint an iterable collection of ByteSeqs.\n\n\nbe printv(\n  data: ByteSeqIter val)\n\n\n\n\nParameters\n\n\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\n\n\nwritev\n\n\nWrite an iterable collection of ByteSeqs.\n\n\nbe writev(\n  data: ByteSeqIter val)\n\n\n\n\nParameters\n\n\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_write\n\n\nWrite the bytes without explicitly flushing.\n\n\nfun ref _write(\n  data: (String val | Array[U8 val] val))\n: None val\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_print\n\n\nWrite the bytes and a newline without explicitly flushing.\n\n\nfun ref _print(\n  data: (String val | Array[U8 val] val))\n: None val\n\n\n\n\nParameters\n\n\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "actor StdStream"
         }, 
         {
@@ -13377,6 +13377,21 @@
         }, 
         {
             "location": "/builtin-StdStream/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/builtin-StdStream/#_print", 
+            "text": "Write the bytes and a newline without explicitly flushing.  fun ref _print(\n  data: (String val | Array[U8 val] val))\n: None val", 
+            "title": "_print"
+        }, 
+        {
+            "location": "/builtin-StdStream/#parameters_5", 
+            "text": "data: ( String  val |  Array [ U8  val] val)", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/builtin-StdStream/#returns_3", 
             "text": "None  val", 
             "title": "Returns"
         }, 
