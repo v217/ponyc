@@ -384,222 +384,6 @@
     </url>
         
     <url>
-     <loc>None/builtin-FormatSpec/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-PrefixSpec/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-Creatable/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatSettings/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatSettingsDefault/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatSettingsHolder/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-Stringable/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatDefault/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-PrefixDefault/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-AlignLeft/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-AlignRight/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-AlignCenter/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-Align/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatUTF32/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatBinary/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatBinaryBare/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatOctal/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatOctalBare/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatHex/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatHexBare/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatHexSmall/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatHexSmallBare/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatInt/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatDefaultNumber/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatSettingsInt/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-PrefixSpace/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-PrefixSign/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-PrefixNumber/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatExp/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatExpLarge/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatFix/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatFixLarge/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatGeneral/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatGeneralLarge/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatFloat/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin-FormatSettingsFloat/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>None/builtin-_ToString/</loc>
      <lastmod>2016-10-07</lastmod>
      <changefreq>daily</changefreq>
@@ -655,6 +439,12 @@
         
     <url>
      <loc>None/builtin-Signed/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/builtin-Stringable/</loc>
      <lastmod>2016-10-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -1007,12 +797,6 @@
         
     <url>
      <loc>None/builtin_test-_TestCCallback/</loc>
-     <lastmod>2016-10-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/builtin_test-_TestFormatSettingsInt/</loc>
      <lastmod>2016-10-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -2203,6 +1987,244 @@
         
     <url>
      <loc>None/files-FileMode/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>None/format--index/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-_FormatFloat/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-Main/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-_TestApply/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-_TestInt/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-_FormatInt/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatSpec/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-PrefixSpec/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-Creatable/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatSettings/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatSettingsDefault/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatDefault/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-PrefixDefault/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-AlignLeft/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-AlignRight/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-AlignCenter/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-Align/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatUTF32/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatBinary/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatBinaryBare/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatOctal/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatOctalBare/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatHex/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatHexBare/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatHexSmall/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatHexSmallBare/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatInt/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatDefaultNumber/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-PrefixSpace/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-PrefixSign/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-PrefixNumber/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatExp/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatExpLarge/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatFix/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatFixLarge/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatGeneral/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatGeneralLarge/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-FormatFloat/</loc>
+     <lastmod>2016-10-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/format-Format/</loc>
      <lastmod>2016-10-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
