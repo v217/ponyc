@@ -75457,7 +75457,7 @@
         }, 
         {
             "location": "/process--index/", 
-            "text": "Process package\n\n\nThe Process package provides support for handling Unix style processes.\nFor each external process that you want to handle, you need to create a\n\nProcessMonitor\n and a corresponding \nProcessNotify\n object. Each ProcessMonitor\nruns as it own actor and upon receiving data will call its corresponding\n\nProcessNotify\n's method.\n\n\nExample program\n\n\nThe following program will spawn an external program and write to it's\nSTDIN. Output received on STDOUT of the child process is forwarded to the\nProcessNotify client and printed.\n\n\nuse \nprocess\n\nuse \nfiles\n\n\nactor Main\n  let _env: Env\n\n  new create(env: Env) =\n\n    _env = env\n    // create a notifier\n    let client = ProcessClient(_env)\n    let notifier: ProcessNotify iso = consume client\n    // define the binary to run\n    try\n      let path = FilePath(env.root as AmbientAuth, \n/bin/cat\n)\n      // define the arguments; first arg is always the binary name\n      let args: Array[String] iso = recover Array[String](1) end\n      args.push(\ncat\n)\n      // define the environment variable for the execution\n      let vars: Array[String] iso = recover Array[String](2) end\n      vars.push(\nHOME=/\n)\n      vars.push(\nPATH=/bin\n)\n      // create a ProcessMonitor and spawn the child process\n      let pm: ProcessMonitor = ProcessMonitor(consume notifier, path,\n      consume args, consume vars)\n      // write to STDIN of the child process\n      pm.write(\none, two, three\n)\n      pm.done_writing() // closing stdin allows cat to terminate\n    else\n      env.out.print(\nCould not create FilePath!\n)\n    end\n\n// define a client that implements the ProcessNotify interface\nclass ProcessClient is ProcessNotify\n  let _env: Env\n\n  new iso create(env: Env) =\n\n    _env = env\n\n  fun ref stdout(process: ProcessMonitor ref, data: Array[U8] iso) =\n\n    let out = String.from_array(consume data)\n    _env.out.print(\nSTDOUT: \n + out)\n\n  fun ref stderr(process: ProcessMonitor ref, data: Array[U8] iso) =\n\n    let err = String.from_array(consume data)\n    _env.out.print(\nSTDERR: \n + err)\n\n  fun ref failed(process: ProcessMonitor ref, err: ProcessError) =\n\n    match err\n    | ExecveError   =\n _env.out.print(\nProcessError: ExecveError\n)\n    | PipeError     =\n _env.out.print(\nProcessError: PipeError\n)\n    | Dup2Error     =\n _env.out.print(\nProcessError: Dup2Error\n)\n    | ForkError     =\n _env.out.print(\nProcessError: ForkError\n)\n    | FcntlError    =\n _env.out.print(\nProcessError: FcntlError\n)\n    | WaitpidError  =\n _env.out.print(\nProcessError: WaitpidError\n)\n    | CloseError    =\n _env.out.print(\nProcessError: CloseError\n)\n    | ReadError     =\n _env.out.print(\nProcessError: ReadError\n)\n    | WriteError    =\n _env.out.print(\nProcessError: WriteError\n)\n    | KillError     =\n _env.out.print(\nProcessError: KillError\n)\n    | Unsupported   =\n _env.out.print(\nProcessError: Unsupported\n)\n    else\n      _env.out.print(\nUnknown ProcessError!\n)\n    end\n\n  fun ref dispose(process: ProcessMonitor ref, child_exit_code: I32) =\n\n    let code: I32 = consume child_exit_code\n    _env.out.print(\nChild exit code: \n + code.string())\n\n\n\n\nProcess portability\n\n\nThe ProcessMonitor supports spawning processes on Linux, FreeBSD and OSX.\nProcesses are not supported on Windows and attempting to use them will cause\na runtime error.\n\n\nShutting down ProcessMonitor and external process\n\n\nDocument waitpid behaviour (stops world)\n\n\nPublic Types\n\n\n\n\nprimitive ExecveError\n\n\nprimitive PipeError\n\n\nprimitive Dup2Error\n\n\nprimitive ForkError\n\n\nprimitive FcntlError\n\n\nprimitive WaitpidError\n\n\nprimitive CloseError\n\n\nprimitive ReadError\n\n\nprimitive WriteError\n\n\nprimitive KillError\n\n\nprimitive Unsupported\n\n\nprimitive CapError\n\n\ntype ProcessError\n\n\nactor ProcessMonitor\n\n\ninterface ProcessNotify\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _EINTR\n\n\nprimitive _STDINFILENO\n\n\nprimitive _STDOUTFILENO\n\n\nprimitive _STDERRFILENO\n\n\nprimitive _FSETFL\n\n\nprimitive _FGETFL\n\n\nprimitive _FSETFD\n\n\nprimitive _FGETFD\n\n\nprimitive _FDCLOEXEC\n\n\nprimitive _SIGTERM\n\n\nprimitive _EAGAIN\n\n\nprimitive _ONONBLOCK\n\n\nclass _ProcessClient\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestStdinStdout\n\n\nclass _TestStderr\n\n\nclass _TestFileExec\n\n\nclass _TestExpect\n\n\nclass _TestWritevOrdering\n\n\nclass _TestPrintvOrdering", 
+            "text": "Process package\n\n\nThe Process package provides support for handling Unix style processes.\nFor each external process that you want to handle, you need to create a\n\nProcessMonitor\n and a corresponding \nProcessNotify\n object. Each ProcessMonitor\nruns as it own actor and upon receiving data will call its corresponding\n\nProcessNotify\n's method.\n\n\nExample program\n\n\nThe following program will spawn an external program and write to it's\nSTDIN. Output received on STDOUT of the child process is forwarded to the\nProcessNotify client and printed.\n\n\nuse \nprocess\n\nuse \nfiles\n\n\nactor Main\n  let _env: Env\n\n  new create(env: Env) =\n\n    _env = env\n    // create a notifier\n    let client = ProcessClient(_env)\n    let notifier: ProcessNotify iso = consume client\n    // define the binary to run\n    try\n      let path = FilePath(env.root as AmbientAuth, \n/bin/cat\n)\n      // define the arguments; first arg is always the binary name\n      let args: Array[String] iso = recover Array[String](1) end\n      args.push(\ncat\n)\n      // define the environment variable for the execution\n      let vars: Array[String] iso = recover Array[String](2) end\n      vars.push(\nHOME=/\n)\n      vars.push(\nPATH=/bin\n)\n      // create a ProcessMonitor and spawn the child process\n      let pm: ProcessMonitor = ProcessMonitor(consume notifier, path,\n      consume args, consume vars)\n      // write to STDIN of the child process\n      pm.write(\none, two, three\n)\n      pm.done_writing() // closing stdin allows cat to terminate\n    else\n      env.out.print(\nCould not create FilePath!\n)\n    end\n\n// define a client that implements the ProcessNotify interface\nclass ProcessClient is ProcessNotify\n  let _env: Env\n\n  new iso create(env: Env) =\n\n    _env = env\n\n  fun ref stdout(process: ProcessMonitor ref, data: Array[U8] iso) =\n\n    let out = String.from_array(consume data)\n    _env.out.print(\nSTDOUT: \n + out)\n\n  fun ref stderr(process: ProcessMonitor ref, data: Array[U8] iso) =\n\n    let err = String.from_array(consume data)\n    _env.out.print(\nSTDERR: \n + err)\n\n  fun ref failed(process: ProcessMonitor ref, err: ProcessError) =\n\n    match err\n    | ExecveError   =\n _env.out.print(\nProcessError: ExecveError\n)\n    | PipeError     =\n _env.out.print(\nProcessError: PipeError\n)\n    | ForkError     =\n _env.out.print(\nProcessError: ForkError\n)\n    | WaitpidError  =\n _env.out.print(\nProcessError: WaitpidError\n)\n    | WriteError    =\n _env.out.print(\nProcessError: WriteError\n)\n    | KillError     =\n _env.out.print(\nProcessError: KillError\n)\n    | CapError      =\n _env.out.print(\nProcessError: CapError\n)\n    | Unsupported   =\n _env.out.print(\nProcessError: Unsupported\n)\n    else\n      _env.out.print(\nUnknown ProcessError!\n)\n    end\n\n  fun ref dispose(process: ProcessMonitor ref, child_exit_code: I32) =\n\n    let code: I32 = consume child_exit_code\n    _env.out.print(\nChild exit code: \n + code.string())\n\n\n\n\nProcess portability\n\n\nThe ProcessMonitor supports spawning processes on Linux, FreeBSD and OSX.\nProcesses are not supported on Windows and attempting to use them will cause\na runtime error.\n\n\nShutting down ProcessMonitor and external process\n\n\nDocument waitpid behaviour (stops world)\n\n\nPublic Types\n\n\n\n\nprimitive ExecveError\n\n\nprimitive PipeError\n\n\nprimitive ForkError\n\n\nprimitive WaitpidError\n\n\nprimitive WriteError\n\n\nprimitive KillError\n\n\nprimitive Unsupported\n\n\nprimitive CapError\n\n\ntype ProcessError\n\n\nactor ProcessMonitor\n\n\ninterface ProcessNotify\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _EINTR\n\n\nprimitive _STDINFILENO\n\n\nprimitive _STDOUTFILENO\n\n\nprimitive _STDERRFILENO\n\n\nprimitive _FSETFL\n\n\nprimitive _FGETFL\n\n\nprimitive _FSETFD\n\n\nprimitive _FGETFD\n\n\nprimitive _FDCLOEXEC\n\n\nprimitive _SIGTERM\n\n\nprimitive _EAGAIN\n\n\nprimitive _ONONBLOCK\n\n\nclass _ProcessClient\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestStdinStdout\n\n\nclass _TestStderr\n\n\nclass _TestFileExec\n\n\nclass _TestExpect\n\n\nclass _TestWritevOrdering\n\n\nclass _TestPrintvOrdering", 
             "title": "Package"
         }, 
         {
@@ -75467,7 +75467,7 @@
         }, 
         {
             "location": "/process--index/#example-program", 
-            "text": "The following program will spawn an external program and write to it's\nSTDIN. Output received on STDOUT of the child process is forwarded to the\nProcessNotify client and printed.  use  process \nuse  files \n\nactor Main\n  let _env: Env\n\n  new create(env: Env) = \n    _env = env\n    // create a notifier\n    let client = ProcessClient(_env)\n    let notifier: ProcessNotify iso = consume client\n    // define the binary to run\n    try\n      let path = FilePath(env.root as AmbientAuth,  /bin/cat )\n      // define the arguments; first arg is always the binary name\n      let args: Array[String] iso = recover Array[String](1) end\n      args.push( cat )\n      // define the environment variable for the execution\n      let vars: Array[String] iso = recover Array[String](2) end\n      vars.push( HOME=/ )\n      vars.push( PATH=/bin )\n      // create a ProcessMonitor and spawn the child process\n      let pm: ProcessMonitor = ProcessMonitor(consume notifier, path,\n      consume args, consume vars)\n      // write to STDIN of the child process\n      pm.write( one, two, three )\n      pm.done_writing() // closing stdin allows cat to terminate\n    else\n      env.out.print( Could not create FilePath! )\n    end\n\n// define a client that implements the ProcessNotify interface\nclass ProcessClient is ProcessNotify\n  let _env: Env\n\n  new iso create(env: Env) = \n    _env = env\n\n  fun ref stdout(process: ProcessMonitor ref, data: Array[U8] iso) = \n    let out = String.from_array(consume data)\n    _env.out.print( STDOUT:   + out)\n\n  fun ref stderr(process: ProcessMonitor ref, data: Array[U8] iso) = \n    let err = String.from_array(consume data)\n    _env.out.print( STDERR:   + err)\n\n  fun ref failed(process: ProcessMonitor ref, err: ProcessError) = \n    match err\n    | ExecveError   =  _env.out.print( ProcessError: ExecveError )\n    | PipeError     =  _env.out.print( ProcessError: PipeError )\n    | Dup2Error     =  _env.out.print( ProcessError: Dup2Error )\n    | ForkError     =  _env.out.print( ProcessError: ForkError )\n    | FcntlError    =  _env.out.print( ProcessError: FcntlError )\n    | WaitpidError  =  _env.out.print( ProcessError: WaitpidError )\n    | CloseError    =  _env.out.print( ProcessError: CloseError )\n    | ReadError     =  _env.out.print( ProcessError: ReadError )\n    | WriteError    =  _env.out.print( ProcessError: WriteError )\n    | KillError     =  _env.out.print( ProcessError: KillError )\n    | Unsupported   =  _env.out.print( ProcessError: Unsupported )\n    else\n      _env.out.print( Unknown ProcessError! )\n    end\n\n  fun ref dispose(process: ProcessMonitor ref, child_exit_code: I32) = \n    let code: I32 = consume child_exit_code\n    _env.out.print( Child exit code:   + code.string())", 
+            "text": "The following program will spawn an external program and write to it's\nSTDIN. Output received on STDOUT of the child process is forwarded to the\nProcessNotify client and printed.  use  process \nuse  files \n\nactor Main\n  let _env: Env\n\n  new create(env: Env) = \n    _env = env\n    // create a notifier\n    let client = ProcessClient(_env)\n    let notifier: ProcessNotify iso = consume client\n    // define the binary to run\n    try\n      let path = FilePath(env.root as AmbientAuth,  /bin/cat )\n      // define the arguments; first arg is always the binary name\n      let args: Array[String] iso = recover Array[String](1) end\n      args.push( cat )\n      // define the environment variable for the execution\n      let vars: Array[String] iso = recover Array[String](2) end\n      vars.push( HOME=/ )\n      vars.push( PATH=/bin )\n      // create a ProcessMonitor and spawn the child process\n      let pm: ProcessMonitor = ProcessMonitor(consume notifier, path,\n      consume args, consume vars)\n      // write to STDIN of the child process\n      pm.write( one, two, three )\n      pm.done_writing() // closing stdin allows cat to terminate\n    else\n      env.out.print( Could not create FilePath! )\n    end\n\n// define a client that implements the ProcessNotify interface\nclass ProcessClient is ProcessNotify\n  let _env: Env\n\n  new iso create(env: Env) = \n    _env = env\n\n  fun ref stdout(process: ProcessMonitor ref, data: Array[U8] iso) = \n    let out = String.from_array(consume data)\n    _env.out.print( STDOUT:   + out)\n\n  fun ref stderr(process: ProcessMonitor ref, data: Array[U8] iso) = \n    let err = String.from_array(consume data)\n    _env.out.print( STDERR:   + err)\n\n  fun ref failed(process: ProcessMonitor ref, err: ProcessError) = \n    match err\n    | ExecveError   =  _env.out.print( ProcessError: ExecveError )\n    | PipeError     =  _env.out.print( ProcessError: PipeError )\n    | ForkError     =  _env.out.print( ProcessError: ForkError )\n    | WaitpidError  =  _env.out.print( ProcessError: WaitpidError )\n    | WriteError    =  _env.out.print( ProcessError: WriteError )\n    | KillError     =  _env.out.print( ProcessError: KillError )\n    | CapError      =  _env.out.print( ProcessError: CapError )\n    | Unsupported   =  _env.out.print( ProcessError: Unsupported )\n    else\n      _env.out.print( Unknown ProcessError! )\n    end\n\n  fun ref dispose(process: ProcessMonitor ref, child_exit_code: I32) = \n    let code: I32 = consume child_exit_code\n    _env.out.print( Child exit code:   + code.string())", 
             "title": "Example program"
         }, 
         {
@@ -75482,7 +75482,7 @@
         }, 
         {
             "location": "/process--index/#public-types", 
-            "text": "primitive ExecveError  primitive PipeError  primitive Dup2Error  primitive ForkError  primitive FcntlError  primitive WaitpidError  primitive CloseError  primitive ReadError  primitive WriteError  primitive KillError  primitive Unsupported  primitive CapError  type ProcessError  actor ProcessMonitor  interface ProcessNotify", 
+            "text": "primitive ExecveError  primitive PipeError  primitive ForkError  primitive WaitpidError  primitive WriteError  primitive KillError  primitive Unsupported  primitive CapError  type ProcessError  actor ProcessMonitor  interface ProcessNotify", 
             "title": "Public Types"
         }, 
         {
@@ -76456,66 +76456,6 @@
             "title": "Returns"
         }, 
         {
-            "location": "/process-Dup2Error/", 
-            "text": "Dup2Error\n\n\nprimitive val Dup2Error\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: Dup2Error val^\n\n\n\n\nReturns\n\n\n\n\nDup2Error\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: Dup2Error val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nDup2Error\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: Dup2Error val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nDup2Error\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
-            "title": "primitive Dup2Error"
-        }, 
-        {
-            "location": "/process-Dup2Error/#dup2error", 
-            "text": "primitive val Dup2Error", 
-            "title": "Dup2Error"
-        }, 
-        {
-            "location": "/process-Dup2Error/#constructors", 
-            "text": "", 
-            "title": "Constructors"
-        }, 
-        {
-            "location": "/process-Dup2Error/#create", 
-            "text": "new val create()\n: Dup2Error val^", 
-            "title": "create"
-        }, 
-        {
-            "location": "/process-Dup2Error/#returns", 
-            "text": "Dup2Error  val^", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-Dup2Error/#public-functions", 
-            "text": "", 
-            "title": "Public Functions"
-        }, 
-        {
-            "location": "/process-Dup2Error/#eq", 
-            "text": "fun box eq(\n  that: Dup2Error val)\n: Bool val", 
-            "title": "eq"
-        }, 
-        {
-            "location": "/process-Dup2Error/#parameters", 
-            "text": "that:  Dup2Error  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/process-Dup2Error/#returns_1", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-Dup2Error/#ne", 
-            "text": "fun box ne(\n  that: Dup2Error val)\n: Bool val", 
-            "title": "ne"
-        }, 
-        {
-            "location": "/process-Dup2Error/#parameters_1", 
-            "text": "that:  Dup2Error  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/process-Dup2Error/#returns_2", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
             "location": "/process-ForkError/", 
             "text": "ForkError\n\n\nprimitive val ForkError\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: ForkError val^\n\n\n\n\nReturns\n\n\n\n\nForkError\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: ForkError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nForkError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: ForkError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nForkError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
             "title": "primitive ForkError"
@@ -76576,66 +76516,6 @@
             "title": "Returns"
         }, 
         {
-            "location": "/process-FcntlError/", 
-            "text": "FcntlError\n\n\nprimitive val FcntlError\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: FcntlError val^\n\n\n\n\nReturns\n\n\n\n\nFcntlError\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: FcntlError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFcntlError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: FcntlError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nFcntlError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
-            "title": "primitive FcntlError"
-        }, 
-        {
-            "location": "/process-FcntlError/#fcntlerror", 
-            "text": "primitive val FcntlError", 
-            "title": "FcntlError"
-        }, 
-        {
-            "location": "/process-FcntlError/#constructors", 
-            "text": "", 
-            "title": "Constructors"
-        }, 
-        {
-            "location": "/process-FcntlError/#create", 
-            "text": "new val create()\n: FcntlError val^", 
-            "title": "create"
-        }, 
-        {
-            "location": "/process-FcntlError/#returns", 
-            "text": "FcntlError  val^", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-FcntlError/#public-functions", 
-            "text": "", 
-            "title": "Public Functions"
-        }, 
-        {
-            "location": "/process-FcntlError/#eq", 
-            "text": "fun box eq(\n  that: FcntlError val)\n: Bool val", 
-            "title": "eq"
-        }, 
-        {
-            "location": "/process-FcntlError/#parameters", 
-            "text": "that:  FcntlError  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/process-FcntlError/#returns_1", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-FcntlError/#ne", 
-            "text": "fun box ne(\n  that: FcntlError val)\n: Bool val", 
-            "title": "ne"
-        }, 
-        {
-            "location": "/process-FcntlError/#parameters_1", 
-            "text": "that:  FcntlError  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/process-FcntlError/#returns_2", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
             "location": "/process-WaitpidError/", 
             "text": "WaitpidError\n\n\nprimitive val WaitpidError\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: WaitpidError val^\n\n\n\n\nReturns\n\n\n\n\nWaitpidError\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: WaitpidError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nWaitpidError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: WaitpidError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nWaitpidError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
             "title": "primitive WaitpidError"
@@ -76692,126 +76572,6 @@
         }, 
         {
             "location": "/process-WaitpidError/#returns_2", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-CloseError/", 
-            "text": "CloseError\n\n\nprimitive val CloseError\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: CloseError val^\n\n\n\n\nReturns\n\n\n\n\nCloseError\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: CloseError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nCloseError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: CloseError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nCloseError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
-            "title": "primitive CloseError"
-        }, 
-        {
-            "location": "/process-CloseError/#closeerror", 
-            "text": "primitive val CloseError", 
-            "title": "CloseError"
-        }, 
-        {
-            "location": "/process-CloseError/#constructors", 
-            "text": "", 
-            "title": "Constructors"
-        }, 
-        {
-            "location": "/process-CloseError/#create", 
-            "text": "new val create()\n: CloseError val^", 
-            "title": "create"
-        }, 
-        {
-            "location": "/process-CloseError/#returns", 
-            "text": "CloseError  val^", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-CloseError/#public-functions", 
-            "text": "", 
-            "title": "Public Functions"
-        }, 
-        {
-            "location": "/process-CloseError/#eq", 
-            "text": "fun box eq(\n  that: CloseError val)\n: Bool val", 
-            "title": "eq"
-        }, 
-        {
-            "location": "/process-CloseError/#parameters", 
-            "text": "that:  CloseError  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/process-CloseError/#returns_1", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-CloseError/#ne", 
-            "text": "fun box ne(\n  that: CloseError val)\n: Bool val", 
-            "title": "ne"
-        }, 
-        {
-            "location": "/process-CloseError/#parameters_1", 
-            "text": "that:  CloseError  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/process-CloseError/#returns_2", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-ReadError/", 
-            "text": "ReadError\n\n\nprimitive val ReadError\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew val create()\n: ReadError val^\n\n\n\n\nReturns\n\n\n\n\nReadError\n val^\n\n\n\n\n\n\nPublic Functions\n\n\neq\n\n\nfun box eq(\n  that: ReadError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nReadError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val\n\n\n\n\n\n\nne\n\n\nfun box ne(\n  that: ReadError val)\n: Bool val\n\n\n\n\nParameters\n\n\n\n\nthat: \nReadError\n val\n\n\n\n\nReturns\n\n\n\n\nBool\n val", 
-            "title": "primitive ReadError"
-        }, 
-        {
-            "location": "/process-ReadError/#readerror", 
-            "text": "primitive val ReadError", 
-            "title": "ReadError"
-        }, 
-        {
-            "location": "/process-ReadError/#constructors", 
-            "text": "", 
-            "title": "Constructors"
-        }, 
-        {
-            "location": "/process-ReadError/#create", 
-            "text": "new val create()\n: ReadError val^", 
-            "title": "create"
-        }, 
-        {
-            "location": "/process-ReadError/#returns", 
-            "text": "ReadError  val^", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-ReadError/#public-functions", 
-            "text": "", 
-            "title": "Public Functions"
-        }, 
-        {
-            "location": "/process-ReadError/#eq", 
-            "text": "fun box eq(\n  that: ReadError val)\n: Bool val", 
-            "title": "eq"
-        }, 
-        {
-            "location": "/process-ReadError/#parameters", 
-            "text": "that:  ReadError  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/process-ReadError/#returns_1", 
-            "text": "Bool  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/process-ReadError/#ne", 
-            "text": "fun box ne(\n  that: ReadError val)\n: Bool val", 
-            "title": "ne"
-        }, 
-        {
-            "location": "/process-ReadError/#parameters_1", 
-            "text": "that:  ReadError  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/process-ReadError/#returns_2", 
             "text": "Bool  val", 
             "title": "Returns"
         }, 
@@ -77057,17 +76817,17 @@
         }, 
         {
             "location": "/process-ProcessError/", 
-            "text": "ProcessError\n\n\ntype ProcessError is\n  (ExecveError val | CloseError val | Dup2Error val | FcntlError val | ForkError val | KillError val | PipeError val | ReadError val | Unsupported val | WaitpidError val | WriteError val | CapError val)\n\n\n\n\nType Alias For\n\n\n\n\n(\nExecveError\n val | \nCloseError\n val | \nDup2Error\n val | \nFcntlError\n val | \nForkError\n val | \nKillError\n val | \nPipeError\n val | \nReadError\n val | \nUnsupported\n val | \nWaitpidError\n val | \nWriteError\n val | \nCapError\n val)", 
+            "text": "ProcessError\n\n\ntype ProcessError is\n  (ExecveError val | ForkError val | KillError val | PipeError val | Unsupported val | WaitpidError val | WriteError val | CapError val)\n\n\n\n\nType Alias For\n\n\n\n\n(\nExecveError\n val | \nForkError\n val | \nKillError\n val | \nPipeError\n val | \nUnsupported\n val | \nWaitpidError\n val | \nWriteError\n val | \nCapError\n val)", 
             "title": "type ProcessError"
         }, 
         {
             "location": "/process-ProcessError/#processerror", 
-            "text": "type ProcessError is\n  (ExecveError val | CloseError val | Dup2Error val | FcntlError val | ForkError val | KillError val | PipeError val | ReadError val | Unsupported val | WaitpidError val | WriteError val | CapError val)", 
+            "text": "type ProcessError is\n  (ExecveError val | ForkError val | KillError val | PipeError val | Unsupported val | WaitpidError val | WriteError val | CapError val)", 
             "title": "ProcessError"
         }, 
         {
             "location": "/process-ProcessError/#type-alias-for", 
-            "text": "( ExecveError  val |  CloseError  val |  Dup2Error  val |  FcntlError  val |  ForkError  val |  KillError  val |  PipeError  val |  ReadError  val |  Unsupported  val |  WaitpidError  val |  WriteError  val |  CapError  val)", 
+            "text": "( ExecveError  val |  ForkError  val |  KillError  val |  PipeError  val |  Unsupported  val |  WaitpidError  val |  WriteError  val |  CapError  val)", 
             "title": "Type Alias For"
         }, 
         {
@@ -78177,7 +77937,7 @@
         }, 
         {
             "location": "/process-_ProcessClient/", 
-            "text": "_ProcessClient\n\n\nNotifications for Process connections.\n\n\nclass ref _ProcessClient is\n  ProcessNotify ref\n\n\n\n\nImplements\n\n\n\n\nProcessNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  out: String val,\n  err: String val,\n  exit_code: I32 val,\n  h: TestHelper val)\n: _ProcessClient iso^\n\n\n\n\nParameters\n\n\n\n\nout: \nString\n val\n\n\nerr: \nString\n val\n\n\nexit_code: \nI32\n val\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\n_ProcessClient\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nstdout\n\n\nCalled when new data is received on STDOUT of the forked process\n\n\nfun ref stdout(\n  process: ProcessMonitor ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nstderr\n\n\nCalled when new data is received on STDERR of the forked process\n\n\nfun ref stderr(\n  process: ProcessMonitor ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nfailed\n\n\nProcessMonitor calls this if we run into errors with the\nforked process.\n\n\nfun ref failed(\n  process: ProcessMonitor ref,\n  err: (ExecveError val | CloseError val | Dup2Error val | FcntlError val | ForkError val | KillError val | PipeError val | ReadError val | Unsupported val | WaitpidError val | WriteError val | CapError val))\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nerr: (\nExecveError\n val | \nCloseError\n val | \nDup2Error\n val | \nFcntlError\n val | \nForkError\n val | \nKillError\n val | \nPipeError\n val | \nReadError\n val | \nUnsupported\n val | \nWaitpidError\n val | \nWriteError\n val | \nCapError\n val)\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ndispose\n\n\nCalled when ProcessMonitor terminates to cleanup ProcessNotify\nWe receive the exit code of the child process from ProcessMonitor.\n\n\nfun ref dispose(\n  process: ProcessMonitor ref,\n  child_exit_code: I32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nchild_exit_code: \nI32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ncreated\n\n\nfun ref created(\n  process: ProcessMonitor ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  process: ProcessMonitor ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val", 
+            "text": "_ProcessClient\n\n\nNotifications for Process connections.\n\n\nclass ref _ProcessClient is\n  ProcessNotify ref\n\n\n\n\nImplements\n\n\n\n\nProcessNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  out: String val,\n  err: String val,\n  exit_code: I32 val,\n  h: TestHelper val)\n: _ProcessClient iso^\n\n\n\n\nParameters\n\n\n\n\nout: \nString\n val\n\n\nerr: \nString\n val\n\n\nexit_code: \nI32\n val\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\n_ProcessClient\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nstdout\n\n\nCalled when new data is received on STDOUT of the forked process\n\n\nfun ref stdout(\n  process: ProcessMonitor ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nstderr\n\n\nCalled when new data is received on STDERR of the forked process\n\n\nfun ref stderr(\n  process: ProcessMonitor ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nfailed\n\n\nProcessMonitor calls this if we run into errors with the\nforked process.\n\n\nfun ref failed(\n  process: ProcessMonitor ref,\n  err: (ExecveError val | ForkError val | KillError val | PipeError val | Unsupported val | WaitpidError val | WriteError val | CapError val))\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nerr: (\nExecveError\n val | \nForkError\n val | \nKillError\n val | \nPipeError\n val | \nUnsupported\n val | \nWaitpidError\n val | \nWriteError\n val | \nCapError\n val)\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ndispose\n\n\nCalled when ProcessMonitor terminates to cleanup ProcessNotify\nWe receive the exit code of the child process from ProcessMonitor.\n\n\nfun ref dispose(\n  process: ProcessMonitor ref,\n  child_exit_code: I32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nchild_exit_code: \nI32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ncreated\n\n\nfun ref created(\n  process: ProcessMonitor ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nfun ref expect(\n  process: ProcessMonitor ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val", 
             "title": "class _ProcessClient"
         }, 
         {
@@ -78247,12 +78007,12 @@
         }, 
         {
             "location": "/process-_ProcessClient/#failed", 
-            "text": "ProcessMonitor calls this if we run into errors with the\nforked process.  fun ref failed(\n  process: ProcessMonitor ref,\n  err: (ExecveError val | CloseError val | Dup2Error val | FcntlError val | ForkError val | KillError val | PipeError val | ReadError val | Unsupported val | WaitpidError val | WriteError val | CapError val))\n: None val", 
+            "text": "ProcessMonitor calls this if we run into errors with the\nforked process.  fun ref failed(\n  process: ProcessMonitor ref,\n  err: (ExecveError val | ForkError val | KillError val | PipeError val | Unsupported val | WaitpidError val | WriteError val | CapError val))\n: None val", 
             "title": "failed"
         }, 
         {
             "location": "/process-_ProcessClient/#parameters_3", 
-            "text": "process:  ProcessMonitor  ref  err: ( ExecveError  val |  CloseError  val |  Dup2Error  val |  FcntlError  val |  ForkError  val |  KillError  val |  PipeError  val |  ReadError  val |  Unsupported  val |  WaitpidError  val |  WriteError  val |  CapError  val)", 
+            "text": "process:  ProcessMonitor  ref  err: ( ExecveError  val |  ForkError  val |  KillError  val |  PipeError  val |  Unsupported  val |  WaitpidError  val |  WriteError  val |  CapError  val)", 
             "title": "Parameters"
         }, 
         {
@@ -78307,7 +78067,7 @@
         }, 
         {
             "location": "/process-ProcessNotify/", 
-            "text": "ProcessNotify\n\n\nNotifications for Process connections.\n\n\ninterface ref ProcessNotify\n\n\n\n\nPublic Functions\n\n\ncreated\n\n\nProcessMonitor calls this when it is created.\n\n\nfun ref created(\n  process: ProcessMonitor ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nstdout\n\n\nProcessMonitor calls this when new data is received on STDOUT of the\nforked process\n\n\nfun ref stdout(\n  process: ProcessMonitor ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nstderr\n\n\nProcessMonitor calls this when new data is received on STDERR of the\nforked process\n\n\nfun ref stderr(\n  process: ProcessMonitor ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nfailed\n\n\nProcessMonitor calls this if we run into errors communicating with the\nforked process.\n\n\nfun ref failed(\n  process: ProcessMonitor ref,\n  err: (ExecveError val | CloseError val | Dup2Error val | FcntlError val | ForkError val | KillError val | PipeError val | ReadError val | Unsupported val | WaitpidError val | WriteError val | CapError val))\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nerr: (\nExecveError\n val | \nCloseError\n val | \nDup2Error\n val | \nFcntlError\n val | \nForkError\n val | \nKillError\n val | \nPipeError\n val | \nReadError\n val | \nUnsupported\n val | \nWaitpidError\n val | \nWriteError\n val | \nCapError\n val)\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nCalled when the process monitor has been told to expect a certain quantity\nof bytes. This allows nested notifiers to change the expected quantity,\nwhich allows a lower level protocol to handle any framing.\n\n\nfun ref expect(\n  process: ProcessMonitor ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\ndispose\n\n\nCall when ProcessMonitor terminates to cleanup ProcessNotify.\nWe return the exit code of the child process.\n\n\nfun ref dispose(\n  process: ProcessMonitor ref,\n  child_exit_code: I32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nchild_exit_code: \nI32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "ProcessNotify\n\n\nNotifications for Process connections.\n\n\ninterface ref ProcessNotify\n\n\n\n\nPublic Functions\n\n\ncreated\n\n\nProcessMonitor calls this when it is created.\n\n\nfun ref created(\n  process: ProcessMonitor ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nstdout\n\n\nProcessMonitor calls this when new data is received on STDOUT of the\nforked process\n\n\nfun ref stdout(\n  process: ProcessMonitor ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nstderr\n\n\nProcessMonitor calls this when new data is received on STDERR of the\nforked process\n\n\nfun ref stderr(\n  process: ProcessMonitor ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nfailed\n\n\nProcessMonitor calls this if we run into errors communicating with the\nforked process.\n\n\nfun ref failed(\n  process: ProcessMonitor ref,\n  err: (ExecveError val | ForkError val | KillError val | PipeError val | Unsupported val | WaitpidError val | WriteError val | CapError val))\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nerr: (\nExecveError\n val | \nForkError\n val | \nKillError\n val | \nPipeError\n val | \nUnsupported\n val | \nWaitpidError\n val | \nWriteError\n val | \nCapError\n val)\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nCalled when the process monitor has been told to expect a certain quantity\nof bytes. This allows nested notifiers to change the expected quantity,\nwhich allows a lower level protocol to handle any framing.\n\n\nfun ref expect(\n  process: ProcessMonitor ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\ndispose\n\n\nCall when ProcessMonitor terminates to cleanup ProcessNotify.\nWe return the exit code of the child process.\n\n\nfun ref dispose(\n  process: ProcessMonitor ref,\n  child_exit_code: I32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nprocess: \nProcessMonitor\n ref\n\n\nchild_exit_code: \nI32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "interface ProcessNotify"
         }, 
         {
@@ -78367,12 +78127,12 @@
         }, 
         {
             "location": "/process-ProcessNotify/#failed", 
-            "text": "ProcessMonitor calls this if we run into errors communicating with the\nforked process.  fun ref failed(\n  process: ProcessMonitor ref,\n  err: (ExecveError val | CloseError val | Dup2Error val | FcntlError val | ForkError val | KillError val | PipeError val | ReadError val | Unsupported val | WaitpidError val | WriteError val | CapError val))\n: None val", 
+            "text": "ProcessMonitor calls this if we run into errors communicating with the\nforked process.  fun ref failed(\n  process: ProcessMonitor ref,\n  err: (ExecveError val | ForkError val | KillError val | PipeError val | Unsupported val | WaitpidError val | WriteError val | CapError val))\n: None val", 
             "title": "failed"
         }, 
         {
             "location": "/process-ProcessNotify/#parameters_3", 
-            "text": "process:  ProcessMonitor  ref  err: ( ExecveError  val |  CloseError  val |  Dup2Error  val |  FcntlError  val |  ForkError  val |  KillError  val |  PipeError  val |  ReadError  val |  Unsupported  val |  WaitpidError  val |  WriteError  val |  CapError  val)", 
+            "text": "process:  ProcessMonitor  ref  err: ( ExecveError  val |  ForkError  val |  KillError  val |  PipeError  val |  Unsupported  val |  WaitpidError  val |  WriteError  val |  CapError  val)", 
             "title": "Parameters"
         }, 
         {

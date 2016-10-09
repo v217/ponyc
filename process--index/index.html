@@ -4944,13 +4944,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../process-Dup2Error/">primitive Dup2Error</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../process-ForkError/">primitive ForkError</a>
         
     </li>
@@ -4958,28 +4951,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../process-FcntlError/">primitive FcntlError</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../process-WaitpidError/">primitive WaitpidError</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../process-CloseError/">primitive CloseError</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../process-ReadError/">primitive ReadError</a>
         
     </li>
 
@@ -5854,14 +5826,11 @@ class ProcessClient is ProcessNotify
     match err
     | ExecveError   =&gt; _env.out.print(&quot;ProcessError: ExecveError&quot;)
     | PipeError     =&gt; _env.out.print(&quot;ProcessError: PipeError&quot;)
-    | Dup2Error     =&gt; _env.out.print(&quot;ProcessError: Dup2Error&quot;)
     | ForkError     =&gt; _env.out.print(&quot;ProcessError: ForkError&quot;)
-    | FcntlError    =&gt; _env.out.print(&quot;ProcessError: FcntlError&quot;)
     | WaitpidError  =&gt; _env.out.print(&quot;ProcessError: WaitpidError&quot;)
-    | CloseError    =&gt; _env.out.print(&quot;ProcessError: CloseError&quot;)
-    | ReadError     =&gt; _env.out.print(&quot;ProcessError: ReadError&quot;)
     | WriteError    =&gt; _env.out.print(&quot;ProcessError: WriteError&quot;)
     | KillError     =&gt; _env.out.print(&quot;ProcessError: KillError&quot;)
+    | CapError      =&gt; _env.out.print(&quot;ProcessError: CapError&quot;)
     | Unsupported   =&gt; _env.out.print(&quot;ProcessError: Unsupported&quot;)
     else
       _env.out.print(&quot;Unknown ProcessError!&quot;)
@@ -5882,12 +5851,8 @@ a runtime error.</p>
 <ul>
 <li><a href="../process-ExecveError/">primitive ExecveError</a></li>
 <li><a href="../process-PipeError/">primitive PipeError</a></li>
-<li><a href="../process-Dup2Error/">primitive Dup2Error</a></li>
 <li><a href="../process-ForkError/">primitive ForkError</a></li>
-<li><a href="../process-FcntlError/">primitive FcntlError</a></li>
 <li><a href="../process-WaitpidError/">primitive WaitpidError</a></li>
-<li><a href="../process-CloseError/">primitive CloseError</a></li>
-<li><a href="../process-ReadError/">primitive ReadError</a></li>
 <li><a href="../process-WriteError/">primitive WriteError</a></li>
 <li><a href="../process-KillError/">primitive KillError</a></li>
 <li><a href="../process-Unsupported/">primitive Unsupported</a></li>
