@@ -4846,6 +4846,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../process-StartProcessAuth/">primitive StartProcessAuth</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../process-_EINTR/">primitive _EINTR</a>
         
     </li>
@@ -4993,6 +5000,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../process-ProcessMonitorAuth/">type ProcessMonitorAuth</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../process-ProcessMonitor/">actor ProcessMonitor</a>
         
     </li>
@@ -5021,7 +5035,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../process-_TestFileExec/">class _TestFileExec</a>
+        <a class="" href="../process-_TestFileExecCapabilityIsRequired/">class _TestFileExecCapabilityIsRequired</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../process-_TestNonExecutablePathResultsInExecveError/">class _TestNonExecutablePathResultsInExecveError</a>
         
     </li>
 
@@ -5780,10 +5801,7 @@ ProcessNotify client and printed.</p>
 use &quot;files&quot;
 
 actor Main
-  let _env: Env
-
   new create(env: Env) =&gt;
-    _env = env
     // create a notifier
     let client = ProcessClient(_env)
     let notifier: ProcessNotify iso = consume client
@@ -5798,7 +5816,8 @@ actor Main
       vars.push(&quot;HOME=/&quot;)
       vars.push(&quot;PATH=/bin&quot;)
       // create a ProcessMonitor and spawn the child process
-      let pm: ProcessMonitor = ProcessMonitor(consume notifier, path,
+      let auth = env.root as AmbientAuth
+      let pm: ProcessMonitor = ProcessMonitor(auth, consume notifier, path,
       consume args, consume vars)
       // write to STDIN of the child process
       pm.write(&quot;one, two, three&quot;)
@@ -5849,6 +5868,7 @@ a runtime error.</p>
 <p>Document waitpid behaviour (stops world)</p>
 <h2 id="public-types">Public Types</h2>
 <ul>
+<li><a href="../process-StartProcessAuth/">primitive StartProcessAuth</a></li>
 <li><a href="../process-ExecveError/">primitive ExecveError</a></li>
 <li><a href="../process-PipeError/">primitive PipeError</a></li>
 <li><a href="../process-ForkError/">primitive ForkError</a></li>
@@ -5858,6 +5878,7 @@ a runtime error.</p>
 <li><a href="../process-Unsupported/">primitive Unsupported</a></li>
 <li><a href="../process-CapError/">primitive CapError</a></li>
 <li><a href="../process-ProcessError/">type ProcessError</a></li>
+<li><a href="../process-ProcessMonitorAuth/">type ProcessMonitorAuth</a></li>
 <li><a href="../process-ProcessMonitor/">actor ProcessMonitor</a></li>
 <li><a href="../process-ProcessNotify/">interface ProcessNotify</a></li>
 </ul>
@@ -5882,7 +5903,8 @@ a runtime error.</p>
 <li><a href="../process-Main/">actor Main</a></li>
 <li><a href="../process-_TestStdinStdout/">class _TestStdinStdout</a></li>
 <li><a href="../process-_TestStderr/">class _TestStderr</a></li>
-<li><a href="../process-_TestFileExec/">class _TestFileExec</a></li>
+<li><a href="../process-_TestFileExecCapabilityIsRequired/">class _TestFileExecCapabilityIsRequired</a></li>
+<li><a href="../process-_TestNonExecutablePathResultsInExecveError/">class _TestNonExecutablePathResultsInExecveError</a></li>
 <li><a href="../process-_TestExpect/">class _TestExpect</a></li>
 <li><a href="../process-_TestWritevOrdering/">class _TestWritevOrdering</a></li>
 <li><a href="../process-_TestPrintvOrdering/">class _TestPrintvOrdering</a></li>
@@ -5894,7 +5916,7 @@ a runtime error.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../process-_EINTR/" class="btn btn-neutral float-right" title="primitive _EINTR">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../process-StartProcessAuth/" class="btn btn-neutral float-right" title="primitive StartProcessAuth">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../ponytest-_TestRecord/" class="btn btn-neutral" title="class _TestRecord"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -5926,7 +5948,7 @@ a runtime error.</p>
         <span><a href="../ponytest-_TestRecord/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../process-_EINTR/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../process-StartProcessAuth/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

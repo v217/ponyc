@@ -4827,6 +4827,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../process-StartProcessAuth/">primitive StartProcessAuth</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../process-_EINTR/">primitive _EINTR</a>
         
     </li>
@@ -4973,6 +4980,13 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../process-ProcessMonitorAuth/">type ProcessMonitorAuth</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
         <a class="current" href="./">actor ProcessMonitor</a>
         
@@ -5019,7 +5033,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../process-_TestFileExec/">class _TestFileExec</a>
+        <a class="" href="../process-_TestFileExecCapabilityIsRequired/">class _TestFileExecCapabilityIsRequired</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../process-_TestNonExecutablePathResultsInExecveError/">class _TestNonExecutablePathResultsInExecveError</a>
         
     </li>
 
@@ -5772,6 +5793,7 @@
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
 <pre><code class="pony">new tag create(
+  auth: (AmbientAuth val | StartProcessAuth val),
   notifier: ProcessNotify iso,
   filepath: FilePath val,
   args: Array[String val] val,
@@ -5781,6 +5803,7 @@
 
 <h4 id="parameters">Parameters</h4>
 <ul>
+<li>auth: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../process-StartProcessAuth">StartProcessAuth</a> val)</li>
 <li>notifier: <a href="../process-ProcessNotify">ProcessNotify</a> iso</li>
 <li>filepath: <a href="../files-FilePath">FilePath</a> val</li>
 <li>args: <a href="../builtin-Array">Array</a>[<a href="../builtin-String">String</a> val] val</li>
@@ -6190,7 +6213,7 @@ causal messaging. Events get processed one <em>after</em> another.</p>
         <a href="../process-Main/" class="btn btn-neutral float-right" title="actor Main">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../process-ProcessError/" class="btn btn-neutral" title="type ProcessError"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../process-ProcessMonitorAuth/" class="btn btn-neutral" title="type ProcessMonitorAuth"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -6216,7 +6239,7 @@ causal messaging. Events get processed one <em>after</em> another.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../process-ProcessError/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../process-ProcessMonitorAuth/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../process-Main/" style="color: #fcfcfc">Next &raquo;</a></span>

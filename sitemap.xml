@@ -4016,6 +4016,12 @@
     </url>
         
     <url>
+     <loc>None/process-StartProcessAuth/</loc>
+     <lastmod>2016-10-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/process-_EINTR/</loc>
      <lastmod>2016-10-09</lastmod>
      <changefreq>daily</changefreq>
@@ -4142,6 +4148,12 @@
     </url>
         
     <url>
+     <loc>None/process-ProcessMonitorAuth/</loc>
+     <lastmod>2016-10-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/process-ProcessMonitor/</loc>
      <lastmod>2016-10-09</lastmod>
      <changefreq>daily</changefreq>
@@ -4166,7 +4178,13 @@
     </url>
         
     <url>
-     <loc>None/process-_TestFileExec/</loc>
+     <loc>None/process-_TestFileExecCapabilityIsRequired/</loc>
+     <lastmod>2016-10-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/process-_TestNonExecutablePathResultsInExecveError/</loc>
      <lastmod>2016-10-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
