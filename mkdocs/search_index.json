@@ -70952,7 +70952,7 @@
         }, 
         {
             "location": "/net-ssl-SSLConnection/", 
-            "text": "SSLConnection\n\n\nWrap another protocol in an SSL connection.\n\n\nclass ref SSLConnection is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  notify: TCPConnectionNotify iso,\n  ssl: SSL iso)\n: SSLConnection iso^\n\n\n\n\nParameters\n\n\n\n\nnotify: \nTCPConnectionNotify\n iso\n\n\nssl: \nSSL\n iso\n\n\n\n\nReturns\n\n\n\n\nSSLConnection\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nForward to the wrapped protocol.\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nForward to the wrapped protocol.\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nSwallow this event until the handshake is complete.\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nForward to the wrapped protocol.\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nPass the data to the SSL session and check for both new application data\nand new destination data.\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nreceived\n\n\nPass the data to the SSL session and check for both new application data\nand new destination data.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nKeep track of the expect count for the wrapped protocol. Always tell the\nTCPConnection to read all available data.\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nForward to the wrapped protocol.\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_poll\n\n\nChecks for both new application data and new destination data. Informs the\nwrapped protocol that is has connected when the handshake is complete.\n\n\nfun ref _poll(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "text": "SSLConnection\n\n\nWrap another protocol in an SSL connection.\n\n\nclass ref SSLConnection is\n  TCPConnectionNotify ref\n\n\n\n\nImplements\n\n\n\n\nTCPConnectionNotify\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create(\n  notify: TCPConnectionNotify iso,\n  ssl: SSL iso)\n: SSLConnection iso^\n\n\n\n\nParameters\n\n\n\n\nnotify: \nTCPConnectionNotify\n iso\n\n\nssl: \nSSL\n iso\n\n\n\n\nReturns\n\n\n\n\nSSLConnection\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\naccepted\n\n\nForward to the wrapped protocol.\n\n\nfun ref accepted(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnecting\n\n\nForward to the wrapped protocol.\n\n\nfun ref connecting(\n  conn: TCPConnection ref,\n  count: U32 val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ncount: \nU32\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnected\n\n\nSwallow this event until the handshake is complete.\n\n\nfun ref connected(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nconnect_failed\n\n\nForward to the wrapped protocol.\n\n\nfun ref connect_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nsent\n\n\nPass the data to the SSL session and check for both new application data\nand new destination data.\n\n\nfun ref sent(\n  conn: TCPConnection ref,\n  data: (String val | Array[U8 val] val))\n: (String val | Array[U8 val] val)\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: (\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\nReturns\n\n\n\n\n(\nString\n val | \nArray\n[\nU8\n val] val)\n\n\n\n\n\n\nsentv\n\n\nfun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nByteSeqIter\n val\n\n\n\n\nReturns\n\n\n\n\nByteSeqIter\n val\n\n\n\n\n\n\nreceived\n\n\nPass the data to the SSL session and check for both new application data\nand new destination data.\n\n\nfun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\ndata: \nArray\n[\nU8\n val] iso\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexpect\n\n\nKeep track of the expect count for the wrapped protocol. Always tell the\nTCPConnection to read all available data.\n\n\nfun ref expect(\n  conn: TCPConnection ref,\n  qty: USize val)\n: USize val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\nqty: \nUSize\n val\n\n\n\n\nReturns\n\n\n\n\nUSize\n val\n\n\n\n\n\n\nclosed\n\n\nForward to the wrapped protocol.\n\n\nfun ref closed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nauth_failed\n\n\nfun ref auth_failed(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_poll\n\n\nChecks for both new application data and new destination data. Informs the\nwrapped protocol that is has connected when the handshake is complete.\n\n\nfun ref _poll(\n  conn: TCPConnection ref)\n: None val\n\n\n\n\nParameters\n\n\n\n\nconn: \nTCPConnection\n ref\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "class SSLConnection"
         }, 
         {
@@ -71066,17 +71066,32 @@
             "title": "Returns"
         }, 
         {
+            "location": "/net-ssl-SSLConnection/#sentv", 
+            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
+            "title": "sentv"
+        }, 
+        {
+            "location": "/net-ssl-SSLConnection/#parameters_6", 
+            "text": "conn:  TCPConnection  ref  data:  ByteSeqIter  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/net-ssl-SSLConnection/#returns_6", 
+            "text": "ByteSeqIter  val", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/net-ssl-SSLConnection/#received", 
             "text": "Pass the data to the SSL session and check for both new application data\nand new destination data.  fun ref received(\n  conn: TCPConnection ref,\n  data: Array[U8 val] iso)\n: None val", 
             "title": "received"
         }, 
         {
-            "location": "/net-ssl-SSLConnection/#parameters_6", 
+            "location": "/net-ssl-SSLConnection/#parameters_7", 
             "text": "conn:  TCPConnection  ref  data:  Array [ U8  val] iso", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-ssl-SSLConnection/#returns_6", 
+            "location": "/net-ssl-SSLConnection/#returns_7", 
             "text": "None  val", 
             "title": "Returns"
         }, 
@@ -71086,12 +71101,12 @@
             "title": "expect"
         }, 
         {
-            "location": "/net-ssl-SSLConnection/#parameters_7", 
+            "location": "/net-ssl-SSLConnection/#parameters_8", 
             "text": "conn:  TCPConnection  ref  qty:  USize  val", 
             "title": "Parameters"
         }, 
         {
-            "location": "/net-ssl-SSLConnection/#returns_7", 
+            "location": "/net-ssl-SSLConnection/#returns_8", 
             "text": "USize  val", 
             "title": "Returns"
         }, 
@@ -71099,21 +71114,6 @@
             "location": "/net-ssl-SSLConnection/#closed", 
             "text": "Forward to the wrapped protocol.  fun ref closed(\n  conn: TCPConnection ref)\n: None val", 
             "title": "closed"
-        }, 
-        {
-            "location": "/net-ssl-SSLConnection/#parameters_8", 
-            "text": "conn:  TCPConnection  ref", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/net-ssl-SSLConnection/#returns_8", 
-            "text": "None  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/net-ssl-SSLConnection/#auth_failed", 
-            "text": "fun ref auth_failed(\n  conn: TCPConnection ref)\n: None val", 
-            "title": "auth_failed"
         }, 
         {
             "location": "/net-ssl-SSLConnection/#parameters_9", 
@@ -71126,18 +71126,18 @@
             "title": "Returns"
         }, 
         {
-            "location": "/net-ssl-SSLConnection/#sentv", 
-            "text": "fun ref sentv(\n  conn: TCPConnection ref,\n  data: ByteSeqIter val)\n: ByteSeqIter val", 
-            "title": "sentv"
+            "location": "/net-ssl-SSLConnection/#auth_failed", 
+            "text": "fun ref auth_failed(\n  conn: TCPConnection ref)\n: None val", 
+            "title": "auth_failed"
         }, 
         {
             "location": "/net-ssl-SSLConnection/#parameters_10", 
-            "text": "conn:  TCPConnection  ref  data:  ByteSeqIter  val", 
+            "text": "conn:  TCPConnection  ref", 
             "title": "Parameters"
         }, 
         {
             "location": "/net-ssl-SSLConnection/#returns_10", 
-            "text": "ByteSeqIter  val", 
+            "text": "None  val", 
             "title": "Returns"
         }, 
         {
