@@ -5764,12 +5764,14 @@
               
                 <h1 id="options">Options</h1>
 <pre><code class="pony">class ref Options is
-  Iterator[((String val , (None val | String val | I64 val | F64 val)) | ParseError ref | None val)] ref
+  Iterator[((String val , (None val | String val | I64 val | 
+    F64 val)) | ParseError ref | None val)] ref
 </code></pre>
 
 <h4 id="implements">Implements</h4>
 <ul>
-<li><a href="../builtin-Iterator">Iterator</a>[((<a href="../builtin-String">String</a> val , (<a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val | <a href="../builtin-I64">I64</a> val | <a href="../builtin-F64">F64</a> val)) | <a href="../options-ParseError">ParseError</a> ref | <a href="../builtin-None">None</a> val)] ref</li>
+<li><a href="../builtin-Iterator">Iterator</a>[((<a href="../builtin-String">String</a> val , (<a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val | <a href="../builtin-I64">I64</a> val | 
+    <a href="../builtin-F64">F64</a> val)) | <a href="../options-ParseError">ParseError</a> ref | <a href="../builtin-None">None</a> val)] ref</li>
 </ul>
 <hr />
 <h2 id="constructors">Constructors</h2>
@@ -5796,7 +5798,8 @@
 <pre><code class="pony">fun ref add(
   long: String val,
   short: (None val | String val) = reference,
-  arg: (None val | StringArgument val | I64Argument val | F64Argument val) = reference,
+  arg: (None val | StringArgument val | I64Argument val | 
+    F64Argument val) = reference,
   mode: (Required val | Optional val) = reference)
 : Options ref
 </code></pre>
@@ -5805,7 +5808,8 @@
 <ul>
 <li>long: <a href="../builtin-String">String</a> val</li>
 <li>short: (<a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val) = reference</li>
-<li>arg: (<a href="../builtin-None">None</a> val | <a href="../options-StringArgument">StringArgument</a> val | <a href="../options-I64Argument">I64Argument</a> val | <a href="../options-F64Argument">F64Argument</a> val) = reference</li>
+<li>arg: (<a href="../builtin-None">None</a> val | <a href="../options-StringArgument">StringArgument</a> val | <a href="../options-I64Argument">I64Argument</a> val | 
+    <a href="../options-F64Argument">F64Argument</a> val) = reference</li>
 <li>mode: (<a href="../options-Required">Required</a> val | <a href="../options-Optional">Optional</a> val) = reference</li>
 </ul>
 <h4 id="returns_1">Returns</h4>
@@ -5843,12 +5847,14 @@ is turned on, or if all command line arguments have been processed.</p>
 a ParsedOption on success, a ParseError on error, or None if no named
 options are found.</p>
 <pre><code class="pony">fun ref next()
-: ((String val , (None val | String val | I64 val | F64 val)) | ParseError ref | None val)
+: ((String val , (None val | String val | I64 val | 
+    F64 val)) | ParseError ref | None val)
 </code></pre>
 
 <h4 id="returns_4">Returns</h4>
 <ul>
-<li>((<a href="../builtin-String">String</a> val , (<a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val | <a href="../builtin-I64">I64</a> val | <a href="../builtin-F64">F64</a> val)) | <a href="../options-ParseError">ParseError</a> ref | <a href="../builtin-None">None</a> val)</li>
+<li>((<a href="../builtin-String">String</a> val , (<a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val | <a href="../builtin-I64">I64</a> val | 
+    <a href="../builtin-F64">F64</a> val)) | <a href="../options-ParseError">ParseError</a> ref | <a href="../builtin-None">None</a> val)</li>
 </ul>
 <hr />
 <h2 id="private-functions">Private Functions</h2>
@@ -5916,7 +5922,8 @@ a ParsedOption on success, a ParseError otherwise.</p>
 <pre><code class="pony">fun ref _verify(
   opt: _Option ref,
   combined: Bool val)
-: ((String val , (None val | String val | I64 val | F64 val)) | ParseError ref)
+: ((String val , (None val | String val | I64 val | 
+    F64 val)) | ParseError ref)
 </code></pre>
 
 <h4 id="parameters_4">Parameters</h4>
@@ -5926,7 +5933,8 @@ a ParsedOption on success, a ParseError otherwise.</p>
 </ul>
 <h4 id="returns_8">Returns</h4>
 <ul>
-<li>((<a href="../builtin-String">String</a> val , (<a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val | <a href="../builtin-I64">I64</a> val | <a href="../builtin-F64">F64</a> val)) | <a href="../options-ParseError">ParseError</a> ref)</li>
+<li>((<a href="../builtin-String">String</a> val , (<a href="../builtin-None">None</a> val | <a href="../builtin-String">String</a> val | <a href="../builtin-I64">I64</a> val | 
+    <a href="../builtin-F64">F64</a> val)) | <a href="../options-ParseError">ParseError</a> ref)</li>
 </ul>
 <hr />
               

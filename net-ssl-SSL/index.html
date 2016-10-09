@@ -5792,12 +5792,14 @@ to any transport layer.</p>
 <h3 id="state">state</h3>
 <p>Returns the SSL session state.</p>
 <pre><code class="pony">fun box state()
-: (SSLHandshake val | SSLAuthFail val | SSLReady val | SSLError val)
+: (SSLHandshake val | SSLAuthFail val | SSLReady val | 
+    SSLError val)
 </code></pre>
 
 <h4 id="returns_1">Returns</h4>
 <ul>
-<li>(<a href="../net-ssl-SSLHandshake">SSLHandshake</a> val | <a href="../net-ssl-SSLAuthFail">SSLAuthFail</a> val | <a href="../net-ssl-SSLReady">SSLReady</a> val | <a href="../net-ssl-SSLError">SSLError</a> val)</li>
+<li>(<a href="../net-ssl-SSLHandshake">SSLHandshake</a> val | <a href="../net-ssl-SSLAuthFail">SSLAuthFail</a> val | <a href="../net-ssl-SSLReady">SSLReady</a> val | 
+    <a href="../net-ssl-SSLError">SSLError</a> val)</li>
 </ul>
 <hr />
 <h3 id="read">read</h3>

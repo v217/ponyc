@@ -5842,14 +5842,16 @@ scope field is the IPv6 scope, or invalid for an IPv4 address.</p>
 <h3 id="name">name</h3>
 <p>Return the host and service name.</p>
 <pre><code class="pony">fun box name(
-  reversedns: (AmbientAuth val | NetAuth val | DNSAuth val | None val) = reference,
+  reversedns: (AmbientAuth val | NetAuth val | DNSAuth val | 
+    None val) = reference,
   servicename: Bool val = false)
 : (String val , String val) ?
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>reversedns: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../net-NetAuth">NetAuth</a> val | <a href="../net-DNSAuth">DNSAuth</a> val | <a href="../builtin-None">None</a> val) = reference</li>
+<li>reversedns: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../net-NetAuth">NetAuth</a> val | <a href="../net-DNSAuth">DNSAuth</a> val | 
+    <a href="../builtin-None">None</a> val) = reference</li>
 <li>servicename: <a href="../builtin-Bool">Bool</a> val = false</li>
 </ul>
 <h4 id="returns_3">Returns</h4>

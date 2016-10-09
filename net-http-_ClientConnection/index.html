@@ -5770,7 +5770,8 @@
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
 <pre><code class="pony">new tag create(
-  auth: (AmbientAuth val | NetAuth val | TCPAuth val | TCPConnectAuth val),
+  auth: (AmbientAuth val | NetAuth val | TCPAuth val | 
+    TCPConnectAuth val),
   host: String val,
   service: String val,
   sslctx: (SSLContext val | None val) = reference,
@@ -5780,7 +5781,8 @@
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>auth: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../net-NetAuth">NetAuth</a> val | <a href="../net-TCPAuth">TCPAuth</a> val | <a href="../net-TCPConnectAuth">TCPConnectAuth</a> val)</li>
+<li>auth: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../net-NetAuth">NetAuth</a> val | <a href="../net-TCPAuth">TCPAuth</a> val | 
+    <a href="../net-TCPConnectAuth">TCPConnectAuth</a> val)</li>
 <li>host: <a href="../builtin-String">String</a> val</li>
 <li>service: <a href="../builtin-String">String</a> val</li>
 <li>sslctx: (<a href="../net-ssl-SSLContext">SSLContext</a> val | <a href="../builtin-None">None</a> val) = reference</li>

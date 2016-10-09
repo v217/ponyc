@@ -5828,12 +5828,14 @@
 <h3 id="errno">errno</h3>
 <p>Returns the last error code set for this File</p>
 <pre><code class="pony">fun box errno()
-: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)
+: (FileOK val | FileError val | FileEOF val | 
+    FileBadFileNumber val | FileExists val | FilePermissionDenied val)
 </code></pre>
 
 <h4 id="returns_3">Returns</h4>
 <ul>
-<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
+<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | 
+    <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
 </ul>
 <hr />
 <h3 id="clear_errno">clear_errno</h3>
@@ -5852,12 +5854,14 @@ Clears the error indicator for the stream.</p>
 <p>Checks for errors after File stream operations.
 Retrieves errno if ferror is true.</p>
 <pre><code class="pony">fun box get_stream_error()
-: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)
+: (FileOK val | FileError val | FileEOF val | 
+    FileBadFileNumber val | FileExists val | FilePermissionDenied val)
 </code></pre>
 
 <h4 id="returns_5">Returns</h4>
 <ul>
-<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
+<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | 
+    <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
 </ul>
 <hr />
 <h3 id="valid">valid</h3>
@@ -6203,12 +6207,14 @@ values.</p>
 <h3 id="_get_error">_get_error</h3>
 <p>Fetch errno from the OS.</p>
 <pre><code class="pony">fun box _get_error()
-: (FileOK val | FileError val | FileEOF val | FileBadFileNumber val | FileExists val | FilePermissionDenied val)
+: (FileOK val | FileError val | FileEOF val | 
+    FileBadFileNumber val | FileExists val | FilePermissionDenied val)
 </code></pre>
 
 <h4 id="returns_30">Returns</h4>
 <ul>
-<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
+<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | 
+    <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
 </ul>
 <hr />
 <h3 id="_seek">_seek</h3>

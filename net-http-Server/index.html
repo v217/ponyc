@@ -5771,7 +5771,8 @@ for new connections. Existing connections continue to use the old routes.</p>
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
 <pre><code class="pony">new tag create(
-  auth: (AmbientAuth val | NetAuth val | TCPAuth val | TCPListenAuth val),
+  auth: (AmbientAuth val | NetAuth val | TCPAuth val | 
+    TCPListenAuth val),
   notify: ServerNotify iso,
   handler: RequestHandler val,
   logger: Logger val = reference,
@@ -5779,13 +5780,15 @@ for new connections. Existing connections continue to use the old routes.</p>
   service: String val= &quot;0&quot;,
   limit: USize val = 0,
   sslctx: (SSLContext val | None val) = reference,
-  reversedns: (AmbientAuth val | NetAuth val | DNSAuth val | None val) = reference)
+  reversedns: (AmbientAuth val | NetAuth val | DNSAuth val | 
+    None val) = reference)
 : Server tag^
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>auth: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../net-NetAuth">NetAuth</a> val | <a href="../net-TCPAuth">TCPAuth</a> val | <a href="../net-TCPListenAuth">TCPListenAuth</a> val)</li>
+<li>auth: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../net-NetAuth">NetAuth</a> val | <a href="../net-TCPAuth">TCPAuth</a> val | 
+    <a href="../net-TCPListenAuth">TCPListenAuth</a> val)</li>
 <li>notify: <a href="../net-http-ServerNotify">ServerNotify</a> iso</li>
 <li>handler: <a href="../net-http-RequestHandler">RequestHandler</a> val</li>
 <li>logger: <a href="../net-http-Logger">Logger</a> val = reference</li>
@@ -5793,7 +5796,8 @@ for new connections. Existing connections continue to use the old routes.</p>
 <li>service: <a href="../builtin-String">String</a> val= "0"</li>
 <li>limit: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>sslctx: (<a href="../net-ssl-SSLContext">SSLContext</a> val | <a href="../builtin-None">None</a> val) = reference</li>
-<li>reversedns: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../net-NetAuth">NetAuth</a> val | <a href="../net-DNSAuth">DNSAuth</a> val | <a href="../builtin-None">None</a> val) = reference</li>
+<li>reversedns: (<a href="../builtin-AmbientAuth">AmbientAuth</a> val | <a href="../net-NetAuth">NetAuth</a> val | <a href="../net-DNSAuth">DNSAuth</a> val | 
+    <a href="../builtin-None">None</a> val) = reference</li>
 </ul>
 <h4 id="returns">Returns</h4>
 <ul>

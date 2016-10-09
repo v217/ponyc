@@ -5790,12 +5790,18 @@
 <h3 id="state">state</h3>
 <p>Returns the parse state.</p>
 <pre><code class="pony">fun box state()
-: (_PayloadRequest val | _PayloadResponse val | _PayloadHeaders val | _PayloadContentLength val | _PayloadChunkStart val | _PayloadChunk val | _PayloadChunkEnd val | _PayloadBody val | _PayloadReady val | _PayloadError val)
+: (_PayloadRequest val | _PayloadResponse val | _PayloadHeaders val | 
+    _PayloadContentLength val | _PayloadChunkStart val | _PayloadChunk val | 
+    _PayloadChunkEnd val | _PayloadBody val | _PayloadReady val | 
+    _PayloadError val)
 </code></pre>
 
 <h4 id="returns_2">Returns</h4>
 <ul>
-<li>(<a href="../net-http-_PayloadRequest">_PayloadRequest</a> val | <a href="../net-http-_PayloadResponse">_PayloadResponse</a> val | <a href="../net-http-_PayloadHeaders">_PayloadHeaders</a> val | <a href="../net-http-_PayloadContentLength">_PayloadContentLength</a> val | <a href="../net-http-_PayloadChunkStart">_PayloadChunkStart</a> val | <a href="../net-http-_PayloadChunk">_PayloadChunk</a> val | <a href="../net-http-_PayloadChunkEnd">_PayloadChunkEnd</a> val | <a href="../net-http-_PayloadBody">_PayloadBody</a> val | <a href="../net-http-_PayloadReady">_PayloadReady</a> val | <a href="../net-http-_PayloadError">_PayloadError</a> val)</li>
+<li>(<a href="../net-http-_PayloadRequest">_PayloadRequest</a> val | <a href="../net-http-_PayloadResponse">_PayloadResponse</a> val | <a href="../net-http-_PayloadHeaders">_PayloadHeaders</a> val | 
+    <a href="../net-http-_PayloadContentLength">_PayloadContentLength</a> val | <a href="../net-http-_PayloadChunkStart">_PayloadChunkStart</a> val | <a href="../net-http-_PayloadChunk">_PayloadChunk</a> val | 
+    <a href="../net-http-_PayloadChunkEnd">_PayloadChunkEnd</a> val | <a href="../net-http-_PayloadBody">_PayloadBody</a> val | <a href="../net-http-_PayloadReady">_PayloadReady</a> val | 
+    <a href="../net-http-_PayloadError">_PayloadError</a> val)</li>
 </ul>
 <hr />
 <h3 id="parse">parse</h3>

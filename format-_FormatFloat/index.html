@@ -5778,7 +5778,9 @@
 <h3 id="f64">f64</h3>
 <pre><code class="pony">fun box f64(
   x: F64 val,
-  fmt: (FormatDefault val | FormatExp val | FormatExpLarge val | FormatFix val | FormatFixLarge val | FormatGeneral val | FormatGeneralLarge val) = reference,
+  fmt: (FormatDefault val | FormatExp val | FormatExpLarge val | 
+    FormatFix val | FormatFixLarge val | FormatGeneral val | 
+    FormatGeneralLarge val) = reference,
   prefix: (PrefixDefault val | PrefixSpace val | PrefixSign val) = reference,
   prec: USize val = 6,
   width: USize val = 0,
@@ -5790,7 +5792,9 @@
 <h4 id="parameters">Parameters</h4>
 <ul>
 <li>x: <a href="../builtin-F64">F64</a> val</li>
-<li>fmt: (<a href="../format-FormatDefault">FormatDefault</a> val | <a href="../format-FormatExp">FormatExp</a> val | <a href="../format-FormatExpLarge">FormatExpLarge</a> val | <a href="../format-FormatFix">FormatFix</a> val | <a href="../format-FormatFixLarge">FormatFixLarge</a> val | <a href="../format-FormatGeneral">FormatGeneral</a> val | <a href="../format-FormatGeneralLarge">FormatGeneralLarge</a> val) = reference</li>
+<li>fmt: (<a href="../format-FormatDefault">FormatDefault</a> val | <a href="../format-FormatExp">FormatExp</a> val | <a href="../format-FormatExpLarge">FormatExpLarge</a> val | 
+    <a href="../format-FormatFix">FormatFix</a> val | <a href="../format-FormatFixLarge">FormatFixLarge</a> val | <a href="../format-FormatGeneral">FormatGeneral</a> val | 
+    <a href="../format-FormatGeneralLarge">FormatGeneralLarge</a> val) = reference</li>
 <li>prefix: (<a href="../format-PrefixDefault">PrefixDefault</a> val | <a href="../format-PrefixSpace">PrefixSpace</a> val | <a href="../format-PrefixSign">PrefixSign</a> val) = reference</li>
 <li>prec: <a href="../builtin-USize">USize</a> val = 6</li>
 <li>width: <a href="../builtin-USize">USize</a> val = 0</li>

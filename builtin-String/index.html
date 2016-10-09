@@ -7123,7 +7123,12 @@ made UTF-8 safe.</p>
 <li><a href="../builtin-USize">USize</a> val ?</li>
 </ul>
 <hr />
-<h3 id="read_int91a-i8-val-i16-val-i32-val-i64-val-i128-val-ilong-val-isize-val-u8-val-u16-val-u32-val-u64-val-u128-val-ulong-val-usize-val-integer91a-val93-val93">read_int[A: ((<a href="../builtin-I8">I8</a> val | <a href="../builtin-I16">I16</a> val | <a href="../builtin-I32">I32</a> val | <a href="../builtin-I64">I64</a> val | <a href="../builtin-I128">I128</a> val | <a href="../builtin-ILong">ILong</a> val | <a href="../builtin-ISize">ISize</a> val | <a href="../builtin-U8">U8</a> val | <a href="../builtin-U16">U16</a> val | <a href="../builtin-U32">U32</a> val | <a href="../builtin-U64">U64</a> val | <a href="../builtin-U128">U128</a> val | <a href="../builtin-ULong">ULong</a> val | <a href="../builtin-USize">USize</a> val) &amp; <a href="../builtin-Integer">Integer</a>[A val] val)]</h3>
+<h3 id="read_int91a-i8-val-i16-val-i32-val">read_int[A: ((<a href="../builtin-I8">I8</a> val | <a href="../builtin-I16">I16</a> val | <a href="../builtin-I32">I32</a> val |</h3>
+<pre><code>[I64](builtin-I64) val | [I128](builtin-I128) val | [ILong](builtin-ILong) val | 
+[ISize](builtin-ISize) val | [U8](builtin-U8) val | [U16](builtin-U16) val | 
+[U32](builtin-U32) val | [U64](builtin-U64) val | [U128](builtin-U128) val | 
+[ULong](builtin-ULong) val | [USize](builtin-USize) val) &amp; [Integer](builtin-Integer)\[A val\] val)\]
+</code></pre>
 <p>Read an integer from the specified location in this string. The integer
 value read and the number of characters consumed are reported.
 The base parameter specifies the base to use, 0 indicates using the prefix,
@@ -7133,7 +7138,11 @@ since no characters have been used.
 An integer out of range for the target type throws an error.
 A leading minus is allowed for signed integer types.
 Underscore characters are allowed throughout the integer and are ignored.</p>
-<pre><code class="pony">fun box read_int[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) &amp; Integer[A val] val)](
+<pre><code class="pony">fun box read_int[A: ((I8 val | I16 val | I32 val | 
+    I64 val | I128 val | ILong val | 
+    ISize val | U8 val | U16 val | 
+    U32 val | U64 val | U128 val | 
+    ULong val | USize val) &amp; Integer[A val] val)](
   offset: ISize val = 0,
   base: U8 val = 0)
 : (A val , USize val) ?
@@ -7293,11 +7302,20 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
 <hr />
-<h3 id="_to_int91a-i8-val-i16-val-i32-val-i64-val-i128-val-ilong-val-isize-val-u8-val-u16-val-u32-val-u64-val-u128-val-ulong-val-usize-val-integer91a-val93-val93">_to_int[A: ((<a href="../builtin-I8">I8</a> val | <a href="../builtin-I16">I16</a> val | <a href="../builtin-I32">I32</a> val | <a href="../builtin-I64">I64</a> val | <a href="../builtin-I128">I128</a> val | <a href="../builtin-ILong">ILong</a> val | <a href="../builtin-ISize">ISize</a> val | <a href="../builtin-U8">U8</a> val | <a href="../builtin-U16">U16</a> val | <a href="../builtin-U32">U32</a> val | <a href="../builtin-U64">U64</a> val | <a href="../builtin-U128">U128</a> val | <a href="../builtin-ULong">ULong</a> val | <a href="../builtin-USize">USize</a> val) &amp; <a href="../builtin-Integer">Integer</a>[A val] val)]</h3>
+<h3 id="_to_int91a-i8-val-i16-val-i32-val">_to_int[A: ((<a href="../builtin-I8">I8</a> val | <a href="../builtin-I16">I16</a> val | <a href="../builtin-I32">I32</a> val |</h3>
+<pre><code>[I64](builtin-I64) val | [I128](builtin-I128) val | [ILong](builtin-ILong) val | 
+[ISize](builtin-ISize) val | [U8](builtin-U8) val | [U16](builtin-U16) val | 
+[U32](builtin-U32) val | [U64](builtin-U64) val | [U128](builtin-U128) val | 
+[ULong](builtin-ULong) val | [USize](builtin-USize) val) &amp; [Integer](builtin-Integer)\[A val\] val)\]
+</code></pre>
 <p>Convert the <em>whole</em> string to the specified type.
 If there are any other characters in the string, or the integer found is
 out of range for the target type then an error is thrown.</p>
-<pre><code class="pony">fun box _to_int[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) &amp; Integer[A val] val)](
+<pre><code class="pony">fun box _to_int[A: ((I8 val | I16 val | I32 val | 
+    I64 val | I128 val | ILong val | 
+    ISize val | U8 val | U16 val | 
+    U32 val | U64 val | U128 val | 
+    ULong val | USize val) &amp; Integer[A val] val)](
   base: U8 val)
 : A val ?
 </code></pre>
@@ -7311,14 +7329,23 @@ out of range for the target type then an error is thrown.</p>
 <li>A val ?</li>
 </ul>
 <hr />
-<h3 id="_read_int_base91a-i8-val-i16-val-i32-val-i64-val-i128-val-ilong-val-isize-val-u8-val-u16-val-u32-val-u64-val-u128-val-ulong-val-usize-val-integer91a-val93-val93">_read_int_base[A: ((<a href="../builtin-I8">I8</a> val | <a href="../builtin-I16">I16</a> val | <a href="../builtin-I32">I32</a> val | <a href="../builtin-I64">I64</a> val | <a href="../builtin-I128">I128</a> val | <a href="../builtin-ILong">ILong</a> val | <a href="../builtin-ISize">ISize</a> val | <a href="../builtin-U8">U8</a> val | <a href="../builtin-U16">U16</a> val | <a href="../builtin-U32">U32</a> val | <a href="../builtin-U64">U64</a> val | <a href="../builtin-U128">U128</a> val | <a href="../builtin-ULong">ULong</a> val | <a href="../builtin-USize">USize</a> val) &amp; <a href="../builtin-Integer">Integer</a>[A val] val)]</h3>
+<h3 id="_read_int_base91a-i8-val-i16-val-i32-val">_read_int_base[A: ((<a href="../builtin-I8">I8</a> val | <a href="../builtin-I16">I16</a> val | <a href="../builtin-I32">I32</a> val |</h3>
+<pre><code>[I64](builtin-I64) val | [I128](builtin-I128) val | [ILong](builtin-ILong) val | 
+[ISize](builtin-ISize) val | [U8](builtin-U8) val | [U16](builtin-U16) val | 
+[U32](builtin-U32) val | [U64](builtin-U64) val | [U128](builtin-U128) val | 
+[ULong](builtin-ULong) val | [USize](builtin-USize) val) &amp; [Integer](builtin-Integer)\[A val\] val)\]
+</code></pre>
 <p>Determine the base of an integer starting at the specified index.
 If a non-0 base is given use that. If given base is 0 read the base
 specifying prefix, if any, to detect base 2 or 16.
 If no base is specified and no prefix is found default to decimal.
 Note that a leading 0 does NOT imply octal.
 Report the base found and the number of characters in the prefix.</p>
-<pre><code class="pony">fun box _read_int_base[A: ((I8 val | I16 val | I32 val | I64 val | I128 val | ILong val | ISize val | U8 val | U16 val | U32 val | U64 val | U128 val | ULong val | USize val) &amp; Integer[A val] val)](
+<pre><code class="pony">fun box _read_int_base[A: ((I8 val | I16 val | I32 val | 
+    I64 val | I128 val | ILong val | 
+    ISize val | U8 val | U16 val | 
+    U32 val | U64 val | U128 val | 
+    ULong val | USize val) &amp; Integer[A val] val)](
   base: U8 val,
   index: USize val)
 : (A val , USize val)
