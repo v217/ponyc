@@ -41402,7 +41402,7 @@
         }, 
         {
             "location": "/files--index/", 
-            "text": "No package doc string provided for files.\n\n\nPublic Types\n\n\n\n\ninterface WalkHandler\n\n\nclass FilePath\n\n\nactor FileStream\n\n\nprimitive FileOK\n\n\nprimitive FileError\n\n\nprimitive FileEOF\n\n\nprimitive FileBadFileNumber\n\n\nprimitive FileExists\n\n\nprimitive FilePermissionDenied\n\n\ntype FileErrNo\n\n\nprimitive CreateFile\n\n\nprimitive OpenFile\n\n\nclass File\n\n\nclass FileLines\n\n\nclass Directory\n\n\nprimitive FileCreate\n\n\nprimitive FileChmod\n\n\nprimitive FileChown\n\n\nprimitive FileLink\n\n\nprimitive FileLookup\n\n\nprimitive FileMkdir\n\n\nprimitive FileRead\n\n\nprimitive FileRemove\n\n\nprimitive FileRename\n\n\nprimitive FileSeek\n\n\nprimitive FileStat\n\n\nprimitive FileSync\n\n\nprimitive FileTime\n\n\nprimitive FileTruncate\n\n\nprimitive FileWrite\n\n\nprimitive FileExec\n\n\ntype FileCaps\n\n\nprimitive Path\n\n\nclass FileInfo\n\n\nclass FileMode\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _FileDes\n\n\nprimitive _FileHandle\n\n\nprimitive _EBADF\n\n\nprimitive _EEXIST\n\n\nprimitive _EACCES\n\n\nprimitive _FileHelper\n\n\nprimitive _DirectoryHandle\n\n\nprimitive _DirectoryEntry\n\n\nprimitive _PathSep\n\n\nprimitive _PathDot\n\n\nprimitive _PathDot2\n\n\nprimitive _PathOther\n\n\ntype _PathState\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestMkdtemp\n\n\nclass _TestWalk\n\n\nclass _TestDirectoryOpen\n\n\nclass _TestPathClean\n\n\nclass _TestPathJoin\n\n\nclass _TestPathRel\n\n\nclass _TestPathSplit\n\n\nclass _TestPathDir\n\n\nclass _TestPathBase\n\n\nclass _TestPathExt\n\n\nclass _TestPathVolume\n\n\nclass _TestFileOpenError\n\n\nclass _TestFileEOF", 
+            "text": "No package doc string provided for files.\n\n\nPublic Types\n\n\n\n\ninterface WalkHandler\n\n\nclass FilePath\n\n\nactor FileStream\n\n\nprimitive FileOK\n\n\nprimitive FileError\n\n\nprimitive FileEOF\n\n\nprimitive FileBadFileNumber\n\n\nprimitive FileExists\n\n\nprimitive FilePermissionDenied\n\n\ntype FileErrNo\n\n\nprimitive CreateFile\n\n\nprimitive OpenFile\n\n\nclass File\n\n\nclass FileLines\n\n\nclass Directory\n\n\nprimitive FileCreate\n\n\nprimitive FileChmod\n\n\nprimitive FileChown\n\n\nprimitive FileLink\n\n\nprimitive FileLookup\n\n\nprimitive FileMkdir\n\n\nprimitive FileRead\n\n\nprimitive FileRemove\n\n\nprimitive FileRename\n\n\nprimitive FileSeek\n\n\nprimitive FileStat\n\n\nprimitive FileSync\n\n\nprimitive FileTime\n\n\nprimitive FileTruncate\n\n\nprimitive FileWrite\n\n\nprimitive FileExec\n\n\ntype FileCaps\n\n\nprimitive Path\n\n\nclass FileInfo\n\n\nclass FileMode\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _FileDes\n\n\nprimitive _FileHandle\n\n\nprimitive _EBADF\n\n\nprimitive _EEXIST\n\n\nprimitive _EACCES\n\n\nprimitive _FileHelper\n\n\nprimitive _DirectoryHandle\n\n\nprimitive _DirectoryEntry\n\n\nprimitive _PathSep\n\n\nprimitive _PathDot\n\n\nprimitive _PathDot2\n\n\nprimitive _PathOther\n\n\ntype _PathState\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestMkdtemp\n\n\nclass _TestWalk\n\n\nclass _TestDirectoryOpen\n\n\nclass _TestPathClean\n\n\nclass _TestPathJoin\n\n\nclass _TestPathRel\n\n\nclass _TestPathSplit\n\n\nclass _TestPathDir\n\n\nclass _TestPathBase\n\n\nclass _TestPathExt\n\n\nclass _TestPathVolume\n\n\nclass _TestFileEOF", 
             "title": "Package"
         }, 
         {
@@ -41417,7 +41417,7 @@
         }, 
         {
             "location": "/files--index/#test-types", 
-            "text": "actor Main  class _TestMkdtemp  class _TestWalk  class _TestDirectoryOpen  class _TestPathClean  class _TestPathJoin  class _TestPathRel  class _TestPathSplit  class _TestPathDir  class _TestPathBase  class _TestPathExt  class _TestPathVolume  class _TestFileOpenError  class _TestFileEOF", 
+            "text": "actor Main  class _TestMkdtemp  class _TestWalk  class _TestDirectoryOpen  class _TestPathClean  class _TestPathJoin  class _TestPathRel  class _TestPathSplit  class _TestPathDir  class _TestPathBase  class _TestPathExt  class _TestPathVolume  class _TestFileEOF", 
             "title": "Test Types"
         }, 
         {
@@ -44557,116 +44557,6 @@
         }, 
         {
             "location": "/files-_TestPathVolume/#returns_6", 
-            "text": "String  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/", 
-            "text": "_TestFileOpenError\n\n\nclass iso _TestFileOpenError is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestFileOpenError iso^\n\n\n\n\nReturns\n\n\n\n\n_TestFileOpenError\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
-            "title": "class _TestFileOpenError"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#_testfileopenerror", 
-            "text": "class iso _TestFileOpenError is\n  UnitTest ref", 
-            "title": "_TestFileOpenError"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#implements", 
-            "text": "UnitTest  ref", 
-            "title": "Implements"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#constructors", 
-            "text": "", 
-            "title": "Constructors"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#create", 
-            "text": "new iso create()\n: _TestFileOpenError iso^", 
-            "title": "create"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#returns", 
-            "text": "_TestFileOpenError  iso^", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#public-functions", 
-            "text": "", 
-            "title": "Public Functions"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#name", 
-            "text": "fun box name()\n: String val", 
-            "title": "name"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#returns_1", 
-            "text": "String  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#apply", 
-            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
-            "title": "apply"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#parameters", 
-            "text": "h:  TestHelper  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#returns_2", 
-            "text": "None  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#exclusion_group", 
-            "text": "fun box exclusion_group()\n: String val", 
-            "title": "exclusion_group"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#returns_3", 
-            "text": "String  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#timed_out", 
-            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
-            "title": "timed_out"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#parameters_1", 
-            "text": "h:  TestHelper  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#returns_4", 
-            "text": "None  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#tear_down", 
-            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
-            "title": "tear_down"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#parameters_2", 
-            "text": "h:  TestHelper  val", 
-            "title": "Parameters"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#returns_5", 
-            "text": "None  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#label", 
-            "text": "fun box label()\n: String val", 
-            "title": "label"
-        }, 
-        {
-            "location": "/files-_TestFileOpenError/#returns_6", 
             "text": "String  val", 
             "title": "Returns"
         }, 

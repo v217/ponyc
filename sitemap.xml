@@ -1812,12 +1812,6 @@
     </url>
         
     <url>
-     <loc>None/files-_TestFileOpenError/</loc>
-     <lastmod>2016-10-09</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>None/files-_TestFileEOF/</loc>
      <lastmod>2016-10-09</lastmod>
      <changefreq>daily</changefreq>
