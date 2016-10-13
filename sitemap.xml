@@ -4266,6 +4266,18 @@
     </url>
         
     <url>
+     <loc>None/promises-Main/</loc>
+     <lastmod>2016-10-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/promises-_TestPromise/</loc>
+     <lastmod>2016-10-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/promises-_Then/</loc>
      <lastmod>2016-10-13</lastmod>
      <changefreq>daily</changefreq>

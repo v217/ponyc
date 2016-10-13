@@ -78287,7 +78287,7 @@
         }, 
         {
             "location": "/promises--index/", 
-            "text": "Promises Package\n\n\nA \nPromise\n represents a value that will be available at a later\ntime. \nPromise\ns can either be fulfilled with a value or rejected. Any\nnumber of function handlers can be added to the \nPromise\n, to be\ncalled when the \nPromise\n is fulfilled or rejected. These handlers\nthemselves are also wrapped in \nPromise\ns so that they can be chained\ntogether in order for the fulfilled value of one \nPromise\n to be used\nto compute a value which will be used to fulfill the next \nPromise\n in\nthe chain, or so that if the \nPromise\n is rejected then the subsequent\nreject functions will also be called. The input and output types of a\nfulfill handler do not have to be the same, so a chain of fulfill\nhandlers can transform the original value into something new.\n\n\nFulfill and reject handlers can either be specified as classes that\nimplment the \nFulfill\n and \nReject\n interfaces, or as functions with\nthe same signatures as the \napply\n methods in \nFulfill\n and \nReject\n.\n\n\nIn the following code, the fulfillment of the \nPromise\n causes the\nexecution of several fulfillment functions. The output is:\n\n\nfulfilled + foo\nfulfilled + bar\nfulfilled + baz\n\n\n\n\nuse \npromises\n\n\nclass PrintFulfill is Fulfill[String, String]\n  let _env: Env\n  let _msg: String\n  new create(env: Env, msg: String) =\n\n    _env = env\n    _msg = msg\n  fun apply(s: String): String =\n\n    _env.out.print(\n + \n.join([s, _msg]))\n    s\n\nactor Main\n  new create(env: Env) =\n\n     let promise = Promise[String]\n     promise.next[String](recover PrintFulfill(env, \nfoo\n) end)\n     promise.next[String](recover PrintFulfill(env, \nbar\n) end)\n     promise.next[String](recover PrintFulfill(env, \nbaz\n) end)\n     promise(\nfulfilled\n)\n\n\n\n\nIn the following code, the fulfill functions are chained together so\nthat the fulfilled value of the first one is used to generate a value\nwhich fulfills the second one, which in turn is used to compute a\nvalue which fulfills the third one, which in turn is used to compute a\nvalue which fulfills the fourth one. The output is the average length\nof the words passed on the command line or \n0\n if there are no command\nline arguments.\n\n\nuse \npromises\n\n\nprimitive Computation\n  fun tag string_to_strings(s: String): Array[String] val =\n\n    recover s.split() end\n  fun tag strings_to_sizes(sa: Array[String] val): Array[USize] val =\n\n    recover\n      let len = Array[USize]\n      for s in sa.values() do\n        len.push(s.size())\n      end\n      len\n    end\n  fun tag sizes_to_avg(sza: Array[USize] val): USize =\n\n    var acc = USize(0)\n    for sz in sza.values() do\n      acc = acc + sz\n    end\n    acc / sza.size()\n  fun tag output(env: Env, sz: USize): None =\n\n    env.out.print(sz.string())\n\nactor Main\n  new create(env: Env) =\n\n     let promise = Promise[String]\n     promise.next[Array[String] val](recover Computation~string_to_strings() end)\n            .next[Array[USize] val](recover Computation~strings_to_sizes() end)\n            .next[USize](recover Computation~sizes_to_avg() end)\n            .next[None](recover Computation~output(env) end)\n     promise(\n \n.join(env.args.slice(1)))\n\n\n\n\nPublic Types\n\n\n\n\ninterface Fulfill\n\n\ninterface Reject\n\n\nclass FulfillIdentity\n\n\nclass RejectAlways\n\n\nactor Promise\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _Pending\n\n\nprimitive _Reject\n\n\nclass _Then\n\n\ninterface _IThen", 
+            "text": "Promises Package\n\n\nA \nPromise\n represents a value that will be available at a later\ntime. \nPromise\ns can either be fulfilled with a value or rejected. Any\nnumber of function handlers can be added to the \nPromise\n, to be\ncalled when the \nPromise\n is fulfilled or rejected. These handlers\nthemselves are also wrapped in \nPromise\ns so that they can be chained\ntogether in order for the fulfilled value of one \nPromise\n to be used\nto compute a value which will be used to fulfill the next \nPromise\n in\nthe chain, or so that if the \nPromise\n is rejected then the subsequent\nreject functions will also be called. The input and output types of a\nfulfill handler do not have to be the same, so a chain of fulfill\nhandlers can transform the original value into something new.\n\n\nFulfill and reject handlers can either be specified as classes that\nimplment the \nFulfill\n and \nReject\n interfaces, or as functions with\nthe same signatures as the \napply\n methods in \nFulfill\n and \nReject\n.\n\n\nIn the following code, the fulfillment of the \nPromise\n causes the\nexecution of several fulfillment functions. The output is:\n\n\nfulfilled + foo\nfulfilled + bar\nfulfilled + baz\n\n\n\n\nuse \npromises\n\n\nclass PrintFulfill is Fulfill[String, String]\n  let _env: Env\n  let _msg: String\n  new create(env: Env, msg: String) =\n\n    _env = env\n    _msg = msg\n  fun apply(s: String): String =\n\n    _env.out.print(\n + \n.join([s, _msg]))\n    s\n\nactor Main\n  new create(env: Env) =\n\n     let promise = Promise[String]\n     promise.next[String](recover PrintFulfill(env, \nfoo\n) end)\n     promise.next[String](recover PrintFulfill(env, \nbar\n) end)\n     promise.next[String](recover PrintFulfill(env, \nbaz\n) end)\n     promise(\nfulfilled\n)\n\n\n\n\nIn the following code, the fulfill functions are chained together so\nthat the fulfilled value of the first one is used to generate a value\nwhich fulfills the second one, which in turn is used to compute a\nvalue which fulfills the third one, which in turn is used to compute a\nvalue which fulfills the fourth one. The output is the average length\nof the words passed on the command line or \n0\n if there are no command\nline arguments.\n\n\nuse \npromises\n\n\nprimitive Computation\n  fun tag string_to_strings(s: String): Array[String] val =\n\n    recover s.split() end\n  fun tag strings_to_sizes(sa: Array[String] val): Array[USize] val =\n\n    recover\n      let len = Array[USize]\n      for s in sa.values() do\n        len.push(s.size())\n      end\n      len\n    end\n  fun tag sizes_to_avg(sza: Array[USize] val): USize =\n\n    var acc = USize(0)\n    for sz in sza.values() do\n      acc = acc + sz\n    end\n    acc / sza.size()\n  fun tag output(env: Env, sz: USize): None =\n\n    env.out.print(sz.string())\n\nactor Main\n  new create(env: Env) =\n\n     let promise = Promise[String]\n     promise.next[Array[String] val](recover Computation~string_to_strings() end)\n            .next[Array[USize] val](recover Computation~strings_to_sizes() end)\n            .next[USize](recover Computation~sizes_to_avg() end)\n            .next[None](recover Computation~output(env) end)\n     promise(\n \n.join(env.args.slice(1)))\n\n\n\n\nPublic Types\n\n\n\n\ninterface Fulfill\n\n\ninterface Reject\n\n\nclass FulfillIdentity\n\n\nclass RejectAlways\n\n\nactor Promise\n\n\n\n\nPrivate Types\n\n\n\n\nprimitive _Pending\n\n\nprimitive _Reject\n\n\nclass _Then\n\n\ninterface _IThen\n\n\n\n\nTest Types\n\n\n\n\nactor Main\n\n\nclass _TestPromise", 
             "title": "Package"
         }, 
         {
@@ -78304,6 +78304,11 @@
             "location": "/promises--index/#private-types", 
             "text": "primitive _Pending  primitive _Reject  class _Then  interface _IThen", 
             "title": "Private Types"
+        }, 
+        {
+            "location": "/promises--index/#test-types", 
+            "text": "actor Main  class _TestPromise", 
+            "title": "Test Types"
         }, 
         {
             "location": "/promises-_Pending/", 
@@ -78644,6 +78649,216 @@
             "location": "/promises-Promise/#parameters_2", 
             "text": "attach:  _IThen [A #share] iso", 
             "title": "Parameters"
+        }, 
+        {
+            "location": "/promises-Main/", 
+            "text": "Main\n\n\nactor tag Main is\n  TestList ref\n\n\n\n\nImplements\n\n\n\n\nTestList\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew tag create(\n  env: Env val)\n: Main tag^\n\n\n\n\nParameters\n\n\n\n\nenv: \nEnv\n val\n\n\n\n\nReturns\n\n\n\n\nMain\n tag^\n\n\n\n\n\n\nmake\n\n\nnew tag make()\n: Main tag^\n\n\n\n\nReturns\n\n\n\n\nMain\n tag^\n\n\n\n\n\n\nPublic Functions\n\n\ntests\n\n\nfun tag tests(\n  test: PonyTest tag)\n: None val\n\n\n\n\nParameters\n\n\n\n\ntest: \nPonyTest\n tag\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "title": "actor Main"
+        }, 
+        {
+            "location": "/promises-Main/#main", 
+            "text": "actor tag Main is\n  TestList ref", 
+            "title": "Main"
+        }, 
+        {
+            "location": "/promises-Main/#implements", 
+            "text": "TestList  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/promises-Main/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/promises-Main/#create", 
+            "text": "new tag create(\n  env: Env val)\n: Main tag^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/promises-Main/#parameters", 
+            "text": "env:  Env  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/promises-Main/#returns", 
+            "text": "Main  tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-Main/#make", 
+            "text": "new tag make()\n: Main tag^", 
+            "title": "make"
+        }, 
+        {
+            "location": "/promises-Main/#returns_1", 
+            "text": "Main  tag^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-Main/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/promises-Main/#tests", 
+            "text": "fun tag tests(\n  test: PonyTest tag)\n: None val", 
+            "title": "tests"
+        }, 
+        {
+            "location": "/promises-Main/#parameters_1", 
+            "text": "test:  PonyTest  tag", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/promises-Main/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/", 
+            "text": "_TestPromise\n\n\nclass iso _TestPromise is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestPromise iso^\n\n\n\n\nReturns\n\n\n\n\n_TestPromise\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun box apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\nPrivate Functions\n\n\n_test_fulfilled\n\n\nfun box _test_fulfilled(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\n_test_rejected\n\n\nfun box _test_rejected(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
+            "title": "class _TestPromise"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#_testpromise", 
+            "text": "class iso _TestPromise is\n  UnitTest ref", 
+            "title": "_TestPromise"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#implements", 
+            "text": "UnitTest  ref", 
+            "title": "Implements"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#constructors", 
+            "text": "", 
+            "title": "Constructors"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#create", 
+            "text": "new iso create()\n: _TestPromise iso^", 
+            "title": "create"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns", 
+            "text": "_TestPromise  iso^", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#public-functions", 
+            "text": "", 
+            "title": "Public Functions"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#name", 
+            "text": "fun box name()\n: String val", 
+            "title": "name"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns_1", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#apply", 
+            "text": "fun box apply(\n  h: TestHelper val)\n: None val", 
+            "title": "apply"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#parameters", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns_2", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#exclusion_group", 
+            "text": "fun box exclusion_group()\n: String val", 
+            "title": "exclusion_group"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns_3", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#timed_out", 
+            "text": "fun ref timed_out(\n  h: TestHelper val)\n: None val", 
+            "title": "timed_out"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#parameters_1", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns_4", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#tear_down", 
+            "text": "fun ref tear_down(\n  h: TestHelper val)\n: None val", 
+            "title": "tear_down"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#parameters_2", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns_5", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns_6", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#private-functions", 
+            "text": "", 
+            "title": "Private Functions"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#_test_fulfilled", 
+            "text": "fun box _test_fulfilled(\n  h: TestHelper val)\n: None val", 
+            "title": "_test_fulfilled"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#parameters_3", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns_7", 
+            "text": "None  val", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#_test_rejected", 
+            "text": "fun box _test_rejected(\n  h: TestHelper val)\n: None val", 
+            "title": "_test_rejected"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#parameters_4", 
+            "text": "h:  TestHelper  val", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/promises-_TestPromise/#returns_8", 
+            "text": "None  val", 
+            "title": "Returns"
         }, 
         {
             "location": "/promises-_Then/", 
