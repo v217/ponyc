@@ -778,6 +778,12 @@
     </url>
         
     <url>
+     <loc>None/builtin_test-_TestNextPow2/</loc>
+     <lastmod>2016-10-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/builtin_test-_TestStruct/</loc>
      <lastmod>2016-10-15</lastmod>
      <changefreq>daily</changefreq>
