@@ -5843,10 +5843,10 @@
 <li><a href="../builtin-Array">Array</a>[A] ref^</li>
 </ul>
 <hr />
-<h3 id="from_cstring">from_cstring</h3>
+<h3 id="from_cpointer">from_cpointer</h3>
 <p>Create an array from a C-style pointer and length. The contents are not
 copied.</p>
-<pre><code class="pony">new ref from_cstring(
+<pre><code class="pony">new ref from_cpointer(
   ptr: Pointer[A] ref,
   len: USize val,
   alloc: USize val = 0)
@@ -5865,9 +5865,9 @@ copied.</p>
 </ul>
 <hr />
 <h2 id="public-functions">Public Functions</h2>
-<h3 id="cstring">cstring</h3>
+<h3 id="cpointer">cpointer</h3>
 <p>Return the underlying C-style pointer.</p>
-<pre><code class="pony">fun box cstring()
+<pre><code class="pony">fun box cpointer()
 : Pointer[A] tag
 </code></pre>
 
@@ -6427,15 +6427,26 @@ contains, the elements themselves are not copied.</p>
 </ul>
 <hr />
 <h2 id="private-functions">Private Functions</h2>
-<h3 id="_cstring">_cstring</h3>
-<p>Internal cstring.</p>
-<pre><code class="pony">fun box _cstring()
-: Pointer[A] box
+<h3 id="_copy_to">_copy_to</h3>
+<p>Copy copy_len elements from this to that at specified offsets.</p>
+<pre><code class="pony">fun box _copy_to(
+  ptr: Pointer[this-&gt;A!] ref,
+  copy_len: USize val,
+  from_offset: USize val = 0,
+  to_offset: USize val = 0)
+: None val
 </code></pre>
 
+<h4 id="parameters_23">Parameters</h4>
+<ul>
+<li>ptr: <a href="../builtin-Pointer">Pointer</a>[this-&gt;A!] ref</li>
+<li>copy_len: <a href="../builtin-USize">USize</a> val</li>
+<li>from_offset: <a href="../builtin-USize">USize</a> val = 0</li>
+<li>to_offset: <a href="../builtin-USize">USize</a> val = 0</li>
+</ul>
 <h4 id="returns_36">Returns</h4>
 <ul>
-<li><a href="../builtin-Pointer">Pointer</a>[A] box</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
               

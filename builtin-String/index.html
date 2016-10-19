@@ -5896,15 +5896,14 @@ array is null terminated, or copying the data if it is not.</p>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
 <hr />
-<h3 id="from_cstring">from_cstring</h3>
-<p>The cstring is not copied. This must be done only with C-FFI functions that
-return pony_alloc'd character arrays. If len is not given, the pointer is
-scanned for the first null byte, which will be interpreted as the null
-terminator. Therefore, strings without null terminators must specify
-a length to retain memory safety.</p>
-<pre><code class="pony">new ref from_cstring(
+<h3 id="from_cpointer">from_cpointer</h3>
+<p>Return a string from binary pointer data without making a
+copy. This must be done only with C-FFI functions that return
+pony_alloc'd character arrays. If a null pointer is given then an
+empty string is returned.</p>
+<pre><code class="pony">new ref from_cpointer(
   str: Pointer[U8 val] ref,
-  len: USize val = 0,
+  len: USize val,
   alloc: USize val = 0)
 : String ref^
 </code></pre>
@@ -5912,10 +5911,33 @@ a length to retain memory safety.</p>
 <h4 id="parameters_3">Parameters</h4>
 <ul>
 <li>str: <a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] ref</li>
-<li>len: <a href="../builtin-USize">USize</a> val = 0</li>
+<li>len: <a href="../builtin-USize">USize</a> val</li>
 <li>alloc: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
 <h4 id="returns_3">Returns</h4>
+<ul>
+<li><a href="../builtin-String">String</a> ref^</li>
+</ul>
+<hr />
+<h3 id="from_cstring">from_cstring</h3>
+<p>Return a string from a pointer to a null-terminated cstring
+without making a copy. The data is not copied. This must be done
+only with C-FFI functions that return pony_alloc'd character
+arrays. The pointer is scanned for the first null byte, which will
+be interpreted as the null terminator. Note that the scan is
+unbounded; the pointed to data must be null-terminated within
+the allocated array to preserve memory safety. If a null pointer
+is given then an empty string is returned.</p>
+<pre><code class="pony">new ref from_cstring(
+  str: Pointer[U8 val] ref)
+: String ref^
+</code></pre>
+
+<h4 id="parameters_4">Parameters</h4>
+<ul>
+<li>str: <a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] ref</li>
+</ul>
+<h4 id="returns_4">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -5930,12 +5952,12 @@ a pointer.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_4">Parameters</h4>
+<h4 id="parameters_5">Parameters</h4>
 <ul>
 <li>str: <a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] box</li>
 <li>len: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_4">Returns</h4>
+<h4 id="returns_5">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -5947,11 +5969,11 @@ a pointer.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_5">Parameters</h4>
+<h4 id="parameters_6">Parameters</h4>
 <ul>
 <li>value: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_5">Returns</h4>
+<h4 id="returns_6">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -5964,22 +5986,37 @@ a pointer.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_6">Parameters</h4>
+<h4 id="parameters_7">Parameters</h4>
 <ul>
 <li>value: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_6">Returns</h4>
+<h4 id="returns_7">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
+<h3 id="cpointer">cpointer</h3>
+<p>Returns a C compatible pointer to the underlying string allocation.</p>
+<pre><code class="pony">fun box cpointer()
+: Pointer[U8 val] tag
+</code></pre>
+
+<h4 id="returns_8">Returns</h4>
+<ul>
+<li><a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] tag</li>
+</ul>
+<hr />
 <h3 id="cstring">cstring</h3>
-<p>Returns a C compatible pointer to a null terminated string.</p>
+<p>Returns a C compatible pointer to a null-terminated version of the
+string, safe to pass to an FFI function that doesn't accept a size
+argument, expecting a null-terminator.  If the underlying string
+is already null terminated, this is returned; otherwise the string
+is copied into a new, null-terminated allocation.</p>
 <pre><code class="pony">fun box cstring()
 : Pointer[U8 val] tag
 </code></pre>
 
-<h4 id="returns_7">Returns</h4>
+<h4 id="returns_9">Returns</h4>
 <ul>
 <li><a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] tag</li>
 </ul>
@@ -5990,7 +6027,7 @@ a pointer.</p>
 : Array[U8 val] val
 </code></pre>
 
-<h4 id="returns_8">Returns</h4>
+<h4 id="returns_10">Returns</h4>
 <ul>
 <li><a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] val</li>
 </ul>
@@ -6001,7 +6038,7 @@ a pointer.</p>
 : USize val
 </code></pre>
 
-<h4 id="returns_9">Returns</h4>
+<h4 id="returns_11">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6015,12 +6052,12 @@ offsets. Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 : USize val
 </code></pre>
 
-<h4 id="parameters_7">Parameters</h4>
+<h4 id="parameters_8">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-ISize">ISize</a> val = 0</li>
 <li>to: <a href="../builtin-ISize">ISize</a> val = call</li>
 </ul>
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_12">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6031,7 +6068,7 @@ offsets. Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 : USize val
 </code></pre>
 
-<h4 id="returns_11">Returns</h4>
+<h4 id="returns_13">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6044,11 +6081,11 @@ null terminator.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_8">Parameters</h4>
+<h4 id="parameters_9">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_12">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6060,7 +6097,7 @@ request may be ignored. The string is returned to allow call chaining.</p>
 : String ref^
 </code></pre>
 
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6073,7 +6110,7 @@ allocated length, a null is added.</p>
 : String ref^
 </code></pre>
 
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6087,11 +6124,11 @@ null terminator. Does not check for null terminators inside the string.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_9">Parameters</h4>
+<h4 id="parameters_10">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6106,12 +6143,12 @@ The same string is returned to allow call chaining.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_10">Parameters</h4>
+<h4 id="parameters_11">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>to: <a href="../builtin-USize">USize</a> val = call</li>
 </ul>
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6126,12 +6163,12 @@ The operation does not allocate a new string pointer nor copy elements.</p>
 : String val
 </code></pre>
 
-<h4 id="parameters_11">Parameters</h4>
+<h4 id="parameters_12">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>to: <a href="../builtin-USize">USize</a> val = call</li>
 </ul>
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> val</li>
 </ul>
@@ -6147,23 +6184,9 @@ If you need a null-terminated copy of this string, use the clone method.</p>
 : Bool val
 </code></pre>
 
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
-</ul>
-<hr />
-<h3 id="null_terminated">null_terminated</h3>
-<p>Returns a null-terminated version of the string, safe to pass to an FFI
-function that doesn't accept a size argument, expecting a null-terminator.
-If the underlying string is already null terminated, this is returned;
-otherwise the string is cloned and the null-terminated clone is returned.</p>
-<pre><code class="pony">fun box null_terminated()
-: this-&gt;String ref
-</code></pre>
-
-<h4 id="returns_19">Returns</h4>
-<ul>
-<li>this-&gt;<a href="../builtin-String">String</a> ref</li>
 </ul>
 <hr />
 <h3 id="utf32">utf32</h3>
@@ -6177,11 +6200,11 @@ out of bounds.</p>
 : (U32 val , U8 val) ?
 </code></pre>
 
-<h4 id="parameters_12">Parameters</h4>
+<h4 id="parameters_13">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 </ul>
-<h4 id="returns_20">Returns</h4>
+<h4 id="returns_21">Returns</h4>
 <ul>
 <li>(<a href="../builtin-U32">U32</a> val , <a href="../builtin-U8">U8</a> val) ?</li>
 </ul>
@@ -6193,11 +6216,11 @@ out of bounds.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_13">Parameters</h4>
+<h4 id="parameters_14">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_21">Returns</h4>
+<h4 id="returns_22">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -6210,12 +6233,12 @@ out of bounds.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_14">Parameters</h4>
+<h4 id="parameters_15">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
 </ul>
-<h4 id="returns_22">Returns</h4>
+<h4 id="returns_23">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -6228,11 +6251,11 @@ of bounds.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_15">Parameters</h4>
+<h4 id="parameters_16">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 </ul>
-<h4 id="returns_23">Returns</h4>
+<h4 id="returns_24">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -6246,23 +6269,24 @@ Raise an error if the offset is out of bounds.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_16">Parameters</h4>
+<h4 id="parameters_17">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
 </ul>
-<h4 id="returns_24">Returns</h4>
+<h4 id="returns_25">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
 <hr />
 <h3 id="clone">clone</h3>
-<p>Returns a copy of the string.</p>
+<p>Returns a copy of the string. The resulting string is
+null-terminated even if the original is not.</p>
 <pre><code class="pony">fun box clone()
 : String iso^
 </code></pre>
 
-<h4 id="returns_25">Returns</h4>
+<h4 id="returns_26">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6277,13 +6301,13 @@ beginning. Raise an error if there is no n-th occurence of s or s is empty.</p>
 : ISize val ?
 </code></pre>
 
-<h4 id="parameters_17">Parameters</h4>
+<h4 id="parameters_18">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 <li>nth: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_26">Returns</h4>
+<h4 id="returns_27">Returns</h4>
 <ul>
 <li><a href="../builtin-ISize">ISize</a> val ?</li>
 </ul>
@@ -6299,13 +6323,13 @@ Raise an error if there is no n-th occurence of <code>s</code> or <code>s</code>
 : ISize val ?
 </code></pre>
 
-<h4 id="parameters_18">Parameters</h4>
+<h4 id="parameters_19">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = call</li>
 <li>nth: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_27">Returns</h4>
+<h4 id="returns_28">Returns</h4>
 <ul>
 <li><a href="../builtin-ISize">ISize</a> val ?</li>
 </ul>
@@ -6319,13 +6343,13 @@ Raise an error if there is no n-th occurence of <code>s</code> or <code>s</code>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_19">Parameters</h4>
+<h4 id="parameters_20">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 <li>nth: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_28">Returns</h4>
+<h4 id="returns_29">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6338,12 +6362,12 @@ Raise an error if there is no n-th occurence of <code>s</code> or <code>s</code>
 : USize val
 </code></pre>
 
-<h4 id="parameters_20">Parameters</h4>
+<h4 id="parameters_21">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 </ul>
-<h4 id="returns_29">Returns</h4>
+<h4 id="returns_30">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6356,12 +6380,12 @@ Raise an error if there is no n-th occurence of <code>s</code> or <code>s</code>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_21">Parameters</h4>
+<h4 id="parameters_22">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 </ul>
-<h4 id="returns_30">Returns</h4>
+<h4 id="returns_31">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6374,12 +6398,12 @@ Raise an error if there is no n-th occurence of <code>s</code> or <code>s</code>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_22">Parameters</h4>
+<h4 id="parameters_23">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>len: <a href="../builtin-USize">USize</a> val = 1</li>
 </ul>
-<h4 id="returns_31">Returns</h4>
+<h4 id="returns_32">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6393,12 +6417,12 @@ Returns an empty string if nothing is in the range.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_23">Parameters</h4>
+<h4 id="parameters_24">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-ISize">ISize</a> val</li>
 <li>to: <a href="../builtin-ISize">ISize</a> val = call</li>
 </ul>
-<h4 id="returns_32">Returns</h4>
+<h4 id="returns_33">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6409,7 +6433,7 @@ Returns an empty string if nothing is in the range.</p>
 : String iso^
 </code></pre>
 
-<h4 id="returns_33">Returns</h4>
+<h4 id="returns_34">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6420,7 +6444,7 @@ Returns an empty string if nothing is in the range.</p>
 : String ref^
 </code></pre>
 
-<h4 id="returns_34">Returns</h4>
+<h4 id="returns_35">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6432,7 +6456,7 @@ case.</p>
 : String iso^
 </code></pre>
 
-<h4 id="returns_35">Returns</h4>
+<h4 id="returns_36">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6443,7 +6467,7 @@ case.</p>
 : String ref^
 </code></pre>
 
-<h4 id="returns_36">Returns</h4>
+<h4 id="returns_37">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6454,7 +6478,7 @@ case.</p>
 : String iso^
 </code></pre>
 
-<h4 id="returns_37">Returns</h4>
+<h4 id="returns_38">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6466,7 +6490,7 @@ UTF-8 correctly.</p>
 : String ref^
 </code></pre>
 
-<h4 id="returns_38">Returns</h4>
+<h4 id="returns_39">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6478,11 +6502,11 @@ UTF-8 correctly.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_24">Parameters</h4>
+<h4 id="parameters_25">Parameters</h4>
 <ul>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
 </ul>
-<h4 id="returns_39">Returns</h4>
+<h4 id="returns_40">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6493,7 +6517,7 @@ UTF-8 correctly.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="returns_40">Returns</h4>
+<h4 id="returns_41">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -6505,11 +6529,11 @@ UTF-8 correctly.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_25">Parameters</h4>
+<h4 id="parameters_26">Parameters</h4>
 <ul>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
 </ul>
-<h4 id="returns_41">Returns</h4>
+<h4 id="returns_42">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6520,7 +6544,7 @@ UTF-8 correctly.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="returns_42">Returns</h4>
+<h4 id="returns_43">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -6534,13 +6558,13 @@ UTF-8 correctly.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_26">Parameters</h4>
+<h4 id="parameters_27">Parameters</h4>
 <ul>
 <li>seq: <a href="../builtin-ReadSeq">ReadSeq</a>[<a href="../builtin-U8">U8</a> val] box</li>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>len: <a href="../builtin-USize">USize</a> val = call</li>
 </ul>
-<h4 id="returns_43">Returns</h4>
+<h4 id="returns_44">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6555,13 +6579,13 @@ offset. The string is returned to allow call chaining.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_27">Parameters</h4>
+<h4 id="parameters_28">Parameters</h4>
 <ul>
 <li>iter: <a href="../builtin-Iterator">Iterator</a>[<a href="../builtin-U8">U8</a> val] ref</li>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>len: <a href="../builtin-USize">USize</a> val = call</li>
 </ul>
-<h4 id="returns_44">Returns</h4>
+<h4 id="returns_45">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6572,7 +6596,7 @@ offset. The string is returned to allow call chaining.</p>
 : String ref^
 </code></pre>
 
-<h4 id="returns_45">Returns</h4>
+<h4 id="returns_46">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6586,12 +6610,12 @@ offset.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_28">Parameters</h4>
+<h4 id="parameters_29">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>that: <a href="../builtin-String">String</a> val</li>
 </ul>
-<h4 id="returns_46">Returns</h4>
+<h4 id="returns_47">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6605,12 +6629,12 @@ offset is out of bounds.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_29">Parameters</h4>
+<h4 id="parameters_30">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
-<h4 id="returns_47">Returns</h4>
+<h4 id="returns_48">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6623,12 +6647,12 @@ offset is out of bounds.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_30">Parameters</h4>
+<h4 id="parameters_31">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
 </ul>
-<h4 id="returns_48">Returns</h4>
+<h4 id="returns_49">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6642,12 +6666,12 @@ Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_31">Parameters</h4>
+<h4 id="parameters_32">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-ISize">ISize</a> val</li>
 <li>to: <a href="../builtin-ISize">ISize</a> val = call</li>
 </ul>
-<h4 id="returns_49">Returns</h4>
+<h4 id="returns_50">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6661,12 +6685,12 @@ Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_32">Parameters</h4>
+<h4 id="parameters_33">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-ISize">ISize</a> val</li>
 <li>to: <a href="../builtin-ISize">ISize</a> val = call</li>
 </ul>
-<h4 id="returns_50">Returns</h4>
+<h4 id="returns_51">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6679,11 +6703,11 @@ instances.</p>
 : USize val
 </code></pre>
 
-<h4 id="parameters_33">Parameters</h4>
+<h4 id="parameters_34">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 </ul>
-<h4 id="returns_51">Returns</h4>
+<h4 id="returns_52">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6698,13 +6722,13 @@ occurrences will be replaced.</p>
 : String ref^
 </code></pre>
 
-<h4 id="parameters_34">Parameters</h4>
+<h4 id="parameters_35">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-String">String</a> box</li>
 <li>to: <a href="../builtin-String">String</a> box</li>
 <li>n: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_52">Returns</h4>
+<h4 id="returns_53">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
@@ -6722,13 +6746,13 @@ example, <code>"1,,2".split(",") =&gt; ["1", "", "2"]</code>.</p>
 : Array[String val] iso^
 </code></pre>
 
-<h4 id="parameters_35">Parameters</h4>
+<h4 id="parameters_36">Parameters</h4>
 <ul>
 <li>delim: <a href="../builtin-String">String</a> val= "  
 "</li>
 <li>n: <a href="../builtin-USize">USize</a> val = 0</li>
 </ul>
-<h4 id="returns_53">Returns</h4>
+<h4 id="returns_54">Returns</h4>
 <ul>
 <li><a href="../builtin-Array">Array</a>[<a href="../builtin-String">String</a> val] iso^</li>
 </ul>
@@ -6736,25 +6760,6 @@ example, <code>"1,,2".split(",") =&gt; ["1", "", "2"]</code>.</p>
 <h3 id="strip">strip</h3>
 <p>Remove all leading and trailing characters from the string that are in s.</p>
 <pre><code class="pony">fun ref strip(
-  s: String box= &quot;  
-&quot;)
-: String ref^
-</code></pre>
-
-<h4 id="parameters_36">Parameters</h4>
-<ul>
-<li>s: <a href="../builtin-String">String</a> box= "  
-"</li>
-</ul>
-<h4 id="returns_54">Returns</h4>
-<ul>
-<li><a href="../builtin-String">String</a> ref^</li>
-</ul>
-<hr />
-<h3 id="rstrip">rstrip</h3>
-<p>Remove all trailing characters within the string that are in s. By default,
-trailing whitespace is removed.</p>
-<pre><code class="pony">fun ref rstrip(
   s: String box= &quot;  
 &quot;)
 : String ref^
@@ -6770,10 +6775,10 @@ trailing whitespace is removed.</p>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
 <hr />
-<h3 id="lstrip">lstrip</h3>
-<p>Remove all leading characters within the string that are in s. By default,
-leading whitespace is removed.</p>
-<pre><code class="pony">fun ref lstrip(
+<h3 id="rstrip">rstrip</h3>
+<p>Remove all trailing characters within the string that are in s. By default,
+trailing whitespace is removed.</p>
+<pre><code class="pony">fun ref rstrip(
   s: String box= &quot;  
 &quot;)
 : String ref^
@@ -6789,6 +6794,25 @@ leading whitespace is removed.</p>
 <li><a href="../builtin-String">String</a> ref^</li>
 </ul>
 <hr />
+<h3 id="lstrip">lstrip</h3>
+<p>Remove all leading characters within the string that are in s. By default,
+leading whitespace is removed.</p>
+<pre><code class="pony">fun ref lstrip(
+  s: String box= &quot;  
+&quot;)
+: String ref^
+</code></pre>
+
+<h4 id="parameters_39">Parameters</h4>
+<ul>
+<li>s: <a href="../builtin-String">String</a> box= "  
+"</li>
+</ul>
+<h4 id="returns_57">Returns</h4>
+<ul>
+<li><a href="../builtin-String">String</a> ref^</li>
+</ul>
+<hr />
 <h3 id="add">add</h3>
 <p>Return a string that is a concatenation of this and that.</p>
 <pre><code class="pony">fun box add(
@@ -6796,11 +6820,11 @@ leading whitespace is removed.</p>
 : String val
 </code></pre>
 
-<h4 id="parameters_39">Parameters</h4>
+<h4 id="parameters_40">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
-<h4 id="returns_57">Returns</h4>
+<h4 id="returns_58">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> val</li>
 </ul>
@@ -6813,11 +6837,11 @@ as a separator.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_40">Parameters</h4>
+<h4 id="parameters_41">Parameters</h4>
 <ul>
 <li>data: <a href="../builtin-ReadSeq">ReadSeq</a>[<a href="../builtin-Stringable">Stringable</a> box] box</li>
 </ul>
-<h4 id="returns_58">Returns</h4>
+<h4 id="returns_59">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6829,11 +6853,11 @@ as a separator.</p>
 : (Less val | Equal val | Greater val)
 </code></pre>
 
-<h4 id="parameters_41">Parameters</h4>
+<h4 id="parameters_42">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
-<h4 id="returns_59">Returns</h4>
+<h4 id="returns_60">Returns</h4>
 <ul>
 <li>(<a href="../builtin-Less">Less</a> val | <a href="../builtin-Equal">Equal</a> val | <a href="../builtin-Greater">Greater</a> val)</li>
 </ul>
@@ -6860,7 +6884,7 @@ will be reduced to the length of the longest substring.</p>
 : (Less val | Equal val | Greater val)
 </code></pre>
 
-<h4 id="parameters_42">Parameters</h4>
+<h4 id="parameters_43">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 <li>n: <a href="../builtin-USize">USize</a> val</li>
@@ -6868,7 +6892,7 @@ will be reduced to the length of the longest substring.</p>
 <li>that_offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 <li>ignore_case: <a href="../builtin-Bool">Bool</a> val = false</li>
 </ul>
-<h4 id="returns_60">Returns</h4>
+<h4 id="returns_61">Returns</h4>
 <ul>
 <li>(<a href="../builtin-Less">Less</a> val | <a href="../builtin-Equal">Equal</a> val | <a href="../builtin-Greater">Greater</a> val)</li>
 </ul>
@@ -6876,23 +6900,6 @@ will be reduced to the length of the longest substring.</p>
 <h3 id="eq">eq</h3>
 <p>Returns true if the two strings have the same contents.</p>
 <pre><code class="pony">fun box eq(
-  that: String box)
-: Bool val
-</code></pre>
-
-<h4 id="parameters_43">Parameters</h4>
-<ul>
-<li>that: <a href="../builtin-String">String</a> box</li>
-</ul>
-<h4 id="returns_61">Returns</h4>
-<ul>
-<li><a href="../builtin-Bool">Bool</a> val</li>
-</ul>
-<hr />
-<h3 id="lt">lt</h3>
-<p>Returns true if this is lexically less than that. Needs to be made UTF-8
-safe.</p>
-<pre><code class="pony">fun box lt(
   that: String box)
 : Bool val
 </code></pre>
@@ -6906,10 +6913,10 @@ safe.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
-<h3 id="le">le</h3>
-<p>Returns true if this is lexically less than or equal to that. Needs to be
-made UTF-8 safe.</p>
-<pre><code class="pony">fun box le(
+<h3 id="lt">lt</h3>
+<p>Returns true if this is lexically less than that. Needs to be made UTF-8
+safe.</p>
+<pre><code class="pony">fun box lt(
   that: String box)
 : Bool val
 </code></pre>
@@ -6923,17 +6930,34 @@ made UTF-8 safe.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
+<h3 id="le">le</h3>
+<p>Returns true if this is lexically less than or equal to that. Needs to be
+made UTF-8 safe.</p>
+<pre><code class="pony">fun box le(
+  that: String box)
+: Bool val
+</code></pre>
+
+<h4 id="parameters_46">Parameters</h4>
+<ul>
+<li>that: <a href="../builtin-String">String</a> box</li>
+</ul>
+<h4 id="returns_64">Returns</h4>
+<ul>
+<li><a href="../builtin-Bool">Bool</a> val</li>
+</ul>
+<hr />
 <h3 id="offset_to_index">offset_to_index</h3>
 <pre><code class="pony">fun box offset_to_index(
   i: ISize val)
 : USize val
 </code></pre>
 
-<h4 id="parameters_46">Parameters</h4>
+<h4 id="parameters_47">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-ISize">ISize</a> val</li>
 </ul>
-<h4 id="returns_64">Returns</h4>
+<h4 id="returns_65">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6943,7 +6967,7 @@ made UTF-8 safe.</p>
 : Bool val ?
 </code></pre>
 
-<h4 id="returns_65">Returns</h4>
+<h4 id="returns_66">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val ?</li>
 </ul>
@@ -6954,11 +6978,11 @@ made UTF-8 safe.</p>
 : I8 val ?
 </code></pre>
 
-<h4 id="parameters_47">Parameters</h4>
+<h4 id="parameters_48">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_66">Returns</h4>
+<h4 id="returns_67">Returns</h4>
 <ul>
 <li><a href="../builtin-I8">I8</a> val ?</li>
 </ul>
@@ -6969,11 +6993,11 @@ made UTF-8 safe.</p>
 : I16 val ?
 </code></pre>
 
-<h4 id="parameters_48">Parameters</h4>
+<h4 id="parameters_49">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_67">Returns</h4>
+<h4 id="returns_68">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val ?</li>
 </ul>
@@ -6984,11 +7008,11 @@ made UTF-8 safe.</p>
 : I32 val ?
 </code></pre>
 
-<h4 id="parameters_49">Parameters</h4>
+<h4 id="parameters_50">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_68">Returns</h4>
+<h4 id="returns_69">Returns</h4>
 <ul>
 <li><a href="../builtin-I32">I32</a> val ?</li>
 </ul>
@@ -6999,11 +7023,11 @@ made UTF-8 safe.</p>
 : I64 val ?
 </code></pre>
 
-<h4 id="parameters_50">Parameters</h4>
+<h4 id="parameters_51">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_69">Returns</h4>
+<h4 id="returns_70">Returns</h4>
 <ul>
 <li><a href="../builtin-I64">I64</a> val ?</li>
 </ul>
@@ -7014,11 +7038,11 @@ made UTF-8 safe.</p>
 : I128 val ?
 </code></pre>
 
-<h4 id="parameters_51">Parameters</h4>
+<h4 id="parameters_52">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_70">Returns</h4>
+<h4 id="returns_71">Returns</h4>
 <ul>
 <li><a href="../builtin-I128">I128</a> val ?</li>
 </ul>
@@ -7029,11 +7053,11 @@ made UTF-8 safe.</p>
 : ILong val ?
 </code></pre>
 
-<h4 id="parameters_52">Parameters</h4>
+<h4 id="parameters_53">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_71">Returns</h4>
+<h4 id="returns_72">Returns</h4>
 <ul>
 <li><a href="../builtin-ILong">ILong</a> val ?</li>
 </ul>
@@ -7044,11 +7068,11 @@ made UTF-8 safe.</p>
 : ISize val ?
 </code></pre>
 
-<h4 id="parameters_53">Parameters</h4>
+<h4 id="parameters_54">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_72">Returns</h4>
+<h4 id="returns_73">Returns</h4>
 <ul>
 <li><a href="../builtin-ISize">ISize</a> val ?</li>
 </ul>
@@ -7059,11 +7083,11 @@ made UTF-8 safe.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_54">Parameters</h4>
+<h4 id="parameters_55">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_73">Returns</h4>
+<h4 id="returns_74">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val ?</li>
 </ul>
@@ -7074,11 +7098,11 @@ made UTF-8 safe.</p>
 : U16 val ?
 </code></pre>
 
-<h4 id="parameters_55">Parameters</h4>
+<h4 id="parameters_56">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_74">Returns</h4>
+<h4 id="returns_75">Returns</h4>
 <ul>
 <li><a href="../builtin-U16">U16</a> val ?</li>
 </ul>
@@ -7089,11 +7113,11 @@ made UTF-8 safe.</p>
 : U32 val ?
 </code></pre>
 
-<h4 id="parameters_56">Parameters</h4>
+<h4 id="parameters_57">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_75">Returns</h4>
+<h4 id="returns_76">Returns</h4>
 <ul>
 <li><a href="../builtin-U32">U32</a> val ?</li>
 </ul>
@@ -7104,11 +7128,11 @@ made UTF-8 safe.</p>
 : U64 val ?
 </code></pre>
 
-<h4 id="parameters_57">Parameters</h4>
+<h4 id="parameters_58">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_76">Returns</h4>
+<h4 id="returns_77">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val ?</li>
 </ul>
@@ -7119,11 +7143,11 @@ made UTF-8 safe.</p>
 : U128 val ?
 </code></pre>
 
-<h4 id="parameters_58">Parameters</h4>
+<h4 id="parameters_59">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_77">Returns</h4>
+<h4 id="returns_78">Returns</h4>
 <ul>
 <li><a href="../builtin-U128">U128</a> val ?</li>
 </ul>
@@ -7134,11 +7158,11 @@ made UTF-8 safe.</p>
 : ULong val ?
 </code></pre>
 
-<h4 id="parameters_59">Parameters</h4>
+<h4 id="parameters_60">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_78">Returns</h4>
+<h4 id="returns_79">Returns</h4>
 <ul>
 <li><a href="../builtin-ULong">ULong</a> val ?</li>
 </ul>
@@ -7149,11 +7173,11 @@ made UTF-8 safe.</p>
 : USize val ?
 </code></pre>
 
-<h4 id="parameters_60">Parameters</h4>
+<h4 id="parameters_61">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_79">Returns</h4>
+<h4 id="returns_80">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val ?</li>
 </ul>
@@ -7183,12 +7207,12 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : (A val , USize val) ?
 </code></pre>
 
-<h4 id="parameters_61">Parameters</h4>
+<h4 id="parameters_62">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
-<h4 id="returns_80">Returns</h4>
+<h4 id="returns_81">Returns</h4>
 <ul>
 <li>(A val , <a href="../builtin-USize">USize</a> val) ?</li>
 </ul>
@@ -7199,11 +7223,11 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : F32 val
 </code></pre>
 
-<h4 id="parameters_62">Parameters</h4>
+<h4 id="parameters_63">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 </ul>
-<h4 id="returns_81">Returns</h4>
+<h4 id="returns_82">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -7214,11 +7238,11 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : F64 val
 </code></pre>
 
-<h4 id="parameters_63">Parameters</h4>
+<h4 id="parameters_64">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 </ul>
-<h4 id="returns_82">Returns</h4>
+<h4 id="returns_83">Returns</h4>
 <ul>
 <li><a href="../builtin-F64">F64</a> val</li>
 </ul>
@@ -7228,7 +7252,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : U64 val
 </code></pre>
 
-<h4 id="returns_83">Returns</h4>
+<h4 id="returns_84">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -7238,7 +7262,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : String iso^
 </code></pre>
 
-<h4 id="returns_84">Returns</h4>
+<h4 id="returns_85">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -7249,7 +7273,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : StringBytes ref^
 </code></pre>
 
-<h4 id="returns_85">Returns</h4>
+<h4 id="returns_86">Returns</h4>
 <ul>
 <li><a href="../builtin-StringBytes">StringBytes</a> ref^</li>
 </ul>
@@ -7260,28 +7284,13 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : StringRunes ref^
 </code></pre>
 
-<h4 id="returns_86">Returns</h4>
+<h4 id="returns_87">Returns</h4>
 <ul>
 <li><a href="../builtin-StringRunes">StringRunes</a> ref^</li>
 </ul>
 <hr />
 <h3 id="ge">ge</h3>
 <pre><code class="pony">fun box ge(
-  that: String box)
-: Bool val
-</code></pre>
-
-<h4 id="parameters_64">Parameters</h4>
-<ul>
-<li>that: <a href="../builtin-String">String</a> box</li>
-</ul>
-<h4 id="returns_87">Returns</h4>
-<ul>
-<li><a href="../builtin-Bool">Bool</a> val</li>
-</ul>
-<hr />
-<h3 id="gt">gt</h3>
-<pre><code class="pony">fun box gt(
   that: String box)
 : Bool val
 </code></pre>
@@ -7295,8 +7304,8 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
-<h3 id="ne">ne</h3>
-<pre><code class="pony">fun box ne(
+<h3 id="gt">gt</h3>
+<pre><code class="pony">fun box gt(
   that: String box)
 : Bool val
 </code></pre>
@@ -7310,16 +7319,42 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
-<h2 id="private-functions">Private Functions</h2>
-<h3 id="_cstring">_cstring</h3>
-<p>Returns a C compatible pointer to a null terminated string.</p>
-<pre><code class="pony">fun box _cstring()
-: Pointer[U8 val] box
+<h3 id="ne">ne</h3>
+<pre><code class="pony">fun box ne(
+  that: String box)
+: Bool val
 </code></pre>
 
+<h4 id="parameters_67">Parameters</h4>
+<ul>
+<li>that: <a href="../builtin-String">String</a> box</li>
+</ul>
 <h4 id="returns_90">Returns</h4>
 <ul>
-<li><a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] box</li>
+<li><a href="../builtin-Bool">Bool</a> val</li>
+</ul>
+<hr />
+<h2 id="private-functions">Private Functions</h2>
+<h3 id="_copy_to">_copy_to</h3>
+<p>Copy copy_len characters from this to that at specified offsets.</p>
+<pre><code class="pony">fun box _copy_to(
+  ptr: Pointer[U8 val] ref,
+  copy_len: USize val,
+  from_offset: USize val = 0,
+  to_offset: USize val = 0)
+: None val
+</code></pre>
+
+<h4 id="parameters_68">Parameters</h4>
+<ul>
+<li>ptr: <a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] ref</li>
+<li>copy_len: <a href="../builtin-USize">USize</a> val</li>
+<li>from_offset: <a href="../builtin-USize">USize</a> val = 0</li>
+<li>to_offset: <a href="../builtin-USize">USize</a> val = 0</li>
+</ul>
+<h4 id="returns_91">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="_append">_append</h3>
@@ -7328,11 +7363,11 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_67">Parameters</h4>
+<h4 id="parameters_69">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 </ul>
-<h4 id="returns_91">Returns</h4>
+<h4 id="returns_92">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -7355,11 +7390,11 @@ out of range for the target type then an error is thrown.</p>
 : A val ?
 </code></pre>
 
-<h4 id="parameters_68">Parameters</h4>
+<h4 id="parameters_70">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val</li>
 </ul>
-<h4 id="returns_92">Returns</h4>
+<h4 id="returns_93">Returns</h4>
 <ul>
 <li>A val ?</li>
 </ul>
@@ -7386,12 +7421,12 @@ Report the base found and the number of characters in the prefix.</p>
 : (A val , USize val)
 </code></pre>
 
-<h4 id="parameters_69">Parameters</h4>
+<h4 id="parameters_71">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val</li>
 <li>index: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_93">Returns</h4>
+<h4 id="returns_94">Returns</h4>
 <ul>
 <li>(A val , <a href="../builtin-USize">USize</a> val)</li>
 </ul>
@@ -7404,12 +7439,12 @@ Report the base found and the number of characters in the prefix.</p>
 : U8 val
 </code></pre>
 
-<h4 id="parameters_70">Parameters</h4>
+<h4 id="parameters_72">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
 </ul>
-<h4 id="returns_94">Returns</h4>
+<h4 id="returns_95">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val</li>
 </ul>
