@@ -5845,6 +5845,10 @@
 </ul>
 <hr />
 <h3 id="apply">apply</h3>
+<p><code>apply(msg: Stringable, sep: String, stream: DebugStream): None</code>: If platform is debug configured, print a stringable. The default output
+stream is stdout.</p>
+<p><code>apply(msg: ReadSeq[Stringable], sep: String, stream: DebugStream): None</code>: If platform is debug configured, print a sequence of stringables. The
+default separator is ", ", and the default output stream is stdout.</p>
 <pre><code class="pony">fun box apply(
   msg: (Stringable box | ReadSeq[Stringable box] box),
   sep: String val= &quot;, &quot;,
