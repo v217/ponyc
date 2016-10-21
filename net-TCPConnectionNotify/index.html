@@ -3577,6 +3577,62 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../net-_TestTCPMute/">class _TestTCPMute</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../net-_TestTCPMuteReceiveNotify/">class _TestTCPMuteReceiveNotify</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../net-_TestTCPMuteSendNotify/">class _TestTCPMuteSendNotify</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../net-_TestTCPUnmute/">class _TestTCPUnmute</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../net-_TestTCPUnmuteReceiveNotify/">class _TestTCPUnmuteReceiveNotify</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../net-_TestTCPThrottle/">class _TestTCPThrottle</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../net-_TestTCPThrottleReceiveNotify/">class _TestTCPThrottleReceiveNotify</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../net-_TestTCPThrottleSendNotify/">class _TestTCPThrottleSendNotify</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../net-UDPSocketAuth/">type UDPSocketAuth</a>
         
     </li>
@@ -5978,6 +6034,44 @@ allows a lower level protocol to handle any framing (e.g. SSL).</p>
 <li>conn: <a href="../net-TCPConnection">TCPConnection</a> ref</li>
 </ul>
 <h4 id="returns_9">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="throttled">throttled</h3>
+<p>Called when the connection starts experiencing TCP backpressure. You should
+respond to this by pausing additional calls to <code>write</code> and <code>writev</code> until
+you are informed that pressure has been released. Failure to respond to
+the <code>throttled</code> notification will result in outgoing data queuing in the
+connection and increasing memory usage.</p>
+<pre><code class="pony">fun ref throttled(
+  conn: TCPConnection ref)
+: None val
+</code></pre>
+
+<h4 id="parameters_10">Parameters</h4>
+<ul>
+<li>conn: <a href="../net-TCPConnection">TCPConnection</a> ref</li>
+</ul>
+<h4 id="returns_10">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="unthrottled">unthrottled</h3>
+<p>Called when the connection stops experiencing TCP backpressure. Upon
+receiving this notification, you should feel free to start making calls to
+<code>write</code> and <code>writev</code> again.</p>
+<pre><code class="pony">fun ref unthrottled(
+  conn: TCPConnection ref)
+: None val
+</code></pre>
+
+<h4 id="parameters_11">Parameters</h4>
+<ul>
+<li>conn: <a href="../net-TCPConnection">TCPConnection</a> ref</li>
+</ul>
+<h4 id="returns_11">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>

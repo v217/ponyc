@@ -2954,6 +2954,54 @@
     </url>
         
     <url>
+     <loc>None/net-_TestTCPMute/</loc>
+     <lastmod>2016-10-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/net-_TestTCPMuteReceiveNotify/</loc>
+     <lastmod>2016-10-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/net-_TestTCPMuteSendNotify/</loc>
+     <lastmod>2016-10-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/net-_TestTCPUnmute/</loc>
+     <lastmod>2016-10-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/net-_TestTCPUnmuteReceiveNotify/</loc>
+     <lastmod>2016-10-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/net-_TestTCPThrottle/</loc>
+     <lastmod>2016-10-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/net-_TestTCPThrottleReceiveNotify/</loc>
+     <lastmod>2016-10-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/net-_TestTCPThrottleSendNotify/</loc>
+     <lastmod>2016-10-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>None/net-UDPSocketAuth/</loc>
      <lastmod>2016-10-21</lastmod>
      <changefreq>daily</changefreq>
