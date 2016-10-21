@@ -60037,7 +60037,7 @@
         }, 
         {
             "location": "/net-_TestTCPExpect/", 
-            "text": "_TestTCPExpect\n\n\nTest expecting framed data with TCP.\n\n\nclass iso _TestTCPExpect is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestTCPExpect iso^\n\n\n\n\nReturns\n\n\n\n\n_TestTCPExpect\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun ref apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val", 
+            "text": "_TestTCPExpect\n\n\nTest expecting framed data with TCP.\n\n\nclass iso _TestTCPExpect is\n  UnitTest ref\n\n\n\n\nImplements\n\n\n\n\nUnitTest\n ref\n\n\n\n\n\n\nConstructors\n\n\ncreate\n\n\nnew iso create()\n: _TestTCPExpect iso^\n\n\n\n\nReturns\n\n\n\n\n_TestTCPExpect\n iso^\n\n\n\n\n\n\nPublic Functions\n\n\nname\n\n\nfun box name()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\nlabel\n\n\nfun box label()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\napply\n\n\nfun ref apply(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\nexclusion_group\n\n\nfun box exclusion_group()\n: String val\n\n\n\n\nReturns\n\n\n\n\nString\n val\n\n\n\n\n\n\ntimed_out\n\n\nfun ref timed_out(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val\n\n\n\n\n\n\ntear_down\n\n\nfun ref tear_down(\n  h: TestHelper val)\n: None val\n\n\n\n\nParameters\n\n\n\n\nh: \nTestHelper\n val\n\n\n\n\nReturns\n\n\n\n\nNone\n val", 
             "title": "class _TestTCPExpect"
         }, 
         {
@@ -60081,6 +60081,16 @@
             "title": "Returns"
         }, 
         {
+            "location": "/net-_TestTCPExpect/#label", 
+            "text": "fun box label()\n: String val", 
+            "title": "label"
+        }, 
+        {
+            "location": "/net-_TestTCPExpect/#returns_2", 
+            "text": "String  val", 
+            "title": "Returns"
+        }, 
+        {
             "location": "/net-_TestTCPExpect/#apply", 
             "text": "fun ref apply(\n  h: TestHelper val)\n: None val", 
             "title": "apply"
@@ -60091,7 +60101,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPExpect/#returns_2", 
+            "location": "/net-_TestTCPExpect/#returns_3", 
             "text": "None  val", 
             "title": "Returns"
         }, 
@@ -60101,7 +60111,7 @@
             "title": "exclusion_group"
         }, 
         {
-            "location": "/net-_TestTCPExpect/#returns_3", 
+            "location": "/net-_TestTCPExpect/#returns_4", 
             "text": "String  val", 
             "title": "Returns"
         }, 
@@ -60116,7 +60126,7 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPExpect/#returns_4", 
+            "location": "/net-_TestTCPExpect/#returns_5", 
             "text": "None  val", 
             "title": "Returns"
         }, 
@@ -60131,18 +60141,8 @@
             "title": "Parameters"
         }, 
         {
-            "location": "/net-_TestTCPExpect/#returns_5", 
-            "text": "None  val", 
-            "title": "Returns"
-        }, 
-        {
-            "location": "/net-_TestTCPExpect/#label", 
-            "text": "fun box label()\n: String val", 
-            "title": "label"
-        }, 
-        {
             "location": "/net-_TestTCPExpect/#returns_6", 
-            "text": "String  val", 
+            "text": "None  val", 
             "title": "Returns"
         }, 
         {
