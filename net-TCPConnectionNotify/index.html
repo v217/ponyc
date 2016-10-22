@@ -5985,11 +5985,14 @@ Array[String].</p>
 </ul>
 <hr />
 <h3 id="received">received</h3>
-<p>Called when new data is received on the connection.</p>
+<p>Called when new data is received on the connection. Return true if you
+want to continue receiving messages without yielding until you read
+max_size on the TCPConnection. Return false to cause the TCPConnection
+to yield now.</p>
 <pre><code class="pony">fun ref received(
   conn: TCPConnection ref,
   data: Array[U8 val] iso)
-: None val
+: Bool val
 </code></pre>
 
 <h4 id="parameters_7">Parameters</h4>
@@ -5999,7 +6002,7 @@ Array[String].</p>
 </ul>
 <h4 id="returns_7">Returns</h4>
 <ul>
-<li><a href="../builtin-None">None</a> val</li>
+<li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
 <h3 id="expect">expect</h3>
