@@ -5937,14 +5937,14 @@ returns None. If there was no previous value, this may trigger a resize.</p>
 <p>Combines a provided value with the current value for the provided key
 using the provided function. If the provided key has not been added to
 the map yet, it sets its value to the provided value.</p>
-<p>As a simple example, say we had a map with U64 values and we wanted to
+<p>As a simple example, say we had a map with I64 values and we wanted to
 add 4 to the current value for key "test", which let's say is currently 2.
 We call</p>
-<p>m.upsert("test", 4, lambda(x: U64, y: U64): U64 =&gt; x + y end)</p>
-<p>This changes the value associated with "test" to 6.</p>
+<p>m.upsert("test", 4, lambda(x: I64, y: I64): I64 =&gt; x - y end)</p>
+<p>This changes the value associated with "test" to -2.</p>
 <p>If we have not yet added the key "new-key" to the map and we call</p>
-<p>m.upsert("new-key", 4, lambda(x: U64, y: U64): U64 =&gt; x + y end)</p>
-<p>then "new-key" is added to the map with a value of 4.</p>
+<p>m.upsert("new-key", 4, lambda(x: I64, y: I64): I64 =&gt; x - y end)</p>
+<p>then "new-key" is added to the map with a value of -4.</p>
 <p>Returns the value that we set the key to</p>
 <pre><code class="pony">fun ref upsert(
   key: K,
