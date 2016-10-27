@@ -5949,8 +5949,7 @@
 </ul>
 <hr />
 <h3 id="min_value">min_value</h3>
-<p>Minimum positive value representable at full precision (ie a normalised
-number).</p>
+<p>Minimum negative value representable.</p>
 <pre><code class="pony">new val min_value()
 : F32 val^
 </code></pre>
@@ -5971,13 +5970,25 @@ number).</p>
 <li><a href="../builtin-F32">F32</a> val^</li>
 </ul>
 <hr />
+<h3 id="min_normalised">min_normalised</h3>
+<p>Minimum positive value representable at full precision (ie a normalised
+number).</p>
+<pre><code class="pony">new val min_normalised()
+: F32 val^
+</code></pre>
+
+<h4 id="returns_8">Returns</h4>
+<ul>
+<li><a href="../builtin-F32">F32</a> val^</li>
+</ul>
+<hr />
 <h3 id="epsilon">epsilon</h3>
 <p>Minimum positive value such that (1 + epsilon) != 1.</p>
 <pre><code class="pony">new val epsilon()
 : F32 val^
 </code></pre>
 
-<h4 id="returns_8">Returns</h4>
+<h4 id="returns_9">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val^</li>
 </ul>
@@ -5988,7 +5999,7 @@ number).</p>
 : U32 val
 </code></pre>
 
-<h4 id="returns_9">Returns</h4>
+<h4 id="returns_10">Returns</h4>
 <ul>
 <li><a href="../builtin-U32">U32</a> val</li>
 </ul>
@@ -5999,7 +6010,7 @@ number).</p>
 : U8 val
 </code></pre>
 
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_11">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val</li>
 </ul>
@@ -6010,7 +6021,7 @@ number).</p>
 : U8 val
 </code></pre>
 
-<h4 id="returns_11">Returns</h4>
+<h4 id="returns_12">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val</li>
 </ul>
@@ -6021,7 +6032,7 @@ number).</p>
 : U8 val
 </code></pre>
 
-<h4 id="returns_12">Returns</h4>
+<h4 id="returns_13">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val</li>
 </ul>
@@ -6033,7 +6044,7 @@ precision (ie a normalised number).</p>
 : I16 val
 </code></pre>
 
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val</li>
 </ul>
@@ -6045,7 +6056,7 @@ precision (ie a normalised number).</p>
 : I16 val
 </code></pre>
 
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val</li>
 </ul>
@@ -6056,7 +6067,7 @@ precision (ie a normalised number).</p>
 : I16 val
 </code></pre>
 
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val</li>
 </ul>
@@ -6067,7 +6078,7 @@ precision (ie a normalised number).</p>
 : I16 val
 </code></pre>
 
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val</li>
 </ul>
@@ -6077,7 +6088,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6087,7 +6098,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6097,7 +6108,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_19">Returns</h4>
+<h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6107,7 +6118,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_20">Returns</h4>
+<h4 id="returns_21">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6117,7 +6128,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_21">Returns</h4>
+<h4 id="returns_22">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6132,7 +6143,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_22">Returns</h4>
+<h4 id="returns_23">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6147,7 +6158,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_23">Returns</h4>
+<h4 id="returns_24">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6158,7 +6169,7 @@ precision (ie a normalised number).</p>
 : Bool val
 </code></pre>
 
-<h4 id="returns_24">Returns</h4>
+<h4 id="returns_25">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6169,7 +6180,7 @@ precision (ie a normalised number).</p>
 : Bool val
 </code></pre>
 
-<h4 id="returns_25">Returns</h4>
+<h4 id="returns_26">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6180,7 +6191,7 @@ precision (ie a normalised number).</p>
 : Bool val
 </code></pre>
 
-<h4 id="returns_26">Returns</h4>
+<h4 id="returns_27">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6197,7 +6208,7 @@ precision (ie a normalised number).</p>
 <li>x: <a href="../builtin-F32">F32</a> val</li>
 <li>exponent: <a href="../builtin-I32">I32</a> val</li>
 </ul>
-<h4 id="returns_27">Returns</h4>
+<h4 id="returns_28">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6207,7 +6218,7 @@ precision (ie a normalised number).</p>
 : (F32 val , U32 val)
 </code></pre>
 
-<h4 id="returns_28">Returns</h4>
+<h4 id="returns_29">Returns</h4>
 <ul>
 <li>(<a href="../builtin-F32">F32</a> val , <a href="../builtin-U32">U32</a> val)</li>
 </ul>
@@ -6217,7 +6228,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_29">Returns</h4>
+<h4 id="returns_30">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6227,7 +6238,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_30">Returns</h4>
+<h4 id="returns_31">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6237,7 +6248,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_31">Returns</h4>
+<h4 id="returns_32">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6247,7 +6258,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_32">Returns</h4>
+<h4 id="returns_33">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6262,7 +6273,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_33">Returns</h4>
+<h4 id="returns_34">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6277,7 +6288,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-I32">I32</a> val</li>
 </ul>
-<h4 id="returns_34">Returns</h4>
+<h4 id="returns_35">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6287,7 +6298,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_35">Returns</h4>
+<h4 id="returns_36">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6297,7 +6308,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_36">Returns</h4>
+<h4 id="returns_37">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6307,7 +6318,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_37">Returns</h4>
+<h4 id="returns_38">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6317,7 +6328,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_38">Returns</h4>
+<h4 id="returns_39">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6327,7 +6338,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_39">Returns</h4>
+<h4 id="returns_40">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6337,7 +6348,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_40">Returns</h4>
+<h4 id="returns_41">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6347,7 +6358,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_41">Returns</h4>
+<h4 id="returns_42">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6357,7 +6368,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_42">Returns</h4>
+<h4 id="returns_43">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6367,7 +6378,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_43">Returns</h4>
+<h4 id="returns_44">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6377,7 +6388,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_44">Returns</h4>
+<h4 id="returns_45">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6387,7 +6398,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_45">Returns</h4>
+<h4 id="returns_46">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6397,7 +6408,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_46">Returns</h4>
+<h4 id="returns_47">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6407,7 +6418,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_47">Returns</h4>
+<h4 id="returns_48">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6422,7 +6433,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_48">Returns</h4>
+<h4 id="returns_49">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6432,7 +6443,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_49">Returns</h4>
+<h4 id="returns_50">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6442,7 +6453,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_50">Returns</h4>
+<h4 id="returns_51">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6452,7 +6463,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_51">Returns</h4>
+<h4 id="returns_52">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6467,7 +6478,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>sign: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_52">Returns</h4>
+<h4 id="returns_53">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6477,7 +6488,7 @@ precision (ie a normalised number).</p>
 : U64 val
 </code></pre>
 
-<h4 id="returns_53">Returns</h4>
+<h4 id="returns_54">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6487,7 +6498,7 @@ precision (ie a normalised number).</p>
 : I128 val
 </code></pre>
 
-<h4 id="returns_54">Returns</h4>
+<h4 id="returns_55">Returns</h4>
 <ul>
 <li><a href="../builtin-I128">I128</a> val</li>
 </ul>
@@ -6497,7 +6508,7 @@ precision (ie a normalised number).</p>
 : U128 val
 </code></pre>
 
-<h4 id="returns_55">Returns</h4>
+<h4 id="returns_56">Returns</h4>
 <ul>
 <li><a href="../builtin-U128">U128</a> val</li>
 </ul>
@@ -6507,7 +6518,7 @@ precision (ie a normalised number).</p>
 : String iso^
 </code></pre>
 
-<h4 id="returns_56">Returns</h4>
+<h4 id="returns_57">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6522,7 +6533,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_57">Returns</h4>
+<h4 id="returns_58">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6537,7 +6548,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_58">Returns</h4>
+<h4 id="returns_59">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6552,7 +6563,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_59">Returns</h4>
+<h4 id="returns_60">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6567,7 +6578,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_60">Returns</h4>
+<h4 id="returns_61">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6582,7 +6593,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_61">Returns</h4>
+<h4 id="returns_62">Returns</h4>
 <ul>
 <li>(<a href="../builtin-F32">F32</a> val , <a href="../builtin-F32">F32</a> val)</li>
 </ul>
@@ -6597,7 +6608,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_62">Returns</h4>
+<h4 id="returns_63">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6607,7 +6618,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_63">Returns</h4>
+<h4 id="returns_64">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6622,7 +6633,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_64">Returns</h4>
+<h4 id="returns_65">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6637,7 +6648,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_65">Returns</h4>
+<h4 id="returns_66">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6652,7 +6663,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_66">Returns</h4>
+<h4 id="returns_67">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6667,7 +6678,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_67">Returns</h4>
+<h4 id="returns_68">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6682,7 +6693,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_68">Returns</h4>
+<h4 id="returns_69">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6697,7 +6708,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>y: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_69">Returns</h4>
+<h4 id="returns_70">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6707,7 +6718,7 @@ precision (ie a normalised number).</p>
 : I8 val
 </code></pre>
 
-<h4 id="returns_70">Returns</h4>
+<h4 id="returns_71">Returns</h4>
 <ul>
 <li><a href="../builtin-I8">I8</a> val</li>
 </ul>
@@ -6717,7 +6728,7 @@ precision (ie a normalised number).</p>
 : I16 val
 </code></pre>
 
-<h4 id="returns_71">Returns</h4>
+<h4 id="returns_72">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val</li>
 </ul>
@@ -6727,7 +6738,7 @@ precision (ie a normalised number).</p>
 : I32 val
 </code></pre>
 
-<h4 id="returns_72">Returns</h4>
+<h4 id="returns_73">Returns</h4>
 <ul>
 <li><a href="../builtin-I32">I32</a> val</li>
 </ul>
@@ -6737,7 +6748,7 @@ precision (ie a normalised number).</p>
 : I64 val
 </code></pre>
 
-<h4 id="returns_73">Returns</h4>
+<h4 id="returns_74">Returns</h4>
 <ul>
 <li><a href="../builtin-I64">I64</a> val</li>
 </ul>
@@ -6747,7 +6758,7 @@ precision (ie a normalised number).</p>
 : ILong val
 </code></pre>
 
-<h4 id="returns_74">Returns</h4>
+<h4 id="returns_75">Returns</h4>
 <ul>
 <li><a href="../builtin-ILong">ILong</a> val</li>
 </ul>
@@ -6757,7 +6768,7 @@ precision (ie a normalised number).</p>
 : ISize val
 </code></pre>
 
-<h4 id="returns_75">Returns</h4>
+<h4 id="returns_76">Returns</h4>
 <ul>
 <li><a href="../builtin-ISize">ISize</a> val</li>
 </ul>
@@ -6767,7 +6778,7 @@ precision (ie a normalised number).</p>
 : U8 val
 </code></pre>
 
-<h4 id="returns_76">Returns</h4>
+<h4 id="returns_77">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val</li>
 </ul>
@@ -6777,7 +6788,7 @@ precision (ie a normalised number).</p>
 : U16 val
 </code></pre>
 
-<h4 id="returns_77">Returns</h4>
+<h4 id="returns_78">Returns</h4>
 <ul>
 <li><a href="../builtin-U16">U16</a> val</li>
 </ul>
@@ -6787,7 +6798,7 @@ precision (ie a normalised number).</p>
 : U32 val
 </code></pre>
 
-<h4 id="returns_78">Returns</h4>
+<h4 id="returns_79">Returns</h4>
 <ul>
 <li><a href="../builtin-U32">U32</a> val</li>
 </ul>
@@ -6797,7 +6808,7 @@ precision (ie a normalised number).</p>
 : U64 val
 </code></pre>
 
-<h4 id="returns_79">Returns</h4>
+<h4 id="returns_80">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6807,7 +6818,7 @@ precision (ie a normalised number).</p>
 : ULong val
 </code></pre>
 
-<h4 id="returns_80">Returns</h4>
+<h4 id="returns_81">Returns</h4>
 <ul>
 <li><a href="../builtin-ULong">ULong</a> val</li>
 </ul>
@@ -6817,7 +6828,7 @@ precision (ie a normalised number).</p>
 : USize val
 </code></pre>
 
-<h4 id="returns_81">Returns</h4>
+<h4 id="returns_82">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6827,7 +6838,7 @@ precision (ie a normalised number).</p>
 : F32 val
 </code></pre>
 
-<h4 id="returns_82">Returns</h4>
+<h4 id="returns_83">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6837,7 +6848,7 @@ precision (ie a normalised number).</p>
 : F64 val
 </code></pre>
 
-<h4 id="returns_83">Returns</h4>
+<h4 id="returns_84">Returns</h4>
 <ul>
 <li><a href="../builtin-F64">F64</a> val</li>
 </ul>
@@ -6852,7 +6863,7 @@ precision (ie a normalised number).</p>
 <ul>
 <li>that: <a href="../builtin-F32">F32</a> val</li>
 </ul>
-<h4 id="returns_84">Returns</h4>
+<h4 id="returns_85">Returns</h4>
 <ul>
 <li>(<a href="../builtin-Less">Less</a> val | <a href="../builtin-Equal">Equal</a> val | <a href="../builtin-Greater">Greater</a> val)</li>
 </ul>
