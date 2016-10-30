@@ -2870,6 +2870,10 @@
             
                 <li class="toctree-l3"><a href="#itertools-package">Itertools Package</a></li>
                 
+                    <li><a class="toctree-l4" href="#iter">Iter</a></li>
+                
+                    <li><a class="toctree-l4" href="#other-classes">Other Classes</a></li>
+                
                     <li><a class="toctree-l4" href="#public-types">Public Types</a></li>
                 
                     <li><a class="toctree-l4" href="#private-types">Private Types</a></li>
@@ -2961,6 +2965,34 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterAll/">class _TestIterAll</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterAny/">class _TestIterAny</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterCollect/">class _TestIterCollect</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterCount/">class _TestIterCount</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../itertools-_TestIterCycle/">class _TestIterCycle</a>
         
     </li>
@@ -2982,7 +3014,21 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterFind/">class _TestIterFind</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../itertools-_TestIterFold/">class _TestIterFold</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterLast/">class _TestIterLast</a>
         
     </li>
 
@@ -2996,7 +3042,42 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterNth/">class _TestIterNth</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterRun/">class _TestIterRun</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterSkip/">class _TestIterSkip</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterSkipWhile/">class _TestIterSkipWhile</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../itertools-_TestIterTake/">class _TestIterTake</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../itertools-_TestIterTakeWhile/">class _TestIterTakeWhile</a>
         
     </li>
 
@@ -5852,9 +5933,51 @@
             <div class="section">
               
                 <h1 id="itertools-package">Itertools Package</h1>
-<p>Provide a set of classes for doing useful things with
-iterators. Inspired by Python's itertools library.</p>
-<p>Chain -- chain together two iterators</p>
+<p>The itertools package provides a set of classes for doing useful things with
+iterators. It is Inspired by Python's itertools library, Rust's Iterator, and
+Elixir's Enum and Stream.</p>
+<h2 id="iter">Iter</h2>
+<p>The Iter class wraps iterators so that additional methods may be applied to it.
+Some methods, such as fold and collect, run through the underlying iterator in 
+order to return a result. Others, such as map and filter, are lazy. This means
+that they return another Iter so that the resulting values are computed one by
+one as needed. Lazy methods return Iter types.</p>
+<p>For example, the following code creates an Iter from the values of an array
+containing the numbers 1 through 5, increments each number by one, filters out
+any odd numbers, and prints the rest.</p>
+<pre><code class="pony">let xs = Iter[I64]([as I64: 1, 2, 3, 4, 5].values())
+  .map[I64](lambda(x: I64): I64 =&gt; x + 1 end)
+  .filter(lambda(x: I64): Bool =&gt; (x % 2) == 0 end)
+  .map[None](lambda(x: I64)(env) =&gt; env.out.print(x.string()) end)
+</code></pre>
+
+<p>This will result in an iterator that prints the numbers 2, 4, and 6. However,
+due to the lazy nature of the map and filter, no iteration has actually occured
+and nothing will be printed. One solution to this would be to loop over the
+resulting Iter as so:</p>
+<pre><code class="pony">for x in xs do
+  None
+end
+</code></pre>
+
+<p>This will trigger the iteration and print out the values 2, 4, and 6. This is
+where the <code>run</code> method comes in handy by doing the iteration without the need
+for a loop. So the final code would be as follows:</p>
+<pre><code class="pony">Iter[I64]([as I64: 1, 2, 3, 4, 5].values())
+  .map[I64](lambda(x: I64): I64 =&gt; x + 1 end)
+  .filter(lambda(x: I64): Bool =&gt; (x % 2) == 0 end)
+  .map[None](lambda(x: I64)(env) =&gt; env.out.print(x.string()) end)
+  .run()
+</code></pre>
+
+<p>Output:</p>
+<pre><code>2
+4
+6
+</code></pre>
+
+<h2 id="other-classes">Other Classes</h2>
+<p>Chain -- chain together two or more iterators</p>
 <p>Limit -- return only the specified number of itmes from the given
 iterator</p>
 <p>Zip2, Zip3, Zip4, Zip5 -- zip together N iterators</p>
@@ -5893,12 +6016,23 @@ predicate</p>
 <li><a href="../itertools-_TestCycle/">class _TestCycle</a></li>
 <li><a href="../itertools-_TestMapFn/">class _TestMapFn</a></li>
 <li><a href="../itertools-_TestFilter/">class _TestFilter</a></li>
+<li><a href="../itertools-_TestIterAll/">class _TestIterAll</a></li>
+<li><a href="../itertools-_TestIterAny/">class _TestIterAny</a></li>
+<li><a href="../itertools-_TestIterCollect/">class _TestIterCollect</a></li>
+<li><a href="../itertools-_TestIterCount/">class _TestIterCount</a></li>
 <li><a href="../itertools-_TestIterCycle/">class _TestIterCycle</a></li>
 <li><a href="../itertools-_TestIterEnum/">class _TestIterEnum</a></li>
 <li><a href="../itertools-_TestIterFilter/">class _TestIterFilter</a></li>
+<li><a href="../itertools-_TestIterFind/">class _TestIterFind</a></li>
 <li><a href="../itertools-_TestIterFold/">class _TestIterFold</a></li>
+<li><a href="../itertools-_TestIterLast/">class _TestIterLast</a></li>
 <li><a href="../itertools-_TestIterMap/">class _TestIterMap</a></li>
+<li><a href="../itertools-_TestIterNth/">class _TestIterNth</a></li>
+<li><a href="../itertools-_TestIterRun/">class _TestIterRun</a></li>
+<li><a href="../itertools-_TestIterSkip/">class _TestIterSkip</a></li>
+<li><a href="../itertools-_TestIterSkipWhile/">class _TestIterSkipWhile</a></li>
 <li><a href="../itertools-_TestIterTake/">class _TestIterTake</a></li>
+<li><a href="../itertools-_TestIterTakeWhile/">class _TestIterTakeWhile</a></li>
 <li><a href="../itertools-_TestIterZip/">class _TestIterZip</a></li>
 </ul>
               
