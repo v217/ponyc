@@ -6036,12 +6036,12 @@ predicate <code>f</code>. This method short-circuits at the first value where th
 predicate returns false, otherwise true is returned.</p>
 <h2 id="examples">Examples</h2>
 <pre><code class="pony">Iter[I64]([as I64: 2, 4, 6].values())
-  .all(lambda(x: I64): Bool =&gt; (x % 2) == 0 end)
+  .all({(x: I64): Bool =&gt; (x % 2) == 0 })
 </code></pre>
 
 <p><code>true</code></p>
 <pre><code class="pony">Iter[I64]([as I64: 2, 3, 4].values())
-  .all(lambda(x: I64): Bool =&gt; (x % 2) == 0 end)
+  .all({(x: I64): Bool =&gt; (x % 2) == 0 })
 </code></pre>
 
 <p><code>false</code></p>
@@ -6065,12 +6065,12 @@ predicate returns false, otherwise true is returned.</p>
 returns true, otherwise false is returned.</p>
 <h2 id="examples_1">Examples</h2>
 <pre><code class="pony">Iter[I64]([as I64: 2, 4, 6].values())
-  .any(lambda(x: I64): Bool =&gt; (x % 2) == 1 end)
+  .any({(x: I64): Bool =&gt; (x % 2) == 1 })
 </code></pre>
 
 <p><code>false</code></p>
 <pre><code class="pony">Iter[I64]([as I64: 2, 3, 4].values())
-  .any(lambda(x: I64): Bool =&gt; (x % 2) == 1 end)
+  .any({(x: I64): Bool =&gt; (x % 2) == 1 })
 </code></pre>
 
 <p><code>true</code></p>
@@ -6179,7 +6179,7 @@ value from the iterator.</p>
 <p>Return an iterator that only returns items that match the predicate <code>f</code>.</p>
 <h2 id="example_5">Example</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3, 4, 5, 6].values())
-  .filter(lambda(x: I64): Bool =&gt; (x % 2) == 0 end)
+  .filter({(x: I64): Bool =&gt; (x % 2) == 0 })
 </code></pre>
 
 <p><code>2 4 6</code></p>
@@ -6201,12 +6201,12 @@ value from the iterator.</p>
 <p>Return the nth value in the iterator that satisfies the predicate <code>f</code>.</p>
 <h2 id="examples_2">Examples</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3].values())
-  .find(lambda(x: I64): Bool =&gt; (x % 2) == 0 end)
+  .find({(x: I64): Bool =&gt; (x % 2) == 0 })
 </code></pre>
 
 <p><code>2</code></p>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3, 4].values())
-  .find(lambda(x: I64): Bool =&gt; (x % 2) == 0 end, 2)
+  .find({(x: I64): Bool =&gt; (x % 2) == 0 }, 2)
 </code></pre>
 
 <p><code>4</code></p>
@@ -6230,7 +6230,7 @@ value from the iterator.</p>
 <p>Apply a function to every element, producing an accumulated value.</p>
 <h2 id="example_6">Example</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3].values())
-  .fold[I64](lambda(x: I64, sum: I64): I64 =&gt; sum + x end, 0)
+  .fold[I64]({(x: I64, sum: I64): I64 =&gt; sum + x }, 0)
 </code></pre>
 
 <p><code>6</code></p>
@@ -6272,7 +6272,7 @@ value from the iterator.</p>
 function to the value in the original iterator.</p>
 <h2 id="example_8">Example</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3].values())
-  .map[I64](lambda(x: I64): I64 =&gt; x * x end)
+  .map[I64]({(x: I64): I64 =&gt; x * x })
 </code></pre>
 
 <p><code>1 4 9</code></p>
@@ -6318,7 +6318,7 @@ function <code>on_error</code> will be called if the iterator's <code>has_next</
 returns true but its <code>next</code> method trows an error.</p>
 <h2 id="example_10">Example</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3].values())
-  .map[None](lambda(x: I64)(env) =&gt; env.out.print(x.string()) end)
+  .map[None]({(x: I64)(env) =&gt; env.out.print(x.string()) })
   .run()
 </code></pre>
 
@@ -6367,7 +6367,7 @@ returns true but its <code>next</code> method trows an error.</p>
 <p>Skip values of the iterator while the predicate <code>f</code> returns true.</p>
 <h2 id="example_12">Example</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3, 4, 5, 6].values())
-  .skip_while(lambda(x: I64): Bool =&gt; x &lt; 4 end)
+  .skip_while({(x: I64): Bool =&gt; x &lt; 4 })
 </code></pre>
 
 <p><code>4 5 6</code></p>
@@ -6412,7 +6412,7 @@ returns true but its <code>next</code> method trows an error.</p>
 true.</p>
 <h2 id="example_14">Example</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3, 4, 5, 6].values())
-  .take_while(lambda(x: I64): Bool =&gt; x &lt; 4 end)
+  .take_while({(x: I64): Bool =&gt; x &lt; 4 })
 </code></pre>
 
 <p><code>1 2 3</code></p>

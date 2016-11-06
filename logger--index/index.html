@@ -5975,7 +5975,7 @@ actor Main
   new create(env: Env) =&gt;
     let logger = Logger[U64](Fine,
     env.out,
-    lambda(a: U64): String =&gt; a.string() end)
+    {(a: U64): String =&gt; a.string() })
 
     logger(Error) and logger.log(U64(42))
 </code></pre>

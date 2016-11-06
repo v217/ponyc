@@ -5937,9 +5937,9 @@ one as needed. Lazy methods return Iter types.</p>
 containing the numbers 1 through 5, increments each number by one, filters out
 any odd numbers, and prints the rest.</p>
 <pre><code class="pony">let xs = Iter[I64]([as I64: 1, 2, 3, 4, 5].values())
-  .map[I64](lambda(x: I64): I64 =&gt; x + 1 end)
-  .filter(lambda(x: I64): Bool =&gt; (x % 2) == 0 end)
-  .map[None](lambda(x: I64)(env) =&gt; env.out.print(x.string()) end)
+  .map[I64]({(x: I64): I64 =&gt; x + 1 })
+  .filter({(x: I64): Bool =&gt; (x % 2) == 0 })
+  .map[None]({(x: I64)(env) =&gt; env.out.print(x.string()) })
 </code></pre>
 
 <p>This will result in an iterator that prints the numbers 2, 4, and 6. However,
@@ -5955,9 +5955,9 @@ end
 where the <code>run</code> method comes in handy by doing the iteration without the need
 for a loop. So the final code would be as follows:</p>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3, 4, 5].values())
-  .map[I64](lambda(x: I64): I64 =&gt; x + 1 end)
-  .filter(lambda(x: I64): Bool =&gt; (x % 2) == 0 end)
-  .map[None](lambda(x: I64)(env) =&gt; env.out.print(x.string()) end)
+  .map[I64]({(x: I64): I64 =&gt; x + 1 })
+  .filter({(x: I64): Bool =&gt; (x % 2) == 0 })
+  .map[None]({(x: I64)(env) =&gt; env.out.print(x.string()) })
   .run()
 </code></pre>
 
