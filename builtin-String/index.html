@@ -898,6 +898,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestStringFromArray/">class _TestStringFromArray</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestArrayAppend/">class _TestArrayAppend</a>
         
     </li>
@@ -5988,8 +5995,7 @@
 </ul>
 <hr />
 <h3 id="from_array">from_array</h3>
-<p>Create a string from an array, reusing the underlying data pointer if the
-array is null terminated, or copying the data if it is not.</p>
+<p>Create a string from an array, reusing the underlying data pointer.</p>
 <pre><code class="pony">new val from_array(
   data: Array[U8 val] val)
 : String val^
