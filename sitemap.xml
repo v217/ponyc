@@ -664,6 +664,12 @@
     </url>
         
     <url>
+     <loc>/builtin_test-_TestStringSplitBy/</loc>
+     <lastmod>2016-11-24</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/builtin_test-_TestStringJoin/</loc>
      <lastmod>2016-11-24</lastmod>
      <changefreq>daily</changefreq>
