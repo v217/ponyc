@@ -926,6 +926,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestStringRecalc/">class _TestStringRecalc</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestArrayAppend/">class _TestArrayAppend</a>
         
     </li>
@@ -6255,8 +6262,8 @@ request may be ignored. The string is returned to allow call chaining.</p>
 <hr />
 <h3 id="recalc">recalc</h3>
 <p>Recalculates the string length. This is only needed if the string is
-changed via an FFI call. If the string is not null terminated at the
-allocated length, a null is added.</p>
+changed via an FFI call. If a null terminator byte is not found within the
+allocated length, the size will not be changed.</p>
 <pre><code class="pony">fun ref recalc()
 : String ref^
 </code></pre>
