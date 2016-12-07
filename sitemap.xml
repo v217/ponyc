@@ -724,6 +724,12 @@
     </url>
         
     <url>
+     <loc>/builtin_test-_TestStringTruncate/</loc>
+     <lastmod>2016-12-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/builtin_test-_TestArrayAppend/</loc>
      <lastmod>2016-12-07</lastmod>
      <changefreq>daily</changefreq>
