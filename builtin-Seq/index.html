@@ -5986,7 +5986,7 @@
 <p>Reserve space for len elements.</p>
 <pre><code class="pony">fun ref reserve(
   len: USize val)
-: Seq[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_1">Parameters</h4>
@@ -5995,7 +5995,7 @@
 </ul>
 <h4 id="returns_1">Returns</h4>
 <ul>
-<li><a href="../builtin-Seq">Seq</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="size">size</h3>
@@ -6048,19 +6048,19 @@ Raises an error if the index is out of bounds.</p>
 <h3 id="clear">clear</h3>
 <p>Removes all elements from the sequence.</p>
 <pre><code class="pony">fun ref clear()
-: Seq[A] ref^
+: None val
 </code></pre>
 
 <h4 id="returns_5">Returns</h4>
 <ul>
-<li><a href="../builtin-Seq">Seq</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="push">push</h3>
 <p>Adds an element to the end of the sequence.</p>
 <pre><code class="pony">fun ref push(
   value: A)
-: Seq[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_4">Parameters</h4>
@@ -6069,7 +6069,7 @@ Raises an error if the index is out of bounds.</p>
 </ul>
 <h4 id="returns_6">Returns</h4>
 <ul>
-<li><a href="../builtin-Seq">Seq</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="pop">pop</h3>
@@ -6087,7 +6087,7 @@ Raises an error if the index is out of bounds.</p>
 <p>Adds an element to the beginning of the sequence.</p>
 <pre><code class="pony">fun ref unshift(
   value: A)
-: Seq[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_5">Parameters</h4>
@@ -6096,7 +6096,7 @@ Raises an error if the index is out of bounds.</p>
 </ul>
 <h4 id="returns_8">Returns</h4>
 <ul>
-<li><a href="../builtin-Seq">Seq</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="shift">shift</h3>
@@ -6117,7 +6117,7 @@ offset.</p>
   seq: (ReadSeq[A] box &amp; ReadElement[A^] box),
   offset: USize val = 0,
   len: USize val = call)
-: Seq[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_6">Parameters</h4>
@@ -6128,7 +6128,7 @@ offset.</p>
 </ul>
 <h4 id="returns_10">Returns</h4>
 <ul>
-<li><a href="../builtin-Seq">Seq</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="concat">concat</h3>
@@ -6138,7 +6138,7 @@ offset.</p>
   iter: Iterator[A^] ref,
   offset: USize val = 0,
   len: USize val = call)
-: Seq[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_7">Parameters</h4>
@@ -6149,7 +6149,7 @@ offset.</p>
 </ul>
 <h4 id="returns_11">Returns</h4>
 <ul>
-<li><a href="../builtin-Seq">Seq</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="truncate">truncate</h3>
@@ -6157,7 +6157,7 @@ offset.</p>
 If the sequence is already smaller than len, do nothing.</p>
 <pre><code class="pony">fun ref truncate(
   len: USize val)
-: Seq[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_8">Parameters</h4>
@@ -6166,7 +6166,7 @@ If the sequence is already smaller than len, do nothing.</p>
 </ul>
 <h4 id="returns_12">Returns</h4>
 <ul>
-<li><a href="../builtin-Seq">Seq</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="values">values</h3>

@@ -6069,7 +6069,7 @@ copied.</p>
 the array. Array space grows geometrically.</p>
 <pre><code class="pony">fun ref reserve(
   len: USize val)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_3">Parameters</h4>
@@ -6078,19 +6078,19 @@ the array. Array space grows geometrically.</p>
 </ul>
 <h4 id="returns_6">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="compact">compact</h3>
 <p>Try to remove unused space, making it available for garbage collection. The
-request may be ignored. The array is returned to allow call chaining.</p>
+request may be ignored.</p>
 <pre><code class="pony">fun ref compact()
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="returns_7">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="undefined91optional-b-a-real91b-val93-val-i8-val-i16-val-i32-val">undefined[optional B: (A &amp; <a href="../builtin-Real">Real</a>[B val] val &amp; (<a href="../builtin-I8">I8</a> val | <a href="../builtin-I16">I16</a> val | <a href="../builtin-I32">I32</a> val |</h3>
@@ -6109,7 +6109,7 @@ memory. This is only allowed for an array of numbers.</p>
     ULong val | USize val | F32 val | 
     F64 val))](
   len: USize val)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_4">Parameters</h4>
@@ -6118,7 +6118,7 @@ memory. This is only allowed for an array of numbers.</p>
 </ul>
 <h4 id="returns_8">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="apply">apply</h3>
@@ -6158,12 +6158,11 @@ memory. This is only allowed for an array of numbers.</p>
 <h3 id="insert">insert</h3>
 <p>Insert an element into the array. Elements after this are moved up by one
 index, extending the array.
-An out of bounds index raises an error.
-The array is returned to allow call chaining.</p>
+An out of bounds index raises an error.</p>
 <pre><code class="pony">fun ref insert(
   i: USize val,
   value: A)
-: Array[A] ref^ ?
+: None val ?
 </code></pre>
 
 <h4 id="parameters_7">Parameters</h4>
@@ -6173,7 +6172,7 @@ The array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_11">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^ ?</li>
+<li><a href="../builtin-None">None</a> val ?</li>
 </ul>
 <hr />
 <h3 id="delete">delete</h3>
@@ -6197,11 +6196,10 @@ The deleted element is returned.</p>
 <hr />
 <h3 id="truncate">truncate</h3>
 <p>Truncate an array to the given length, discarding excess elements. If the
-array is already smaller than len, do nothing.
-The array is returned to allow call chaining.</p>
+array is already smaller than len, do nothing.</p>
 <pre><code class="pony">fun ref truncate(
   len: USize val)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_9">Parameters</h4>
@@ -6210,17 +6208,16 @@ The array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_13">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="trim_in_place">trim_in_place</h3>
 <p>Trim the array to a portion of itself, covering <code>from</code> until <code>to</code>.
-Unlike slice, the operation does not allocate a new array nor copy elements.
-The same array is returned to allow call chaining.</p>
+Unlike slice, the operation does not allocate a new array nor copy elements.</p>
 <pre><code class="pony">fun ref trim_in_place(
   from: USize val = 0,
   to: USize val = call)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_10">Parameters</h4>
@@ -6230,7 +6227,7 @@ The same array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_14">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="trim">trim</h3>
@@ -6254,14 +6251,13 @@ The operation does not allocate a new array pointer nor copy elements.</p>
 </ul>
 <hr />
 <h3 id="copy_to">copy_to</h3>
-<p>Copy len elements from this(src_idx) to dst(dst_idx).
-The array is returned to allow call chaining.</p>
+<p>Copy len elements from this(src_idx) to dst(dst_idx).</p>
 <pre><code class="pony">fun box copy_to(
   dst: Array[this-&gt;A!] ref,
   src_idx: USize val,
   dst_idx: USize val,
   len: USize val)
-: this-&gt;Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_12">Parameters</h4>
@@ -6273,16 +6269,15 @@ The array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_16">Returns</h4>
 <ul>
-<li>this-&gt;<a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="remove">remove</h3>
-<p>Remove n elements from the array, beginning at index i.
-The array is returned to allow call chaining.</p>
+<p>Remove n elements from the array, beginning at index i.</p>
 <pre><code class="pony">fun ref remove(
   i: USize val,
   n: USize val)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_13">Parameters</h4>
@@ -6292,27 +6287,25 @@ The array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_17">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="clear">clear</h3>
-<p>Remove all elements from the array.
-The array is returned to allow call chaining.</p>
+<p>Remove all elements from the array.</p>
 <pre><code class="pony">fun ref clear()
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="returns_18">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="push">push</h3>
-<p>Add an element to the end of the array.
-The array is returned to allow call chaining.</p>
+<p>Add an element to the end of the array.</p>
 <pre><code class="pony">fun ref push(
   value: A)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_14">Parameters</h4>
@@ -6321,7 +6314,7 @@ The array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_19">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="pop">pop</h3>
@@ -6337,11 +6330,10 @@ The removed element is returned.</p>
 </ul>
 <hr />
 <h3 id="unshift">unshift</h3>
-<p>Add an element to the beginning of the array.
-The array is returned to allow call chaining.</p>
+<p>Add an element to the beginning of the array.</p>
 <pre><code class="pony">fun ref unshift(
   value: A)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_15">Parameters</h4>
@@ -6350,7 +6342,7 @@ The array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_21">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="shift">shift</h3>
@@ -6366,13 +6358,12 @@ The removed element is returned.</p>
 </ul>
 <hr />
 <h3 id="append">append</h3>
-<p>Append the elements from a sequence, starting from the given offset.
-The array is returned to allow call chaining.</p>
+<p>Append the elements from a sequence, starting from the given offset.</p>
 <pre><code class="pony">fun ref append(
   seq: (ReadSeq[A] box &amp; ReadElement[A^] box),
   offset: USize val = 0,
   len: USize val = call)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_16">Parameters</h4>
@@ -6383,17 +6374,17 @@ The array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_23">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="concat">concat</h3>
 <p>Add len iterated elements to the end of the array, starting from the given
-offset. The array is returned to allow call chaining.</p>
+offset.</p>
 <pre><code class="pony">fun ref concat(
   iter: Iterator[A^] ref,
   offset: USize val = 0,
   len: USize val = call)
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_17">Parameters</h4>
@@ -6404,7 +6395,7 @@ offset. The array is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_24">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="find">find</h3>
@@ -6551,12 +6542,12 @@ contains, the elements themselves are not copied.</p>
 <h3 id="reverse_in_place">reverse_in_place</h3>
 <p>Reverse the array in place.</p>
 <pre><code class="pony">fun ref reverse_in_place()
-: Array[A] ref^
+: None val
 </code></pre>
 
 <h4 id="returns_32">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[A] ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="keys">keys</h3>

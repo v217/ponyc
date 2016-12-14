@@ -6243,7 +6243,7 @@ offsets. Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 null terminator.</p>
 <pre><code class="pony">fun ref reserve(
   len: USize val)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_9">Parameters</h4>
@@ -6252,19 +6252,19 @@ null terminator.</p>
 </ul>
 <h4 id="returns_14">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="compact">compact</h3>
 <p>Try to remove unused space, making it available for garbage collection. The
 request may be ignored. The string is returned to allow call chaining.</p>
 <pre><code class="pony">fun ref compact()
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="returns_15">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="recalc">recalc</h3>
@@ -6272,12 +6272,12 @@ request may be ignored. The string is returned to allow call chaining.</p>
 changed via an FFI call. If a null terminator byte is not found within the
 allocated length, the size will not be changed.</p>
 <pre><code class="pony">fun ref recalc()
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="returns_16">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="truncate">truncate</h3>
@@ -6286,7 +6286,7 @@ null terminator. Does not check for null terminators inside the string.</p>
 <p>Note that memory is not freed by this operation.</p>
 <pre><code class="pony">fun ref truncate(
   len: USize val)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_10">Parameters</h4>
@@ -6295,17 +6295,16 @@ null terminator. Does not check for null terminators inside the string.</p>
 </ul>
 <h4 id="returns_17">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="trim_in_place">trim_in_place</h3>
 <p>Trim the string to a portion of itself, covering <code>from</code> until <code>to</code>.
-Unlike slice, the operation does not allocate a new string nor copy elements.
-The same string is returned to allow call chaining.</p>
+Unlike slice, the operation does not allocate a new string nor copy elements.</p>
 <pre><code class="pony">fun ref trim_in_place(
   from: USize val = 0,
   to: USize val = call)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_11">Parameters</h4>
@@ -6315,7 +6314,7 @@ The same string is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_18">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="trim">trim</h3>
@@ -6560,7 +6559,7 @@ Raise an error if there is no n-th occurence of <code>s</code> or <code>s</code>
 <pre><code class="pony">fun ref delete(
   offset: ISize val,
   len: USize val = 1)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_23">Parameters</h4>
@@ -6570,7 +6569,7 @@ Raise an error if there is no n-th occurence of <code>s</code> or <code>s</code>
 </ul>
 <h4 id="returns_32">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="substring">substring</h3>
@@ -6606,12 +6605,12 @@ Returns an empty string if nothing is in the range.</p>
 <h3 id="lower_in_place">lower_in_place</h3>
 <p>Transforms the string to lower case. Currently only knows ASCII case.</p>
 <pre><code class="pony">fun ref lower_in_place()
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="returns_35">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="upper">upper</h3>
@@ -6629,12 +6628,12 @@ case.</p>
 <h3 id="upper_in_place">upper_in_place</h3>
 <p>Transforms the string to upper case.</p>
 <pre><code class="pony">fun ref upper_in_place()
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="returns_37">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="reverse">reverse</h3>
@@ -6652,19 +6651,19 @@ case.</p>
 <p>Reverses the byte order in the string. This needs to be changed to handle
 UTF-8 correctly.</p>
 <pre><code class="pony">fun ref reverse_in_place()
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="returns_39">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="push">push</h3>
 <p>Add a byte to the end of the string.</p>
 <pre><code class="pony">fun ref push(
   value: U8 val)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_25">Parameters</h4>
@@ -6673,7 +6672,7 @@ UTF-8 correctly.</p>
 </ul>
 <h4 id="returns_40">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="pop">pop</h3>
@@ -6691,7 +6690,7 @@ UTF-8 correctly.</p>
 <p>Adds a byte to the beginning of the string.</p>
 <pre><code class="pony">fun ref unshift(
   value: U8 val)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_26">Parameters</h4>
@@ -6700,7 +6699,7 @@ UTF-8 correctly.</p>
 </ul>
 <h4 id="returns_42">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="shift">shift</h3>
@@ -6720,7 +6719,7 @@ UTF-8 correctly.</p>
   seq: ReadSeq[U8 val] box,
   offset: USize val = 0,
   len: USize val = call)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_27">Parameters</h4>
@@ -6731,17 +6730,17 @@ UTF-8 correctly.</p>
 </ul>
 <h4 id="returns_44">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="concat">concat</h3>
 <p>Add len iterated bytes to the end of the string, starting from the given
-offset. The string is returned to allow call chaining.</p>
+offset.</p>
 <pre><code class="pony">fun ref concat(
   iter: Iterator[U8 val] ref,
   offset: USize val = 0,
   len: USize val = call)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_28">Parameters</h4>
@@ -6752,18 +6751,18 @@ offset. The string is returned to allow call chaining.</p>
 </ul>
 <h4 id="returns_45">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="clear">clear</h3>
 <p>Truncate the string to zero length.</p>
 <pre><code class="pony">fun ref clear()
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="returns_46">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="insert">insert</h3>
@@ -6791,7 +6790,7 @@ offset is out of bounds.</p>
 <pre><code class="pony">fun ref insert_in_place(
   offset: ISize val,
   that: String box)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_30">Parameters</h4>
@@ -6801,7 +6800,7 @@ offset is out of bounds.</p>
 </ul>
 <h4 id="returns_48">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="insert_byte">insert_byte</h3>
@@ -6809,7 +6808,7 @@ offset is out of bounds.</p>
 <pre><code class="pony">fun ref insert_byte(
   offset: ISize val,
   value: U8 val)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_31">Parameters</h4>
@@ -6819,7 +6818,7 @@ offset is out of bounds.</p>
 </ul>
 <h4 id="returns_49">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="cut">cut</h3>
@@ -6847,7 +6846,7 @@ Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 <pre><code class="pony">fun ref cut_in_place(
   from: ISize val,
   to: ISize val = call)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_33">Parameters</h4>
@@ -6857,7 +6856,7 @@ Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 </ul>
 <h4 id="returns_51">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="remove">remove</h3>
@@ -6879,12 +6878,12 @@ instances.</p>
 <hr />
 <h3 id="replace">replace</h3>
 <p>Replace up to n occurrences of <code>from</code> in <code>this</code> with <code>to</code>. If n is 0, all
-occurrences will be replaced.</p>
+occurrences will be replaced. Returns the count of replaced occurrences.</p>
 <pre><code class="pony">fun ref replace(
   from: String box,
   to: String box,
   n: USize val = 0)
-: String ref^
+: USize val
 </code></pre>
 
 <h4 id="parameters_35">Parameters</h4>
@@ -6895,7 +6894,7 @@ occurrences will be replaced.</p>
 </ul>
 <h4 id="returns_53">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-USize">USize</a> val</li>
 </ul>
 <hr />
 <h3 id="split_by">split_by</h3>
@@ -6950,7 +6949,7 @@ example, <code>"1,,2".split(",") =&gt; ["1", "", "2"]</code>.</p>
 <pre><code class="pony">fun ref strip(
   s: String box= &quot;  
 &quot;)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_38">Parameters</h4>
@@ -6960,7 +6959,7 @@ example, <code>"1,,2".split(",") =&gt; ["1", "", "2"]</code>.</p>
 </ul>
 <h4 id="returns_56">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="rstrip">rstrip</h3>
@@ -6969,7 +6968,7 @@ trailing whitespace is removed.</p>
 <pre><code class="pony">fun ref rstrip(
   s: String box= &quot;  
 &quot;)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_39">Parameters</h4>
@@ -6979,7 +6978,7 @@ trailing whitespace is removed.</p>
 </ul>
 <h4 id="returns_57">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="lstrip">lstrip</h3>
@@ -6988,7 +6987,7 @@ leading whitespace is removed.</p>
 <pre><code class="pony">fun ref lstrip(
   s: String box= &quot;  
 &quot;)
-: String ref^
+: None val
 </code></pre>
 
 <h4 id="parameters_40">Parameters</h4>
@@ -6998,7 +6997,7 @@ leading whitespace is removed.</p>
 </ul>
 <h4 id="returns_58">Returns</h4>
 <ul>
-<li><a href="../builtin-String">String</a> ref^</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
 <h3 id="add">add</h3>
