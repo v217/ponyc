@@ -4850,12 +4850,21 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_Benchmark/">trait _Benchmark</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
         <a class="current" href="./">actor _AutoBench</a>
         
             <ul>
             
                 <li class="toctree-l3"><a href="#_autobench91a-any-share93">_AutoBench[A: Any #share]</a></li>
+                
+                    <li><a class="toctree-l4" href="#implements">Implements</a></li>
                 
                     <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
                 
@@ -4865,6 +4874,13 @@
                 
             
             </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_AutoBenchAsync/">actor _AutoBenchAsync</a>
         
     </li>
 
@@ -4886,13 +4902,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../ponybench-_BenchAsync/">actor _BenchAsync</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../ponybench-_PromiseNotify/">actor _PromiseNotify</a>
         
     </li>
 
@@ -5962,15 +5971,21 @@
             <div class="section">
               
                 <h1 id="_autobench91a-any-share93">_AutoBench[A: <a href="../builtin-Any">Any</a> #share]</h1>
-<pre><code class="pony">actor tag _AutoBench[A: Any #share]
+<pre><code class="pony">actor tag _AutoBench[A: Any #share] is
+  _Benchmark tag
 </code></pre>
 
+<h4 id="implements">Implements</h4>
+<ul>
+<li><a href="../ponybench-_Benchmark">_Benchmark</a> tag</li>
+</ul>
+<hr />
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
 <pre><code class="pony">new tag create(
-  notify: _BenchNotify tag,
   name: String val,
-  f: ({(): A ?}[A #share] val | {(): Promise[A] ?}[A #share] val),
+  notify: _BenchNotify tag,
+  f: {(): A ?}[A #share] val,
   bench_time: U64 val = 1000000000,
   max_ops: U64 val = 100000000)
 : _AutoBench[A #share] tag^
@@ -5978,9 +5993,9 @@
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>notify: <a href="../ponybench-_BenchNotify">_BenchNotify</a> tag</li>
 <li>name: <a href="../builtin-String">String</a> val</li>
-<li>f: ({(): A ?}[A #share] val | {(): Promise[A] ?}[A #share] val)</li>
+<li>notify: <a href="../ponybench-_BenchNotify">_BenchNotify</a> tag</li>
+<li>f: {(): A ?}[A #share] val</li>
 <li>bench_time: <a href="../builtin-U64">U64</a> val = 1000000000</li>
 <li>max_ops: <a href="../builtin-U64">U64</a> val = 100000000</li>
 </ul>
@@ -5990,15 +6005,10 @@
 </ul>
 <hr />
 <h2 id="public-behaviours">Public Behaviours</h2>
-<h3 id="apply">apply</h3>
-<pre><code class="pony">be apply(
-  ops: U64 val = 1)
+<h3 id="run">run</h3>
+<pre><code class="pony">be run()
 </code></pre>
 
-<h4 id="parameters_1">Parameters</h4>
-<ul>
-<li>ops: <a href="../builtin-U64">U64</a> val = 1</li>
-</ul>
 <hr />
 <h2 id="private-behaviours">Private Behaviours</h2>
 <h3 id="_result">_result</h3>
@@ -6008,7 +6018,7 @@
   nspo: U64 val)
 </code></pre>
 
-<h4 id="parameters_2">Parameters</h4>
+<h4 id="parameters_1">Parameters</h4>
 <ul>
 <li>name: <a href="../builtin-String">String</a> val</li>
 <li>ops: <a href="../builtin-U64">U64</a> val</li>
@@ -6017,12 +6027,14 @@
 <hr />
 <h3 id="_failure">_failure</h3>
 <pre><code class="pony">be _failure(
-  name: String val)
+  name: String val,
+  timeout: Bool val)
 </code></pre>
 
-<h4 id="parameters_3">Parameters</h4>
+<h4 id="parameters_2">Parameters</h4>
 <ul>
 <li>name: <a href="../builtin-String">String</a> val</li>
+<li>timeout: <a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
               
@@ -6032,10 +6044,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ponybench-_AutoOps/" class="btn btn-neutral float-right" title="class _AutoOps">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../ponybench-_AutoBenchAsync/" class="btn btn-neutral float-right" title="actor _AutoBenchAsync">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../ponybench-_BenchNotify/" class="btn btn-neutral" title="interface _BenchNotify"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ponybench-_Benchmark/" class="btn btn-neutral" title="trait _Benchmark"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -6061,10 +6073,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../ponybench-_BenchNotify/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../ponybench-_Benchmark/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../ponybench-_AutoOps/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../ponybench-_AutoBenchAsync/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

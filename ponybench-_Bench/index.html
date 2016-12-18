@@ -4851,7 +4851,21 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_Benchmark/">trait _Benchmark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../ponybench-_AutoBench/">actor _AutoBench</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_AutoBenchAsync/">actor _AutoBenchAsync</a>
         
     </li>
 
@@ -4871,6 +4885,8 @@
             
                 <li class="toctree-l3"><a href="#_bench91a-any-share93">_Bench[A: Any #share]</a></li>
                 
+                    <li><a class="toctree-l4" href="#implements">Implements</a></li>
+                
                     <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
                 
                     <li><a class="toctree-l4" href="#public-behaviours">Public Behaviours</a></li>
@@ -4884,13 +4900,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../ponybench-_BenchAsync/">actor _BenchAsync</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../ponybench-_PromiseNotify/">actor _PromiseNotify</a>
         
     </li>
 
@@ -5960,19 +5969,31 @@
             <div class="section">
               
                 <h1 id="_bench91a-any-share93">_Bench[A: <a href="../builtin-Any">Any</a> #share]</h1>
-<pre><code class="pony">actor tag _Bench[A: Any #share]
+<pre><code class="pony">actor tag _Bench[A: Any #share] is
+  _Benchmark tag
 </code></pre>
 
+<h4 id="implements">Implements</h4>
+<ul>
+<li><a href="../ponybench-_Benchmark">_Benchmark</a> tag</li>
+</ul>
+<hr />
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
 <pre><code class="pony">new tag create(
-  notify: _BenchNotify tag)
+  name: String val,
+  notify: _BenchNotify tag,
+  f: {(): A ?}[A #share] val,
+  ops: U64 val)
 : _Bench[A #share] tag^
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
+<li>name: <a href="../builtin-String">String</a> val</li>
 <li>notify: <a href="../ponybench-_BenchNotify">_BenchNotify</a> tag</li>
+<li>f: {(): A ?}[A #share] val</li>
+<li>ops: <a href="../builtin-U64">U64</a> val</li>
 </ul>
 <h4 id="returns">Returns</h4>
 <ul>
@@ -5980,19 +6001,10 @@
 </ul>
 <hr />
 <h2 id="public-behaviours">Public Behaviours</h2>
-<h3 id="apply">apply</h3>
-<pre><code class="pony">be apply(
-  name: String val,
-  f: {(): A ?}[A #share] val,
-  ops: U64 val)
+<h3 id="run">run</h3>
+<pre><code class="pony">be run()
 </code></pre>
 
-<h4 id="parameters_1">Parameters</h4>
-<ul>
-<li>name: <a href="../builtin-String">String</a> val</li>
-<li>f: {(): A ?}[A #share] val</li>
-<li>ops: <a href="../builtin-U64">U64</a> val</li>
-</ul>
 <hr />
               
             </div>

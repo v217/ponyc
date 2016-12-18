@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>actor _PromiseNotify - stdlib</title>
+  <title>actor _AutoBenchAsync - stdlib</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "actor _PromiseNotify";
-    var mkdocs_page_input_path = "ponybench-_PromiseNotify.md";
-    var mkdocs_page_url = "/ponybench-_PromiseNotify/";
+    var mkdocs_page_name = "actor _AutoBenchAsync";
+    var mkdocs_page_input_path = "ponybench-_AutoBenchAsync.md";
+    var mkdocs_page_url = "/ponybench-_AutoBenchAsync/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -4851,7 +4851,36 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_Benchmark/">trait _Benchmark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../ponybench-_AutoBench/">actor _AutoBench</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">actor _AutoBenchAsync</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#_autobenchasync91a-any-share93">_AutoBenchAsync[A: Any #share]</a></li>
+                
+                    <li><a class="toctree-l4" href="#implements">Implements</a></li>
+                
+                    <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
+                
+                    <li><a class="toctree-l4" href="#public-behaviours">Public Behaviours</a></li>
+                
+                    <li><a class="toctree-l4" href="#private-behaviours">Private Behaviours</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -4873,24 +4902,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../ponybench-_BenchAsync/">actor _BenchAsync</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">actor _PromiseNotify</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#_promisenotify">_PromiseNotify</a></li>
-                
-                    <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
-                
-                    <li><a class="toctree-l4" href="#public-behaviours">Public Behaviours</a></li>
-                
-            
-            </ul>
         
     </li>
 
@@ -5949,7 +5960,7 @@
         
       
     
-    <li>actor _PromiseNotify</li>
+    <li>actor _AutoBenchAsync</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -5959,35 +5970,74 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_promisenotify">_PromiseNotify</h1>
-<pre><code class="pony">actor tag _PromiseNotify
+                <h1 id="_autobenchasync91a-any-share93">_AutoBenchAsync[A: <a href="../builtin-Any">Any</a> #share]</h1>
+<pre><code class="pony">actor tag _AutoBenchAsync[A: Any #share] is
+  _Benchmark tag
 </code></pre>
 
+<h4 id="implements">Implements</h4>
+<ul>
+<li><a href="../ponybench-_Benchmark">_Benchmark</a> tag</li>
+</ul>
+<hr />
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
 <pre><code class="pony">new tag create(
-  notify: _BenchNotify tag,
   name: String val,
-  ops: U64 val)
-: _PromiseNotify tag^
+  notify: _BenchNotify tag,
+  f: {(): Promise[A] ?}[A #share] val,
+  timeout: U64 val,
+  bench_time: U64 val = 1000000000,
+  max_ops: U64 val = 100000000)
+: _AutoBenchAsync[A #share] tag^
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>notify: <a href="../ponybench-_BenchNotify">_BenchNotify</a> tag</li>
 <li>name: <a href="../builtin-String">String</a> val</li>
-<li>ops: <a href="../builtin-U64">U64</a> val</li>
+<li>notify: <a href="../ponybench-_BenchNotify">_BenchNotify</a> tag</li>
+<li>f: {(): Promise[A] ?}[A #share] val</li>
+<li>timeout: <a href="../builtin-U64">U64</a> val</li>
+<li>bench_time: <a href="../builtin-U64">U64</a> val = 1000000000</li>
+<li>max_ops: <a href="../builtin-U64">U64</a> val = 100000000</li>
 </ul>
 <h4 id="returns">Returns</h4>
 <ul>
-<li><a href="../ponybench-_PromiseNotify">_PromiseNotify</a> tag^</li>
+<li><a href="../ponybench-_AutoBenchAsync">_AutoBenchAsync</a>[A #share] tag^</li>
 </ul>
 <hr />
 <h2 id="public-behaviours">Public Behaviours</h2>
-<h3 id="apply">apply</h3>
-<pre><code class="pony">be apply()
+<h3 id="run">run</h3>
+<pre><code class="pony">be run()
 </code></pre>
 
+<hr />
+<h2 id="private-behaviours">Private Behaviours</h2>
+<h3 id="_result">_result</h3>
+<pre><code class="pony">be _result(
+  name: String val,
+  ops: U64 val,
+  nspo: U64 val)
+</code></pre>
+
+<h4 id="parameters_1">Parameters</h4>
+<ul>
+<li>name: <a href="../builtin-String">String</a> val</li>
+<li>ops: <a href="../builtin-U64">U64</a> val</li>
+<li>nspo: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="_failure">_failure</h3>
+<pre><code class="pony">be _failure(
+  name: String val,
+  timeout: Bool val)
+</code></pre>
+
+<h4 id="parameters_2">Parameters</h4>
+<ul>
+<li>name: <a href="../builtin-String">String</a> val</li>
+<li>timeout: <a href="../builtin-Bool">Bool</a> val</li>
+</ul>
 <hr />
               
             </div>
@@ -5996,10 +6046,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ponytest--index/" class="btn btn-neutral float-right" title="Package">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../ponybench-_AutoOps/" class="btn btn-neutral float-right" title="class _AutoOps">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../ponybench-_BenchAsync/" class="btn btn-neutral" title="actor _BenchAsync"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ponybench-_AutoBench/" class="btn btn-neutral" title="actor _AutoBench"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -6025,10 +6075,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../ponybench-_BenchAsync/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../ponybench-_AutoBench/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../ponytest--index/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../ponybench-_AutoOps/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -4866,7 +4866,21 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_Benchmark/">trait _Benchmark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../ponybench-_AutoBench/">actor _AutoBench</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_AutoBenchAsync/">actor _AutoBenchAsync</a>
         
     </li>
 
@@ -4888,13 +4902,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../ponybench-_BenchAsync/">actor _BenchAsync</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../ponybench-_PromiseNotify/">actor _PromiseNotify</a>
         
     </li>
 
@@ -6040,28 +6047,45 @@ the benchmarks are counted towards an average run time.</p>
 <hr />
 <h3 id="_failure">_failure</h3>
 <pre><code class="pony">be _failure(
-  name: String val)
+  name: String val,
+  timeout: Bool val)
 </code></pre>
 
 <h4 id="parameters_4">Parameters</h4>
 <ul>
 <li>name: <a href="../builtin-String">String</a> val</li>
+<li>timeout: <a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
 <h2 id="private-functions">Private Functions</h2>
-<h3 id="_update">_update</h3>
-<pre><code class="pony">fun ref _update(
+<h3 id="_add">_add</h3>
+<pre><code class="pony">fun ref _add(
   name: String val,
-  result: String val)
+  b: _Benchmark tag)
 : None val
 </code></pre>
 
 <h4 id="parameters_5">Parameters</h4>
 <ul>
 <li>name: <a href="../builtin-String">String</a> val</li>
-<li>result: <a href="../builtin-String">String</a> val</li>
+<li>b: <a href="../ponybench-_Benchmark">_Benchmark</a> tag</li>
 </ul>
 <h4 id="returns_1">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="_remove">_remove</h3>
+<pre><code class="pony">fun ref _remove(
+  name: String val)
+: None val
+</code></pre>
+
+<h4 id="parameters_6">Parameters</h4>
+<ul>
+<li>name: <a href="../builtin-String">String</a> val</li>
+</ul>
+<h4 id="returns_2">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6071,7 +6095,7 @@ the benchmarks are counted towards an average run time.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_2">Returns</h4>
+<h4 id="returns_3">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>

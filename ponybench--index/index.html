@@ -4867,7 +4867,21 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_Benchmark/">trait _Benchmark</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../ponybench-_AutoBench/">actor _AutoBench</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ponybench-_AutoBenchAsync/">actor _AutoBenchAsync</a>
         
     </li>
 
@@ -4889,13 +4903,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../ponybench-_BenchAsync/">actor _BenchAsync</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../ponybench-_PromiseNotify/">actor _PromiseNotify</a>
         
     </li>
 
@@ -5977,31 +5984,30 @@ actor Main
     let bench = PonyBench(env)
 
     // benchmark Fib with different inputs
-    bench[USize](&quot;fib 5&quot;, {(): USize =&gt; Fib(5) })
-    bench[USize](&quot;fib 10&quot;, {(): USize =&gt; Fib(10) })
-    bench[USize](&quot;fib 20&quot;, {(): USize =&gt; Fib(20) })
-    bench[USize](&quot;fib 40&quot;, {(): USize =&gt; Fib(40) })
+    bench[USize](&quot;fib 5&quot;, {(): USize =&gt; Fib(5)})
+    bench[USize](&quot;fib 10&quot;, {(): USize =&gt; Fib(10)})
+    bench[USize](&quot;fib 20&quot;, {(): USize =&gt; Fib(20)})
+    bench[USize](&quot;fib 40&quot;, {(): USize =&gt; Fib(40)})
 
     // show what happens when a benchmark fails
-    bench[String](&quot;fail&quot;, {(): String ? =&gt; error })
+    bench[String](&quot;fail&quot;, {(): String ? =&gt; error})
 
     // async benchmark
-    bench.async[USize](&quot;async&quot;, object iso
-      fun apply(): Promise[USize] =&gt;
-        let p = Promise[USize]
-        p(0)
-    end)
+    bench.async[USize](
+      &quot;async&quot;,
+      {(): Promise[USize] =&gt; Promise[USize].&gt;apply(0)} iso
+    )
 
     // async benchmark timeout
-    bench.async[USize](&quot;timeout&quot;, object iso
-      fun apply(): Promise[USize] =&gt;
-        let p = Promise[USize]
-        if false then p(0) else p end
-    end, 1_000_000)
+    bench.async[USize](
+      &quot;timeout&quot;,
+      {(): Promise[USize] =&gt; Promise[USize]} iso,
+      1_000_000
+    )
 
     // benchmarks with set ops
-    bench[USize](&quot;add&quot;, {(): USize =&gt; 1 + 2 }, 10_000_000)
-    bench[USize](&quot;sub&quot;, {(): USize =&gt; 2 - 1 }, 10_000_000)
+    bench[USize](&quot;add&quot;, {(): USize =&gt; 1 + 2}, 10_000_000)
+    bench[USize](&quot;sub&quot;, {(): USize =&gt; 2 - 1}, 10_000_000)
 
 primitive Fib
   fun apply(n: USize): USize =&gt;
@@ -6013,15 +6019,15 @@ primitive Fib
 </code></pre>
 
 <p>Output:</p>
-<pre><code>fib 5      50000000         36 ns/op
-fib 10     3000000         448 ns/op
-fib 20       30000       58828 ns/op
-fib 40           2   865802018 ns/op
+<pre><code>fib 5       50000000            33 ns/op
+fib 10       5000000           371 ns/op
+fib 20         30000         45310 ns/op
+fib 40             2     684868666 ns/op
 **** FAILED Benchmark: fail
-async        300000      10166 ns/op
-**** FAILED Benchmark: timeout
-add       10000000           3 ns/op
-sub       10000000           3 ns/op
+async         200000         26512 ns/op
+**** FAILED Benchmark: timeout (timeout)
+add         10000000             2 ns/op
+sub         10000000             2 ns/op
 </code></pre>
 
 <h2 id="public-types">Public Types</h2>
@@ -6031,11 +6037,12 @@ sub       10000000           3 ns/op
 <h2 id="private-types">Private Types</h2>
 <ul>
 <li><a href="../ponybench-_BenchNotify/">interface _BenchNotify</a></li>
+<li><a href="../ponybench-_Benchmark/">trait _Benchmark</a></li>
 <li><a href="../ponybench-_AutoBench/">actor _AutoBench</a></li>
+<li><a href="../ponybench-_AutoBenchAsync/">actor _AutoBenchAsync</a></li>
 <li><a href="../ponybench-_AutoOps/">class _AutoOps</a></li>
 <li><a href="../ponybench-_Bench/">actor _Bench</a></li>
 <li><a href="../ponybench-_BenchAsync/">actor _BenchAsync</a></li>
-<li><a href="../ponybench-_PromiseNotify/">actor _PromiseNotify</a></li>
 </ul>
 <h2 id="test-types">Test Types</h2>
 <ul>
