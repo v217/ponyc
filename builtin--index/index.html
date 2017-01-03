@@ -5967,8 +5967,16 @@
             <div class="section">
               
                 <h1 id="builtin-package">Builtin package</h1>
-<p>The builtin package is home to standard library members that require compiler
-support. For details on specific packages, see their individual entity entries.</p>
+<p>The builtin package is home to the following standard library members:</p>
+<ol>
+<li>Types the compiler needs to know exist, such as None.</li>
+<li>Types with "magic" internal workings that must be supplied directly by the
+compiler, such as U32.</li>
+<li>Any types needed by others in builtin.</li>
+</ol>
+<p>The public types that are defined in this package will always be in scope for
+every Pony source file. For details on specific packages, see their individual
+entity entries.</p>
 <h2 id="public-types">Public Types</h2>
 <ul>
 <li><a href="../builtin-Bool/">primitive Bool</a></li>
