@@ -6002,6 +6002,8 @@ actor Main
     end
 </code></pre>
 
+<p>Note: when writing to the connection data will be silently discarded if the
+connection has not yet been established.</p>
 <h2 id="backpressure-support">Backpressure support</h2>
 <h3 id="write">Write</h3>
 <p>The TCP protocol has built-in backpressure support. This is generally
@@ -6212,7 +6214,8 @@ exit.</p>
 <hr />
 <h2 id="public-behaviours">Public Behaviours</h2>
 <h3 id="write_1">write</h3>
-<p>Write a single sequence of bytes.</p>
+<p>Write a single sequence of bytes. Data will be silently discarded if the
+connection has not yet been established though.</p>
 <pre><code class="pony">be write(
   data: (String val | Array[U8 val] val))
 </code></pre>
@@ -6223,7 +6226,8 @@ exit.</p>
 </ul>
 <hr />
 <h3 id="writev">writev</h3>
-<p>Write a sequence of sequences of bytes.</p>
+<p>Write a sequence of sequences of bytes. Data will be silently discarded if
+the connection has not yet been established though.</p>
 <pre><code class="pony">be writev(
   data: ByteSeqIter val)
 </code></pre>
@@ -6341,8 +6345,9 @@ is disabled by default. This can only be set on a connected socket.</p>
 <hr />
 <h3 id="write_final">write_final</h3>
 <p>Write as much as possible to the socket. Set <code>_writeable</code> to <code>false</code> if not
-everything was written. On an error, close the connection. This is for
-data that has already been transformed by the notifier.</p>
+everything was written. On an error, close the connection. This is for data
+that has already been transformed by the notifier. Data will be silently
+discarded if the connection has not yet been established though.</p>
 <pre><code class="pony">fun ref write_final(
   data: (String val | Array[U8 val] val))
 : None val
