@@ -5979,8 +5979,9 @@ connections on port 8989 and echoes back any data it receives.</p>
 <pre><code>use &quot;net&quot;
 
 class MyTCPConnectionNotify is TCPConnectionNotify
-  fun ref received(conn: TCPConnection ref, data: Array[U8] iso) =&gt;
+  fun ref received(conn: TCPConnection ref, data: Array[U8] iso): Bool =&gt;
     conn.write(String.from_array(consume data))
+    true
 
 class MyTCPListenNotify is TCPListenNotify
   fun ref connected(listen: TCPListener ref): TCPConnectionNotify iso^ =&gt;
