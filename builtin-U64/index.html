@@ -621,6 +621,8 @@
                 
                     <li><a class="toctree-l4" href="#public-functions">Public Functions</a></li>
                 
+                    <li><a class="toctree-l4" href="#private-functions">Private Functions</a></li>
+                
             
             </ul>
         
@@ -680,6 +682,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestAbs/">class _TestAbs</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestRotate/">class _TestRotate</a>
         
     </li>
 
@@ -1009,6 +1018,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestNextPow2/">class _TestNextPow2</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestNumberConversionSaturation/">class _TestNumberConversionSaturation</a>
         
     </li>
 
@@ -6101,12 +6117,36 @@
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
+<h3 id="clz_unsafe">clz_unsafe</h3>
+<p>Unsafe operation.
+If this is 0, the result is undefined.</p>
+<pre><code class="pony">fun box clz_unsafe()
+: U64 val
+</code></pre>
+
+<h4 id="returns_10">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="ctz_unsafe">ctz_unsafe</h3>
+<p>Unsafe operation.
+If this is 0, the result is undefined.</p>
+<pre><code class="pony">fun box ctz_unsafe()
+: U64 val
+</code></pre>
+
+<h4 id="returns_11">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
 <h3 id="bitwidth">bitwidth</h3>
 <pre><code class="pony">fun box bitwidth()
 : U64 val
 </code></pre>
 
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_12">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6121,7 +6161,7 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_11">Returns</h4>
+<h4 id="returns_13">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6136,7 +6176,7 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_12">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6151,7 +6191,7 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li>(<a href="../builtin-U64">U64</a> val , <a href="../builtin-Bool">Bool</a> val)</li>
 </ul>
@@ -6166,7 +6206,7 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li>(<a href="../builtin-U64">U64</a> val , <a href="../builtin-Bool">Bool</a> val)</li>
 </ul>
@@ -6181,23 +6221,13 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li>(<a href="../builtin-U64">U64</a> val , <a href="../builtin-Bool">Bool</a> val)</li>
 </ul>
 <hr />
-<h3 id="string">string</h3>
-<pre><code class="pony">fun box string()
-: String iso^
-</code></pre>
-
-<h4 id="returns_16">Returns</h4>
-<ul>
-<li><a href="../builtin-String">String</a> iso^</li>
-</ul>
-<hr />
-<h3 id="op_and">op_and</h3>
-<pre><code class="pony">fun box op_and(
+<h3 id="shl">shl</h3>
+<pre><code class="pony">fun box shl(
   y: U64 val)
 : U64 val
 </code></pre>
@@ -6206,13 +6236,13 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
-<h3 id="op_or">op_or</h3>
-<pre><code class="pony">fun box op_or(
+<h3 id="shr">shr</h3>
+<pre><code class="pony">fun box shr(
   y: U64 val)
 : U64 val
 </code></pre>
@@ -6221,13 +6251,13 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
-<h3 id="op_xor">op_xor</h3>
-<pre><code class="pony">fun box op_xor(
+<h3 id="shl_unsafe">shl_unsafe</h3>
+<pre><code class="pony">fun box shl_unsafe(
   y: U64 val)
 : U64 val
 </code></pre>
@@ -6236,23 +6266,13 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_19">Returns</h4>
-<ul>
-<li><a href="../builtin-U64">U64</a> val</li>
-</ul>
-<hr />
-<h3 id="op_not">op_not</h3>
-<pre><code class="pony">fun box op_not()
-: U64 val
-</code></pre>
-
 <h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
-<h3 id="shl">shl</h3>
-<pre><code class="pony">fun box shl(
+<h3 id="shr_unsafe">shr_unsafe</h3>
+<pre><code class="pony">fun box shr_unsafe(
   y: U64 val)
 : U64 val
 </code></pre>
@@ -6266,8 +6286,8 @@
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
-<h3 id="shr">shr</h3>
-<pre><code class="pony">fun box shr(
+<h3 id="rotl">rotl</h3>
+<pre><code class="pony">fun box rotl(
   y: U64 val)
 : U64 val
 </code></pre>
@@ -6281,8 +6301,8 @@
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
-<h3 id="rotl">rotl</h3>
-<pre><code class="pony">fun box rotl(
+<h3 id="rotr">rotr</h3>
+<pre><code class="pony">fun box rotr(
   y: U64 val)
 : U64 val
 </code></pre>
@@ -6296,8 +6316,18 @@
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
-<h3 id="rotr">rotr</h3>
-<pre><code class="pony">fun box rotr(
+<h3 id="string">string</h3>
+<pre><code class="pony">fun box string()
+: String iso^
+</code></pre>
+
+<h4 id="returns_24">Returns</h4>
+<ul>
+<li><a href="../builtin-String">String</a> iso^</li>
+</ul>
+<hr />
+<h3 id="add_unsafe">add_unsafe</h3>
+<pre><code class="pony">fun box add_unsafe(
   y: U64 val)
 : U64 val
 </code></pre>
@@ -6306,7 +6336,147 @@
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_24">Returns</h4>
+<h4 id="returns_25">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="sub_unsafe">sub_unsafe</h3>
+<pre><code class="pony">fun box sub_unsafe(
+  y: U64 val)
+: U64 val
+</code></pre>
+
+<h4 id="parameters_14">Parameters</h4>
+<ul>
+<li>y: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<h4 id="returns_26">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="mul_unsafe">mul_unsafe</h3>
+<pre><code class="pony">fun box mul_unsafe(
+  y: U64 val)
+: U64 val
+</code></pre>
+
+<h4 id="parameters_15">Parameters</h4>
+<ul>
+<li>y: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<h4 id="returns_27">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="div_unsafe">div_unsafe</h3>
+<pre><code class="pony">fun box div_unsafe(
+  y: U64 val)
+: U64 val
+</code></pre>
+
+<h4 id="parameters_16">Parameters</h4>
+<ul>
+<li>y: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<h4 id="returns_28">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="divmod_unsafe">divmod_unsafe</h3>
+<pre><code class="pony">fun box divmod_unsafe(
+  y: U64 val)
+: (U64 val , U64 val)
+</code></pre>
+
+<h4 id="parameters_17">Parameters</h4>
+<ul>
+<li>y: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<h4 id="returns_29">Returns</h4>
+<ul>
+<li>(<a href="../builtin-U64">U64</a> val , <a href="../builtin-U64">U64</a> val)</li>
+</ul>
+<hr />
+<h3 id="mod_unsafe">mod_unsafe</h3>
+<pre><code class="pony">fun box mod_unsafe(
+  y: U64 val)
+: U64 val
+</code></pre>
+
+<h4 id="parameters_18">Parameters</h4>
+<ul>
+<li>y: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<h4 id="returns_30">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="neg_unsafe">neg_unsafe</h3>
+<pre><code class="pony">fun box neg_unsafe()
+: U64 val
+</code></pre>
+
+<h4 id="returns_31">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="op_and">op_and</h3>
+<pre><code class="pony">fun box op_and(
+  y: U64 val)
+: U64 val
+</code></pre>
+
+<h4 id="parameters_19">Parameters</h4>
+<ul>
+<li>y: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<h4 id="returns_32">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="op_or">op_or</h3>
+<pre><code class="pony">fun box op_or(
+  y: U64 val)
+: U64 val
+</code></pre>
+
+<h4 id="parameters_20">Parameters</h4>
+<ul>
+<li>y: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<h4 id="returns_33">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="op_xor">op_xor</h3>
+<pre><code class="pony">fun box op_xor(
+  y: U64 val)
+: U64 val
+</code></pre>
+
+<h4 id="parameters_21">Parameters</h4>
+<ul>
+<li>y: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<h4 id="returns_34">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="op_not">op_not</h3>
+<pre><code class="pony">fun box op_not()
+: U64 val
+</code></pre>
+
+<h4 id="returns_35">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6317,11 +6487,11 @@
 : U64 val
 </code></pre>
 
-<h4 id="parameters_14">Parameters</h4>
+<h4 id="parameters_22">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_25">Returns</h4>
+<h4 id="returns_36">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6332,11 +6502,11 @@
 : U64 val
 </code></pre>
 
-<h4 id="parameters_15">Parameters</h4>
+<h4 id="parameters_23">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_26">Returns</h4>
+<h4 id="returns_37">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6347,11 +6517,11 @@
 : U64 val
 </code></pre>
 
-<h4 id="parameters_16">Parameters</h4>
+<h4 id="parameters_24">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_27">Returns</h4>
+<h4 id="returns_38">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6362,11 +6532,11 @@
 : U64 val
 </code></pre>
 
-<h4 id="parameters_17">Parameters</h4>
+<h4 id="parameters_25">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_28">Returns</h4>
+<h4 id="returns_39">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6377,11 +6547,11 @@
 : (U64 val , U64 val)
 </code></pre>
 
-<h4 id="parameters_18">Parameters</h4>
+<h4 id="parameters_26">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_29">Returns</h4>
+<h4 id="returns_40">Returns</h4>
 <ul>
 <li>(<a href="../builtin-U64">U64</a> val , <a href="../builtin-U64">U64</a> val)</li>
 </ul>
@@ -6392,11 +6562,11 @@
 : U64 val
 </code></pre>
 
-<h4 id="parameters_19">Parameters</h4>
+<h4 id="parameters_27">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_30">Returns</h4>
+<h4 id="returns_41">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6406,7 +6576,7 @@
 : U64 val
 </code></pre>
 
-<h4 id="returns_31">Returns</h4>
+<h4 id="returns_42">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6417,11 +6587,11 @@
 : Bool val
 </code></pre>
 
-<h4 id="parameters_20">Parameters</h4>
+<h4 id="parameters_28">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_32">Returns</h4>
+<h4 id="returns_43">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6432,11 +6602,11 @@
 : Bool val
 </code></pre>
 
-<h4 id="parameters_21">Parameters</h4>
+<h4 id="parameters_29">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_33">Returns</h4>
+<h4 id="returns_44">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6447,11 +6617,11 @@
 : Bool val
 </code></pre>
 
-<h4 id="parameters_22">Parameters</h4>
+<h4 id="parameters_30">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_34">Returns</h4>
+<h4 id="returns_45">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6462,11 +6632,11 @@
 : Bool val
 </code></pre>
 
-<h4 id="parameters_23">Parameters</h4>
+<h4 id="parameters_31">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_35">Returns</h4>
+<h4 id="returns_46">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6477,11 +6647,11 @@
 : Bool val
 </code></pre>
 
-<h4 id="parameters_24">Parameters</h4>
+<h4 id="parameters_32">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_36">Returns</h4>
+<h4 id="returns_47">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6492,11 +6662,11 @@
 : Bool val
 </code></pre>
 
-<h4 id="parameters_25">Parameters</h4>
+<h4 id="parameters_33">Parameters</h4>
 <ul>
 <li>y: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_37">Returns</h4>
+<h4 id="returns_48">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6506,7 +6676,7 @@
 : U64 val
 </code></pre>
 
-<h4 id="returns_38">Returns</h4>
+<h4 id="returns_49">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6516,7 +6686,7 @@
 : I8 val
 </code></pre>
 
-<h4 id="returns_39">Returns</h4>
+<h4 id="returns_50">Returns</h4>
 <ul>
 <li><a href="../builtin-I8">I8</a> val</li>
 </ul>
@@ -6526,7 +6696,7 @@
 : I16 val
 </code></pre>
 
-<h4 id="returns_40">Returns</h4>
+<h4 id="returns_51">Returns</h4>
 <ul>
 <li><a href="../builtin-I16">I16</a> val</li>
 </ul>
@@ -6536,7 +6706,7 @@
 : I32 val
 </code></pre>
 
-<h4 id="returns_41">Returns</h4>
+<h4 id="returns_52">Returns</h4>
 <ul>
 <li><a href="../builtin-I32">I32</a> val</li>
 </ul>
@@ -6546,7 +6716,7 @@
 : I64 val
 </code></pre>
 
-<h4 id="returns_42">Returns</h4>
+<h4 id="returns_53">Returns</h4>
 <ul>
 <li><a href="../builtin-I64">I64</a> val</li>
 </ul>
@@ -6556,7 +6726,7 @@
 : I128 val
 </code></pre>
 
-<h4 id="returns_43">Returns</h4>
+<h4 id="returns_54">Returns</h4>
 <ul>
 <li><a href="../builtin-I128">I128</a> val</li>
 </ul>
@@ -6566,7 +6736,7 @@
 : ILong val
 </code></pre>
 
-<h4 id="returns_44">Returns</h4>
+<h4 id="returns_55">Returns</h4>
 <ul>
 <li><a href="../builtin-ILong">ILong</a> val</li>
 </ul>
@@ -6576,7 +6746,7 @@
 : ISize val
 </code></pre>
 
-<h4 id="returns_45">Returns</h4>
+<h4 id="returns_56">Returns</h4>
 <ul>
 <li><a href="../builtin-ISize">ISize</a> val</li>
 </ul>
@@ -6586,7 +6756,7 @@
 : U8 val
 </code></pre>
 
-<h4 id="returns_46">Returns</h4>
+<h4 id="returns_57">Returns</h4>
 <ul>
 <li><a href="../builtin-U8">U8</a> val</li>
 </ul>
@@ -6596,7 +6766,7 @@
 : U16 val
 </code></pre>
 
-<h4 id="returns_47">Returns</h4>
+<h4 id="returns_58">Returns</h4>
 <ul>
 <li><a href="../builtin-U16">U16</a> val</li>
 </ul>
@@ -6606,7 +6776,7 @@
 : U32 val
 </code></pre>
 
-<h4 id="returns_48">Returns</h4>
+<h4 id="returns_59">Returns</h4>
 <ul>
 <li><a href="../builtin-U32">U32</a> val</li>
 </ul>
@@ -6616,7 +6786,7 @@
 : U64 val
 </code></pre>
 
-<h4 id="returns_49">Returns</h4>
+<h4 id="returns_60">Returns</h4>
 <ul>
 <li><a href="../builtin-U64">U64</a> val</li>
 </ul>
@@ -6626,7 +6796,7 @@
 : U128 val
 </code></pre>
 
-<h4 id="returns_50">Returns</h4>
+<h4 id="returns_61">Returns</h4>
 <ul>
 <li><a href="../builtin-U128">U128</a> val</li>
 </ul>
@@ -6636,7 +6806,7 @@
 : ULong val
 </code></pre>
 
-<h4 id="returns_51">Returns</h4>
+<h4 id="returns_62">Returns</h4>
 <ul>
 <li><a href="../builtin-ULong">ULong</a> val</li>
 </ul>
@@ -6646,7 +6816,7 @@
 : USize val
 </code></pre>
 
-<h4 id="returns_52">Returns</h4>
+<h4 id="returns_63">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6656,7 +6826,7 @@
 : F32 val
 </code></pre>
 
-<h4 id="returns_53">Returns</h4>
+<h4 id="returns_64">Returns</h4>
 <ul>
 <li><a href="../builtin-F32">F32</a> val</li>
 </ul>
@@ -6666,7 +6836,167 @@
 : F64 val
 </code></pre>
 
-<h4 id="returns_54">Returns</h4>
+<h4 id="returns_65">Returns</h4>
+<ul>
+<li><a href="../builtin-F64">F64</a> val</li>
+</ul>
+<hr />
+<h3 id="i8_unsafe">i8_unsafe</h3>
+<pre><code class="pony">fun box i8_unsafe()
+: I8 val
+</code></pre>
+
+<h4 id="returns_66">Returns</h4>
+<ul>
+<li><a href="../builtin-I8">I8</a> val</li>
+</ul>
+<hr />
+<h3 id="i16_unsafe">i16_unsafe</h3>
+<pre><code class="pony">fun box i16_unsafe()
+: I16 val
+</code></pre>
+
+<h4 id="returns_67">Returns</h4>
+<ul>
+<li><a href="../builtin-I16">I16</a> val</li>
+</ul>
+<hr />
+<h3 id="i32_unsafe">i32_unsafe</h3>
+<pre><code class="pony">fun box i32_unsafe()
+: I32 val
+</code></pre>
+
+<h4 id="returns_68">Returns</h4>
+<ul>
+<li><a href="../builtin-I32">I32</a> val</li>
+</ul>
+<hr />
+<h3 id="i64_unsafe">i64_unsafe</h3>
+<pre><code class="pony">fun box i64_unsafe()
+: I64 val
+</code></pre>
+
+<h4 id="returns_69">Returns</h4>
+<ul>
+<li><a href="../builtin-I64">I64</a> val</li>
+</ul>
+<hr />
+<h3 id="i128_unsafe">i128_unsafe</h3>
+<pre><code class="pony">fun box i128_unsafe()
+: I128 val
+</code></pre>
+
+<h4 id="returns_70">Returns</h4>
+<ul>
+<li><a href="../builtin-I128">I128</a> val</li>
+</ul>
+<hr />
+<h3 id="ilong_unsafe">ilong_unsafe</h3>
+<pre><code class="pony">fun box ilong_unsafe()
+: ILong val
+</code></pre>
+
+<h4 id="returns_71">Returns</h4>
+<ul>
+<li><a href="../builtin-ILong">ILong</a> val</li>
+</ul>
+<hr />
+<h3 id="isize_unsafe">isize_unsafe</h3>
+<pre><code class="pony">fun box isize_unsafe()
+: ISize val
+</code></pre>
+
+<h4 id="returns_72">Returns</h4>
+<ul>
+<li><a href="../builtin-ISize">ISize</a> val</li>
+</ul>
+<hr />
+<h3 id="u8_unsafe">u8_unsafe</h3>
+<pre><code class="pony">fun box u8_unsafe()
+: U8 val
+</code></pre>
+
+<h4 id="returns_73">Returns</h4>
+<ul>
+<li><a href="../builtin-U8">U8</a> val</li>
+</ul>
+<hr />
+<h3 id="u16_unsafe">u16_unsafe</h3>
+<pre><code class="pony">fun box u16_unsafe()
+: U16 val
+</code></pre>
+
+<h4 id="returns_74">Returns</h4>
+<ul>
+<li><a href="../builtin-U16">U16</a> val</li>
+</ul>
+<hr />
+<h3 id="u32_unsafe">u32_unsafe</h3>
+<pre><code class="pony">fun box u32_unsafe()
+: U32 val
+</code></pre>
+
+<h4 id="returns_75">Returns</h4>
+<ul>
+<li><a href="../builtin-U32">U32</a> val</li>
+</ul>
+<hr />
+<h3 id="u64_unsafe">u64_unsafe</h3>
+<pre><code class="pony">fun box u64_unsafe()
+: U64 val
+</code></pre>
+
+<h4 id="returns_76">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<h3 id="u128_unsafe">u128_unsafe</h3>
+<pre><code class="pony">fun box u128_unsafe()
+: U128 val
+</code></pre>
+
+<h4 id="returns_77">Returns</h4>
+<ul>
+<li><a href="../builtin-U128">U128</a> val</li>
+</ul>
+<hr />
+<h3 id="ulong_unsafe">ulong_unsafe</h3>
+<pre><code class="pony">fun box ulong_unsafe()
+: ULong val
+</code></pre>
+
+<h4 id="returns_78">Returns</h4>
+<ul>
+<li><a href="../builtin-ULong">ULong</a> val</li>
+</ul>
+<hr />
+<h3 id="usize_unsafe">usize_unsafe</h3>
+<pre><code class="pony">fun box usize_unsafe()
+: USize val
+</code></pre>
+
+<h4 id="returns_79">Returns</h4>
+<ul>
+<li><a href="../builtin-USize">USize</a> val</li>
+</ul>
+<hr />
+<h3 id="f32_unsafe">f32_unsafe</h3>
+<pre><code class="pony">fun box f32_unsafe()
+: F32 val
+</code></pre>
+
+<h4 id="returns_80">Returns</h4>
+<ul>
+<li><a href="../builtin-F32">F32</a> val</li>
+</ul>
+<hr />
+<h3 id="f64_unsafe">f64_unsafe</h3>
+<pre><code class="pony">fun box f64_unsafe()
+: F64 val
+</code></pre>
+
+<h4 id="returns_81">Returns</h4>
 <ul>
 <li><a href="../builtin-F64">F64</a> val</li>
 </ul>
@@ -6677,13 +7007,24 @@
 : (Less val | Equal val | Greater val)
 </code></pre>
 
-<h4 id="parameters_26">Parameters</h4>
+<h4 id="parameters_34">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_55">Returns</h4>
+<h4 id="returns_82">Returns</h4>
 <ul>
 <li>(<a href="../builtin-Less">Less</a> val | <a href="../builtin-Equal">Equal</a> val | <a href="../builtin-Greater">Greater</a> val)</li>
+</ul>
+<hr />
+<h2 id="private-functions">Private Functions</h2>
+<h3 id="_value">_value</h3>
+<pre><code class="pony">fun box _value()
+: U64 val
+</code></pre>
+
+<h4 id="returns_83">Returns</h4>
+<ul>
+<li><a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
               

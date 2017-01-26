@@ -526,6 +526,12 @@
     </url>
         
     <url>
+     <loc>/builtin_test-_TestRotate/</loc>
+     <lastmod>2017-01-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/builtin_test-_TestStringRunes/</loc>
      <lastmod>2017-01-26</lastmod>
      <changefreq>daily</changefreq>
@@ -803,6 +809,12 @@
         
     <url>
      <loc>/builtin_test-_TestNextPow2/</loc>
+     <lastmod>2017-01-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/builtin_test-_TestNumberConversionSaturation/</loc>
      <lastmod>2017-01-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
