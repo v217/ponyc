@@ -6099,6 +6099,32 @@ We call</p>
 <li>V ?</li>
 </ul>
 <hr />
+<h3 id="insert_if_absent">insert_if_absent</h3>
+<p>Set a value in the map if the key doesn't already exist in the Map.
+Saves an extra lookup when doing a pattern like:</p>
+<pre><code class="pony">if not my_map.contains(my_key) then
+  my_map(my_key) = my_value
+end
+</code></pre>
+
+<p>Returns the value, the same as <code>insert</code>, allowing 'insert_if_absent'
+to be used as a drop-in replacement for <code>insert</code>.</p>
+<pre><code class="pony">fun ref insert_if_absent(
+  key: K,
+  value: V)
+: V ?
+</code></pre>
+
+<h4 id="parameters_5">Parameters</h4>
+<ul>
+<li>key: K</li>
+<li>value: V</li>
+</ul>
+<h4 id="returns_7">Returns</h4>
+<ul>
+<li>V ?</li>
+</ul>
+<hr />
 <h3 id="remove">remove</h3>
 <p>Delete a value from the map and return it. Raises an error if there was no
 value for the given key.</p>
@@ -6107,11 +6133,11 @@ value for the given key.</p>
 : (K^ , V^) ?
 </code></pre>
 
-<h4 id="parameters_5">Parameters</h4>
+<h4 id="parameters_6">Parameters</h4>
 <ul>
 <li>key: box-&gt;K!</li>
 </ul>
-<h4 id="returns_7">Returns</h4>
+<h4 id="returns_8">Returns</h4>
 <ul>
 <li>(K^ , V^) ?</li>
 </ul>
@@ -6125,12 +6151,12 @@ return the provided alternate value.</p>
 : this-&gt;V
 </code></pre>
 
-<h4 id="parameters_6">Parameters</h4>
+<h4 id="parameters_7">Parameters</h4>
 <ul>
 <li>key: box-&gt;K!</li>
 <li>alt: this-&gt;V</li>
 </ul>
-<h4 id="returns_8">Returns</h4>
+<h4 id="returns_9">Returns</h4>
 <ul>
 <li>this-&gt;V</li>
 </ul>
@@ -6142,11 +6168,11 @@ return the provided alternate value.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_7">Parameters</h4>
+<h4 id="parameters_8">Parameters</h4>
 <ul>
 <li>k: box-&gt;K!</li>
 </ul>
-<h4 id="returns_9">Returns</h4>
+<h4 id="returns_10">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6158,11 +6184,11 @@ return the provided alternate value.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_8">Parameters</h4>
+<h4 id="parameters_9">Parameters</h4>
 <ul>
 <li>iter: <a href="../builtin-Iterator">Iterator</a>[(K^ , V^)] ref</li>
 </ul>
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_11">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6170,24 +6196,6 @@ return the provided alternate value.</p>
 <h3 id="add91optional-h2-hashfunction91this-k93-val93">add[optional H2: <a href="../collections-HashFunction">HashFunction</a>[this-&gt;K!] val]</h3>
 <p>This with the new (key, value) mapping.</p>
 <pre><code class="pony">fun box add[optional H2: HashFunction[this-&gt;K!] val](
-  key: this-&gt;K!,
-  value: this-&gt;V!)
-: HashMap[this-&gt;K!, this-&gt;V!, H2 val] ref^
-</code></pre>
-
-<h4 id="parameters_9">Parameters</h4>
-<ul>
-<li>key: this-&gt;K!</li>
-<li>value: this-&gt;V!</li>
-</ul>
-<h4 id="returns_11">Returns</h4>
-<ul>
-<li><a href="../collections-HashMap">HashMap</a>[this-&gt;K!, this-&gt;V!, H2 val] ref^</li>
-</ul>
-<hr />
-<h3 id="sub91optional-h2-hashfunction91this-k93-val93">sub[optional H2: <a href="../collections-HashFunction">HashFunction</a>[this-&gt;K!] val]</h3>
-<p>This without the given key.</p>
-<pre><code class="pony">fun box sub[optional H2: HashFunction[this-&gt;K!] val](
   key: this-&gt;K!,
   value: this-&gt;V!)
 : HashMap[this-&gt;K!, this-&gt;V!, H2 val] ref^
@@ -6203,6 +6211,24 @@ return the provided alternate value.</p>
 <li><a href="../collections-HashMap">HashMap</a>[this-&gt;K!, this-&gt;V!, H2 val] ref^</li>
 </ul>
 <hr />
+<h3 id="sub91optional-h2-hashfunction91this-k93-val93">sub[optional H2: <a href="../collections-HashFunction">HashFunction</a>[this-&gt;K!] val]</h3>
+<p>This without the given key.</p>
+<pre><code class="pony">fun box sub[optional H2: HashFunction[this-&gt;K!] val](
+  key: this-&gt;K!,
+  value: this-&gt;V!)
+: HashMap[this-&gt;K!, this-&gt;V!, H2 val] ref^
+</code></pre>
+
+<h4 id="parameters_11">Parameters</h4>
+<ul>
+<li>key: this-&gt;K!</li>
+<li>value: this-&gt;V!</li>
+</ul>
+<h4 id="returns_13">Returns</h4>
+<ul>
+<li><a href="../collections-HashMap">HashMap</a>[this-&gt;K!, this-&gt;V!, H2 val] ref^</li>
+</ul>
+<hr />
 <h3 id="next_index">next_index</h3>
 <p>Given an index, return the next index that has a populated key and value.
 Raise an error if there is no next populated index.</p>
@@ -6211,11 +6237,11 @@ Raise an error if there is no next populated index.</p>
 : USize val ?
 </code></pre>
 
-<h4 id="parameters_11">Parameters</h4>
+<h4 id="parameters_12">Parameters</h4>
 <ul>
 <li>prev: <a href="../builtin-USize">USize</a> val = call</li>
 </ul>
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val ?</li>
 </ul>
@@ -6228,11 +6254,11 @@ Raise an error if the index is not populated.</p>
 : (this-&gt;K , this-&gt;V) ?
 </code></pre>
 
-<h4 id="parameters_12">Parameters</h4>
+<h4 id="parameters_13">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li>(this-&gt;K , this-&gt;V) ?</li>
 </ul>
@@ -6243,7 +6269,7 @@ Raise an error if the index is not populated.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6255,7 +6281,7 @@ and viewpoint adaptation.</p>
 : HashMap[this-&gt;K!, this-&gt;V!, H2 val] ref^
 </code></pre>
 
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../collections-HashMap">HashMap</a>[this-&gt;K!, this-&gt;V!, H2 val] ref^</li>
 </ul>
@@ -6266,7 +6292,7 @@ and viewpoint adaptation.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6277,7 +6303,7 @@ and viewpoint adaptation.</p>
 : MapKeys[K, V, H val, this-&gt;HashMap[K, V, H val] ref] ref^
 </code></pre>
 
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../collections-MapKeys">MapKeys</a>[K, V, H val, this-&gt;<a href="../collections-HashMap">HashMap</a>[K, V, H val] ref] ref^</li>
 </ul>
@@ -6288,7 +6314,7 @@ and viewpoint adaptation.</p>
 : MapValues[K, V, H val, this-&gt;HashMap[K, V, H val] ref] ref^
 </code></pre>
 
-<h4 id="returns_19">Returns</h4>
+<h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../collections-MapValues">MapValues</a>[K, V, H val, this-&gt;<a href="../collections-HashMap">HashMap</a>[K, V, H val] ref] ref^</li>
 </ul>
@@ -6299,7 +6325,7 @@ and viewpoint adaptation.</p>
 : MapPairs[K, V, H val, this-&gt;HashMap[K, V, H val] ref] ref^
 </code></pre>
 
-<h4 id="returns_20">Returns</h4>
+<h4 id="returns_21">Returns</h4>
 <ul>
 <li><a href="../collections-MapPairs">MapPairs</a>[K, V, H val, this-&gt;<a href="../collections-HashMap">HashMap</a>[K, V, H val] ref] ref^</li>
 </ul>
@@ -6312,11 +6338,11 @@ and viewpoint adaptation.</p>
 : (USize val , Bool val)
 </code></pre>
 
-<h4 id="parameters_13">Parameters</h4>
+<h4 id="parameters_14">Parameters</h4>
 <ul>
 <li>key: box-&gt;K!</li>
 </ul>
-<h4 id="returns_21">Returns</h4>
+<h4 id="returns_22">Returns</h4>
 <ul>
 <li>(<a href="../builtin-USize">USize</a> val , <a href="../builtin-Bool">Bool</a> val)</li>
 </ul>
@@ -6328,11 +6354,11 @@ and viewpoint adaptation.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_14">Parameters</h4>
+<h4 id="parameters_15">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_22">Returns</h4>
+<h4 id="returns_23">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
