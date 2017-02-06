@@ -3677,7 +3677,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../net-IPAddress/">class IPAddress</a>
+        <a class="" href="../net-NetAddress/">class NetAddress</a>
         
     </li>
 
@@ -5996,14 +5996,14 @@
 <h3 id="create">create</h3>
 <pre><code class="pony">new ref create(
   h: TestHelper val,
-  ip: IPAddress val)
+  ip: NetAddress val)
 : _TestPing ref^
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
 <li>h: <a href="../ponytest-TestHelper">TestHelper</a> val</li>
-<li>ip: <a href="../net-IPAddress">IPAddress</a> val</li>
+<li>ip: <a href="../net-NetAddress">NetAddress</a> val</li>
 </ul>
 <h4 id="returns">Returns</h4>
 <ul>
@@ -6045,7 +6045,7 @@
 <pre><code class="pony">fun ref received(
   sock: UDPSocket ref,
   data: Array[U8 val] iso,
-  from: IPAddress val)
+  from: NetAddress val)
 : None val
 </code></pre>
 
@@ -6053,7 +6053,7 @@
 <ul>
 <li>sock: <a href="../net-UDPSocket">UDPSocket</a> ref</li>
 <li>data: <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] iso</li>
-<li>from: <a href="../net-IPAddress">IPAddress</a> val</li>
+<li>from: <a href="../net-NetAddress">NetAddress</a> val</li>
 </ul>
 <h4 id="returns_3">Returns</h4>
 <ul>

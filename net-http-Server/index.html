@@ -3664,7 +3664,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../net-IPAddress/">class IPAddress</a>
+        <a class="" href="../net-NetAddress/">class NetAddress</a>
         
     </li>
 
@@ -6059,24 +6059,24 @@ for new connections. Existing connections continue to use the old routes.</p>
 <h3 id="local_address">local_address</h3>
 <p>Returns the locally bound address.</p>
 <pre><code class="pony">fun box local_address()
-: IPAddress val
+: NetAddress val
 </code></pre>
 
 <h4 id="returns_1">Returns</h4>
 <ul>
-<li><a href="../net-IPAddress">IPAddress</a> val</li>
+<li><a href="../net-NetAddress">NetAddress</a> val</li>
 </ul>
 <hr />
 <h2 id="private-behaviours">Private Behaviours</h2>
 <h3 id="_listening">_listening</h3>
 <p>Called when we are listening.</p>
 <pre><code class="pony">be _listening(
-  address: IPAddress val)
+  address: NetAddress val)
 </code></pre>
 
 <h4 id="parameters_3">Parameters</h4>
 <ul>
-<li>address: <a href="../net-IPAddress">IPAddress</a> val</li>
+<li>address: <a href="../net-NetAddress">NetAddress</a> val</li>
 </ul>
 <hr />
 <h3 id="_not_listening">_not_listening</h3>

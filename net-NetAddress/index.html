@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>class IPAddress - stdlib</title>
+  <title>class NetAddress - stdlib</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "class IPAddress";
-    var mkdocs_page_input_path = "net-IPAddress.md";
-    var mkdocs_page_url = "/net-IPAddress/";
+    var mkdocs_page_name = "class NetAddress";
+    var mkdocs_page_input_path = "net-NetAddress.md";
+    var mkdocs_page_url = "/net-NetAddress/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -3664,11 +3664,11 @@
         
             
     <li class="toctree-l1 current">
-        <a class="current" href="./">class IPAddress</a>
+        <a class="current" href="./">class NetAddress</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#ipaddress">IPAddress</a></li>
+                <li class="toctree-l3"><a href="#netaddress">NetAddress</a></li>
                 
                     <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
                 
@@ -5972,7 +5972,7 @@
         
       
     
-    <li>class IPAddress</li>
+    <li>class NetAddress</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -5982,23 +5982,23 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="ipaddress">IPAddress</h1>
+                <h1 id="netaddress">NetAddress</h1>
 <p>Represents an IPv4 or IPv6 address. The family field indicates the address
 type. The addr field is either the IPv4 address or the IPv6 flow info. The
 addr1-4 fields are the IPv6 address, or invalid for an IPv4 address. The
 scope field is the IPv6 scope, or invalid for an IPv4 address.</p>
-<pre><code class="pony">class val IPAddress
+<pre><code class="pony">class val NetAddress
 </code></pre>
 
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
 <pre><code class="pony">new iso create()
-: IPAddress iso^
+: NetAddress iso^
 </code></pre>
 
 <h4 id="returns">Returns</h4>
 <ul>
-<li><a href="../net-IPAddress">IPAddress</a> iso^</li>
+<li><a href="../net-NetAddress">NetAddress</a> iso^</li>
 </ul>
 <hr />
 <h2 id="public-fields">Public fields</h2>
