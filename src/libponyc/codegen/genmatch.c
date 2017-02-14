@@ -811,15 +811,18 @@ LLVMValueRef gen_match(compile_t* c, ast_t* ast)
 
   ast_free_unattached(match_type);
 
-  // Else body.
-  LLVMPositionBuilderAtEnd(c->builder, else_block);
-  codegen_pushscope(c, else_expr);
-  bool ok = case_body(c, else_expr, post_block, phi, phi_type);
-  codegen_scope_lifetime_end(c);
-  codegen_popscope(c);
+  // Else body (empty block for exhaustive match).
+  if(ast_id(else_expr) != TK_NONE)
+  {
+    LLVMPositionBuilderAtEnd(c->builder, else_block);
+    codegen_pushscope(c, else_expr);
+    bool ok = case_body(c, else_expr, post_block, phi, phi_type);
+    codegen_scope_lifetime_end(c);
+    codegen_popscope(c);
 
-  if(!ok)
-    return NULL;
+    if(!ok)
+      return NULL;
+  }
 
   if(post_block != NULL)
     LLVMPositionBuilderAtEnd(c->builder, post_block);
