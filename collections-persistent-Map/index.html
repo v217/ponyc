@@ -1661,7 +1661,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#map91k-hashable-val-equatable91k-val93-val-v-any-val93">Map[K: (Hashable val &amp; Equatable[K val] val), V: Any val]</a></li>
+                <li class="toctree-l3"><a href="#map91k-hashable-val-equatable91k-val93-v-any-share93">Map[K: (Hashable val &amp; Equatable[K val]), V: Any #share]</a></li>
                 
                     <li><a class="toctree-l4" href="#usage">Usage</a></li>
                 
@@ -5991,7 +5991,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="map91k-hashable-val-equatable91k-val93-val-v-any-val93">Map[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val] val), V: <a href="../builtin-Any">Any</a> val]</h1>
+                <h1 id="map91k-hashable-val-equatable91k-val93-v-any-share93">Map[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val]), V: <a href="../builtin-Any">Any</a> #share]</h1>
 <p>A persistent map based on the Compressed Hash Array Mapped Prefix-tree from
 'Optimizing Hash-Array Mapped Tries for Fast and Lean Immutable JVM
 Collections' by Michael J. Steindorfer and Jurgen J. Vinju</p>
@@ -6006,35 +6006,35 @@ let m4 = m3.remove(&quot;a&quot;) // {b: 10}
 let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a: 2, b: 3}
 </code></pre>
 
-<pre><code class="pony">class val Map[K: (Hashable val &amp; Equatable[K val] val), V: Any val]
+<pre><code class="pony">class val Map[K: (Hashable val &amp; Equatable[K val]), V: Any #share]
 </code></pre>
 
 <h2 id="constructors">Constructors</h2>
 <h3 id="_empty">_empty</h3>
 <pre><code class="pony">new val _empty()
-: Map[K val, V val] val^
+: Map[K val, V #share] val^
 </code></pre>
 
 <h4 id="returns">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-Map">Map</a>[K val, V val] val^</li>
+<li><a href="../collections-persistent-Map">Map</a>[K val, V #share] val^</li>
 </ul>
 <hr />
 <h3 id="_create">_create</h3>
 <pre><code class="pony">new val _create(
-  r: _MapNode[K val, V val] val,
+  r: _MapNode[K val, V #share] val,
   s: USize val)
-: Map[K val, V val] val^
+: Map[K val, V #share] val^
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>r: <a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V val] val</li>
+<li>r: <a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val</li>
 <li>s: <a href="../builtin-USize">USize</a> val</li>
 </ul>
 <h4 id="returns_1">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-Map">Map</a>[K val, V val] val^</li>
+<li><a href="../collections-persistent-Map">Map</a>[K val, V #share] val^</li>
 </ul>
 <hr />
 <h2 id="public-functions">Public Functions</h2>
@@ -6042,7 +6042,7 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 <p>Attempt to get the value corresponding to k.</p>
 <pre><code class="pony">fun val apply(
   k: K val)
-: val-&gt;V val ?
+: val-&gt;V #share ?
 </code></pre>
 
 <h4 id="parameters_1">Parameters</h4>
@@ -6051,7 +6051,7 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 </ul>
 <h4 id="returns_2">Returns</h4>
 <ul>
-<li>val-&gt;V val ?</li>
+<li>val-&gt;V #share ?</li>
 </ul>
 <hr />
 <h3 id="size">size</h3>
@@ -6069,25 +6069,25 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 <p>Update the value associated with the provided key.</p>
 <pre><code class="pony">fun val update(
   key: K val,
-  value: V val)
-: Map[K val, V val] val ?
+  value: val-&gt;V #share)
+: Map[K val, V #share] val ?
 </code></pre>
 
 <h4 id="parameters_2">Parameters</h4>
 <ul>
 <li>key: K val</li>
-<li>value: V val</li>
+<li>value: val-&gt;V #share</li>
 </ul>
 <h4 id="returns_4">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-Map">Map</a>[K val, V val] val ?</li>
+<li><a href="../collections-persistent-Map">Map</a>[K val, V #share] val ?</li>
 </ul>
 <hr />
 <h3 id="remove">remove</h3>
 <p>Try to remove the provided key from the Map.</p>
 <pre><code class="pony">fun val remove(
   k: K val)
-: Map[K val, V val] val ?
+: Map[K val, V #share] val ?
 </code></pre>
 
 <h4 id="parameters_3">Parameters</h4>
@@ -6096,7 +6096,7 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 </ul>
 <h4 id="returns_5">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-Map">Map</a>[K val, V val] val ?</li>
+<li><a href="../collections-persistent-Map">Map</a>[K val, V #share] val ?</li>
 </ul>
 <hr />
 <h3 id="get_or_else">get_or_else</h3>
@@ -6104,18 +6104,18 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 return the provided alternate value.</p>
 <pre><code class="pony">fun val get_or_else(
   k: K val,
-  alt: val-&gt;V val)
-: val-&gt;V val
+  alt: val-&gt;V #share)
+: val-&gt;V #share
 </code></pre>
 
 <h4 id="parameters_4">Parameters</h4>
 <ul>
 <li>k: K val</li>
-<li>alt: val-&gt;V val</li>
+<li>alt: val-&gt;V #share</li>
 </ul>
 <h4 id="returns_6">Returns</h4>
 <ul>
-<li>val-&gt;V val</li>
+<li>val-&gt;V #share</li>
 </ul>
 <hr />
 <h3 id="contains">contains</h3>
@@ -6136,43 +6136,43 @@ return the provided alternate value.</p>
 <hr />
 <h3 id="keys">keys</h3>
 <pre><code class="pony">fun val keys()
-: MapKeys[K val, V val] ref
+: MapKeys[K val, V #share] ref
 </code></pre>
 
 <h4 id="returns_8">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-MapKeys">MapKeys</a>[K val, V val] ref</li>
+<li><a href="../collections-persistent-MapKeys">MapKeys</a>[K val, V #share] ref</li>
 </ul>
 <hr />
 <h3 id="values">values</h3>
 <pre><code class="pony">fun val values()
-: MapValues[K val, V val] ref
+: MapValues[K val, V #share] ref
 </code></pre>
 
 <h4 id="returns_9">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-MapValues">MapValues</a>[K val, V val] ref</li>
+<li><a href="../collections-persistent-MapValues">MapValues</a>[K val, V #share] ref</li>
 </ul>
 <hr />
 <h3 id="pairs">pairs</h3>
 <pre><code class="pony">fun val pairs()
-: MapPairs[K val, V val] ref
+: MapPairs[K val, V #share] ref
 </code></pre>
 
 <h4 id="returns_10">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-MapPairs">MapPairs</a>[K val, V val] ref</li>
+<li><a href="../collections-persistent-MapPairs">MapPairs</a>[K val, V #share] ref</li>
 </ul>
 <hr />
 <h2 id="private-functions">Private Functions</h2>
 <h3 id="_root_node">_root_node</h3>
 <pre><code class="pony">fun box _root_node()
-: _MapNode[K val, V val] val
+: _MapNode[K val, V #share] val
 </code></pre>
 
 <h4 id="returns_11">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V val] val</li>
+<li><a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val</li>
 </ul>
 <hr />
               

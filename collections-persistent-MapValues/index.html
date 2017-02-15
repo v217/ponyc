@@ -1675,7 +1675,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#mapvalues91k-hashable-val-equatable91k-val93-val-v-any-val93">MapValues[K: (Hashable val &amp; Equatable[K val] val), V: Any val]</a></li>
+                <li class="toctree-l3"><a href="#mapvalues91k-hashable-val-equatable91k-val93-v-any-share93">MapValues[K: (Hashable val &amp; Equatable[K val]), V: Any #share]</a></li>
                 
                     <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
                 
@@ -5987,24 +5987,24 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="mapvalues91k-hashable-val-equatable91k-val93-val-v-any-val93">MapValues[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val] val), V: <a href="../builtin-Any">Any</a> val]</h1>
-<pre><code class="pony">class ref MapValues[K: (Hashable val &amp; Equatable[K val] val), V: Any val]
+                <h1 id="mapvalues91k-hashable-val-equatable91k-val93-v-any-share93">MapValues[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val]), V: <a href="../builtin-Any">Any</a> #share]</h1>
+<pre><code class="pony">class ref MapValues[K: (Hashable val &amp; Equatable[K val]), V: Any #share]
 </code></pre>
 
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
 <pre><code class="pony">new ref create(
-  m: Map[K val, V val] val)
-: MapValues[K val, V val] ref^
+  m: Map[K val, V #share] val)
+: MapValues[K val, V #share] ref^
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>m: <a href="../collections-persistent-Map">Map</a>[K val, V val] val</li>
+<li>m: <a href="../collections-persistent-Map">Map</a>[K val, V #share] val</li>
 </ul>
 <h4 id="returns">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-MapValues">MapValues</a>[K val, V val] ref^</li>
+<li><a href="../collections-persistent-MapValues">MapValues</a>[K val, V #share] ref^</li>
 </ul>
 <hr />
 <h2 id="public-functions">Public Functions</h2>
@@ -6020,12 +6020,12 @@
 <hr />
 <h3 id="next">next</h3>
 <pre><code class="pony">fun ref next()
-: V val ?
+: val-&gt;V #share ?
 </code></pre>
 
 <h4 id="returns_2">Returns</h4>
 <ul>
-<li>V val ?</li>
+<li>val-&gt;V #share ?</li>
 </ul>
 <hr />
               

@@ -1738,7 +1738,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#_mapleaf91k-hashable-val-equatable91k-val93-val-v-any-val93">_MapLeaf[K: (Hashable val &amp; Equatable[K val] val), V: Any val]</a></li>
+                <li class="toctree-l3"><a href="#_mapleaf91k-hashable-val-equatable91k-val93-v-any-share93">_MapLeaf[K: (Hashable val &amp; Equatable[K val]), V: Any #share]</a></li>
                 
                     <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
                 
@@ -5987,8 +5987,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_mapleaf91k-hashable-val-equatable91k-val93-val-v-any-val93">_MapLeaf[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val] val), V: <a href="../builtin-Any">Any</a> val]</h1>
-<pre><code class="pony">class val _MapLeaf[K: (Hashable val &amp; Equatable[K val] val), V: Any val]
+                <h1 id="_mapleaf91k-hashable-val-equatable91k-val93-v-any-share93">_MapLeaf[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val]), V: <a href="../builtin-Any">Any</a> #share]</h1>
+<pre><code class="pony">class val _MapLeaf[K: (Hashable val &amp; Equatable[K val]), V: Any #share]
 </code></pre>
 
 <h2 id="constructors">Constructors</h2>
@@ -5996,19 +5996,19 @@
 <pre><code class="pony">new val create(
   h: U32 val,
   k: K val,
-  v: V val)
-: _MapLeaf[K val, V val] val^
+  v: V #share)
+: _MapLeaf[K val, V #share] val^
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
 <li>h: <a href="../builtin-U32">U32</a> val</li>
 <li>k: K val</li>
-<li>v: V val</li>
+<li>v: V #share</li>
 </ul>
 <h4 id="returns">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V val] val^</li>
+<li><a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val^</li>
 </ul>
 <hr />
 <h2 id="public-fields">Public fields</h2>
@@ -6021,7 +6021,7 @@
 </ul>
 <hr />
 <ul>
-<li>let value: V val</li>
+<li>let value: V #share</li>
 </ul>
 <hr />
               

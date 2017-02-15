@@ -1724,7 +1724,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#_mapentry91k-hashable-val-equatable91k-val93-val-v-any-val93">_MapEntry[K: (Hashable val &amp; Equatable[K val] val), V: Any val]</a></li>
+                <li class="toctree-l3"><a href="#_mapentry91k-hashable-val-equatable91k-val93-v-any-share93">_MapEntry[K: (Hashable val &amp; Equatable[K val]), V: Any #share]</a></li>
                 
                     <li><a class="toctree-l4" href="#type-alias-for">Type Alias For</a></li>
                 
@@ -5985,14 +5985,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_mapentry91k-hashable-val-equatable91k-val93-val-v-any-val93">_MapEntry[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val] val), V: <a href="../builtin-Any">Any</a> val]</h1>
-<pre><code class="pony">type _MapEntry[K: (Hashable val &amp; Equatable[K val] val), V: Any val] is
-  (_MapNode[K val, V val] val | Array[_MapLeaf[K val, V val] val] val | _MapLeaf[K val, V val] val)
+                <h1 id="_mapentry91k-hashable-val-equatable91k-val93-v-any-share93">_MapEntry[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val]), V: <a href="../builtin-Any">Any</a> #share]</h1>
+<pre><code class="pony">type _MapEntry[K: (Hashable val &amp; Equatable[K val]), V: Any #share] is
+  (_MapNode[K val, V #share] val | Array[_MapLeaf[K val, V #share] val] val | _MapLeaf[K val, V #share] val)
 </code></pre>
 
 <h4 id="type-alias-for">Type Alias For</h4>
 <ul>
-<li>(<a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V val] val | <a href="../builtin-Array">Array</a>[<a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V val] val] val | <a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V val] val)</li>
+<li>(<a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val | <a href="../builtin-Array">Array</a>[<a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val] val | <a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val)</li>
 </ul>
 <hr />
               

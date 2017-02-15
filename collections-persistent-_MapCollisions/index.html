@@ -1717,7 +1717,7 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#_mapcollisions91k-hashable-val-equatable91k-val93-val-v-any-val93">_MapCollisions[K: (Hashable val &amp; Equatable[K val] val), V: Any val]</a></li>
+                <li class="toctree-l3"><a href="#_mapcollisions91k-hashable-val-equatable91k-val93-v-any-share93">_MapCollisions[K: (Hashable val &amp; Equatable[K val]), V: Any #share]</a></li>
                 
                     <li><a class="toctree-l4" href="#type-alias-for">Type Alias For</a></li>
                 
@@ -5985,14 +5985,14 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_mapcollisions91k-hashable-val-equatable91k-val93-val-v-any-val93">_MapCollisions[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val] val), V: <a href="../builtin-Any">Any</a> val]</h1>
-<pre><code class="pony">type _MapCollisions[K: (Hashable val &amp; Equatable[K val] val), V: Any val] is
-  Array[_MapLeaf[K val, V val] val] val
+                <h1 id="_mapcollisions91k-hashable-val-equatable91k-val93-v-any-share93">_MapCollisions[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val]), V: <a href="../builtin-Any">Any</a> #share]</h1>
+<pre><code class="pony">type _MapCollisions[K: (Hashable val &amp; Equatable[K val]), V: Any #share] is
+  Array[_MapLeaf[K val, V #share] val] val
 </code></pre>
 
 <h4 id="type-alias-for">Type Alias For</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[<a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V val] val] val</li>
+<li><a href="../builtin-Array">Array</a>[<a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val] val</li>
 </ul>
 <hr />
               
