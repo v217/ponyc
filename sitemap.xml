@@ -3570,19 +3570,37 @@
     </url>
         
     <url>
-     <loc>/net-http-Client/</loc>
+     <loc>/net-http-HTTPClient/</loc>
      <lastmod>2017-02-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/net-http-_ResponseBuilder/</loc>
+     <loc>/net-http-_SessionGuard/</loc>
      <lastmod>2017-02-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>/net-http-Server/</loc>
+     <loc>/net-http-HTTPServer/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-HTTPSession/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-HandlerFactory/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-HTTPHandler/</loc>
      <lastmod>2017-02-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -3648,7 +3666,31 @@
     </url>
         
     <url>
-     <loc>/net-http-_RequestBuilder/</loc>
+     <loc>/net-http-_ClientConnHandler/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-ChunkedTransfer/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-StreamTransfer/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-OneshotTransfer/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-TransferMode/</loc>
      <lastmod>2017-02-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -3660,25 +3702,91 @@
     </url>
         
     <url>
+     <loc>/net-http-MimeTypes/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/net-http-_ClientConnection/</loc>
      <lastmod>2017-02-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
+     <loc>/net-http-_ExpectRequest/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectResponse/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectHeaders/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectContentLength/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectChunkStart/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectChunk/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectChunkEnd/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectBody/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectReady/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_ExpectError/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_PayloadState/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/net-http-_HTTPParser/</loc>
+     <lastmod>2017-02-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>/net-http-_HostService/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-ResponseHandler/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-RequestHandler/</loc>
      <lastmod>2017-02-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -3696,73 +3804,7 @@
     </url>
         
     <url>
-     <loc>/net-http-_PayloadRequest/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadResponse/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadHeaders/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadContentLength/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadChunkStart/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadChunk/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadChunkEnd/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadBody/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadReady/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadError/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadState/</loc>
-     <lastmod>2017-02-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/net-http-_PayloadBuilder/</loc>
+     <loc>/net-http-_ServerConnHandler/</loc>
      <lastmod>2017-02-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
