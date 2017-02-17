@@ -6039,6 +6039,7 @@
                 <h1 id="fileinfo">FileInfo</h1>
 <p>This contains file system metadata for a path. The times are in the same
 format as Time.now(), i.e. seconds and nanoseconds since the epoch.</p>
+<p>The INODE is UNIX specific.  It will be zero on Windows.</p>
 <p>The UID and GID are UNIX-style user and group IDs. These will be zero on
 Windows. The change_time will actually be the file creation time on Windows.</p>
 <p>A symlink will report information about itself, other than the size which
@@ -6110,6 +6111,14 @@ can and will set the broken flag.</p>
 <hr />
 <ul>
 <li>let hard_links: <a href="../builtin-U32">U32</a> val</li>
+</ul>
+<hr />
+<ul>
+<li>let device: <a href="../builtin-U64">U64</a> val</li>
+</ul>
+<hr />
+<ul>
+<li>let inode: <a href="../builtin-U64">U64</a> val</li>
 </ul>
 <hr />
 <ul>
