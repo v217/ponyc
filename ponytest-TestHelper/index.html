@@ -6179,6 +6179,26 @@ concurrent tests.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
+<h3 id="assert_no_error">assert_no_error</h3>
+<p>Assert that the gived test function does not throw an error when run.</p>
+<pre><code class="pony">fun box assert_no_error(
+  test: ITest box,
+  msg: String val= &quot;&quot;,
+  loc: SourceLoc val = __loc)
+: Bool val
+</code></pre>
+
+<h4 id="parameters_6">Parameters</h4>
+<ul>
+<li>test: <a href="../ponytest-ITest">ITest</a> box</li>
+<li>msg: <a href="../builtin-String">String</a> val= ""</li>
+<li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val = __loc</li>
+</ul>
+<h4 id="returns_6">Returns</h4>
+<ul>
+<li><a href="../builtin-Bool">Bool</a> val</li>
+</ul>
+<hr />
 <h3 id="assert_is91a-a93">assert_is[A: A]</h3>
 <p>Assert that the 2 given expressions resolve to the same instance</p>
 <pre><code class="pony">fun box assert_is[A: A](
@@ -6189,14 +6209,14 @@ concurrent tests.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_6">Parameters</h4>
+<h4 id="parameters_7">Parameters</h4>
 <ul>
 <li>expect: A</li>
 <li>actual: A</li>
 <li>msg: <a href="../builtin-String">String</a> val= ""</li>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val = __loc</li>
 </ul>
-<h4 id="returns_6">Returns</h4>
+<h4 id="returns_7">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6211,14 +6231,14 @@ concurrent tests.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_7">Parameters</h4>
+<h4 id="parameters_8">Parameters</h4>
 <ul>
 <li>expect: A #read</li>
 <li>actual: A #read</li>
 <li>msg: <a href="../builtin-String">String</a> val= ""</li>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val = __loc</li>
 </ul>
-<h4 id="returns_7">Returns</h4>
+<h4 id="returns_8">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6233,14 +6253,14 @@ concurrent tests.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_8">Parameters</h4>
+<h4 id="parameters_9">Parameters</h4>
 <ul>
 <li>not_expect: A</li>
 <li>actual: A</li>
 <li>msg: <a href="../builtin-String">String</a> val= ""</li>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val = __loc</li>
 </ul>
-<h4 id="returns_8">Returns</h4>
+<h4 id="returns_9">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6255,32 +6275,10 @@ concurrent tests.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_9">Parameters</h4>
+<h4 id="parameters_10">Parameters</h4>
 <ul>
 <li>not_expect: A #read</li>
 <li>actual: A #read</li>
-<li>msg: <a href="../builtin-String">String</a> val= ""</li>
-<li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val = __loc</li>
-</ul>
-<h4 id="returns_9">Returns</h4>
-<ul>
-<li><a href="../builtin-Bool">Bool</a> val</li>
-</ul>
-<hr />
-<h3 id="assert_array_eq91a-equatable91a-read93-read-stringable-read93">assert_array_eq[A: (<a href="../builtin-Equatable">Equatable</a>[A #read] #read &amp; <a href="../builtin-Stringable">Stringable</a> #read)]</h3>
-<p>Assert that the contents of the 2 given ReadSeqs are equal.</p>
-<pre><code class="pony">fun box assert_array_eq[A: (Equatable[A #read] #read &amp; Stringable #read)](
-  expect: ReadSeq[A #read] box,
-  actual: ReadSeq[A #read] box,
-  msg: String val= &quot;&quot;,
-  loc: SourceLoc val = __loc)
-: Bool val
-</code></pre>
-
-<h4 id="parameters_10">Parameters</h4>
-<ul>
-<li>expect: <a href="../builtin-ReadSeq">ReadSeq</a>[A #read] box</li>
-<li>actual: <a href="../builtin-ReadSeq">ReadSeq</a>[A #read] box</li>
 <li>msg: <a href="../builtin-String">String</a> val= ""</li>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val = __loc</li>
 </ul>
@@ -6289,9 +6287,9 @@ concurrent tests.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
-<h3 id="assert_array_eq_unordered91a-equatable91a-read93-read-stringable-read93">assert_array_eq_unordered[A: (<a href="../builtin-Equatable">Equatable</a>[A #read] #read &amp; <a href="../builtin-Stringable">Stringable</a> #read)]</h3>
-<p>Assert that the contents of the 2 given ReadSeqs are equal ignoring order.</p>
-<pre><code class="pony">fun box assert_array_eq_unordered[A: (Equatable[A #read] #read &amp; Stringable #read)](
+<h3 id="assert_array_eq91a-equatable91a-read93-read-stringable-read93">assert_array_eq[A: (<a href="../builtin-Equatable">Equatable</a>[A #read] #read &amp; <a href="../builtin-Stringable">Stringable</a> #read)]</h3>
+<p>Assert that the contents of the 2 given ReadSeqs are equal.</p>
+<pre><code class="pony">fun box assert_array_eq[A: (Equatable[A #read] #read &amp; Stringable #read)](
   expect: ReadSeq[A #read] box,
   actual: ReadSeq[A #read] box,
   msg: String val= &quot;&quot;,
@@ -6311,6 +6309,28 @@ concurrent tests.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
+<h3 id="assert_array_eq_unordered91a-equatable91a-read93-read-stringable-read93">assert_array_eq_unordered[A: (<a href="../builtin-Equatable">Equatable</a>[A #read] #read &amp; <a href="../builtin-Stringable">Stringable</a> #read)]</h3>
+<p>Assert that the contents of the 2 given ReadSeqs are equal ignoring order.</p>
+<pre><code class="pony">fun box assert_array_eq_unordered[A: (Equatable[A #read] #read &amp; Stringable #read)](
+  expect: ReadSeq[A #read] box,
+  actual: ReadSeq[A #read] box,
+  msg: String val= &quot;&quot;,
+  loc: SourceLoc val = __loc)
+: Bool val
+</code></pre>
+
+<h4 id="parameters_12">Parameters</h4>
+<ul>
+<li>expect: <a href="../builtin-ReadSeq">ReadSeq</a>[A #read] box</li>
+<li>actual: <a href="../builtin-ReadSeq">ReadSeq</a>[A #read] box</li>
+<li>msg: <a href="../builtin-String">String</a> val= ""</li>
+<li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val = __loc</li>
+</ul>
+<h4 id="returns_12">Returns</h4>
+<ul>
+<li><a href="../builtin-Bool">Bool</a> val</li>
+</ul>
+<hr />
 <h3 id="long_test">long_test</h3>
 <p>Indicate that this is a long running test that may continue after the
 test function exits.
@@ -6322,11 +6342,11 @@ The timeout is specified in nanseconds.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_12">Parameters</h4>
+<h4 id="parameters_13">Parameters</h4>
 <ul>
 <li>timeout: <a href="../builtin-U64">U64</a> val</li>
 </ul>
-<h4 id="returns_12">Returns</h4>
+<h4 id="returns_13">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6343,11 +6363,11 @@ value of this parameter.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_13">Parameters</h4>
+<h4 id="parameters_14">Parameters</h4>
 <ul>
 <li>success: <a href="../builtin-Bool">Bool</a> val</li>
 </ul>
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6365,11 +6385,11 @@ completed in any other order to complete the test.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_14">Parameters</h4>
+<h4 id="parameters_15">Parameters</h4>
 <ul>
 <li>name: <a href="../builtin-String">String</a> val</li>
 </ul>
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6387,11 +6407,11 @@ waiting for any outstanding actions to be completed.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_15">Parameters</h4>
+<h4 id="parameters_16">Parameters</h4>
 <ul>
 <li>name: <a href="../builtin-String">String</a> val</li>
 </ul>
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6407,11 +6427,11 @@ expect_action, but failing unexpected actions will also fail the test.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_16">Parameters</h4>
+<h4 id="parameters_17">Parameters</h4>
 <ul>
 <li>name: <a href="../builtin-String">String</a> val</li>
 </ul>
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6425,11 +6445,11 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_17">Parameters</h4>
+<h4 id="parameters_18">Parameters</h4>
 <ul>
 <li>disposable: <a href="../builtin-DisposableActor">DisposableActor</a> tag</li>
 </ul>
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6446,7 +6466,7 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_18">Parameters</h4>
+<h4 id="parameters_19">Parameters</h4>
 <ul>
 <li>check: <a href="../builtin-String">String</a> val</li>
 <li>expect: A</li>
@@ -6454,7 +6474,7 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 <li>msg: <a href="../builtin-String">String</a> val</li>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val</li>
 </ul>
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6470,7 +6490,7 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_19">Parameters</h4>
+<h4 id="parameters_20">Parameters</h4>
 <ul>
 <li>check: <a href="../builtin-String">String</a> val</li>
 <li>expect: A #read</li>
@@ -6478,7 +6498,7 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 <li>msg: <a href="../builtin-String">String</a> val</li>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val</li>
 </ul>
-<h4 id="returns_19">Returns</h4>
+<h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6494,7 +6514,7 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_20">Parameters</h4>
+<h4 id="parameters_21">Parameters</h4>
 <ul>
 <li>check: <a href="../builtin-String">String</a> val</li>
 <li>not_expect: A</li>
@@ -6502,7 +6522,7 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 <li>msg: <a href="../builtin-String">String</a> val</li>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val</li>
 </ul>
-<h4 id="returns_20">Returns</h4>
+<h4 id="returns_21">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6518,7 +6538,7 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_21">Parameters</h4>
+<h4 id="parameters_22">Parameters</h4>
 <ul>
 <li>check: <a href="../builtin-String">String</a> val</li>
 <li>not_expect: A #read</li>
@@ -6526,7 +6546,7 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 <li>msg: <a href="../builtin-String">String</a> val</li>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val</li>
 </ul>
-<h4 id="returns_21">Returns</h4>
+<h4 id="returns_22">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6537,11 +6557,11 @@ The actor will be disposed no matter whether the test succeeds or fails.</p>
 : String val
 </code></pre>
 
-<h4 id="parameters_22">Parameters</h4>
+<h4 id="parameters_23">Parameters</h4>
 <ul>
 <li>loc: <a href="../builtin-SourceLoc">SourceLoc</a> val</li>
 </ul>
-<h4 id="returns_22">Returns</h4>
+<h4 id="returns_23">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> val</li>
 </ul>
@@ -6554,11 +6574,11 @@ error messages.</p>
 : String val
 </code></pre>
 
-<h4 id="parameters_23">Parameters</h4>
+<h4 id="parameters_24">Parameters</h4>
 <ul>
 <li>array: <a href="../builtin-ReadSeq">ReadSeq</a>[A #read] box</li>
 </ul>
-<h4 id="returns_23">Returns</h4>
+<h4 id="returns_24">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> val</li>
 </ul>
