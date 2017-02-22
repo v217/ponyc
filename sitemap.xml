@@ -838,18 +838,6 @@
     </url>
         
     <url>
-     <loc>/builtin_test-Callback/</loc>
-     <lastmod>2017-02-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/builtin_test-_TestCCallback/</loc>
-     <lastmod>2017-02-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
      <loc>/builtin_test-_TestValtrace/</loc>
      <lastmod>2017-02-22</lastmod>
      <changefreq>daily</changefreq>
