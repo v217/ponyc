@@ -6193,7 +6193,7 @@ returns true, otherwise false is returned.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
-<h3 id="collect91optional-b-seq91a9393">collect[optional B: <a href="../builtin-Seq">Seq</a>[A!]]</h3>
+<h3 id="collect91optional-b-seq91a93-ref93">collect[optional B: <a href="../builtin-Seq">Seq</a>[A!] ref]</h3>
 <p>Push each value from the iterator into the collection <code>coll</code>.</p>
 <h2 id="example_1">Example</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3].values())
@@ -6201,18 +6201,18 @@ returns true, otherwise false is returned.</p>
 </code></pre>
 
 <p><code>[1, 2, 3]</code></p>
-<pre><code class="pony">fun ref collect[optional B: Seq[A!]](
-  coll: B)
-: B^
+<pre><code class="pony">fun ref collect[optional B: Seq[A!] ref](
+  coll: B ref)
+: B ref^
 </code></pre>
 
 <h4 id="parameters_4">Parameters</h4>
 <ul>
-<li>coll: B</li>
+<li>coll: B ref</li>
 </ul>
 <h4 id="returns_6">Returns</h4>
 <ul>
-<li>B^</li>
+<li>B ref^</li>
 </ul>
 <hr />
 <h3 id="count">count</h3>
