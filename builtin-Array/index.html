@@ -2145,6 +2145,76 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpenError/">class _TestFileOpenError</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileCreate/">class _TestFileCreate</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpen/">class _TestFileOpen</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileLongLine/">class _TestFileLongLine</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWrite/">class _TestFileWrite</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWritev/">class _TestFileWritev</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileQueue/">class _TestFileQueue</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileQueuev/">class _TestFileQueuev</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileMixedWriteQueue/">class _TestFileMixedWriteQueue</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWritevLarge/">class _TestFileWritevLarge</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../files-WalkHandler/">interface WalkHandler</a>
         
     </li>
@@ -2153,13 +2223,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../files-FilePath/">class FilePath</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../files-_FileHandle/">primitive _FileHandle</a>
         
     </li>
 
@@ -6096,10 +6159,15 @@ copied.</p>
 <h2 id="public-functions">Public Functions</h2>
 <h3 id="cpointer">cpointer</h3>
 <p>Return the underlying C-style pointer.</p>
-<pre><code class="pony">fun box cpointer()
+<pre><code class="pony">fun box cpointer(
+  offset: USize val = 0)
 : Pointer[A] tag
 </code></pre>
 
+<h4 id="parameters_3">Parameters</h4>
+<ul>
+<li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
+</ul>
 <h4 id="returns_3">Returns</h4>
 <ul>
 <li><a href="../builtin-Pointer">Pointer</a>[A] tag</li>
@@ -6135,7 +6203,7 @@ the array. Array space grows geometrically.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_3">Parameters</h4>
+<h4 id="parameters_4">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6175,7 +6243,7 @@ memory. This is only allowed for an array of numbers.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_4">Parameters</h4>
+<h4 id="parameters_5">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6191,7 +6259,7 @@ memory. This is only allowed for an array of numbers.</p>
 : this-&gt;A ?
 </code></pre>
 
-<h4 id="parameters_5">Parameters</h4>
+<h4 id="parameters_6">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6208,7 +6276,7 @@ memory. This is only allowed for an array of numbers.</p>
 : A^ ?
 </code></pre>
 
-<h4 id="parameters_6">Parameters</h4>
+<h4 id="parameters_7">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 <li>value: A</li>
@@ -6228,7 +6296,7 @@ An out of bounds index raises an error.</p>
 : None val ?
 </code></pre>
 
-<h4 id="parameters_7">Parameters</h4>
+<h4 id="parameters_8">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 <li>value: A</li>
@@ -6248,7 +6316,7 @@ The deleted element is returned.</p>
 : A^ ?
 </code></pre>
 
-<h4 id="parameters_8">Parameters</h4>
+<h4 id="parameters_9">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6265,7 +6333,7 @@ array is already smaller than len, do nothing.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_9">Parameters</h4>
+<h4 id="parameters_10">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6283,7 +6351,7 @@ Unlike slice, the operation does not allocate a new array nor copy elements.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_10">Parameters</h4>
+<h4 id="parameters_11">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>to: <a href="../builtin-USize">USize</a> val = call</li>
@@ -6303,7 +6371,7 @@ The operation does not allocate a new array pointer nor copy elements.</p>
 : Array[A] val
 </code></pre>
 
-<h4 id="parameters_11">Parameters</h4>
+<h4 id="parameters_12">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>to: <a href="../builtin-USize">USize</a> val = call</li>
@@ -6323,7 +6391,7 @@ The operation does not allocate a new array pointer nor copy elements.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_12">Parameters</h4>
+<h4 id="parameters_13">Parameters</h4>
 <ul>
 <li>dst: <a href="../builtin-Array">Array</a>[this-&gt;A!] ref</li>
 <li>src_idx: <a href="../builtin-USize">USize</a> val</li>
@@ -6343,7 +6411,7 @@ The operation does not allocate a new array pointer nor copy elements.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_13">Parameters</h4>
+<h4 id="parameters_14">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 <li>n: <a href="../builtin-USize">USize</a> val</li>
@@ -6371,7 +6439,7 @@ The operation does not allocate a new array pointer nor copy elements.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_14">Parameters</h4>
+<h4 id="parameters_15">Parameters</h4>
 <ul>
 <li>value: A</li>
 </ul>
@@ -6399,7 +6467,7 @@ The removed element is returned.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_15">Parameters</h4>
+<h4 id="parameters_16">Parameters</h4>
 <ul>
 <li>value: A</li>
 </ul>
@@ -6429,7 +6497,7 @@ The removed element is returned.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_16">Parameters</h4>
+<h4 id="parameters_17">Parameters</h4>
 <ul>
 <li>seq: (<a href="../builtin-ReadSeq">ReadSeq</a>[A] box &amp; <a href="../builtin-ReadElement">ReadElement</a>[A^] box)</li>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
@@ -6450,7 +6518,7 @@ offset.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_17">Parameters</h4>
+<h4 id="parameters_18">Parameters</h4>
 <ul>
 <li>iter: <a href="../builtin-Iterator">Iterator</a>[A^] ref</li>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
@@ -6476,7 +6544,7 @@ first instance of <code>value</code> found, and uses object identity for compari
 : USize val ?
 </code></pre>
 
-<h4 id="parameters_18">Parameters</h4>
+<h4 id="parameters_19">Parameters</h4>
 <ul>
 <li>value: A!</li>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
@@ -6496,7 +6564,7 @@ first instance of <code>value</code> found, and uses object identity for compari
 : Bool val
 </code></pre>
 
-<h4 id="parameters_19">Parameters</h4>
+<h4 id="parameters_20">Parameters</h4>
 <ul>
 <li>value: A!</li>
 <li>predicate: {(box-&gt;A!, box-&gt;A!): Bool}[A] val = lambda</li>
@@ -6521,7 +6589,7 @@ first instance of <code>value</code> found, and uses object identity for compari
 : USize val ?
 </code></pre>
 
-<h4 id="parameters_20">Parameters</h4>
+<h4 id="parameters_21">Parameters</h4>
 <ul>
 <li>value: A!</li>
 <li>offset: <a href="../builtin-USize">USize</a> val = call</li>
@@ -6558,7 +6626,7 @@ contains, the elements themselves are not cloned.</p>
 : Array[this-&gt;A!] ref^
 </code></pre>
 
-<h4 id="parameters_21">Parameters</h4>
+<h4 id="parameters_22">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>to: <a href="../builtin-USize">USize</a> val = call</li>
@@ -6580,7 +6648,7 @@ contains, the elements themselves are not copied.</p>
 : Array[this-&gt;A!] ref^ ?
 </code></pre>
 
-<h4 id="parameters_22">Parameters</h4>
+<h4 id="parameters_23">Parameters</h4>
 <ul>
 <li>indices: <a href="../builtin-Iterator">Iterator</a>[<a href="../builtin-USize">USize</a> val] ref</li>
 </ul>
@@ -6657,7 +6725,7 @@ contains, the elements themselves are not copied.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_23">Parameters</h4>
+<h4 id="parameters_24">Parameters</h4>
 <ul>
 <li>ptr: <a href="../builtin-Pointer">Pointer</a>[this-&gt;A!] ref</li>
 <li>copy_len: <a href="../builtin-USize">USize</a> val</li>

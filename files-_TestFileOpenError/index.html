@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>primitive _FileHandle - stdlib</title>
+  <title>class _TestFileOpenError - stdlib</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "primitive _FileHandle";
-    var mkdocs_page_input_path = "files-_FileHandle.md";
-    var mkdocs_page_url = "/files-_FileHandle/";
+    var mkdocs_page_name = "class _TestFileOpenError";
+    var mkdocs_page_input_path = "files-_TestFileOpenError.md";
+    var mkdocs_page_url = "/files-_TestFileOpenError/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -2129,6 +2129,89 @@
 
         
             
+    <li class="toctree-l1 current">
+        <a class="current" href="./">class _TestFileOpenError</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#_testfileopenerror">_TestFileOpenError</a></li>
+                
+                    <li><a class="toctree-l4" href="#implements">Implements</a></li>
+                
+                    <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
+                
+                    <li><a class="toctree-l4" href="#public-functions">Public Functions</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileCreate/">class _TestFileCreate</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpen/">class _TestFileOpen</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileLongLine/">class _TestFileLongLine</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWrite/">class _TestFileWrite</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWritev/">class _TestFileWritev</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileQueue/">class _TestFileQueue</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileQueuev/">class _TestFileQueuev</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileMixedWriteQueue/">class _TestFileMixedWriteQueue</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWritevLarge/">class _TestFileWritevLarge</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 ">
         <a class="" href="../files-WalkHandler/">interface WalkHandler</a>
         
@@ -2138,24 +2221,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../files-FilePath/">class FilePath</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">primitive _FileHandle</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#_filehandle">_FileHandle</a></li>
-                
-                    <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
-                
-                    <li><a class="toctree-l4" href="#public-functions">Public Functions</a></li>
-                
-            
-            </ul>
         
     </li>
 
@@ -6012,7 +6077,7 @@
         
       
     
-    <li>primitive _FileHandle</li>
+    <li>class _TestFileOpenError</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -6022,50 +6087,101 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_filehandle">_FileHandle</h1>
-<pre><code class="pony">primitive val _FileHandle
+                <h1 id="_testfileopenerror">_TestFileOpenError</h1>
+<pre><code class="pony">class iso _TestFileOpenError is
+  UnitTest ref
 </code></pre>
 
+<h4 id="implements">Implements</h4>
+<ul>
+<li><a href="../ponytest-UnitTest">UnitTest</a> ref</li>
+</ul>
+<hr />
 <h2 id="constructors">Constructors</h2>
 <h3 id="create">create</h3>
-<pre><code class="pony">new val create()
-: _FileHandle val^
+<pre><code class="pony">new iso create()
+: _TestFileOpenError iso^
 </code></pre>
 
 <h4 id="returns">Returns</h4>
 <ul>
-<li><a href="../files-_FileHandle">_FileHandle</a> val^</li>
+<li><a href="../files-_TestFileOpenError">_TestFileOpenError</a> iso^</li>
 </ul>
 <hr />
 <h2 id="public-functions">Public Functions</h2>
-<h3 id="eq">eq</h3>
-<pre><code class="pony">fun box eq(
-  that: _FileHandle val)
-: Bool val
+<h3 id="name">name</h3>
+<pre><code class="pony">fun box name()
+: String val
+</code></pre>
+
+<h4 id="returns_1">Returns</h4>
+<ul>
+<li><a href="../builtin-String">String</a> val</li>
+</ul>
+<hr />
+<h3 id="apply">apply</h3>
+<pre><code class="pony">fun box apply(
+  h: TestHelper val)
+: None val
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>that: <a href="../files-_FileHandle">_FileHandle</a> val</li>
+<li>h: <a href="../ponytest-TestHelper">TestHelper</a> val</li>
 </ul>
-<h4 id="returns_1">Returns</h4>
+<h4 id="returns_2">Returns</h4>
 <ul>
-<li><a href="../builtin-Bool">Bool</a> val</li>
+<li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
-<h3 id="ne">ne</h3>
-<pre><code class="pony">fun box ne(
-  that: _FileHandle val)
-: Bool val
+<h3 id="exclusion_group">exclusion_group</h3>
+<pre><code class="pony">fun box exclusion_group()
+: String val
+</code></pre>
+
+<h4 id="returns_3">Returns</h4>
+<ul>
+<li><a href="../builtin-String">String</a> val</li>
+</ul>
+<hr />
+<h3 id="timed_out">timed_out</h3>
+<pre><code class="pony">fun ref timed_out(
+  h: TestHelper val)
+: None val
 </code></pre>
 
 <h4 id="parameters_1">Parameters</h4>
 <ul>
-<li>that: <a href="../files-_FileHandle">_FileHandle</a> val</li>
+<li>h: <a href="../ponytest-TestHelper">TestHelper</a> val</li>
 </ul>
-<h4 id="returns_2">Returns</h4>
+<h4 id="returns_4">Returns</h4>
 <ul>
-<li><a href="../builtin-Bool">Bool</a> val</li>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="tear_down">tear_down</h3>
+<pre><code class="pony">fun ref tear_down(
+  h: TestHelper val)
+: None val
+</code></pre>
+
+<h4 id="parameters_2">Parameters</h4>
+<ul>
+<li>h: <a href="../ponytest-TestHelper">TestHelper</a> val</li>
+</ul>
+<h4 id="returns_5">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="label">label</h3>
+<pre><code class="pony">fun box label()
+: String val
+</code></pre>
+
+<h4 id="returns_6">Returns</h4>
+<ul>
+<li><a href="../builtin-String">String</a> val</li>
 </ul>
 <hr />
               
@@ -6075,10 +6191,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../files-FileOK/" class="btn btn-neutral float-right" title="primitive FileOK">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../files-_TestFileCreate/" class="btn btn-neutral float-right" title="class _TestFileCreate">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../files-FilePath/" class="btn btn-neutral" title="class FilePath"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../files-_TestFileEOF/" class="btn btn-neutral" title="class _TestFileEOF"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -6104,10 +6220,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../files-FilePath/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../files-_TestFileEOF/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../files-FileOK/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../files-_TestFileCreate/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

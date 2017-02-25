@@ -2130,6 +2130,76 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpenError/">class _TestFileOpenError</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileCreate/">class _TestFileCreate</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpen/">class _TestFileOpen</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileLongLine/">class _TestFileLongLine</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWrite/">class _TestFileWrite</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWritev/">class _TestFileWritev</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileQueue/">class _TestFileQueue</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileQueuev/">class _TestFileQueuev</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileMixedWriteQueue/">class _TestFileMixedWriteQueue</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWritevLarge/">class _TestFileWritevLarge</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../files-WalkHandler/">interface WalkHandler</a>
         
     </li>
@@ -2138,13 +2208,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../files-FilePath/">class FilePath</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../files-_FileHandle/">primitive _FileHandle</a>
         
     </li>
 
@@ -6114,51 +6177,26 @@ Clears the error indicator for the stream.</p>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
-<h3 id="get_stream_error">get_stream_error</h3>
-<p>Checks for errors after File stream operations.
-Retrieves errno if ferror is true.</p>
-<pre><code class="pony">fun box get_stream_error()
-: (FileOK val | FileError val | FileEOF val | 
-    FileBadFileNumber val | FileExists val | FilePermissionDenied val)
-</code></pre>
-
-<h4 id="returns_5">Returns</h4>
-<ul>
-<li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | 
-    <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
-</ul>
-<hr />
 <h3 id="valid">valid</h3>
 <p>Returns true if the file is currently open.</p>
 <pre><code class="pony">fun box valid()
 : Bool val
 </code></pre>
 
-<h4 id="returns_6">Returns</h4>
+<h4 id="returns_5">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
-<h3 id="get_fd">get_fd</h3>
-<p>Returns the underlying file descriptor.
-Raises an error if the file is not currently open.</p>
-<pre><code class="pony">fun box get_fd()
-: I32 val ?
-</code></pre>
-
-<h4 id="returns_7">Returns</h4>
-<ul>
-<li><a href="../builtin-I32">I32</a> val ?</li>
-</ul>
-<hr />
 <h3 id="line">line</h3>
 <p>Returns a line as a String. The newline is not included in the string. If
-there is no more data, this raises an error.</p>
+there is no more data, this raises an error. If there is a file error,
+this raises an error.</p>
 <pre><code class="pony">fun ref line()
 : String iso^ ?
 </code></pre>
 
-<h4 id="returns_8">Returns</h4>
+<h4 id="returns_6">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^ ?</li>
 </ul>
@@ -6174,7 +6212,7 @@ there is no more data, this raises an error.</p>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_9">Returns</h4>
+<h4 id="returns_7">Returns</h4>
 <ul>
 <li><a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] iso^</li>
 </ul>
@@ -6191,7 +6229,7 @@ characters.</p>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_8">Returns</h4>
 <ul>
 <li><a href="../builtin-String">String</a> iso^</li>
 </ul>
@@ -6207,7 +6245,7 @@ characters.</p>
 <ul>
 <li>data: (<a href="../builtin-String">String</a> box | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] box)</li>
 </ul>
-<h4 id="returns_11">Returns</h4>
+<h4 id="returns_9">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6223,7 +6261,7 @@ characters.</p>
 <ul>
 <li>data: <a href="../builtin-ByteSeqIter">ByteSeqIter</a> box</li>
 </ul>
-<h4 id="returns_12">Returns</h4>
+<h4 id="returns_10">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6240,7 +6278,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 <ul>
 <li>data: (<a href="../builtin-String">String</a> box | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] box)</li>
 </ul>
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_11">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6256,7 +6294,54 @@ Returns false and closes the file if not all the bytes were written.</p>
 <ul>
 <li>data: <a href="../builtin-ByteSeqIter">ByteSeqIter</a> box</li>
 </ul>
+<h4 id="returns_12">Returns</h4>
+<ul>
+<li><a href="../builtin-Bool">Bool</a> val</li>
+</ul>
+<hr />
+<h3 id="queue">queue</h3>
+<p>Queue data to be written
+NOTE: Queue'd data will always be written before normal print/write
+requested data</p>
+<pre><code class="pony">fun ref queue(
+  data: (String box | Array[U8 val] box))
+: None val
+</code></pre>
+
+<h4 id="parameters_9">Parameters</h4>
+<ul>
+<li>data: (<a href="../builtin-String">String</a> box | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] box)</li>
+</ul>
+<h4 id="returns_13">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="queuev">queuev</h3>
+<p>Queue an iterable collection of ByteSeqs to be written
+NOTE: Queue'd data will always be written before normal print/write
+requested data</p>
+<pre><code class="pony">fun ref queuev(
+  data: ByteSeqIter box)
+: None val
+</code></pre>
+
+<h4 id="parameters_10">Parameters</h4>
+<ul>
+<li>data: <a href="../builtin-ByteSeqIter">ByteSeqIter</a> box</li>
+</ul>
 <h4 id="returns_14">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
+<h3 id="flush">flush</h3>
+<p>Flush any queued data</p>
+<pre><code class="pony">fun ref flush()
+: Bool val
+</code></pre>
+
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6267,7 +6352,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 : USize val
 </code></pre>
 
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6278,7 +6363,7 @@ Returns false and closes the file if not all the bytes were written.</p>
 : USize val
 </code></pre>
 
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6290,11 +6375,11 @@ Returns false and closes the file if not all the bytes were written.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_9">Parameters</h4>
+<h4 id="parameters_11">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6306,11 +6391,11 @@ Returns false and closes the file if not all the bytes were written.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_10">Parameters</h4>
+<h4 id="parameters_12">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6322,21 +6407,10 @@ Returns false and closes the file if not all the bytes were written.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_11">Parameters</h4>
+<h4 id="parameters_13">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 </ul>
-<h4 id="returns_19">Returns</h4>
-<ul>
-<li><a href="../builtin-None">None</a> val</li>
-</ul>
-<hr />
-<h3 id="flush">flush</h3>
-<p>Flush the file.</p>
-<pre><code class="pony">fun ref flush()
-: None val
-</code></pre>
-
 <h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
@@ -6353,6 +6427,17 @@ Returns false and closes the file if not all the bytes were written.</p>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
 <hr />
+<h3 id="datasync">datasync</h3>
+<p>Sync the file contents to physical storage.</p>
+<pre><code class="pony">fun ref datasync()
+: None val
+</code></pre>
+
+<h4 id="returns_22">Returns</h4>
+<ul>
+<li><a href="../builtin-None">None</a> val</li>
+</ul>
+<hr />
 <h3 id="set_length">set_length</h3>
 <p>Change the file size. If it is made larger, the new contents are undefined.</p>
 <pre><code class="pony">fun ref set_length(
@@ -6360,11 +6445,11 @@ Returns false and closes the file if not all the bytes were written.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_12">Parameters</h4>
+<h4 id="parameters_14">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
-<h4 id="returns_22">Returns</h4>
+<h4 id="returns_23">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6376,7 +6461,7 @@ or if we don't have FileStat permission.</p>
 : FileInfo val ?
 </code></pre>
 
-<h4 id="returns_23">Returns</h4>
+<h4 id="returns_24">Returns</h4>
 <ul>
 <li><a href="../files-FileInfo">FileInfo</a> val ?</li>
 </ul>
@@ -6388,11 +6473,11 @@ or if we don't have FileStat permission.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_13">Parameters</h4>
+<h4 id="parameters_15">Parameters</h4>
 <ul>
 <li>mode: <a href="../files-FileMode">FileMode</a> box</li>
 </ul>
-<h4 id="returns_24">Returns</h4>
+<h4 id="returns_25">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6405,12 +6490,12 @@ or if we don't have FileStat permission.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_14">Parameters</h4>
+<h4 id="parameters_16">Parameters</h4>
 <ul>
 <li>uid: <a href="../builtin-U32">U32</a> val</li>
 <li>gid: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_25">Returns</h4>
+<h4 id="returns_26">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6421,7 +6506,7 @@ or if we don't have FileStat permission.</p>
 : Bool val
 </code></pre>
 
-<h4 id="returns_26">Returns</h4>
+<h4 id="returns_27">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6435,12 +6520,12 @@ values.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_15">Parameters</h4>
+<h4 id="parameters_17">Parameters</h4>
 <ul>
 <li>atime: (<a href="../builtin-I64">I64</a> val , <a href="../builtin-I64">I64</a> val)</li>
 <li>mtime: (<a href="../builtin-I64">I64</a> val , <a href="../builtin-I64">I64</a> val)</li>
 </ul>
-<h4 id="returns_27">Returns</h4>
+<h4 id="returns_28">Returns</h4>
 <ul>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
@@ -6451,7 +6536,7 @@ values.</p>
 : FileLines ref
 </code></pre>
 
-<h4 id="returns_28">Returns</h4>
+<h4 id="returns_29">Returns</h4>
 <ul>
 <li><a href="../files-FileLines">FileLines</a> ref</li>
 </ul>
@@ -6462,7 +6547,7 @@ values.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_29">Returns</h4>
+<h4 id="returns_30">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6475,44 +6560,58 @@ values.</p>
     FileBadFileNumber val | FileExists val | FilePermissionDenied val)
 </code></pre>
 
-<h4 id="returns_30">Returns</h4>
+<h4 id="returns_31">Returns</h4>
 <ul>
 <li>(<a href="../files-FileOK">FileOK</a> val | <a href="../files-FileError">FileError</a> val | <a href="../files-FileEOF">FileEOF</a> val | 
     <a href="../files-FileBadFileNumber">FileBadFileNumber</a> val | <a href="../files-FileExists">FileExists</a> val | <a href="../files-FilePermissionDenied">FilePermissionDenied</a> val)</li>
 </ul>
 <hr />
+<h3 id="_pending_writes">_pending_writes</h3>
+<p>Write pending data.
+Returns false if the file wasn't opened with write permission.
+Returns false and closes the file and discards all pending data
+if not all the bytes were written.
+Returns true if it sent all pending data.</p>
+<pre><code class="pony">fun ref _pending_writes()
+: Bool val
+</code></pre>
+
+<h4 id="returns_32">Returns</h4>
+<ul>
+<li><a href="../builtin-Bool">Bool</a> val</li>
+</ul>
+<hr />
+<h3 id="_write_to_disk">_write_to_disk</h3>
+<p>Write pending data.
+Returns false if the file wasn't opened with write permission.
+Returns raises error if not all the bytes were written.
+Returns true if it sent all pending data.
+Returns num_processed and new pending_total also.</p>
+<pre><code class="pony">fun box _write_to_disk()
+: (Bool val , USize val , USize val) ?
+</code></pre>
+
+<h4 id="returns_33">Returns</h4>
+<ul>
+<li>(<a href="../builtin-Bool">Bool</a> val , <a href="../builtin-USize">USize</a> val , <a href="../builtin-USize">USize</a> val) ?</li>
+</ul>
+<hr />
 <h3 id="_seek">_seek</h3>
 <p>Move the cursor position.</p>
 <pre><code class="pony">fun ref _seek(
-  offset: ISize val,
+  offset: I64 val,
   base: I32 val)
 : None val
 </code></pre>
 
-<h4 id="parameters_16">Parameters</h4>
+<h4 id="parameters_18">Parameters</h4>
 <ul>
-<li>offset: <a href="../builtin-ISize">ISize</a> val</li>
+<li>offset: <a href="../builtin-I64">I64</a> val</li>
 <li>base: <a href="../builtin-I32">I32</a> val</li>
 </ul>
-<h4 id="returns_31">Returns</h4>
+<h4 id="returns_34">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
-</ul>
-<hr />
-<h3 id="_get_fd">_get_fd</h3>
-<p>Get the file descriptor associated with the file handle.</p>
-<pre><code class="pony">fun tag _get_fd(
-  handle: Pointer[_FileHandle val] ref)
-: I32 val
-</code></pre>
-
-<h4 id="parameters_17">Parameters</h4>
-<ul>
-<li>handle: <a href="../builtin-Pointer">Pointer</a>[<a href="../files-_FileHandle">_FileHandle</a> val] ref</li>
-</ul>
-<h4 id="returns_32">Returns</h4>
-<ul>
-<li><a href="../builtin-I32">I32</a> val</li>
 </ul>
 <hr />
 <h3 id="_final">_final</h3>
@@ -6521,7 +6620,7 @@ values.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_33">Returns</h4>
+<h4 id="returns_35">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>

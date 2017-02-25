@@ -2145,6 +2145,76 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpenError/">class _TestFileOpenError</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileCreate/">class _TestFileCreate</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileOpen/">class _TestFileOpen</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileLongLine/">class _TestFileLongLine</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWrite/">class _TestFileWrite</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWritev/">class _TestFileWritev</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileQueue/">class _TestFileQueue</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileQueuev/">class _TestFileQueuev</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileMixedWriteQueue/">class _TestFileMixedWriteQueue</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../files-_TestFileWritevLarge/">class _TestFileWritevLarge</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../files-WalkHandler/">interface WalkHandler</a>
         
     </li>
@@ -2153,13 +2223,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../files-FilePath/">class FilePath</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../files-_FileHandle/">primitive _FileHandle</a>
         
     </li>
 
@@ -6225,10 +6288,15 @@ a pointer.</p>
 <hr />
 <h3 id="cpointer">cpointer</h3>
 <p>Returns a C compatible pointer to the underlying string allocation.</p>
-<pre><code class="pony">fun box cpointer()
+<pre><code class="pony">fun box cpointer(
+  offset: USize val = 0)
 : Pointer[U8 val] tag
 </code></pre>
 
+<h4 id="parameters_8">Parameters</h4>
+<ul>
+<li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
+</ul>
 <h4 id="returns_8">Returns</h4>
 <ul>
 <li><a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] tag</li>
@@ -6280,7 +6348,7 @@ offsets. Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 : USize val
 </code></pre>
 
-<h4 id="parameters_8">Parameters</h4>
+<h4 id="parameters_9">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-ISize">ISize</a> val = 0</li>
 <li>to: <a href="../builtin-ISize">ISize</a> val = call</li>
@@ -6309,7 +6377,7 @@ null terminator.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_9">Parameters</h4>
+<h4 id="parameters_10">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6352,7 +6420,7 @@ null terminator. Does not check for null terminators inside the string.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_10">Parameters</h4>
+<h4 id="parameters_11">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6370,7 +6438,7 @@ Unlike slice, the operation does not allocate a new string nor copy elements.</p
 : None val
 </code></pre>
 
-<h4 id="parameters_11">Parameters</h4>
+<h4 id="parameters_12">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>to: <a href="../builtin-USize">USize</a> val = call</li>
@@ -6390,7 +6458,7 @@ The operation does not allocate a new string pointer nor copy elements.</p>
 : String val
 </code></pre>
 
-<h4 id="parameters_12">Parameters</h4>
+<h4 id="parameters_13">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-USize">USize</a> val = 0</li>
 <li>to: <a href="../builtin-USize">USize</a> val = call</li>
@@ -6427,7 +6495,7 @@ out of bounds.</p>
 : (U32 val , U8 val) ?
 </code></pre>
 
-<h4 id="parameters_13">Parameters</h4>
+<h4 id="parameters_14">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 </ul>
@@ -6443,7 +6511,7 @@ out of bounds.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_14">Parameters</h4>
+<h4 id="parameters_15">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 </ul>
@@ -6460,7 +6528,7 @@ out of bounds.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_15">Parameters</h4>
+<h4 id="parameters_16">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
@@ -6478,7 +6546,7 @@ of bounds.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_16">Parameters</h4>
+<h4 id="parameters_17">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 </ul>
@@ -6496,7 +6564,7 @@ Raise an error if the offset is out of bounds.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_17">Parameters</h4>
+<h4 id="parameters_18">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
@@ -6528,7 +6596,7 @@ beginning. Raise an error if there is no n-th occurrence of s or s is empty.</p>
 : ISize val ?
 </code></pre>
 
-<h4 id="parameters_18">Parameters</h4>
+<h4 id="parameters_19">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
@@ -6550,7 +6618,7 @@ Raise an error if there is no n-th occurrence of <code>s</code> or <code>s</code
 : ISize val ?
 </code></pre>
 
-<h4 id="parameters_19">Parameters</h4>
+<h4 id="parameters_20">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = call</li>
@@ -6570,7 +6638,7 @@ Raise an error if there is no n-th occurrence of <code>s</code> or <code>s</code
 : Bool val
 </code></pre>
 
-<h4 id="parameters_20">Parameters</h4>
+<h4 id="parameters_21">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
@@ -6589,7 +6657,7 @@ Raise an error if there is no n-th occurrence of <code>s</code> or <code>s</code
 : USize val
 </code></pre>
 
-<h4 id="parameters_21">Parameters</h4>
+<h4 id="parameters_22">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
@@ -6607,7 +6675,7 @@ Raise an error if there is no n-th occurrence of <code>s</code> or <code>s</code
 : Bool val
 </code></pre>
 
-<h4 id="parameters_22">Parameters</h4>
+<h4 id="parameters_23">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
@@ -6625,7 +6693,7 @@ Raise an error if there is no n-th occurrence of <code>s</code> or <code>s</code
 : None val
 </code></pre>
 
-<h4 id="parameters_23">Parameters</h4>
+<h4 id="parameters_24">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>len: <a href="../builtin-USize">USize</a> val = 1</li>
@@ -6644,7 +6712,7 @@ Returns an empty string if nothing is in the range.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_24">Parameters</h4>
+<h4 id="parameters_25">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-ISize">ISize</a> val</li>
 <li>to: <a href="../builtin-ISize">ISize</a> val = call</li>
@@ -6729,7 +6797,7 @@ UTF-8 correctly.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_25">Parameters</h4>
+<h4 id="parameters_26">Parameters</h4>
 <ul>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
 </ul>
@@ -6756,7 +6824,7 @@ UTF-8 correctly.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_26">Parameters</h4>
+<h4 id="parameters_27">Parameters</h4>
 <ul>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
 </ul>
@@ -6785,7 +6853,7 @@ UTF-8 correctly.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_27">Parameters</h4>
+<h4 id="parameters_28">Parameters</h4>
 <ul>
 <li>seq: <a href="../builtin-ReadSeq">ReadSeq</a>[<a href="../builtin-U8">U8</a> val] box</li>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
@@ -6806,7 +6874,7 @@ offset.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_28">Parameters</h4>
+<h4 id="parameters_29">Parameters</h4>
 <ul>
 <li>iter: <a href="../builtin-Iterator">Iterator</a>[<a href="../builtin-U8">U8</a> val] ref</li>
 <li>offset: <a href="../builtin-USize">USize</a> val = 0</li>
@@ -6837,7 +6905,7 @@ offset.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_29">Parameters</h4>
+<h4 id="parameters_30">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>that: <a href="../builtin-String">String</a> val</li>
@@ -6856,7 +6924,7 @@ offset is out of bounds.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_30">Parameters</h4>
+<h4 id="parameters_31">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>that: <a href="../builtin-String">String</a> box</li>
@@ -6874,7 +6942,7 @@ offset is out of bounds.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_31">Parameters</h4>
+<h4 id="parameters_32">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val</li>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
@@ -6893,7 +6961,7 @@ Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_32">Parameters</h4>
+<h4 id="parameters_33">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-ISize">ISize</a> val</li>
 <li>to: <a href="../builtin-ISize">ISize</a> val = call</li>
@@ -6912,7 +6980,7 @@ Index range [<code>from</code> .. <code>to</code>) is half-open.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_33">Parameters</h4>
+<h4 id="parameters_34">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-ISize">ISize</a> val</li>
 <li>to: <a href="../builtin-ISize">ISize</a> val = call</li>
@@ -6930,7 +6998,7 @@ instances.</p>
 : USize val
 </code></pre>
 
-<h4 id="parameters_34">Parameters</h4>
+<h4 id="parameters_35">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -6949,7 +7017,7 @@ occurrences will be replaced. Returns the count of replaced occurrences.</p>
 : USize val
 </code></pre>
 
-<h4 id="parameters_35">Parameters</h4>
+<h4 id="parameters_36">Parameters</h4>
 <ul>
 <li>from: <a href="../builtin-String">String</a> box</li>
 <li>to: <a href="../builtin-String">String</a> box</li>
@@ -6973,7 +7041,7 @@ to the whole string.</p>
 : Array[String val] iso^
 </code></pre>
 
-<h4 id="parameters_36">Parameters</h4>
+<h4 id="parameters_37">Parameters</h4>
 <ul>
 <li>delim: <a href="../builtin-String">String</a> val</li>
 <li>n: <a href="../builtin-USize">USize</a> val = call</li>
@@ -6996,7 +7064,7 @@ example, <code>"1,,2".split(",") =&gt; ["1", "", "2"]</code>.</p>
 : Array[String val] iso^
 </code></pre>
 
-<h4 id="parameters_37">Parameters</h4>
+<h4 id="parameters_38">Parameters</h4>
 <ul>
 <li>delim: <a href="../builtin-String">String</a> val= "  
 "</li>
@@ -7015,7 +7083,7 @@ example, <code>"1,,2".split(",") =&gt; ["1", "", "2"]</code>.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_38">Parameters</h4>
+<h4 id="parameters_39">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box= "  
 "</li>
@@ -7034,7 +7102,7 @@ trailing whitespace is removed.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_39">Parameters</h4>
+<h4 id="parameters_40">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box= "  
 "</li>
@@ -7053,7 +7121,7 @@ leading whitespace is removed.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_40">Parameters</h4>
+<h4 id="parameters_41">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box= "  
 "</li>
@@ -7070,7 +7138,7 @@ leading whitespace is removed.</p>
 : String val
 </code></pre>
 
-<h4 id="parameters_41">Parameters</h4>
+<h4 id="parameters_42">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7087,7 +7155,7 @@ as a separator.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_42">Parameters</h4>
+<h4 id="parameters_43">Parameters</h4>
 <ul>
 <li>data: <a href="../builtin-ReadSeq">ReadSeq</a>[<a href="../builtin-Stringable">Stringable</a> box] box</li>
 </ul>
@@ -7103,7 +7171,7 @@ as a separator.</p>
 : (Less val | Equal val | Greater val)
 </code></pre>
 
-<h4 id="parameters_43">Parameters</h4>
+<h4 id="parameters_44">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7134,7 +7202,7 @@ will be reduced to the length of the longest substring.</p>
 : (Less val | Equal val | Greater val)
 </code></pre>
 
-<h4 id="parameters_44">Parameters</h4>
+<h4 id="parameters_45">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 <li>n: <a href="../builtin-USize">USize</a> val</li>
@@ -7154,7 +7222,7 @@ will be reduced to the length of the longest substring.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_45">Parameters</h4>
+<h4 id="parameters_46">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7171,7 +7239,7 @@ safe.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_46">Parameters</h4>
+<h4 id="parameters_47">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7188,7 +7256,7 @@ made UTF-8 safe.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_47">Parameters</h4>
+<h4 id="parameters_48">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7203,7 +7271,7 @@ made UTF-8 safe.</p>
 : USize val
 </code></pre>
 
-<h4 id="parameters_48">Parameters</h4>
+<h4 id="parameters_49">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-ISize">ISize</a> val</li>
 </ul>
@@ -7228,7 +7296,7 @@ made UTF-8 safe.</p>
 : I8 val ?
 </code></pre>
 
-<h4 id="parameters_49">Parameters</h4>
+<h4 id="parameters_50">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7243,7 +7311,7 @@ made UTF-8 safe.</p>
 : I16 val ?
 </code></pre>
 
-<h4 id="parameters_50">Parameters</h4>
+<h4 id="parameters_51">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7258,7 +7326,7 @@ made UTF-8 safe.</p>
 : I32 val ?
 </code></pre>
 
-<h4 id="parameters_51">Parameters</h4>
+<h4 id="parameters_52">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7273,7 +7341,7 @@ made UTF-8 safe.</p>
 : I64 val ?
 </code></pre>
 
-<h4 id="parameters_52">Parameters</h4>
+<h4 id="parameters_53">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7288,7 +7356,7 @@ made UTF-8 safe.</p>
 : I128 val ?
 </code></pre>
 
-<h4 id="parameters_53">Parameters</h4>
+<h4 id="parameters_54">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7303,7 +7371,7 @@ made UTF-8 safe.</p>
 : ILong val ?
 </code></pre>
 
-<h4 id="parameters_54">Parameters</h4>
+<h4 id="parameters_55">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7318,7 +7386,7 @@ made UTF-8 safe.</p>
 : ISize val ?
 </code></pre>
 
-<h4 id="parameters_55">Parameters</h4>
+<h4 id="parameters_56">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7333,7 +7401,7 @@ made UTF-8 safe.</p>
 : U8 val ?
 </code></pre>
 
-<h4 id="parameters_56">Parameters</h4>
+<h4 id="parameters_57">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7348,7 +7416,7 @@ made UTF-8 safe.</p>
 : U16 val ?
 </code></pre>
 
-<h4 id="parameters_57">Parameters</h4>
+<h4 id="parameters_58">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7363,7 +7431,7 @@ made UTF-8 safe.</p>
 : U32 val ?
 </code></pre>
 
-<h4 id="parameters_58">Parameters</h4>
+<h4 id="parameters_59">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7378,7 +7446,7 @@ made UTF-8 safe.</p>
 : U64 val ?
 </code></pre>
 
-<h4 id="parameters_59">Parameters</h4>
+<h4 id="parameters_60">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7393,7 +7461,7 @@ made UTF-8 safe.</p>
 : U128 val ?
 </code></pre>
 
-<h4 id="parameters_60">Parameters</h4>
+<h4 id="parameters_61">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7408,7 +7476,7 @@ made UTF-8 safe.</p>
 : ULong val ?
 </code></pre>
 
-<h4 id="parameters_61">Parameters</h4>
+<h4 id="parameters_62">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7423,7 +7491,7 @@ made UTF-8 safe.</p>
 : USize val ?
 </code></pre>
 
-<h4 id="parameters_62">Parameters</h4>
+<h4 id="parameters_63">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
 </ul>
@@ -7457,7 +7525,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : (A val , USize val) ?
 </code></pre>
 
-<h4 id="parameters_63">Parameters</h4>
+<h4 id="parameters_64">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 <li>base: <a href="../builtin-U8">U8</a> val = 0</li>
@@ -7473,7 +7541,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : F32 val
 </code></pre>
 
-<h4 id="parameters_64">Parameters</h4>
+<h4 id="parameters_65">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 </ul>
@@ -7488,7 +7556,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : F64 val
 </code></pre>
 
-<h4 id="parameters_65">Parameters</h4>
+<h4 id="parameters_66">Parameters</h4>
 <ul>
 <li>offset: <a href="../builtin-ISize">ISize</a> val = 0</li>
 </ul>
@@ -7545,7 +7613,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_66">Parameters</h4>
+<h4 id="parameters_67">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7560,7 +7628,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_67">Parameters</h4>
+<h4 id="parameters_68">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7575,7 +7643,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : Bool val
 </code></pre>
 
-<h4 id="parameters_68">Parameters</h4>
+<h4 id="parameters_69">Parameters</h4>
 <ul>
 <li>that: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7595,7 +7663,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_69">Parameters</h4>
+<h4 id="parameters_70">Parameters</h4>
 <ul>
 <li>ptr: <a href="../builtin-Pointer">Pointer</a>[<a href="../builtin-U8">U8</a> val] ref</li>
 <li>copy_len: <a href="../builtin-USize">USize</a> val</li>
@@ -7613,7 +7681,7 @@ Underscore characters are allowed throughout the integer and are ignored.</p>
 : String iso^
 </code></pre>
 
-<h4 id="parameters_70">Parameters</h4>
+<h4 id="parameters_71">Parameters</h4>
 <ul>
 <li>s: <a href="../builtin-String">String</a> box</li>
 </ul>
@@ -7640,7 +7708,7 @@ out of range for the target type then an error is thrown.</p>
 : A val ?
 </code></pre>
 
-<h4 id="parameters_71">Parameters</h4>
+<h4 id="parameters_72">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val</li>
 </ul>
@@ -7671,7 +7739,7 @@ Report the base found and the number of characters in the prefix.</p>
 : (A val , USize val)
 </code></pre>
 
-<h4 id="parameters_72">Parameters</h4>
+<h4 id="parameters_73">Parameters</h4>
 <ul>
 <li>base: <a href="../builtin-U8">U8</a> val</li>
 <li>index: <a href="../builtin-USize">USize</a> val</li>
@@ -7689,7 +7757,7 @@ Report the base found and the number of characters in the prefix.</p>
 : U8 val
 </code></pre>
 
-<h4 id="parameters_73">Parameters</h4>
+<h4 id="parameters_74">Parameters</h4>
 <ul>
 <li>i: <a href="../builtin-USize">USize</a> val</li>
 <li>value: <a href="../builtin-U8">U8</a> val</li>
