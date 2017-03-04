@@ -6537,14 +6537,36 @@ This occurs only with IOCP on Windows.</p>
 <hr />
 <h3 id="_pending_writes">_pending_writes</h3>
 <p>Send pending data. If any data can't be sent, keep it and mark as not
-writeable. On an error, dispose of the connection.</p>
+writeable. On an error, dispose of the connection. Returns whether
+it sent all pending data or not.</p>
 <pre><code class="pony">fun ref _pending_writes()
-: None val
+: Bool val
 </code></pre>
 
 <h4 id="returns_12">Returns</h4>
 <ul>
-<li><a href="../builtin-None">None</a> val</li>
+<li><a href="../builtin-Bool">Bool</a> val</li>
+</ul>
+<hr />
+<h3 id="_manage_pending_buffer">_manage_pending_buffer</h3>
+<p>Manage pending buffer for data sent. Returns a boolean of whether
+the pending buffer is empty or not.</p>
+<pre><code class="pony">fun ref _manage_pending_buffer(
+  bytes_sent: USize val,
+  bytes_to_send: USize val,
+  num_to_send: USize val)
+: Bool val ?
+</code></pre>
+
+<h4 id="parameters_13">Parameters</h4>
+<ul>
+<li>bytes_sent: <a href="../builtin-USize">USize</a> val</li>
+<li>bytes_to_send: <a href="../builtin-USize">USize</a> val</li>
+<li>num_to_send: <a href="../builtin-USize">USize</a> val</li>
+</ul>
+<h4 id="returns_13">Returns</h4>
+<ul>
+<li><a href="../builtin-Bool">Bool</a> val ?</li>
 </ul>
 <hr />
 <h3 id="_complete_reads">_complete_reads</h3>
@@ -6555,11 +6577,11 @@ This occurs only with IOCP on Windows.</p>
 : None val
 </code></pre>
 
-<h4 id="parameters_13">Parameters</h4>
+<h4 id="parameters_14">Parameters</h4>
 <ul>
 <li>len: <a href="../builtin-U32">U32</a> val</li>
 </ul>
-<h4 id="returns_13">Returns</h4>
+<h4 id="returns_14">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6570,7 +6592,7 @@ This occurs only with IOCP on Windows.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_14">Returns</h4>
+<h4 id="returns_15">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6581,7 +6603,7 @@ This occurs only with IOCP on Windows.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_15">Returns</h4>
+<h4 id="returns_16">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6594,7 +6616,7 @@ ourself a resume message and stop reading, to avoid starving other actors.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_16">Returns</h4>
+<h4 id="returns_17">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6605,7 +6627,7 @@ ourself a resume message and stop reading, to avoid starving other actors.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_17">Returns</h4>
+<h4 id="returns_18">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6615,7 +6637,7 @@ ourself a resume message and stop reading, to avoid starving other actors.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_18">Returns</h4>
+<h4 id="returns_19">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6627,7 +6649,7 @@ then shutdown.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_19">Returns</h4>
+<h4 id="returns_20">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6638,7 +6660,7 @@ then shutdown.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_20">Returns</h4>
+<h4 id="returns_21">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6648,7 +6670,7 @@ then shutdown.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_21">Returns</h4>
+<h4 id="returns_22">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
@@ -6658,7 +6680,7 @@ then shutdown.</p>
 : None val
 </code></pre>
 
-<h4 id="returns_22">Returns</h4>
+<h4 id="returns_23">Returns</h4>
 <ul>
 <li><a href="../builtin-None">None</a> val</li>
 </ul>
