@@ -115,10 +115,13 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#public-types">Public Types</a></li>
+                <li class="toctree-l3"><a href="#buffered-package">Buffered Package</a></li>
                 
-            
-                <li class="toctree-l3"><a href="#test-types">Test Types</a></li>
+                    <li><a class="toctree-l4" href="#example-program">Example program</a></li>
+                
+                    <li><a class="toctree-l4" href="#public-types">Public Types</a></li>
+                
+                    <li><a class="toctree-l4" href="#test-types">Test Types</a></li>
                 
             
             </ul>
@@ -1047,6 +1050,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1716,6 +1726,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../collections-persistent-_MapLeaf/">type _MapLeaf</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapEntry/">type _MapEntry</a>
         
     </li>
@@ -1724,13 +1741,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapNode/">class _MapNode</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../collections-persistent-_MapLeaf/">class _MapLeaf</a>
         
     </li>
 
@@ -6084,7 +6094,36 @@
           <div role="main">
             <div class="section">
               
-                <p>No package doc string provided for buffered.</p>
+                <h1 id="buffered-package">Buffered Package</h1>
+<p>The Buffered package provides two classes, <code>Writer</code> and <code>Reader</code>, for
+writing and reading messages using common encodings. These classes are
+useful when dealing with things like network data and binary file
+formats.</p>
+<h2 id="example-program">Example program</h2>
+<pre><code class="pony">use &quot;buffered&quot;
+
+actor Main
+  new create(env: Env) =&gt;
+    let reader = Reader
+    let writer = Writer
+
+    writer.u32_be(42)
+    writer.f32_be(3.14)
+
+    let b = recover iso Array[U8] end
+
+    for chunk in writer.done().values() do
+      b.append(chunk)
+    end
+
+    reader.append(consume b)
+
+    try
+      env.out.print(reader.u32_be().string()) // prints 42
+      env.out.print(reader.f32_be().string()) // prints 3.14
+    end
+</code></pre>
+
 <h2 id="public-types">Public Types</h2>
 <ul>
 <li><a href="../buffered-Writer/">class Writer</a></li>

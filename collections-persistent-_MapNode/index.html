@@ -1037,6 +1037,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1706,6 +1713,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../collections-persistent-_MapLeaf/">type _MapLeaf</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapEntry/">type _MapEntry</a>
         
     </li>
@@ -1727,13 +1741,6 @@
                 
             
             </ul>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../collections-persistent-_MapLeaf/">class _MapLeaf</a>
         
     </li>
 
@@ -6109,7 +6116,7 @@
 <hr />
 <h3 id="create">create</h3>
 <pre><code class="pony">new val create(
-  es: Array[(_MapNode[K val, V #share] val | Array[_MapLeaf[K val, V #share] val] val | _MapLeaf[K val, V #share] val)] iso,
+  es: Array[(_MapNode[K val, V #share] val | Array[(K val , V #share)] val | (K val , V #share))] iso,
   nm: U32 val,
   dm: U32 val,
   l: U8 val)
@@ -6118,7 +6125,7 @@
 
 <h4 id="parameters_1">Parameters</h4>
 <ul>
-<li>es: <a href="../builtin-Array">Array</a>[(<a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val | <a href="../builtin-Array">Array</a>[<a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val] val | <a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val)] iso</li>
+<li>es: <a href="../builtin-Array">Array</a>[(<a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val | <a href="../builtin-Array">Array</a>[(K val , V #share)] val | (K val , V #share))] iso</li>
 <li>nm: <a href="../builtin-U32">U32</a> val</li>
 <li>dm: <a href="../builtin-U32">U32</a> val</li>
 <li>l: <a href="../builtin-U8">U8</a> val</li>
@@ -6148,13 +6155,15 @@
 <hr />
 <h3 id="update">update</h3>
 <pre><code class="pony">fun val update(
-  value: _MapLeaf[K val, V #share] val)
+  hash: U32 val,
+  leaf: (K val , V #share))
 : (_MapNode[K val, V #share] val , Bool val) ?
 </code></pre>
 
 <h4 id="parameters_3">Parameters</h4>
 <ul>
-<li>value: <a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val</li>
+<li>hash: <a href="../builtin-U32">U32</a> val</li>
+<li>leaf: (K val , V #share)</li>
 </ul>
 <h4 id="returns_3">Returns</h4>
 <ul>
@@ -6180,12 +6189,12 @@
 <hr />
 <h3 id="entries">entries</h3>
 <pre><code class="pony">fun box entries()
-: Array[(_MapNode[K val, V #share] val | Array[_MapLeaf[K val, V #share] val] val | _MapLeaf[K val, V #share] val)] val
+: Array[(_MapNode[K val, V #share] val | Array[(K val , V #share)] val | (K val , V #share))] val
 </code></pre>
 
 <h4 id="returns_5">Returns</h4>
 <ul>
-<li><a href="../builtin-Array">Array</a>[(<a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val | <a href="../builtin-Array">Array</a>[<a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val] val | <a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val)] val</li>
+<li><a href="../builtin-Array">Array</a>[(<a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val | <a href="../builtin-Array">Array</a>[(K val , V #share)] val | (K val , V #share))] val</li>
 </ul>
 <hr />
 <h2 id="private-functions">Private Functions</h2>
@@ -6283,7 +6292,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../collections-persistent-_MapLeaf/" class="btn btn-neutral float-right" title="class _MapLeaf">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../crypto--index/" class="btn btn-neutral float-right" title="Package">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../collections-persistent-_MapEntry/" class="btn btn-neutral" title="type _MapEntry"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -6315,7 +6324,7 @@
         <span><a href="../collections-persistent-_MapEntry/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../collections-persistent-_MapLeaf/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../crypto--index/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

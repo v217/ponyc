@@ -1037,6 +1037,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1706,6 +1713,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../collections-persistent-_MapLeaf/">type _MapLeaf</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapEntry/">type _MapEntry</a>
         
     </li>
@@ -1714,13 +1728,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapNode/">class _MapNode</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../collections-persistent-_MapLeaf/">class _MapLeaf</a>
         
     </li>
 
@@ -6142,14 +6149,14 @@ application can follow up with calls to <code>Client.send_body</code>.</p>
 <h3 id="send_body">send_body</h3>
 <pre><code class="pony">fun ref send_body(
   data: (String val | Array[U8 val] val),
-  session: HTTPSession ref)
+  session: HTTPSession tag)
 : None val
 </code></pre>
 
 <h4 id="parameters_2">Parameters</h4>
 <ul>
 <li>data: (<a href="../builtin-String">String</a> val | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] val)</li>
-<li>session: <a href="../net-http-HTTPSession">HTTPSession</a> ref</li>
+<li>session: <a href="../net-http-HTTPSession">HTTPSession</a> tag</li>
 </ul>
 <h4 id="returns_2">Returns</h4>
 <ul>

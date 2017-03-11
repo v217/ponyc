@@ -1037,6 +1037,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1706,6 +1713,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../collections-persistent-_MapLeaf/">type _MapLeaf</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapEntry/">type _MapEntry</a>
         
     </li>
@@ -1714,13 +1728,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapNode/">class _MapNode</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../collections-persistent-_MapLeaf/">class _MapLeaf</a>
         
     </li>
 
@@ -6228,7 +6235,7 @@ predicate returns false, otherwise true is returned.</p>
 </ul>
 <hr />
 <h3 id="any">any</h3>
-<p>Return true if at least one value of the iterator matches the predicate 
+<p>Return true if at least one value of the iterator matches the predicate
 <code>f</code>. This method short-circuits at the first value where the predicate
 returns true, otherwise false is returned.</p>
 <h2 id="examples_1">Examples</h2>
@@ -6486,7 +6493,7 @@ function <code>on_error</code> will be called if the iterator's <code>has_next</
 returns true but its <code>next</code> method trows an error.</p>
 <h2 id="example_10">Example</h2>
 <pre><code class="pony">Iter[I64]([as I64: 1, 2, 3].values())
-  .map[None]({(x: I64)(env) =&gt; env.out.print(x.string()) })
+  .map[None]({(x: I64) =&gt; env.out.print(x.string()) })
   .run()
 </code></pre>
 

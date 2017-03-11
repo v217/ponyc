@@ -1037,6 +1037,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1706,6 +1713,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../collections-persistent-_MapLeaf/">type _MapLeaf</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapEntry/">type _MapEntry</a>
         
     </li>
@@ -1714,13 +1728,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapNode/">class _MapNode</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../collections-persistent-_MapLeaf/">class _MapLeaf</a>
         
     </li>
 
@@ -6096,12 +6103,12 @@
 dispatches those request to a back-end, and returns the responses back
 to the client.</p>
 <pre><code class="pony">actor tag _ServerConnection is
-  HTTPSession ref
+  HTTPSession tag
 </code></pre>
 
 <h4 id="implements">Implements</h4>
 <ul>
-<li><a href="../net-http-HTTPSession">HTTPSession</a> ref</li>
+<li><a href="../net-http-HTTPSession">HTTPSession</a> tag</li>
 </ul>
 <hr />
 <h2 id="constructors">Constructors</h2>

@@ -1037,6 +1037,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1706,6 +1713,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../collections-persistent-_MapLeaf/">type _MapLeaf</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapEntry/">type _MapEntry</a>
         
     </li>
@@ -1714,13 +1728,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapNode/">class _MapNode</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../collections-persistent-_MapLeaf/">class _MapLeaf</a>
         
     </li>
 
@@ -2534,13 +2541,16 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#public-types">Public Types</a></li>
+                <li class="toctree-l3"><a href="#format-package">Format package</a></li>
                 
             
-                <li class="toctree-l3"><a href="#private-types">Private Types</a></li>
+                <li class="toctree-l3"><a href="#example-program">Example program</a></li>
                 
-            
-                <li class="toctree-l3"><a href="#test-types">Test Types</a></li>
+                    <li><a class="toctree-l4" href="#public-types">Public Types</a></li>
+                
+                    <li><a class="toctree-l4" href="#private-types">Private Types</a></li>
+                
+                    <li><a class="toctree-l4" href="#test-types">Test Types</a></li>
                 
             
             </ul>
@@ -6087,7 +6097,34 @@
           <div role="main">
             <div class="section">
               
-                <p>No package doc string provided for format.</p>
+                <h1 id="format-package">Format package</h1>
+<p>The Format package provides support for formatting strings. It can be
+used to set things like width, padding and alignment, as well as
+controlling the way numbers are displayed (decimal, octal,
+hexadecimal).</p>
+<h1 id="example-program">Example program</h1>
+<pre><code class="pony">use &quot;format&quot;
+
+actor Main
+  fun disp(desc: String, v: I32, fmt: FormatInt = FormatDefault): String =&gt;
+    Format(desc where width = 10)
+      + &quot;:&quot;
+      + Format.int[I32](v where width = 10, align = AlignRight, fmt = fmt)
+
+  new create(env: Env) =&gt;
+    try
+      (let x, let y) = (env.args(1).i32(), env.args(2).i32())
+      env.out.print(disp(&quot;x&quot;, x))
+      env.out.print(disp(&quot;y&quot;, y))
+      env.out.print(disp(&quot;hex(x)&quot;, x, FormatHex))
+      env.out.print(disp(&quot;hex(y)&quot;, y, FormatHex))
+      env.out.print(disp(&quot;x * y&quot;, x * y))
+    else
+      let exe = try env.args(0) else &quot;fmt_example&quot; end
+      env.err.print(&quot;Usage: &quot; + exe + &quot; NUMBER1 NUMBER2&quot;)
+    end
+</code></pre>
+
 <h2 id="public-types">Public Types</h2>
 <ul>
 <li><a href="../format-Format/">primitive Format</a></li>

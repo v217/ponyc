@@ -1037,6 +1037,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1705,6 +1712,13 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../collections-persistent-_MapLeaf/">type _MapLeaf</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
         <a class="current" href="./">type _MapEntry</a>
         
@@ -1723,13 +1737,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapNode/">class _MapNode</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../collections-persistent-_MapLeaf/">class _MapLeaf</a>
         
     </li>
 
@@ -6085,12 +6092,12 @@
               
                 <h1 id="_mapentry91k-hashable-val-equatable91k-val93-v-any-share93">_MapEntry[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val]), V: <a href="../builtin-Any">Any</a> #share]</h1>
 <pre><code class="pony">type _MapEntry[K: (Hashable val &amp; Equatable[K val]), V: Any #share] is
-  (_MapNode[K val, V #share] val | Array[_MapLeaf[K val, V #share] val] val | _MapLeaf[K val, V #share] val)
+  (_MapNode[K val, V #share] val | Array[(K val , V #share)] val | (K val , V #share))
 </code></pre>
 
 <h4 id="type-alias-for">Type Alias For</h4>
 <ul>
-<li>(<a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val | <a href="../builtin-Array">Array</a>[<a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val] val | <a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val)</li>
+<li>(<a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val | <a href="../builtin-Array">Array</a>[(K val , V #share)] val | (K val , V #share))</li>
 </ul>
 <hr />
               
@@ -6103,7 +6110,7 @@
         <a href="../collections-persistent-_MapNode/" class="btn btn-neutral float-right" title="class _MapNode">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../collections-persistent-_MapCollisions/" class="btn btn-neutral" title="type _MapCollisions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../collections-persistent-_MapLeaf/" class="btn btn-neutral" title="type _MapLeaf"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -6129,7 +6136,7 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../collections-persistent-_MapCollisions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../collections-persistent-_MapLeaf/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../collections-persistent-_MapNode/" style="color: #fcfcfc">Next &raquo;</a></span>

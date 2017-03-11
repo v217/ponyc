@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>class _MapLeaf - stdlib</title>
+  <title>type _MapLeaf - stdlib</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "class _MapLeaf";
+    var mkdocs_page_name = "type _MapLeaf";
     var mkdocs_page_input_path = "collections-persistent-_MapLeaf.md";
     var mkdocs_page_url = "/collections-persistent-_MapLeaf/";
   </script>
@@ -1037,6 +1037,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1705,6 +1712,22 @@
 
         
             
+    <li class="toctree-l1 current">
+        <a class="current" href="./">type _MapLeaf</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#_mapleaf91k-hashable-val-equatable91k-val93-v-any-share93">_MapLeaf[K: (Hashable val &amp; Equatable[K val]), V: Any #share]</a></li>
+                
+                    <li><a class="toctree-l4" href="#type-alias-for">Type Alias For</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapEntry/">type _MapEntry</a>
         
@@ -1714,24 +1737,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapNode/">class _MapNode</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">class _MapLeaf</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#_mapleaf91k-hashable-val-equatable91k-val93-v-any-share93">_MapLeaf[K: (Hashable val &amp; Equatable[K val]), V: Any #share]</a></li>
-                
-                    <li><a class="toctree-l4" href="#constructors">Constructors</a></li>
-                
-                    <li><a class="toctree-l4" href="#public-fields">Public fields</a></li>
-                
-            
-            </ul>
         
     </li>
 
@@ -6075,7 +6080,7 @@
         
       
     
-    <li>class _MapLeaf</li>
+    <li>type _MapLeaf</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -6086,40 +6091,13 @@
             <div class="section">
               
                 <h1 id="_mapleaf91k-hashable-val-equatable91k-val93-v-any-share93">_MapLeaf[K: (<a href="../collections-Hashable">Hashable</a> val &amp; <a href="../builtin-Equatable">Equatable</a>[K val]), V: <a href="../builtin-Any">Any</a> #share]</h1>
-<pre><code class="pony">class val _MapLeaf[K: (Hashable val &amp; Equatable[K val]), V: Any #share]
+<pre><code class="pony">type _MapLeaf[K: (Hashable val &amp; Equatable[K val]), V: Any #share] is
+  (K val , V #share)
 </code></pre>
 
-<h2 id="constructors">Constructors</h2>
-<h3 id="create">create</h3>
-<pre><code class="pony">new val create(
-  h: U32 val,
-  k: K val,
-  v: V #share)
-: _MapLeaf[K val, V #share] val^
-</code></pre>
-
-<h4 id="parameters">Parameters</h4>
+<h4 id="type-alias-for">Type Alias For</h4>
 <ul>
-<li>h: <a href="../builtin-U32">U32</a> val</li>
-<li>k: K val</li>
-<li>v: V #share</li>
-</ul>
-<h4 id="returns">Returns</h4>
-<ul>
-<li><a href="../collections-persistent-_MapLeaf">_MapLeaf</a>[K val, V #share] val^</li>
-</ul>
-<hr />
-<h2 id="public-fields">Public fields</h2>
-<ul>
-<li>let hash: <a href="../builtin-U32">U32</a> val</li>
-</ul>
-<hr />
-<ul>
-<li>let key: K val</li>
-</ul>
-<hr />
-<ul>
-<li>let value: V #share</li>
+<li>(K val , V #share)</li>
 </ul>
 <hr />
               
@@ -6129,10 +6107,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../crypto--index/" class="btn btn-neutral float-right" title="Package">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../collections-persistent-_MapEntry/" class="btn btn-neutral float-right" title="type _MapEntry">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../collections-persistent-_MapNode/" class="btn btn-neutral" title="class _MapNode"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../collections-persistent-_MapCollisions/" class="btn btn-neutral" title="type _MapCollisions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -6158,10 +6136,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../collections-persistent-_MapNode/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../collections-persistent-_MapCollisions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../crypto--index/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../collections-persistent-_MapEntry/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

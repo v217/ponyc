@@ -1037,6 +1037,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../builtin_test-_TestLambdaCapture/">class _TestLambdaCapture</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../builtin_test-_TestValtrace/">class _TestValtrace</a>
         
     </li>
@@ -1706,6 +1713,13 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../collections-persistent-_MapLeaf/">type _MapLeaf</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapEntry/">type _MapEntry</a>
         
     </li>
@@ -1714,13 +1728,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../collections-persistent-_MapNode/">class _MapNode</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../collections-persistent-_MapLeaf/">class _MapLeaf</a>
         
     </li>
 
@@ -2029,13 +2036,16 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#public-types">Public Types</a></li>
+                <li class="toctree-l3"><a href="#files-package">Files package</a></li>
                 
             
-                <li class="toctree-l3"><a href="#private-types">Private Types</a></li>
+                <li class="toctree-l3"><a href="#example-program">Example program</a></li>
                 
-            
-                <li class="toctree-l3"><a href="#test-types">Test Types</a></li>
+                    <li><a class="toctree-l4" href="#public-types">Public Types</a></li>
+                
+                    <li><a class="toctree-l4" href="#private-types">Private Types</a></li>
+                
+                    <li><a class="toctree-l4" href="#test-types">Test Types</a></li>
                 
             
             </ul>
@@ -6087,7 +6097,43 @@
           <div role="main">
             <div class="section">
               
-                <p>No package doc string provided for files.</p>
+                <h1 id="files-package">Files package</h1>
+<p>The Files package provides classes for working with files and
+directories.</p>
+<p>Files are identified by <code>FilePath</code> objects, which represent both the
+path to the file and the capabilites for accessing the file at that
+path. <code>FilePath</code> objects can be used with the <code>CreateFile</code> and
+<code>OpenFile</code> primitives and the <code>File</code> class to get a reference to a
+file that can be used to write to and/or read from the file. It can
+also be used with the <code>Directory</code> object to get a reference to a
+directory object that can be used for directory operations.</p>
+<p>The <code>FileLine</code> class allows a file to be accessed one line at a time.</p>
+<p>The <code>FileStream</code> actor provides the ability to asynchronously write to
+a file.</p>
+<p>The <code>Path</code> primitive can be used to do path-related operations on
+strings and characters.</p>
+<h1 id="example-program">Example program</h1>
+<p>This program opens the files that are given as command line arguments
+and prints their contents.</p>
+<pre><code class="pony">use &quot;files&quot;
+
+actor Main
+  new create(env: Env) =&gt;
+    try
+      for file_name in env.args.slice(1).values() do
+        let path = FilePath(env.root as AmbientAuth, file_name)
+        match OpenFile(path)
+        | let file: File =&gt;
+          while file.errno() is FileOK do
+            env.out.write(file.read(1024))
+          end
+        else
+          env.err.print(&quot;Error opening file '&quot; + file_name + &quot;'&quot;)
+        end
+      end
+    end
+</code></pre>
+
 <h2 id="public-types">Public Types</h2>
 <ul>
 <li><a href="../files-WalkHandler/">interface WalkHandler</a></li>
