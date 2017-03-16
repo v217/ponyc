@@ -3711,13 +3711,13 @@ actor Main
 <h3 id="append">append</h3>
 <p>Add a chunk of data.</p>
 <pre><code class="pony">fun ref append(
-  data: Array[U8 val] val)
+  data: (String val | Array[U8 val] val))
 : None val
 </code></pre>
 
 <h4 id="parameters">Parameters</h4>
 <ul>
-<li>data: <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] val</li>
+<li>data: (<a href="../builtin-String">String</a> val | <a href="../builtin-Array">Array</a>[<a href="../builtin-U8">U8</a> val] val)</li>
 </ul>
 <h4 id="returns_3">Returns</h4>
 <ul>

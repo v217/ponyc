@@ -3670,7 +3670,7 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 <p>Attempt to get the value corresponding to k.</p>
 <pre><code class="pony">fun val apply(
   k: K val)
-: val-&gt;V #share ?
+: V #share ?
 </code></pre>
 
 <h4 id="parameters_1">Parameters</h4>
@@ -3679,7 +3679,7 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 </ul>
 <h4 id="returns_2">Returns</h4>
 <ul>
-<li>val-&gt;V #share ?</li>
+<li>V #share ?</li>
 </ul>
 <hr />
 <h3 id="size">size</h3>
@@ -3697,14 +3697,14 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 <p>Update the value associated with the provided key.</p>
 <pre><code class="pony">fun val update(
   key: K val,
-  value: val-&gt;V #share)
+  value: V #share)
 : Map[K val, V #share] val ?
 </code></pre>
 
 <h4 id="parameters_2">Parameters</h4>
 <ul>
 <li>key: K val</li>
-<li>value: val-&gt;V #share</li>
+<li>value: V #share</li>
 </ul>
 <h4 id="returns_4">Returns</h4>
 <ul>
@@ -3732,18 +3732,18 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 return the provided alternate value.</p>
 <pre><code class="pony">fun val get_or_else(
   k: K val,
-  alt: val-&gt;V #share)
-: val-&gt;V #share
+  alt: V #share)
+: V #share
 </code></pre>
 
 <h4 id="parameters_4">Parameters</h4>
 <ul>
 <li>k: K val</li>
-<li>alt: val-&gt;V #share</li>
+<li>alt: V #share</li>
 </ul>
 <h4 id="returns_6">Returns</h4>
 <ul>
-<li>val-&gt;V #share</li>
+<li>V #share</li>
 </ul>
 <hr />
 <h3 id="contains">contains</h3>
