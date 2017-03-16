@@ -10,6 +10,7 @@
 #include "gc/gc.h"
 #include "gc/serialise.h"
 #include "mpmcq.h"
+#include "mutemap.h"
 
 PONY_EXTERN_C_BEGIN
 
@@ -50,6 +51,7 @@ struct scheduler_t
   uint32_t block_count;
   int32_t ack_token;
   uint32_t ack_count;
+  mutemap_t mute_mapping;
 
   // These are accessed by other scheduler threads. The mpmcq_t is aligned.
   mpmcq_t q;
@@ -66,6 +68,10 @@ void ponyint_sched_stop();
 void ponyint_sched_add(pony_ctx_t* ctx, pony_actor_t* actor);
 
 uint32_t ponyint_sched_cores();
+
+void ponyint_sched_mute(pony_ctx_t* ctx, pony_actor_t* sender, pony_actor_t* recv);
+
+void ponyint_sched_unmute(pony_ctx_t* ctx, pony_actor_t* actor, bool inform);
 
 PONY_EXTERN_C_END
 
