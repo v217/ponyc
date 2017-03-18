@@ -15,9 +15,11 @@ All notable changes to the Pony compiler and standard library will be documented
 
 ### Added
 
+- Add ability for ponytest to exclude tests based on name (PR #1717)
 
 ### Changed
 
+- Renamed ponytest "filter" flag to "only" (PR #1717)
 
 
 ## [0.11.3] - 2017-03-16
