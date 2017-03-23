@@ -774,8 +774,8 @@ TEST_F(SugarExprTest, MatchExhaustiveAllCasesPrimitiveValues)
     "primitive P3\n"
 
     "primitive Foo\n"
-    "  fun apply(t': (P1 | P2 | P3)): Bool =>\n"
-    "    match t'\n"
+    "  fun apply(t: (P1 | P2 | P3)): Bool =>\n"
+    "    match t\n"
     "    | P1 | P2 => false\n"
     "    | P3 => true\n"
     "    end";
@@ -792,8 +792,8 @@ TEST_F(SugarExprTest, MatchNonExhaustivePrimitiveValuesSomeCasesMissing)
     "primitive P3\n"
 
     "primitive Foo\n"
-    "  fun apply(t': (P1 | P2 | P3)): Bool =>\n"
-    "    match t'\n"
+    "  fun apply(p: (P1 | P2 | P3)): Bool =>\n"
+    "    match p\n"
     "    | P1 => false\n"
     "    | P3 => true\n"
     "    end";
@@ -806,8 +806,8 @@ TEST_F(SugarExprTest, MatchNonExhaustivePrimitiveValuesMachineWords)
 {
   const char* src =
     "primitive Foo\n"
-    "  fun apply(t': (U64 | U32 | U8)): Bool =>\n"
-    "    match t'\n"
+    "  fun apply(n: (U64 | U32 | U8)): Bool =>\n"
+    "    match n\n"
     "    | U64(0) => false\n"
     "    | U32(0) => true\n"
     "    | U8(0) => false\n"
@@ -825,8 +825,8 @@ TEST_F(SugarExprTest, MatchNonExhaustivePrimitiveValuesCustomEqMethod)
     "primitive P3 fun eq(that: P3): Bool => this isnt that\n"
 
     "primitive Foo\n"
-    "  fun apply(t': (P1 | P2 | P3)): Bool =>\n"
-    "    match t'\n"
+    "  fun apply(p: (P1 | P2 | P3)): Bool =>\n"
+    "    match p\n"
     "    | P1 | P2 => false\n"
     "    | P3 => true\n"
     "    end";
@@ -843,11 +843,25 @@ TEST_F(SugarExprTest, MatchNonExhaustiveClassValues)
     "class C3 fun eq(that: C3): Bool => this is that\n"
 
     "primitive Foo\n"
-    "  fun apply(t': (C1 | C2 | C3)): Bool =>\n"
-    "    match t'\n"
+    "  fun apply(c: (C1 | C2 | C3)): Bool =>\n"
+    "    match c\n"
     "    | C1 | C2 => false\n"
     "    | C3 => true\n"
     "    end";
 
   TEST_ERRORS_1(src, "function body isn't the result type");
+}
+
+
+TEST_F(SugarExprTest, MatchExhaustiveTupleIncludesDontCareType)
+{
+  const char* src =
+    "primitive Foo\n"
+    "  fun apply(t: (U32, U32)): Bool =>\n"
+    "    match t\n"
+    "    | (0, 0) => true\n"
+    "    | (let c: U32, _) => c != 7\n"
+    "    end";
+
+  TEST_COMPILE(src);
 }

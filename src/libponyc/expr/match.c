@@ -24,6 +24,10 @@ static bool case_expr_matches_type_alone(pass_opt_t* opt, ast_t* case_expr)
     case TK_MATCH_DONTCARE:
       return true;
 
+    // This pattern form matches any type (ignoring the value entirely).
+    case TK_DONTCAREREF:
+      return true;
+
     // Tuple patterns may contain a mixture of matching on types and values,
     // so we only return true if *all* elements return true.
     case TK_TUPLE:
@@ -90,8 +94,6 @@ static bool is_match_exhaustive(pass_opt_t* opt, ast_t* expr_type, ast_t* cases)
   {
     AST_GET_CHILDREN(c, case_expr, guard, case_body);
     ast_t* pattern_type = ast_type(c);
-
-    if(pattern_type )
 
     // Only cases with no guard clause can count toward exhaustive match,
     // because the truth of a guard clause can't be statically evaluated.

@@ -742,7 +742,7 @@ LLVMValueRef gen_match(compile_t* c, ast_t* ast)
   LLVMValueRef match_value = gen_expr(c, match_expr);
 
   LLVMBasicBlockRef pattern_block = codegen_block(c, "case_pattern");
-  LLVMBasicBlockRef else_block = codegen_block(c, "match_else");
+  LLVMBasicBlockRef else_block = NULL;
   LLVMBasicBlockRef post_block = NULL;
   LLVMBasicBlockRef next_block = NULL;
 
@@ -763,6 +763,11 @@ LLVMValueRef gen_match(compile_t* c, ast_t* ast)
       phi = GEN_NOTNEEDED;
   }
 
+  // Create else block only if this isn't an exhaustive match
+  // (a match with no else expression).
+  if(ast_id(else_expr) != TK_NONE)
+    else_block = codegen_block(c, "match_else");
+
   // Iterate over the cases.
   ast_t* the_case = ast_child(cases);
 
@@ -782,7 +787,14 @@ LLVMValueRef gen_match(compile_t* c, ast_t* ast)
     ast_t* pattern_type = ast_type(the_case);
     bool ok = true;
 
-    if(is_matchtype(match_type, pattern_type, c->opt) != MATCHTYPE_ACCEPT)
+    if(next_block == NULL)
+    {
+      // This is the last case in an statically-determined exhaustive match.
+      // So we trust the static analysis, skip all matching logic, and proceed
+      // directly to the case body, as if this were an else clause.
+      ok = case_body(c, body, post_block, phi, phi_type);
+    }
+    else if(is_matchtype(match_type, pattern_type, c->opt) != MATCHTYPE_ACCEPT)
     {
       // If there's no possible match, jump directly to the next block.
       LLVMBuildBr(c->builder, next_block);
@@ -811,8 +823,8 @@ LLVMValueRef gen_match(compile_t* c, ast_t* ast)
 
   ast_free_unattached(match_type);
 
-  // Else body (empty block for exhaustive match).
-  if(ast_id(else_expr) != TK_NONE)
+  // Else body.
+  if(else_block != NULL)
   {
     LLVMPositionBuilderAtEnd(c->builder, else_block);
     codegen_pushscope(c, else_expr);
