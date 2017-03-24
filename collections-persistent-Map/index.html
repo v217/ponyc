@@ -980,10 +980,6 @@
                     
     <a class="" href="../collections-persistent-_TestMapVsMap/">class _TestMapVsMap</a>
                 </li>
-                <li class="">
-                    
-    <a class="" href="../collections-persistent-Maps/">primitive Maps</a>
-                </li>
                 <li class=" current">
                     
     <a class="current" href="./">class Map</a>
@@ -3638,8 +3634,8 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 </code></pre>
 
 <h2 id="constructors">Constructors</h2>
-<h3 id="_empty">_empty</h3>
-<pre><code class="pony">new val _empty()
+<h3 id="create">create</h3>
+<pre><code class="pony">new val create()
 : Map[K val, V #share] val^
 </code></pre>
 
@@ -3698,7 +3694,7 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 <pre><code class="pony">fun val update(
   key: K val,
   value: V #share)
-: Map[K val, V #share] val ?
+: Map[K val, V #share] val
 </code></pre>
 
 <h4 id="parameters_2">Parameters</h4>
@@ -3708,7 +3704,7 @@ let map = Maps.from[String,U32]([(&quot;a&quot;, 2), (&quot;b&quot;, 3)]) // {a:
 </ul>
 <h4 id="returns_4">Returns</h4>
 <ul>
-<li><a href="../collections-persistent-Map">Map</a>[K val, V #share] val ?</li>
+<li><a href="../collections-persistent-Map">Map</a>[K val, V #share] val</li>
 </ul>
 <hr />
 <h3 id="remove">remove</h3>
@@ -3762,12 +3758,28 @@ return the provided alternate value.</p>
 <li><a href="../builtin-Bool">Bool</a> val</li>
 </ul>
 <hr />
+<h3 id="concat">concat</h3>
+<p>Add the K, V pairs from the given iterator to the map.</p>
+<pre><code class="pony">fun val concat(
+  iter: Iterator[(K val , V #share)] ref)
+: Map[K val, V #share] val
+</code></pre>
+
+<h4 id="parameters_6">Parameters</h4>
+<ul>
+<li>iter: <a href="../builtin-Iterator">Iterator</a>[(K val , V #share)] ref</li>
+</ul>
+<h4 id="returns_8">Returns</h4>
+<ul>
+<li><a href="../collections-persistent-Map">Map</a>[K val, V #share] val</li>
+</ul>
+<hr />
 <h3 id="keys">keys</h3>
 <pre><code class="pony">fun val keys()
 : MapKeys[K val, V #share] ref
 </code></pre>
 
-<h4 id="returns_8">Returns</h4>
+<h4 id="returns_9">Returns</h4>
 <ul>
 <li><a href="../collections-persistent-MapKeys">MapKeys</a>[K val, V #share] ref</li>
 </ul>
@@ -3777,7 +3789,7 @@ return the provided alternate value.</p>
 : MapValues[K val, V #share] ref
 </code></pre>
 
-<h4 id="returns_9">Returns</h4>
+<h4 id="returns_10">Returns</h4>
 <ul>
 <li><a href="../collections-persistent-MapValues">MapValues</a>[K val, V #share] ref</li>
 </ul>
@@ -3787,7 +3799,7 @@ return the provided alternate value.</p>
 : MapPairs[K val, V #share] ref
 </code></pre>
 
-<h4 id="returns_10">Returns</h4>
+<h4 id="returns_11">Returns</h4>
 <ul>
 <li><a href="../collections-persistent-MapPairs">MapPairs</a>[K val, V #share] ref</li>
 </ul>
@@ -3798,7 +3810,7 @@ return the provided alternate value.</p>
 : _MapNode[K val, V #share] val
 </code></pre>
 
-<h4 id="returns_11">Returns</h4>
+<h4 id="returns_12">Returns</h4>
 <ul>
 <li><a href="../collections-persistent-_MapNode">_MapNode</a>[K val, V #share] val</li>
 </ul>
@@ -3813,7 +3825,7 @@ return the provided alternate value.</p>
         <a href="../collections-persistent-MapKeys/" class="btn btn-neutral float-right" title="class MapKeys">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../collections-persistent-Maps/" class="btn btn-neutral" title="primitive Maps"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../collections-persistent-_TestMapVsMap/" class="btn btn-neutral" title="class _TestMapVsMap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -3839,7 +3851,7 @@ return the provided alternate value.</p>
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../collections-persistent-Maps/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../collections-persistent-_TestMapVsMap/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../collections-persistent-MapKeys/" style="color: #fcfcfc">Next &raquo;</a></span>
