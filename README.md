@@ -237,6 +237,7 @@ $ ./helloworld
 ### Ubuntu (14.04, 15.10, 16.04)
 
 ```bash
+$ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
 $ sudo apt-get update
 $ sudo apt-get install -y build-essential git zlib1g-dev libncurses5-dev libssl-dev libpcre2-dev
 ```
